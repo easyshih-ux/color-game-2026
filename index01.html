@@ -1727,14 +1727,14 @@
     bottom: 22px;
     z-index: 9999;
     display: none;
-    min-height: 54px;
+    min-height: 72px;
     border: 0;
     border-radius: 999px;
-    padding: 12px 22px;
+    padding: 18px 34px;
     background: #ff9f1c;
     color: #17120a;
     font-family: "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 900;
     text-decoration: none;
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.24);
@@ -1754,8 +1754,8 @@
 
     function shouldShowPasswordButton() {
       const visibleText = document.body.innerText || "";
-      const stillLocked = visibleText.includes("🔒");
-      return !stillLocked;
+      const compactText = visibleText.replace(/\s/g, "");
+      return compactText.includes("開鎖密碼");
     }
 
     function updatePasswordButton() {

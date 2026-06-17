@@ -1277,5 +1277,47 @@
     setupDropArea(cardPool);
     renderLevel();
   </script>
+<style>
+  .brightness-password-button {
+    min-height: 72px !important;
+    padding: 18px 34px !important;
+    font-size: 24px !important;
+  }
+
+  .brightness-password-button:not(.show-after-code) {
+    display: none !important;
+  }
+
+  .brightness-password-button.show-after-code {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+</style>
+<script>
+  (() => {
+    const passwordButton = document.querySelector(".brightness-password-button");
+    if (!passwordButton) return;
+
+    function updateAfterPasswordShown() {
+      const compactText = (document.body.innerText || "").replace(/\s/g, "");
+      passwordButton.classList.toggle("show-after-code", compactText.includes("開鎖密碼"));
+    }
+
+    updateAfterPasswordShown();
+    window.addEventListener("load", updateAfterPasswordShown);
+    document.addEventListener("click", () => window.setTimeout(updateAfterPasswordShown, 120));
+    document.addEventListener("change", () => window.setTimeout(updateAfterPasswordShown, 120));
+
+    const observer = new MutationObserver(updateAfterPasswordShown);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ["class", "style", "hidden"]
+    });
+  })();
+</script>
 </body>
 </html>

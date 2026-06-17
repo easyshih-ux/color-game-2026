@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>色彩學解封任務</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      font-family: "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif;
+      background: #070b1d;
+      color: #fff;
+    }
+
+    .screen {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: #070b1d;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    video,
+    .start-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    video {
+      background: #000;
+      object-fit: contain;
+    }
+
+    .start-button {
+      position: fixed;
+      right: clamp(18px, 4vw, 56px);
+      bottom: clamp(18px, 4vw, 48px);
+      min-width: 168px;
+      min-height: 56px;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 26px;
+      background: linear-gradient(135deg, #ffd34f, #ff7a3d);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.34);
+      color: #17120a;
+      cursor: pointer;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .start-button:focus-visible {
+      outline: 4px solid rgba(255, 255, 255, 0.85);
+      outline-offset: 4px;
+    }
+
+    .skip-button {
+      position: fixed;
+      right: 14px;
+      top: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: rgba(7, 11, 29, 0.2);
+      color: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0.34;
+      backdrop-filter: blur(8px);
+    }
+
+    .skip-button:hover,
+    .skip-button:focus-visible {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 640px) {
+      .start-button {
+        right: 16px;
+        bottom: 16px;
+        min-width: 144px;
+        min-height: 50px;
+        padding: 12px 20px;
+        font-size: 19px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section id="movieScreen" class="screen" aria-label="開場動畫">
+      <video id="openingMovie" autoplay playsinline muted controls>
+        <source src="色彩學開場影片/Startmovic2.mp4" type="video/mp4">
+      </video>
+      <button id="skipMovie" class="skip-button" type="button">略過動畫</button>
+    </section>
+
+    <section id="startScreen" class="screen hidden" aria-label="遊戲進入頁面">
+      <img class="start-image" src="色彩學開場影片/開場/Start0.png" alt="色彩學解封任務進入頁">
+      <button id="startButton" class="start-button" type="button">解封開始</button>
+    </section>
+  </main>
+
+  <script>
+    const movieScreen = document.querySelector("#movieScreen");
+    const startScreen = document.querySelector("#startScreen");
+    const openingMovie = document.querySelector("#openingMovie");
+    const skipMovie = document.querySelector("#skipMovie");
+    const startButton = document.querySelector("#startButton");
+
+    function showStartScreen() {
+      openingMovie.pause();
+      movieScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+      startButton.focus();
+    }
+
+    openingMovie.addEventListener("ended", showStartScreen);
+    skipMovie.addEventListener("click", showStartScreen);
+    startButton.addEventListener("click", () => {
+      window.location.href = "hue-intro.html";
+    });
+
+    openingMovie.play().catch(() => {
+      skipMovie.textContent = "開始進入";
+    });
+  </script>
+</body>
+</html>

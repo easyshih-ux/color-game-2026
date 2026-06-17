@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>遊戲評價</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 10% 12%, rgba(255, 211, 79, 0.28), transparent 28%),
+        radial-gradient(circle at 88% 20%, rgba(80, 185, 255, 0.18), transparent 24%),
+        linear-gradient(135deg, #fff8df 0%, #eef8ff 52%, #fff1f5 100%);
+      color: #10214a;
+    }
+
+    main {
+      width: min(940px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0;
+    }
+
+    .sheet {
+      border: 3px solid rgba(255, 191, 64, 0.95);
+      border-radius: 22px;
+      padding: clamp(20px, 4vw, 38px);
+      background: rgba(255, 250, 232, 0.9);
+      box-shadow: 0 18px 46px rgba(16, 33, 74, 0.14);
+    }
+
+    h1,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      color: #113477;
+      font-size: clamp(30px, 5vw, 48px);
+      letter-spacing: 0;
+    }
+
+    .intro {
+      margin-top: 8px;
+      color: #405177;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    fieldset {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      border: 2px solid rgba(43, 97, 199, 0.22);
+      border-radius: 14px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    legend {
+      padding: 0 8px;
+      color: #113477;
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+    }
+
+    label.option {
+      display: flex;
+      min-height: 50px;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid #dbe4f2;
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #ff9f1c;
+    }
+
+    textarea,
+    input[type="text"] {
+      width: 100%;
+      border: 2px solid #dbe4f2;
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: #10214a;
+      font: inherit;
+      font-size: 17px;
+      font-weight: 700;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 104px;
+      resize: vertical;
+    }
+
+    textarea:focus,
+    input[type="text"]:focus {
+      outline: 4px solid rgba(255, 203, 69, 0.42);
+      border-color: #ff9f1c;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    button,
+    .link-button {
+      min-height: 52px;
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 22px;
+      background: #ff9f1c;
+      color: #17120a;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 900;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 8px 18px rgba(16, 33, 74, 0.16);
+    }
+
+    .secondary {
+      border: 2px solid #2b61c7;
+      background: #fff;
+      color: #113477;
+      box-shadow: none;
+    }
+
+    .result {
+      display: none;
+      margin-top: 18px;
+      border-radius: 14px;
+      padding: 16px;
+      background: #eef8f0;
+      color: #14843b;
+      font-size: 19px;
+      font-weight: 900;
+      line-height: 1.6;
+    }
+
+    .result.is-visible {
+      display: block;
+    }
+
+    .prize-card {
+      display: none;
+      margin-top: 18px;
+      border: 4px solid #ff9f1c;
+      border-radius: 20px;
+      padding: 22px;
+      background: linear-gradient(135deg, #fff6cf 0%, #ffffff 56%, #eef8ff 100%);
+      text-align: center;
+      box-shadow: 0 14px 34px rgba(16, 33, 74, 0.16);
+    }
+
+    .prize-card.is-visible {
+      display: block;
+    }
+
+    .prize-title {
+      color: #113477;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .prize-meta {
+      display: grid;
+      gap: 8px;
+      margin-top: 16px;
+      color: #10214a;
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .prize-note {
+      margin-top: 16px;
+      border-radius: 14px;
+      padding: 14px;
+      background: #113477;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 900;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="sheet">
+      <h1>遊戲評價</h1>
+      <p class="intro">請用一點點時間回想剛才的破關歷程，幫老師知道這個遊戲是否真的幫助你學會色相、明度和彩度。</p>
+
+      <form id="evaluationForm">
+        <fieldset>
+          <legend>1. 我覺得這個遊戲有幫助我理解色彩三要素</legend>
+          <div class="options">
+            <label class="option"><input name="learning" type="radio" value="5" required>非常同意</label>
+            <label class="option"><input name="learning" type="radio" value="4">同意</label>
+            <label class="option"><input name="learning" type="radio" value="3">普通</label>
+            <label class="option"><input name="learning" type="radio" value="2">有點不同意</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. 哪一個任務最讓你有成就感？</legend>
+          <div class="options">
+            <label class="option"><input name="favorite" type="radio" value="色相" required>色相封印</label>
+            <label class="option"><input name="favorite" type="radio" value="明度">明度封印</label>
+            <label class="option"><input name="favorite" type="radio" value="彩度">彩度封印</label>
+            <label class="option"><input name="favorite" type="radio" value="最後驗收">最後驗收</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. 你覺得題目難度如何？</legend>
+          <div class="options">
+            <label class="option"><input name="difficulty" type="radio" value="剛剛好" required>剛剛好</label>
+            <label class="option"><input name="difficulty" type="radio" value="有點簡單">有點簡單</label>
+            <label class="option"><input name="difficulty" type="radio" value="有點困難">有點困難</label>
+            <label class="option"><input name="difficulty" type="radio" value="太困難">太困難</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. 這個遊戲讓我練習到哪些能力？</legend>
+          <div class="options">
+            <label class="option"><input name="skills" type="checkbox" value="觀察顏色">觀察顏色</label>
+            <label class="option"><input name="skills" type="checkbox" value="判斷明暗">判斷明暗</label>
+            <label class="option"><input name="skills" type="checkbox" value="比較彩度">比較彩度</label>
+            <label class="option"><input name="skills" type="checkbox" value="解讀線索">解讀線索</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>5. 給這個遊戲一句回饋</legend>
+          <textarea name="comment" placeholder="例如：我最喜歡哪一關、哪裡希望更清楚、哪個地方很有趣..." required></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>6. 姓名或座號</legend>
+          <input name="student" type="text" placeholder="可填座號或姓名" required>
+        </fieldset>
+
+        <div class="button-row">
+          <button type="submit">送出評價</button>
+          <button id="downloadButton" class="secondary" type="button">下載回饋紀錄</button>
+          <a class="link-button secondary" href="final-ending.html">回完美破關</a>
+        </div>
+      </form>
+
+      <p id="result" class="result" aria-live="polite">謝謝你的回饋，老師已收到這份評價。</p>
+      <section id="prizeCard" class="prize-card" aria-live="polite">
+        <div class="prize-title">恭喜完成色彩三要素挑戰</div>
+        <div class="prize-meta">
+          <div>領獎人：<span id="prizeStudent">--</span></div>
+          <div>完成時間：<span id="prizeTime">--</span></div>
+        </div>
+        <div class="prize-note">請把這個畫面出示給老師領取獎品</div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const form = document.querySelector("#evaluationForm");
+    const result = document.querySelector("#result");
+    const downloadButton = document.querySelector("#downloadButton");
+    const prizeCard = document.querySelector("#prizeCard");
+    const prizeStudent = document.querySelector("#prizeStudent");
+    const prizeTime = document.querySelector("#prizeTime");
+
+    function getRecords() {
+      return JSON.parse(window.localStorage.getItem("colorGameEvaluations") || "[]");
+    }
+
+    function saveRecords(records) {
+      window.localStorage.setItem("colorGameEvaluations", JSON.stringify(records));
+    }
+
+    function getFormData() {
+      const data = new FormData(form);
+      return {
+        time: new Date().toLocaleString("zh-TW"),
+        student: data.get("student") || "",
+        learning: data.get("learning") || "",
+        favorite: data.get("favorite") || "",
+        difficulty: data.get("difficulty") || "",
+        skills: data.getAll("skills").join("、"),
+        comment: data.get("comment") || ""
+      };
+    }
+
+    function toCsv(records) {
+      const headers = ["時間", "姓名或座號", "學習幫助", "最有成就感", "難度", "練習能力", "一句回饋"];
+      const keys = ["time", "student", "learning", "favorite", "difficulty", "skills", "comment"];
+      const rows = records.map((record) => keys.map((key) => `"${String(record[key] || "").replace(/"/g, '""')}"`).join(","));
+      return "\uFEFF" + headers.join(",") + "\n" + rows.join("\n");
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const records = getRecords();
+      const record = getFormData();
+      records.push(record);
+      saveRecords(records);
+      form.reset();
+      result.classList.add("is-visible");
+      prizeStudent.textContent = record.student;
+      prizeTime.textContent = record.time;
+      prizeCard.classList.add("is-visible");
+      prizeCard.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    downloadButton.addEventListener("click", () => {
+      const records = getRecords();
+      const blob = new Blob([toCsv(records)], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "色彩學遊戲評價.csv";
+      link.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>

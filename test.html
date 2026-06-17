@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>色彩學遊戲測試頁</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif;
+      background: linear-gradient(135deg, #f9fbff 0%, #fff7df 48%, #eef8f0 100%);
+      color: #10214a;
+    }
+
+    main {
+      width: min(960px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 36px 0;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 5vw, 52px);
+      color: #113477;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.7;
+      font-size: 18px;
+    }
+
+    .panel {
+      margin-top: 20px;
+      padding: 22px;
+      border: 3px solid #2b61c7;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 14px 34px rgba(16, 33, 74, 0.12);
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    a {
+      display: grid;
+      min-height: 58px;
+      place-items: center;
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: #ff9f1c;
+      color: #17120a;
+      font-size: 18px;
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 8px 18px rgba(16, 33, 74, 0.14);
+    }
+
+    a.secondary {
+      border: 2px solid #2b61c7;
+      background: #fff;
+      color: #113477;
+      box-shadow: none;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      color: #113477;
+      font-size: 24px;
+    }
+
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 8px 14px;
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .answer-grid div {
+      min-height: 38px;
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: #f3f7ff;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>色彩學遊戲測試頁</h1>
+    <p>這一頁是老師測試用，學生上課時可以直接從 <strong>index.html</strong> 開始。</p>
+
+    <section class="panel">
+      <h2>快速進入</h2>
+      <div class="links">
+        <a href="index.html">從開場開始</a>
+        <a href="hue-intro.html">跳到色相開場</a>
+        <a href="index01.html">跳到 index01</a>
+        <a href="hue-password.html">跳到色相密碼</a>
+        <a href="brightness-intro.html">跳到明度開場</a>
+        <a href="brightness-password.html">跳到明度密碼</a>
+        <a href="chroma-intro.html">跳到彩度開場</a>
+        <a href="chroma-password.html">跳到彩度密碼</a>
+        <a href="elements-intro.html">跳到最後驗收開場</a>
+        <a href="elements-password.html">跳到最後驗收</a>
+        <a href="final-ending.html">跳到完美破關</a>
+        <a href="evaluation.html">跳到遊戲評價</a>
+        <a class="secondary" href="index02.html">跳到 index02</a>
+        <a class="secondary" href="index03.html">跳到 index03</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Part 1 測試答案</h2>
+      <p>隨機出現「色相驗證 (1)」到「色相驗證 (9)」時，可輸入下列 HUE+ 代碼。</p>
+      <div class="answer-grid">
+        <div>1：HUE+P4</div>
+        <div>2：HUE+D8</div>
+        <div>3：HUE+F8</div>
+        <div>4：HUE+K3</div>
+        <div>5：HUE+P12</div>
+        <div>6：HUE+F5</div>
+        <div>7：HUE+L2</div>
+        <div>8：HUE+H7</div>
+        <div>9：HUE+L10</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Part 2 測試答案</h2>
+      <p>隨機出現「色相1」到「色相9」時，可輸入下列四格密碼。</p>
+      <div class="answer-grid">
+        <div>色相1：11-2-3-2</div>
+        <div>色相2：12-3-1-10</div>
+        <div>色相3：10-11-6-4</div>
+        <div>色相4：7-9-5-5</div>
+        <div>色相5：9-10-8-11</div>
+        <div>色相6：4-1-12-6</div>
+        <div>色相7：5-5-7-8</div>
+        <div>色相8：2-4-6-9</div>
+        <div>色相9：3-12-10-12</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

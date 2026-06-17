@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>第二道封印|明度：光影四關任務</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: linear-gradient(135deg, #f7f4ee, #eaf2f8);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 96px 24px 24px;
+    }
+
+    .game {
+      width: min(1240px, 100%);
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 28px;
+      box-shadow: 0 18px 50px rgba(70, 92, 120, 0.18);
+      padding: 32px;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .top { margin-bottom: 22px; }
+
+    .main-title {
+      margin-bottom: 22px;
+      padding: 56px 24px 34px;
+      border-radius: 24px;
+      background: linear-gradient(90deg, #efe6d2 0%, #f7f1e4 55%, #eef3ef 100%);
+      color: #22313d;
+      text-align: center;
+      border: 1px solid rgba(34, 49, 61, 0.08);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 4.5vw, 68px);
+      letter-spacing: 1px;
+      color: #22313d;
+      font-weight: 900;
+      line-height: 1.18;
+    }
+
+    .title-subtitle {
+      margin-top: 20px;
+      font-size: clamp(16px, 2vw, 24px);
+      font-weight: 500;
+      color: #6d7d8d;
+      letter-spacing: 1px;
+    }
+
+    .story {
+      font-size: 18px;
+      line-height: 1.8;
+      background: #fff8e9;
+      border-left: 8px solid #efb45f;
+      border-radius: 18px;
+      padding: 18px 20px;
+    }
+
+    .level-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .level-tab {
+      border: 2px solid #d9e4ef;
+      background: #fff;
+      color: #2f4f67;
+      border-radius: 18px;
+      padding: 14px 12px;
+      cursor: pointer;
+      transition: 0.2s;
+      text-align: left;
+      min-height: 106px;
+    }
+
+    .level-tab:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(47, 79, 103, 0.14);
+    }
+
+    .level-tab.active {
+      background: #2f4f67;
+      color: white;
+      border-color: #2f4f67;
+    }
+
+    .level-tab.locked {
+      cursor: not-allowed;
+      opacity: 0.45;
+      filter: grayscale(0.6);
+    }
+
+    .level-tab.completed {
+      border-color: #62a87c;
+      background: #f1fbf4;
+    }
+
+    .level-tab.completed.active {
+      background: #2f4f67;
+      color: white;
+      border-color: #2f4f67;
+    }
+
+    .level-tab .tag {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      opacity: 0.8;
+    }
+
+    .level-tab .title {
+      font-size: 17px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .level-tab .desc {
+      font-size: 14px;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    .level-tab .status {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(47, 79, 103, 0.1);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .level-tab.active .status {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .mission {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      background: #edf7f5;
+      border-radius: 20px;
+      padding: 16px 18px;
+      line-height: 1.7;
+    }
+
+    .mission-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .mission strong { color: #2d6d67; }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      background: #2f4f67;
+      color: white;
+      transition: 0.2s;
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(47, 79, 103, 0.22);
+    }
+
+    button:disabled { cursor: not-allowed; }
+
+    .secondary {
+      background: #efb45f;
+      color: #3d3325;
+    }
+
+    .next {
+      background: #62a87c;
+      color: white;
+      display: none;
+    }
+
+    .areas {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .panel {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 20px;
+      border: 1px solid #e1e7ee;
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      font-size: 22px;
+      color: #2f4f67;
+    }
+
+    .cards, .answer-row {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(72px, 1fr));
+      gap: 12px;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 96px;
+      height: 116px;
+      border-radius: 16px;
+      cursor: pointer;
+      user-select: none;
+      touch-action: manipulation;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      border: 3px solid white;
+      transition: 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after, .flash-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+
+    .card:active {
+      cursor: grabbing;
+      transform: scale(1.04);
+    }
+
+    .slot {
+      width: 100%;
+      max-width: 104px;
+      min-height: 128px;
+      border-radius: 18px;
+      border: 3px dashed #b8c7d4;
+      background: #f8fbfd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 6px;
+      position: relative;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .slot::before {
+      content: attr(data-label);
+      position: absolute;
+      top: -28px;
+      font-size: 13px;
+      color: #789;
+      font-weight: 900;
+    }
+
+    .slot.correct {
+      border-color: #62a87c;
+      background: #eefaf2;
+    }
+
+    .slot.wrong {
+      border-color: #d77a61;
+      background: #fff1ec;
+    }
+
+    .message {
+      margin-top: 20px;
+      min-height: 64px;
+      border-radius: 18px;
+      padding: 16px 18px;
+      background: #f7f4ee;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .light-path {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin: 18px 0 34px;
+      color: #687986;
+      font-weight: 900;
+    }
+
+    .flash-area {
+      display: none;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid #e1e7ee;
+    }
+
+    .flash-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .flash-question {
+      font-size: clamp(34px, 6vw, 76px);
+      font-weight: 1000;
+      color: #2f4f67;
+      letter-spacing: 4px;
+      line-height: 1.1;
+    }
+
+    .flash-progress {
+      min-width: 120px;
+      text-align: center;
+      background: #f2f6fb;
+      border-radius: 18px;
+      padding: 12px 16px;
+      color: #2f4f67;
+      font-weight: 900;
+      font-size: 20px;
+      border: 1px solid #d9e4ef;
+    }
+
+    .flash-timer {
+      min-width: 120px;
+      text-align: center;
+      background: #fff8e9;
+      border-radius: 18px;
+      padding: 12px 16px;
+      color: #8a4f00;
+      font-weight: 900;
+      font-size: 20px;
+      border: 1px solid #efb45f;
+    }
+
+    .flash-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(96px, 1fr));
+      gap: 12px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .flash-card {
+      aspect-ratio: 1 / 1;
+      border-radius: 20px;
+      border: 4px solid white;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+      cursor: pointer;
+      position: relative;
+      transition: 0.15s;
+      overflow: hidden;
+    }
+
+    .flash-card:hover {
+      transform: scale(1.03);
+    }
+
+    .flash-card.correct-click {
+      outline: 8px solid #62a87c;
+    }
+
+    .flash-card.wrong-click {
+      outline: 8px solid #d77a61;
+      animation: shake 0.2s linear 2;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    .unlock-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 9999;
+    }
+
+    .unlock-overlay.show {
+      display: flex;
+    }
+
+    .unlock-card {
+      width: min(760px, 100%);
+      background: linear-gradient(180deg, #fffdf5 0%, #fff7dd 100%);
+      border: 4px solid #efb45f;
+      border-radius: 28px;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+      text-align: center;
+      padding: 34px 28px;
+      animation: popIn 0.35s ease-out;
+    }
+
+    .unlock-badge {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: #2f4f67;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .unlock-title {
+      margin: 0;
+      color: #9b5a00;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.3;
+      font-weight: 900;
+    }
+
+    .unlock-subtitle {
+      margin: 18px 0 8px;
+      color: #5e4a2e;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .unlock-password {
+      display: inline-block;
+      margin: 12px 0 8px;
+      padding: 14px 24px;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 3px dashed #efb45f;
+      color: #2f4f67;
+      font-size: clamp(30px, 5vw, 56px);
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
+
+    .unlock-note {
+      margin-top: 12px;
+      color: #6e6759;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .unlock-close {
+      margin-top: 18px;
+      background: #efb45f;
+      color: #3d3325;
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0.92);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .level-tabs { grid-template-columns: 1fr; }
+
+      .cards, .answer-row {
+        grid-template-columns: repeat(5, minmax(72px, 1fr));
+        row-gap: 34px;
+      }
+
+      body { padding: 64px 12px 14px; }
+      .game { padding: 16px; border-radius: 20px; }
+      .main-title { padding: 28px 12px 18px; margin-bottom: 12px; }
+      h1 { font-size: clamp(28px, 5vw, 48px); }
+      .title-subtitle { line-height: 1.5; margin-top: 10px; font-size: 16px; }
+      .story { padding: 12px 14px; font-size: 15px; line-height: 1.6; margin-bottom: 12px; }
+      .level-tabs { gap: 8px; margin-bottom: 10px; }
+      .level-tab { min-height: auto; padding: 10px; }
+      .level-tab .title { font-size: 16px; }
+      .level-tab .desc { font-size: 12px; }
+      .mission { padding: 12px 14px; margin-bottom: 10px; line-height: 1.5; }
+      .flash-head { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .flash-question, .flash-progress, .flash-timer { padding: 9px; border-radius: 12px; }
+      .flash-grid { grid-template-columns: repeat(4, minmax(54px, 1fr)); gap: 7px; max-width: 560px; }
+      .flash-card { min-height: 54px; border-radius: 12px; border-width: 2px; }
+      .message { margin-top: 10px; min-height: 44px; padding: 10px 12px; font-size: 15px; line-height: 1.5; }
+    }
+  
+    body.flash-mode .story {
+      display: none;
+    }
+
+    body.flash-mode .main-title {
+      padding-top: 22px;
+      padding-bottom: 18px;
+      margin-bottom: 10px;
+    }
+
+    body.flash-mode .level-tabs {
+      margin-bottom: 8px;
+    }
+
+    body.flash-mode .mission {
+      margin-bottom: 8px;
+    }
+
+    body.flash-mode .message {
+      margin-top: 8px;
+    }
+
+    @media (max-width: 980px) {
+      body.flash-mode { padding-top: 42px; }
+      body.flash-mode .main-title { padding: 18px 10px 12px; }
+      body.flash-mode h1 { font-size: clamp(24px, 4.5vw, 38px); }
+      body.flash-mode .title-subtitle { display: none; }
+      body.flash-mode .level-tab .desc { display: none; }
+      body.flash-mode .mission { font-size: 14px; }
+    }
+        
+    /* 平板第四關一頁顯示優化 */
+    .flash-area {
+      padding: 12px !important;
+    }
+
+    .flash-head {
+      display: grid !important;
+      grid-template-columns: 1fr auto auto !important;
+      gap: 8px !important;
+      align-items: center !important;
+      margin-bottom: 8px !important;
+    }
+
+    .flash-question {
+      font-size: clamp(26px, 4.2vw, 52px) !important;
+      line-height: 1 !important;
+      letter-spacing: 2px !important;
+    }
+
+    .flash-progress,
+    .flash-timer {
+      min-width: 82px !important;
+      padding: 8px 10px !important;
+      border-radius: 12px !important;
+      font-size: 16px !important;
+    }
+
+    .flash-grid {
+      grid-template-columns: repeat(4, minmax(48px, 1fr)) !important;
+      gap: 7px !important;
+      max-width: 520px !important;
+      margin: 0 auto !important;
+    }
+
+    .flash-card {
+      min-height: 0 !important;
+      border-radius: 12px !important;
+      border-width: 2px !important;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.14) !important;
+      touch-action: manipulation !important;
+    }
+
+    @media (max-width: 980px) {
+      body.flash-mode {
+        padding-top: 28px !important;
+        padding-bottom: 8px !important;
+      }
+
+      body.flash-mode .game {
+        padding: 10px !important;
+      }
+
+      body.flash-mode .main-title {
+        padding: 14px 8px 10px !important;
+        margin-bottom: 6px !important;
+      }
+
+      body.flash-mode h1 {
+        font-size: clamp(22px, 4vw, 34px) !important;
+        line-height: 1.15 !important;
+      }
+
+      body.flash-mode .title-subtitle,
+      body.flash-mode .story,
+      body.flash-mode .level-tab .desc {
+        display: none !important;
+      }
+
+      body.flash-mode .level-tabs {
+        gap: 5px !important;
+        margin-bottom: 6px !important;
+      }
+
+      body.flash-mode .level-tab {
+        padding: 6px 8px !important;
+        border-radius: 12px !important;
+      }
+
+      body.flash-mode .level-tab .tag {
+        font-size: 11px !important;
+        margin-bottom: 2px !important;
+      }
+
+      body.flash-mode .level-tab .title {
+        font-size: 13px !important;
+        margin-bottom: 0 !important;
+      }
+
+      body.flash-mode .mission {
+        padding: 7px 10px !important;
+        margin-bottom: 6px !important;
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+      }
+
+      body.flash-mode .flash-area {
+        padding: 8px !important;
+        border-radius: 16px !important;
+      }
+
+      body.flash-mode .flash-head {
+        grid-template-columns: 1fr auto auto !important;
+        gap: 6px !important;
+        margin-bottom: 6px !important;
+      }
+
+      body.flash-mode .flash-question {
+        font-size: clamp(24px, 5vw, 42px) !important;
+        letter-spacing: 1px !important;
+      }
+
+      body.flash-mode .flash-progress,
+      body.flash-mode .flash-timer {
+        min-width: 64px !important;
+        padding: 6px 7px !important;
+        font-size: 13px !important;
+        border-radius: 10px !important;
+      }
+
+      body.flash-mode .flash-grid {
+        grid-template-columns: repeat(4, minmax(42px, 1fr)) !important;
+        gap: 5px !important;
+        max-width: min(92vw, 420px) !important;
+      }
+
+      body.flash-mode .flash-card {
+        border-radius: 9px !important;
+        border-width: 2px !important;
+      }
+
+      body.flash-mode .message {
+        margin-top: 6px !important;
+        min-height: 32px !important;
+        padding: 7px 9px !important;
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+      }
+    }
+
+    @media (max-height: 760px) and (max-width: 980px) {
+      body.flash-mode {
+        padding-top: 14px !important;
+      }
+
+      body.flash-mode .main-title {
+        padding: 10px 8px 8px !important;
+      }
+
+      body.flash-mode h1 {
+        font-size: clamp(20px, 3.5vw, 30px) !important;
+      }
+
+      body.flash-mode .level-tabs {
+        grid-template-columns: repeat(4, 1fr) !important;
+      }
+
+      body.flash-mode .mission {
+        display: none !important;
+      }
+
+      body.flash-mode .flash-grid {
+        max-width: min(88vw, 360px) !important;
+        gap: 4px !important;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <main class="game">
+    <section class="top">
+      <div class="main-title">
+        <h1>第二道封印|明度：光影四關任務</h1>
+        <div class="title-subtitle">四個關卡都要破解，才能一步一步解鎖下一關！</div>
+      </div>
+      <div class="story">
+        色怪把光線藏進不同色卡裡。<br />
+        請偵探們觀察：<strong>它比較接近白，還是比較接近黑？</strong><br />
+        破解完上一關，才能解鎖下一關。
+      </div>
+    </section>
+
+    <section class="level-tabs" id="levelTabs"></section>
+
+    <section class="mission">
+      <div id="missionText">
+        <strong>任務：</strong>請把 10 張色卡從最暗排到最亮。
+      </div>
+      <div class="mission-actions">
+        <button id="checkButton" onclick="checkAnswer()">檢查答案</button>
+        <button class="secondary" id="resetButton" onclick="resetLevel()">重新洗牌</button>
+        <button class="next" id="nextButton" onclick="goNextLevel()">前往下一關</button>
+      </div>
+    </section>
+
+    <section class="areas" id="sortArea">
+      <div class="panel">
+        <h2>待破解色卡</h2>
+        <div class="cards" id="cardPool"></div>
+        <div class="tap-help" id="tapHelp">平板操作：先點一張色卡，再點明度階梯中的目標格子。已放入階梯的色卡，點兩下可回到色卡列。</div>
+      </div>
+
+      <div class="panel">
+        <h2>明度階梯</h2>
+        <div class="light-path">
+          <span>最暗</span>
+          <span>最亮</span>
+        </div>
+        <div class="answer-row" id="answerRow"></div>
+      </div>
+    </section>
+
+    <section class="flash-area" id="flashArea">
+      <div class="flash-head">
+        <div class="flash-question" id="flashQuestion">高明度</div>
+        <div class="flash-progress" id="flashProgress">1 / 20</div>
+        <div class="flash-timer" id="flashTimer">60 秒</div>
+      </div>
+      <div class="flash-grid" id="flashGrid"></div>
+    </section>
+
+    <div class="message" id="message">
+      小提醒：明度簡單來說，就是色彩的明暗程度。請從最暗排到最亮。
+    </div>
+  </main>
+
+  <div class="unlock-overlay" id="unlockOverlay">
+    <div class="unlock-card">
+      <div class="unlock-badge">MISSION CLEAR</div>
+      <h2 class="unlock-title">「第二道封印|明度」<br>解鎖成功</h2>
+      <div class="unlock-subtitle">獲得開鎖密碼</div>
+      <div class="unlock-password">VALUE</div>
+      <div class="unlock-note">請記下密碼，前往下一道封印挑戰。</div>
+      <button class="unlock-close" type="button" onclick="hideUnlockOverlay()">我記住了</button>
+    </div>
+  </div>
+
+  <script>
+    const levels = [
+      {
+        type: "sort",
+        title: "黑白灰明度",
+        shortTitle: "第一關",
+        desc: "只看亮暗",
+        mission: "<strong>第一關：</strong>黑白灰明度。請把 10 張色卡從最暗排到最亮。",
+        success: "第一關破解成功！第二關已解鎖。",
+        cards: [
+          { id: 1, bg: "#111111" },
+          { id: 2, bg: "#2b2b2b" },
+          { id: 3, bg: "#454545" },
+          { id: 4, bg: "#606060" },
+          { id: 5, bg: "#7a7a7a" },
+          { id: 6, bg: "#949494" },
+          { id: 7, bg: "#adadad" },
+          { id: 8, bg: "#c7c7c7" },
+          { id: 9, bg: "#e0e0e0" },
+          { id: 10, bg: "#f7f7f7" }
+        ]
+      },
+      {
+        type: "sort",
+        title: "同色系明度",
+        shortTitle: "第二關",
+        desc: "同色也有亮暗",
+        mission: "<strong>第二關：</strong>同色系明度。請把 10 張藍色色卡從最暗排到最亮。",
+        success: "第二關破解成功！第三關已解鎖。",
+        cards: [
+          { id: 1, bg: "#061826" },
+          { id: 2, bg: "#0b263c" },
+          { id: 3, bg: "#123a59" },
+          { id: 4, bg: "#1f5378" },
+          { id: 5, bg: "#34749c" },
+          { id: 6, bg: "#5598bd" },
+          { id: 7, bg: "#7bb8d4" },
+          { id: 8, bg: "#a5d2e5" },
+          { id: 9, bg: "#cceaf4" },
+          { id: 10, bg: "#eefaff" }
+        ]
+      },
+      {
+        type: "sort",
+        title: "不同色彩明度比較",
+        shortTitle: "第三關",
+        desc: "跨色比較亮暗",
+        mission: "<strong>第三關：</strong>不同色彩明度比較。請把 10 張不同顏色色卡從最暗排到最亮。",
+        success: "第三關破解成功！第四關已解鎖。",
+        cards: [
+          { id: 1, bg: "#1d1028" },
+          { id: 2, bg: "#3a1c4a" },
+          { id: 3, bg: "#6b1f3a" },
+          { id: 4, bg: "#8b3a1f" },
+          { id: 5, bg: "#3f6f3b" },
+          { id: 6, bg: "#2f8ea0" },
+          { id: 7, bg: "#d46a36" },
+          { id: 8, bg: "#f0a24a" },
+          { id: 9, bg: "#f4d86a" },
+          { id: 10, bg: "#fff2b2" }
+        ]
+      },
+      {
+        type: "flash",
+        title: "閃現十六格",
+        shortTitle: "第四關",
+        desc: "快速打中亮暗",
+        mission: "<strong>第四關：</strong>閃現十六格。題目出現「高明度」時，請點最高明度；題目出現「低明度」時，請點最低明度。請在 60 秒內完成 20 題。",
+        success: "第二道封印|明度 解鎖成功，獲得開鎖密碼：VALUE"
+      }
+    ];
+
+    const CARD_COUNT = 10;
+    const FLASH_TOTAL = 20;
+    const FLASH_TIME_LIMIT = 60;
+    let currentLevelIndex = 0;
+    let draggedCard = null;
+    let selectedCard = null;
+    let lastTappedCard = null;
+    let lastTapTime = 0;
+    const completedLevels = new Set();
+    const unlockedLevels = new Set([0]);
+
+    let flashIndex = 0;
+    let flashQuestions = [];
+    let acceptingFlashClick = true;
+    let flashTimeLeft = FLASH_TIME_LIMIT;
+    let flashTimerId = null;
+
+    const cardPool = document.getElementById("cardPool");
+    const answerRow = document.getElementById("answerRow");
+    const message = document.getElementById("message");
+    const levelTabs = document.getElementById("levelTabs");
+    const missionText = document.getElementById("missionText");
+    const tapHelp = document.getElementById("tapHelp");
+    const unlockOverlay = document.getElementById("unlockOverlay");
+    const nextButton = document.getElementById("nextButton");
+    const checkButton = document.getElementById("checkButton");
+    const resetButton = document.getElementById("resetButton");
+    const sortArea = document.getElementById("sortArea");
+    const flashArea = document.getElementById("flashArea");
+    const flashQuestion = document.getElementById("flashQuestion");
+    const flashProgress = document.getElementById("flashProgress");
+    const flashGrid = document.getElementById("flashGrid");
+    const flashTimer = document.getElementById("flashTimer");
+
+    const flashPalettes = [
+      ["#111111", "#222222", "#333333", "#444444", "#555555", "#666666", "#777777", "#888888", "#999999", "#aaaaaa", "#bbbbbb", "#cccccc", "#dddddd", "#e8e8e8", "#f2f2f2", "#fafafa"],
+      ["#170807", "#260d0b", "#391310", "#511c18", "#6d2924", "#893b35", "#a7524c", "#c16d67", "#d98b86", "#eba7a3", "#f4bebb", "#f8d1cf", "#fae0df", "#fceaea", "#fff2f2", "#fff8f8"],
+      ["#061326", "#0a1d38", "#0f2b4f", "#173b67", "#225081", "#30699c", "#4384b6", "#5ca0cc", "#79b9dc", "#98cfe8", "#b5e0f1", "#cbeaf6", "#dcf2fa", "#e9f7fd", "#f3fbff", "#fbfeff"],
+      ["#06160f", "#0a2519", "#103624", "#184b32", "#236242", "#317c55", "#44986c", "#5fb384", "#7ecb9f", "#9adeb7", "#b6eccd", "#cdf5dc", "#def9e8", "#ebfcf1", "#f4fff8", "#fbfffc"],
+      ["#170d22", "#241434", "#341d4a", "#492a63", "#613b80", "#7b529e", "#976dbc", "#b18ad4", "#c9a8e6", "#dcc3f1", "#ead8f8", "#f2e5fb", "#f7effd", "#fbf6ff", "#fdfaff", "#ffffff"],
+      ["#201000", "#351b00", "#512b04", "#6e3f0b", "#8b5516", "#aa7025", "#c88d3a", "#e0aa59", "#efc176", "#f6d395", "#fae2b5", "#fcebd0", "#fff2dd", "#fff7ea", "#fffbf4", "#fffefd"],
+      ["#161300", "#292300", "#3e3500", "#574b06", "#71620e", "#8d7c1d", "#aa9730", "#c6b44c", "#ddcc6b", "#efe08d", "#f7ecac", "#fbf4ca", "#fff8dc", "#fffbea", "#fffdf4", "#fffffb"],
+      ["#151620", "#242033", "#382842", "#51304e", "#6c3a54", "#894957", "#a85f56", "#c67a50", "#df9a4d", "#efba5d", "#f7d47a", "#fae59d", "#fff0bd", "#fff6d6", "#fffaea", "#fffef8"]
+    ];
+
+    function shuffle(array) {
+      return [...array].sort(() => Math.random() - 0.5);
+    }
+
+    function createLevelTabs() {
+      levelTabs.innerHTML = "";
+      levels.forEach((level, index) => {
+        const tab = document.createElement("button");
+        const isActive = index === currentLevelIndex;
+        const isUnlocked = unlockedLevels.has(index);
+        const isCompleted = completedLevels.has(index);
+
+        tab.className = "level-tab";
+        if (isActive) tab.classList.add("active");
+        if (!isUnlocked) tab.classList.add("locked");
+        if (isCompleted) tab.classList.add("completed");
+        tab.disabled = !isUnlocked;
+
+        let statusText = "未解鎖";
+        if (isCompleted) statusText = "已破解";
+        else if (isUnlocked) statusText = "可挑戰";
+
+        tab.innerHTML = `
+          <div class="tag">${level.shortTitle}</div>
+          <div class="title">${level.title}</div>
+          <div class="desc">${level.desc}</div>
+          <div class="status">${statusText}</div>
+        `;
+
+        if (isUnlocked) tab.addEventListener("click", () => changeLevel(index));
+        levelTabs.appendChild(tab);
+      });
+    }
+
+    function createSlots() {
+      answerRow.innerHTML = "";
+      for (let i = 1; i <= CARD_COUNT; i++) {
+        const slot = document.createElement("div");
+        slot.className = "slot";
+        slot.dataset.label = i;
+        setupDropArea(slot);
+        answerRow.appendChild(slot);
+      }
+    }
+
+    function createCard(cardData) {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.draggable = true;
+      card.dataset.id = cardData.id;
+      card.style.background = cardData.bg;
+
+      card.addEventListener("dragstart", () => {
+        draggedCard = card;
+        selectCard(card);
+      });
+
+      card.addEventListener("click", (e) => {
+        e.stopPropagation();
+        handleCardTap(card);
+      });
+
+      card.addEventListener("dblclick", (e) => {
+        e.stopPropagation();
+        returnCardToPool(card);
+      });
+
+      return card;
+    }
+
+    function setupDropArea(area) {
+      area.addEventListener("dragover", (e) => e.preventDefault());
+
+      area.addEventListener("drop", (e) => {
+        e.preventDefault();
+        if (!draggedCard) return;
+        moveCardToArea(area, draggedCard);
+        draggedCard = null;
+      });
+
+      area.addEventListener("click", (e) => {
+        if (!selectedCard) return;
+        const clickedCard = e.target.closest(".card");
+        if (clickedCard && clickedCard === selectedCard) return;
+        moveCardToArea(area, selectedCard);
+      });
+    }
+
+    function handleCardTap(card) {
+      const now = Date.now();
+      const isDoubleTap = lastTappedCard === card && now - lastTapTime < 420;
+      lastTappedCard = card;
+      lastTapTime = now;
+
+      if (isDoubleTap && card.parentElement && card.parentElement.classList.contains("slot")) {
+        returnCardToPool(card);
+        return;
+      }
+
+      selectCard(card);
+    }
+
+    function returnCardToPool(card) {
+      if (!card) return;
+      cardPool.appendChild(card);
+      clearSelectedCard();
+      clearSlotFeedback();
+      nextButton.style.display = completedLevels.has(currentLevelIndex) && currentLevelIndex < levels.length - 1 ? "inline-block" : "none";
+      message.innerHTML = "色卡已回到上方色卡列。";
+    }
+
+    function selectCard(card) {
+      if (selectedCard) selectedCard.classList.remove("selected");
+      selectedCard = card;
+      selectedCard.classList.add("selected");
+      clearSlotFeedback();
+      nextButton.style.display = completedLevels.has(currentLevelIndex) && currentLevelIndex < levels.length - 1 ? "inline-block" : "none";
+      message.innerHTML = "已選取色卡。請點選明度階梯中的目標格子，將它移動到正確位置。";
+    }
+
+    function clearSelectedCard() {
+      if (selectedCard) selectedCard.classList.remove("selected");
+      selectedCard = null;
+      lastTappedCard = null;
+      lastTapTime = 0;
+    }
+
+    function moveCardToArea(area, card) {
+      if (!card) return;
+
+      if (area.classList.contains("slot")) {
+        const sourceParent = card.parentElement;
+        const targetCard = area.querySelector(".card");
+
+        if (targetCard && targetCard !== card) {
+          sourceParent.appendChild(targetCard);
+        }
+
+        area.appendChild(card);
+      } else {
+        area.appendChild(card);
+      }
+
+      clearSelectedCard();
+      clearSlotFeedback();
+      nextButton.style.display = completedLevels.has(currentLevelIndex) && currentLevelIndex < levels.length - 1 ? "inline-block" : "none";
+      message.innerHTML = "已移動色卡。排好 10 張後，請按「檢查答案」。";
+    }
+
+    function clearSlotFeedback() {
+      document.querySelectorAll(".slot").forEach(slot => {
+        slot.classList.remove("correct", "wrong");
+      });
+    }
+
+    function renderCards() {
+      const level = levels[currentLevelIndex];
+      cardPool.innerHTML = "";
+      shuffle(level.cards).forEach(cardData => cardPool.appendChild(createCard(cardData)));
+    }
+
+    function renderLevel() {
+      hideUnlockOverlay();
+      clearSelectedCard();
+      const level = levels[currentLevelIndex];
+      createLevelTabs();
+      missionText.innerHTML = level.mission;
+      nextButton.style.display = completedLevels.has(currentLevelIndex) && currentLevelIndex < levels.length - 1 ? "inline-block" : "none";
+
+      if (level.type === "flash") {
+        document.body.classList.add("flash-mode");
+        sortArea.style.display = "none";
+        flashArea.style.display = "block";
+        tapHelp.style.display = "none";
+        checkButton.style.display = "none";
+        resetButton.textContent = "重新開始本關";
+        setupFlashLevel();
+      } else {
+        document.body.classList.remove("flash-mode");
+        sortArea.style.display = "grid";
+        flashArea.style.display = "none";
+        tapHelp.style.display = "block";
+        checkButton.style.display = "inline-block";
+        resetButton.textContent = "重新洗牌";
+        createSlots();
+        clearSlotFeedback();
+        renderCards();
+        message.innerHTML = "小提醒：明度簡單來說，就是色彩的明暗程度。平板請用「點選色卡 → 點選格子」完成排序；放錯時，點兩下色卡可收回色卡列。";
+      }
+    }
+
+    function showUnlockOverlay() {
+      unlockOverlay.classList.add("show");
+    }
+
+    function hideUnlockOverlay() {
+      unlockOverlay.classList.remove("show");
+    }
+
+    function changeLevel(index) {
+      if (!unlockedLevels.has(index)) {
+        message.innerHTML = "這一關還沒有解鎖，請先破解前一關。";
+        return;
+      }
+      currentLevelIndex = index;
+      renderLevel();
+    }
+
+    function checkAnswer() {
+      clearSelectedCard();
+      const level = levels[currentLevelIndex];
+      if (level.type !== "sort") return;
+
+      const slots = [...document.querySelectorAll(".slot")];
+      let correctCount = 0;
+      let filledCount = 0;
+
+      slots.forEach((slot, index) => {
+        slot.classList.remove("correct", "wrong");
+        const card = slot.querySelector(".card");
+        if (!card) return;
+
+        filledCount++;
+        const cardId = Number(card.dataset.id);
+        const correctId = index + 1;
+
+        if (cardId === correctId) {
+          slot.classList.add("correct");
+          correctCount++;
+        } else {
+          slot.classList.add("wrong");
+        }
+      });
+
+      if (filledCount < CARD_COUNT) {
+        message.innerHTML = `還有色卡沒有放上明度階梯喔！請先放滿 ${CARD_COUNT} 張色卡。`;
+        nextButton.style.display = "none";
+        return;
+      }
+
+      if (correctCount === CARD_COUNT) {
+        completeCurrentLevel();
+      } else {
+        message.innerHTML = `目前答對 ${correctCount} / ${CARD_COUNT} 張，請再調整順序。`;
+        nextButton.style.display = "none";
+      }
+    }
+
+    function completeCurrentLevel() {
+      const level = levels[currentLevelIndex];
+      completedLevels.add(currentLevelIndex);
+      if (currentLevelIndex < levels.length - 1) unlockedLevels.add(currentLevelIndex + 1);
+      createLevelTabs();
+
+      const isFinalLevel = currentLevelIndex === levels.length - 1;
+      const nextText = !isFinalLevel
+        ? "請按「前往下一關」繼續挑戰。"
+        : "";
+
+      message.innerHTML = `${level.success} ${nextText}`;
+      nextButton.style.display = currentLevelIndex < levels.length - 1 ? "inline-block" : "none";
+
+      if (isFinalLevel) {
+        showUnlockOverlay();
+      }
+    }
+
+    function resetLevel() {
+      clearSelectedCard();
+      renderLevel();
+      const level = levels[currentLevelIndex];
+      message.innerHTML = level.type === "flash"
+        ? "第四關已重新開始。請在 60 秒內快速點選十六格中的正確色卡。"
+        : "色卡已重新洗牌！請重新排序。";
+    }
+
+    function goNextLevel() {
+      if (currentLevelIndex < levels.length - 1 && unlockedLevels.has(currentLevelIndex + 1)) {
+        currentLevelIndex++;
+        renderLevel();
+      }
+    }
+
+    function setupFlashLevel() {
+      flashIndex = 0;
+      acceptingFlashClick = true;
+      flashQuestions = createFlashQuestions();
+      startFlashTimer();
+      renderFlashQuestion();
+      message.innerHTML = "看清楚題目：高明度請打最亮，低明度請打最暗。60 秒內完成 20 題就過關。";
+    }
+
+    function startFlashTimer() {
+      clearInterval(flashTimerId);
+      flashTimeLeft = FLASH_TIME_LIMIT;
+      flashTimer.textContent = `${flashTimeLeft} 秒`;
+      flashTimerId = setInterval(() => {
+        flashTimeLeft--;
+        flashTimer.textContent = `${flashTimeLeft} 秒`;
+        if (flashTimeLeft <= 0) {
+          clearInterval(flashTimerId);
+          acceptingFlashClick = false;
+          flashQuestion.textContent = "時間到";
+          flashProgress.textContent = `${flashIndex} / ${FLASH_TOTAL}`;
+          flashGrid.innerHTML = "";
+          message.innerHTML = "時間到！請按「重新開始本關」，再挑戰一次第四關。";
+        }
+      }, 1000);
+    }
+
+    function createFlashQuestions() {
+      const questions = [];
+      for (let i = 0; i < FLASH_TOTAL; i++) {
+        const palette = flashPalettes[i % flashPalettes.length];
+        const target = i % 2 === 0 ? "high" : "low";
+        const cards = shuffle(palette.map((color, index) => ({
+          id: index + 1,
+          bg: color
+        })));
+        questions.push({ target, cards });
+      }
+      return shuffle(questions);
+    }
+
+    function renderFlashQuestion() {
+      if (flashIndex >= FLASH_TOTAL) {
+        clearInterval(flashTimerId);
+        completeCurrentLevel();
+        flashQuestion.textContent = "VALUE";
+        flashProgress.textContent = "20 / 20";
+        flashGrid.innerHTML = "";
+        return;
+      }
+
+      acceptingFlashClick = true;
+      const question = flashQuestions[flashIndex];
+      flashQuestion.textContent = question.target === "high" ? "高明度" : "低明度";
+      flashProgress.textContent = `${flashIndex + 1} / ${FLASH_TOTAL}`;
+      flashGrid.innerHTML = "";
+
+      question.cards.forEach(cardData => {
+        const card = document.createElement("button");
+        card.className = "flash-card";
+        card.style.background = cardData.bg;
+        card.dataset.id = cardData.id;
+        card.setAttribute("aria-label", "明度色卡");
+        card.addEventListener("click", () => handleFlashClick(card, question));
+        flashGrid.appendChild(card);
+      });
+    }
+
+    function handleFlashClick(card, question) {
+      if (!acceptingFlashClick || flashTimeLeft <= 0) return;
+
+      const chosenId = Number(card.dataset.id);
+      const correctId = question.target === "high" ? 16 : 1;
+
+      if (chosenId === correctId) {
+        acceptingFlashClick = false;
+        card.classList.add("correct-click");
+        message.innerHTML = question.target === "high"
+          ? "答對！這一格最接近白，明度最高。"
+          : "答對！這一格最接近黑，明度最低。";
+        setTimeout(() => {
+          flashIndex++;
+          renderFlashQuestion();
+        }, 650);
+      } else {
+        card.classList.add("wrong-click");
+        message.innerHTML = question.target === "high"
+          ? "再看一次：題目是高明度，要找最接近白的那格。"
+          : "再看一次：題目是低明度，要找最接近黑的那格。";
+        setTimeout(() => card.classList.remove("wrong-click"), 500);
+      }
+    }
+
+    setupDropArea(cardPool);
+    renderLevel();
+  </script>
+</body>
+</html>

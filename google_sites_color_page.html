@@ -1,0 +1,1671 @@
+<!DOCTYPE html><html lang="en-US" itemscope itemtype="http://schema.org/WebPage"><head><script nonce="HDOKn2eyy6fLTs66nTfu4w">window['ppConfig'] = {productName: '6b8ce7c01e3dacd3d2c7a8cd322ff979', deleteIsEnforced:  false , sealIsEnforced:  false , heartbeatRate:  0.5 , periodicReportingRateMillis:  60000.0 , disableAllReporting:  false };(function(){'use strict';function k(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}}function l(a){var b=typeof Symbol!="undefined"&&Symbol.iterator&&a[Symbol.iterator];if(b)return b.call(a);if(typeof a.length=="number")return{next:k(a)};throw Error(String(a)+" is not an iterable or ArrayLike");}var m=typeof Object.defineProperties=="function"?Object.defineProperty:function(a,b,c){if(a==Array.prototype||a==Object.prototype)return a;a[b]=c.value;return a};
+function n(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var b=0;b<a.length;++b){var c=a[b];if(c&&c.Math==Math)return c}throw Error("Cannot find global object");}var p=n(this);function q(a,b){if(b)a:{var c=p;a=a.split(".");for(var d=0;d<a.length-1;d++){var e=a[d];if(!(e in c))break a;c=c[e]}a=a[a.length-1];d=c[a];b=b(d);b!=d&&b!=null&&m(c,a,{configurable:!0,writable:!0,value:b})}}
+q("Object.is",function(a){return a?a:function(b,c){return b===c?b!==0||1/b===1/c:b!==b&&c!==c}});q("Array.prototype.includes",function(a){return a?a:function(b,c){var d=this;d instanceof String&&(d=String(d));var e=d.length;c=c||0;for(c<0&&(c=Math.max(c+e,0));c<e;c++){var f=d[c];if(f===b||Object.is(f,b))return!0}return!1}});
+q("String.prototype.includes",function(a){return a?a:function(b,c){if(this==null)throw new TypeError("The 'this' value for String.prototype.includes must not be null or undefined");if(b instanceof RegExp)throw new TypeError("First argument to String.prototype.includes must not be a regular expression");return this.indexOf(b,c||0)!==-1}});function r(a,b,c){a("https://csp.withgoogle.com/csp/proto/"+encodeURIComponent(b),JSON.stringify(c))}function t(){var a;if((a=window.ppConfig)==null?0:a.disableAllReporting)return function(){};var b,c,d,e;return(e=(b=window)==null?void 0:(c=b.navigator)==null?void 0:(d=c.sendBeacon)==null?void 0:d.bind(navigator))!=null?e:u}function u(a,b){var c=new XMLHttpRequest;c.open("POST",a);c.send(b)}
+function v(){var a=(w=Object.prototype)==null?void 0:w.__lookupGetter__("__proto__"),b=x,c=y;return function(){var d=a.call(this),e,f,g,h;r(c,b,{type:"ACCESS_GET",origin:(f=window.location.origin)!=null?f:"unknown",report:{className:(g=d==null?void 0:(e=d.constructor)==null?void 0:e.name)!=null?g:"unknown",stackTrace:(h=Error().stack)!=null?h:"unknown"}});return d}}
+function z(){var a=(A=Object.prototype)==null?void 0:A.__lookupSetter__("__proto__"),b=x,c=y;return function(d){d=a.call(this,d);var e,f,g,h;r(c,b,{type:"ACCESS_SET",origin:(f=window.location.origin)!=null?f:"unknown",report:{className:(g=d==null?void 0:(e=d.constructor)==null?void 0:e.name)!=null?g:"unknown",stackTrace:(h=Error().stack)!=null?h:"unknown"}});return d}}function B(a,b){C(a.productName,b);setInterval(function(){C(a.productName,b)},a.periodicReportingRateMillis)}
+var D="constructor __defineGetter__ __defineSetter__ hasOwnProperty __lookupGetter__ __lookupSetter__ isPrototypeOf propertyIsEnumerable toString valueOf __proto__ toLocaleString x_ngfn_x".split(" "),E=D.concat,F=navigator.userAgent.match(/Firefox\/([0-9]+)\./),G=(!F||F.length<2?0:Number(F[1])<75)?["toSource"]:[],H;if(G instanceof Array)H=G;else{for(var I=l(G),J,K=[];!(J=I.next()).done;)K.push(J.value);H=K}var L=E.call(D,H),M=[];
+function C(a,b){for(var c=[],d=l(Object.getOwnPropertyNames(Object.prototype)),e=d.next();!e.done;e=d.next())e=e.value,L.includes(e)||M.includes(e)||c.push(e);e=Object.prototype;d=[];for(var f=0;f<c.length;f++){var g=c[f];d[f]={name:g,descriptor:Object.getOwnPropertyDescriptor(Object.prototype,g),type:typeof e[g]}}if(d.length!==0){c=l(d);for(e=c.next();!e.done;e=c.next())M.push(e.value.name);var h;r(b,a,{type:"SEAL",origin:(h=window.location.origin)!=null?h:"unknown",report:{blockers:d}})}};var N=Math.random(),O=t(),P=window.ppConfig;P&&(P.disableAllReporting||P.deleteIsEnforced&&P.sealIsEnforced||N<P.heartbeatRate&&r(O,P.productName,{origin:window.location.origin,type:"HEARTBEAT"}));var y=t(),Q=window.ppConfig;if(Q)if(Q.deleteIsEnforced)delete Object.prototype.__proto__;else if(!Q.disableAllReporting){var x=Q.productName;try{var w,A;Object.defineProperty(Object.prototype,"__proto__",{enumerable:!1,get:v(),set:z()})}catch(a){}}
+(function(){var a=t(),b=window.ppConfig;b&&(b.sealIsEnforced?Object.seal(Object.prototype):b.disableAllReporting||(document.readyState!=="loading"?B(b,a):document.addEventListener("DOMContentLoaded",function(){B(b,a)})))})();}).call(this);
+</script><meta charset="utf-8"><script nonce="HDOKn2eyy6fLTs66nTfu4w">var DOCS_timing={}; DOCS_timing['sl']=new Date().getTime();</script><script nonce="HDOKn2eyy6fLTs66nTfu4w">function _DumpException(e) {throw e;}</script><script data-id="_gd" nonce="HDOKn2eyy6fLTs66nTfu4w">window.WIZ_global_data = {"K1cgmc":"%.@.[null,null,null,[3,1,[1780564544,685545000],4],null,25]]","gnD3ee":"%.@.null,null,null,\"https://drive.google.com/viewer/main\"]","nQyAE":{}};</script><script nonce="HDOKn2eyy6fLTs66nTfu4w">_docs_flag_initialData={"docs-enpi2":true,"atari-emtpr":false,"atari-eibrm":false,"atari-eipim":false,"atari-etm":false,"atari-mfsnd":10,"docs-text-elawpc":false,"docs-text-usc":true,"atari-bae":false,"docs-text-etsrdpn":false,"docs-text-etsrds":false,"docs-text-endes":false,"docs-text-escpv":true,"docs-text-ecfs":false,"docs-text-eetxp":false,"docs-text-ettctvs":false,"docs-text-escoubs":false,"docs-text-escivs":false,"docs-text-escitrbs":false,"docs-text-eiosmc":false,"docs-text-epsi":false,"docs-text-esic":false,"docs-text-ebrmkc":false,"docs-text-ebrfs":false,"docs-text-etocs":false,"docs-text-etb":false,"docs-text-esbefr":false,"docs-etshc":false,"docs-text-tbcb":2.0E7,"docs-efsmsdl":false,"docs-text-etof":false,"docs-text-ehlb":false,"docs-text-dwit":false,"docs-text-elawp":false,"docs-eec":true,"docs-text-erddra":false,"docs-esff":false,"docs-ets":false,"docs-idu":false,"docs-sup":"","docs-dli":false,"docs-liap":"/naLogImpressions","ilcm":{"eui":"AHKXmL1UyEL-ZVAnND23GVAhG1voiAYwBANRGWiwdRPoQd1f2Fzrh--A4_kdimqmcUQ62ppy0R1o","je":1,"sstu":1780819286127942,"si":"CMbq1efU9JQDFUa3IwAdQ_4IRg","gsc":null,"ei":[5703839,5704621,5706832,5706836,5738513,5738529,5740798,5740814,5743108,5743124,5747261,5762243,5762259,5776501,5776517,14101306,14101502,14101510,14101534,49472063,49472071,49644015,49644023,49769337,49769345,49822921,49822929,49823164,49823172,49833462,49833470,49842855,49842863,49924706,49924714,50223641,50223649,50266222,50266230,50273528,50273536,50297076,50297084,50503779,50503787,50549555,50549563,50561343,50561351,50586962,50586970,70971256,70971264,71079938,71079946,71085241,71085249,71120968,71120976,71387889,71387897,71465947,71465955,71528597,71528605,71530083,71530091,71544834,71544842,71546425,71546433,71658040,71658048,71659813,71659821,71689860,71689868,71710040,71710048,71798420,71798436,71825383,71825391,71855000,71855008,71897827,71897835,71960540,71960548,94327671,94327679,94353368,94353376,94434257,94434265,94523168,94523176,94624865,94624873,94629757,94629765,94660795,94660803,94661802,94661810,94692298,94692306,94744856,94744864,94785229,94785237,94864653,94864661,94904089,94904097,94918952,94918960,94940194,95087186,95087194,95087227,95087235,95112873,95112881,95314802,95314810,95317482,95317490,99251983,99251991,99368792,99368800,99402331,99402339,99440853,99440861,99457807,99457815,101492731,101492739,101519280,101519288,101562406,101562414,101631191,101631199,101687117,101687125,101836971,101836979,101837416,101837424,101855239,101855247,101887674,101887682,101889043,101889051,101917185,101917193,101922739,101922747,101922880,101922888,101933491,101933499,102030642,102030650,102059541,102059549,102070930,102070938,102146687,102146695,102161447,102161455,102198282,102198290,102199034,102199050,102244489,102244497,102249831,102262249,102262257,102280628,102280636,102287864,102287872,102343036,102343044,102343380,102343388,102402679,102402687,102430621,102430629,102469860,102469868,102517339,102517344,102548521,102548529,102673375,102685384,102685389,102685929,102685934,102690600,102690608,102691157,102691162,102691290,102691295,102718396,102721209,102721214,102727402,102727407,102741226,102741234,102761474,102761479,102762315,102762323,102787563,102807790,102807798,102867835,102867843,102883758,102883766,102902848,102902856,102903660,102903668,102909750,102909755,102921493,102921501,102925819,102925827,102926523,102926531,102932587,102932595,102944189,102944194,102944268,102944273,102944503,102944508,102944582,102944587,102944680,102944685,102944785,102944790,102956685,102956693,102972669,102972677,102987007,102987015,102988272,102988277,102988402,102988407,102988695,102988700,102988929,102988934,103011418,103011426,103163044,103163052,103176010,103176018,103281950,103281955,103285966,103285974,103286263,103286271,103286444,103286452,103288306,103288314,103289103,103289108,103289273,103289278,103296034,103296042,103326407,103326415,103343830,103343838,103354296,103354304,103354852,103354860,103355353,103355361,103355643,103355651,104530130,104573899,104573907,104575332,104575337,104575491,104575496,104575691,104575696,104575894,104615595,104615603,104699504,104699512,104761751,104761759,104794443,104794451,104907811,104907819,104962265,104976617,104976625,104983169,104983177,105082097,105082105,105083748,105083756,105112583,105112588,105125317,105125325,105180894,105180902,105216989,105216997,105283687,105283695,105292835,105292843,105346285,105346293,105360418,105360426,105371923,105371931,105373824,105373832,105393811,105393819,105439171,105439179,105449705,105449713,115509982,115509990,115601129,115601137,115626258,115626266,115626439,115626447,115669258,115669266,115779821,115779829,115780458,115780466,115818444,115818449,115821111,115821119,115822445,115822453,115909741,115909749,115943274,115943282,115990671,115990679,116054063,116054068,116059345,116059353,116068898,116068906,116176809,116176817,116221334,116221342,116250605,116250613,116276461,116276469,116307748,116361234,116372477,116372485,116407665,116416034,116416042,116425644,116448407,116449516,116470832,116495787,116496398,116503963,116538516,116538524,116542683,116550348,116567571,116567576,116593749,116609471,116609479,116613094,116613710,116685399,116685789,116700025,116700030,116704081,116704119,116714309,116714312,116783822,116783827,116840681,116840686,116858277,116858282,116874913,116877099,116919494,116923674,116924992,116980487,116980495,116999226,116999234,117021158,117021174,117026762,117026878,117026880,117037068,117037076,117037621,117037626,117091891,117091899,117136347,117166647,117268957,117268965,117283949,117283954,117286791,117286799,117290330,117290338,117309374,117309382,117310090,117310098,117381059,117381067,117382832,117405371,117405376,117410074,117428167,117428175,117457958,117457966,117528468,117528471,117530135,117556934,117557278,117617889,117632590,117642488,117660022,117660030,117683635,117706016,117707653,117707661,117711597,117726546,117726554,117728353,117728361,117734391,117736030,117755703,117755716,117755820,117756394,117775368,117782123,117783568,117783576,117848945,117848953,117859868,117859913,117866199,117866207,117895900,117895908,117937848,117937856,117952935,117995685,117995689,117997204,117999163,118010933,118018703,118044535,118094558,118094563,118155411,118171121,118171213,118172011,118179262,118182951,118219914,118223025,118223041,118237135,118237143,118240392,118246247,118254618,118269184,118275356,118281144,118281152,118342369,118346423,118346877,118346885,118347706,118349323,118349325,118349356,118364657,118367791,118367937,118367945,118368676,118368684,118373667,118394777,118394782,118417364,118417372,118449075,118462069,118494715,118509496,118511786,118519229,118532140,118532142,118654314,118669236,118676482,118676484,118717388,118736896,118780368,118781593,118781601,118792272,118796209,118796216,118807052,118809999,118810531,118825246,118830481,118830620,118830622,118830624,118830626,118830628,118830630,118830632,118830634,118830636,118830638,118830640,118835027,118855606,118908865,118969829,118970617,118980566,118980574,119044056,119061297,119078243,119087275,119106919,119159957,119164990,119164992,119164995,119187339,119209341,119209378,119221438,119243630,119262908],"crc":0,"cvi":[]},"docs-ccdil":false,"docs-eil":true,"info_params":{},"buildLabel":"editors.sites-viewer-frontend_20260601.02_p0","docs-show_debug_info":false,"atari-jefp":"/_/view/jserror","docs-jern":"view","atari-rhpp":"/_/view","docs-ecuach":false,"docs-cclt":2033,"docs-ecci":true,"docs-esi":false,"docs-efypr":true,"docs-eyprp":true,"docs-li":"104240","docs-trgthnt":"","docs-etmhn":false,"docs-thnt":"","docs-hbt":[],"docs-hdet":["nMX17M8pQ0kLUkpsP190WPbQDRJQ","17hED8kG50kLUkpsP190TThQn3DA","BDNZR4PXx0kLUkpsP190SJtNPkYt","Etj5wJCQk0kLUkpsP190NwiL8UMa","xCLbbDUPA0kLUkpsP190XkGJiPUm","2NUkoZehW0kLUkpsP190UUNLiXW9","yuvYtd5590kLUkpsP190Qya5K4UR","ZH4rzt2uk0kLUkpsP190UDkF5Bkq","uQUQhn57A0kLUkpsP190WHoihP41","93w8zoRF70kLUkpsP190TxXbtSeV","fAPatjr1X0kLUkpsP190SaRjNRjw","T4vgqqjK70kLUkpsP190ScPehgAW","JyFR2tYWZ0kLUkpsP190Rn3HzkxT","ufXj7vmeJ0kLUkpsP190QURhvJn2","KFks7UeZ30kLUkpsP190UUMR6cvh","LcTa6EjeC0kLUkpsP190RKgvW5qi","s3UFcjGjt0kLUkpsP190Z45ftWRr","o99ewBQXy0kLUkpsP190Nq2qr6tf","PHVyy5uSS0kLUkpsP190SUsYo8gQ","yZn21akid0iSFTCbiEB0WPiGEST3","h2TtqzmQF0kLUkpsP190YPJiQt7p","MZi9vb5UC0kLUkpsP190ReUhvVjy","dSR6SPjB80kLUkpsP190Y3xHa9qA","Bz6B7VmLu0kLUkpsP190W3FeobP7","AiLoubzsd0kLUkpsP190XtYNPgYT","2J3DVQoVh0kLUkpsP190R5wShSrC","MLmbZasLS0kLUkpsP190YHf6Zjsf","S1T4ezMsZ0kLUkpsP190U6GfQUxi","LwAAPYPwi0kLUkpsP190TR4aaiFR","zZpS7TtwA0kLUkpsP190SJfhmHn8","LqadmuFLc0kLUkpsP190VqMgRe9G","PyRpJWvnF0kLUkpsP190X6czxBQU","oiu5UhKXt0kLUkpsP190XWFatA4U","m3m67mpQU0kLUkpsP190RpzeM6tt","WKyXQmUiJ0kLUkpsP190WtAghmdt","cb1fdvu6p0kLUkpsP190U5AywQpZ","N5u4VeWhx0iSFTCbiEB0VUTNdX6g","XM16tjwrD0iSFTCbiEB0NfzvTeuU","ybYTJk1eD0iSFTCbiEB0QV4rkzSF","TgXar1TSG0iSFTCbiEB0SsXMaKuP","JYfGDkExa0iSFTCbiEB0TTQnEDtH","2i9JBUZ3w0iSFTCbiEB0RytbUoNq","pgvTVXNKa0iSFTCbiEB0ShqmBTMR","NsVnd81bW0iSFTCbiEB0RhcXEK9M","rTQirATnb0iSFTCbiEB0W5cPcA7D","wNyww2Syr0iSFTCbiEB0Pzsbemba","DVdpfbqGj0iSFTCbiEB0RP4dMdFg","WKN3dsuG20iSFTCbiEB0NtEYhMK7","S5iPRteXX0iSFTCbiEB0YkMazE6h","6hmou1AcB0iSFTCbiEB0R9rZWXdz","wvo4NcLUj0iSFTCbiEB0Tt7mcVxE","HWuSeN2AB0iSFTCbiEB0PoBwHT2F","rMLvYG5Cd0iSFTCbiEB0VMB6o5sk","EnxXFzAMR0iSFTCbiEB0NxWnFJEU","4SFrbzo420iSFTCbiEB0W7wu3rzt","Nr7mDWodK0iSFTCbiEB0Ruynrudk","pSnfxxWWp0iSFTCbiEB0RaiP6PBc","rTcCMw3BM0mHq3jmV6o0RHeAExRK","HUYzfGVRa0mHq3jmV6o0Uxe2caXK","1XYMmM1Cu0mHq3jmV6o0Z3pEi8xm","xHhMJiXiV0mHq3jmV6o0WB8WinyM","xwSFpxEiU0mHq3jmV6o0PcnvcKmd","4MBkBg26q0mHq3jmV6o0QeKPRMpY","y5g8iW2T80mHq3jmV6o0Nr8SAj4C","W9YRKy3Lb0iSFTCbiEB0Xfs1EfPr","Ed3nhrN8D0iSFTCbiEB0RN4bJ53y","zxDKY7PC10iSFTCbiEB0UDYPJwDZ","bhEyDmbwi0mHq3jmV6o0TngCF1v2","6rKYZ6uHA0mHq3jmV6o0TeDZjgB8","71Deousgx0mHq3jmV6o0WXBQiyzi","sVEZbUAa70mHq3jmV6o0TNq1M7FF","8ZPFZT5nG0mHq3jmV6o0PJ5yoVh4","P55v8p4Lk0mHq3jmV6o0VjggjHMV","QqnZoz9ko0mHq3jmV6o0QskzBcHn","Nq8mdjdGg0mHq3jmV6o0WShxQA39","6nr31z9Wv0mERqSGkGf0VhuvAXWC","RLHeYNm410mERqSGkGf0Y817EUFK","vmx68XtfJ0mERqSGkGf0RCUBfsQr","687J7yD1q0mERqSGkGf0RVmMYHo1","qwhWQy8Zi0mERqSGkGf0W2tdypUF","wF8Sk241e0mERqSGkGf0YNtN6gpV","ijUhdx2QN0mERqSGkGf0TSD26iBJ","3iBLaMnuG0mERqSGkGf0VdY8XuLS","cFR77YEGo0iSFTCbiEB0PcMDWjX2","evUYuNCS80mERqSGkGf0Psi8j3Dw","soWncRV7C0mERqSGkGf0PZheXrWA","TvjoiCaar0mERqSGkGf0S9qS5adj","txL54xWLC0mERqSGkGf0XoEGTvCu","MP3EsW1un0mERqSGkGf0QDkfTxat","N1q4Y3fqz0mERqSGkGf0W1oPWWoc","pnKWhXiJi0mERqSGkGf0RDJejrBm","uLoGBsxEp0mERqSGkGf0Umz4HBC5","zu73Bdvrn0mERqSGkGf0P7FS5ZnG","KwaNot15n0mERqSGkGf0UnBhGVoK","ffZmMGtYT0suK1NZr2K0QUxSzEMN","NagbcZWyB0suK1NZr2K0SJmfmJ3n","KMcLKvubv0suK1NZr2K0PLMUJ7zr","a13ejFS5i0suK1NZr2K0WzewY5tP","pZ1hXv7ve0suK1NZr2K0U5qoNhyU","pwLDucJZU0ezFcgqx310NgtmYpbV","TCKDVQ6J0Bn3gbW4AcZC0PQKypCa","Z7vabQzZ0Bn3gbW4AcZC0TfvmSab","UUNcLtsso0mERqSGkGf0Uwg2tMZa","fznmScpy0Bn3gbW4AcZC0Vie7eK1","wYCZkqoz10fBWirfAym0S1sADKbJ"],"docs-hunds":false,"docs-hae":"PROD","docs-ehn":false,"docs-epq":true,"docs-upap":"/_/view/prefs"}; _docs_flag_cek= null ; if (window['DOCS_timing']) {DOCS_timing['ifdld']=new Date().getTime();}</script><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="referrer" content="origin"><link rel="icon" href="https://www.gstatic.com/images/branding/productlogos/sites_2026/v2/ico/sites_2026_16dp.ico"><meta property="og:title" content="色彩學 - 色相"><meta property="og:type" content="website"><meta property="og:url" content="https://sites.google.com/ysjh.ntpc.edu.tw/ysjhart/%E8%89%B2%E7%9B%B8"><meta itemprop="name" content="色彩學 - 色相"><meta itemprop="url" content="https://sites.google.com/ysjh.ntpc.edu.tw/ysjhart/%E8%89%B2%E7%9B%B8"><link href="https://fonts.googleapis.com/css?family=Lato%3A300%2C300italic%2C400%2C400italic%2C700%2C700italic&display=swap" rel="stylesheet" nonce="Vic3QyqzkyPKDULp9PJmUQ"><link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,500,700|Source+Code+Pro:400,700&display=swap" rel="stylesheet" nonce="Vic3QyqzkyPKDULp9PJmUQ"><link rel="stylesheet" href="https://www.gstatic.com/_/atari/_/ss/k=atari.vw.JvfoMAiBJXs.L.W.O/am=CCAATgAE/d=1/rs=AGEqA5kK64VcM1uz6H4N1l8jp-oRSVrtuw" data-id="_cl" nonce="Vic3QyqzkyPKDULp9PJmUQ"><script nonce="HDOKn2eyy6fLTs66nTfu4w"></script><title>色彩學 - 色相</title><style jsname="ptDGoc" nonce="Vic3QyqzkyPKDULp9PJmUQ">.M63kCb{background-color: rgba(255,255,255,1);}.OUGEr{color: rgba(33,33,33,1);}.duRjpb .OUGEr{color: rgba(34,110,147,1);}.JYVBee .OUGEr{color: rgba(34,110,147,1);}.OmQG5e .OUGEr{color: rgba(33,33,33,1);}.iwQgFb{background-color: rgba(0,0,0,0.150000006);}.ySLm4c{font-family: Lato, sans-serif;}.CbiMKe{background-color: rgba(30,108,147,1);}.qeLZfd .zfr3Q{color: rgba(33,33,33,1);}.qeLZfd .qnVSj{color: rgba(33,33,33,1);}.qeLZfd .Glwbz{color: rgba(33,33,33,1);}.qeLZfd .duRjpb{color: rgba(34,110,147,1);}.qeLZfd .qLrapd{color: rgba(34,110,147,1);}.qeLZfd .JYVBee{color: rgba(34,110,147,1);}.qeLZfd .aHM7ed{color: rgba(34,110,147,1);}.qeLZfd .OmQG5e{color: rgba(33,33,33,1);}.qeLZfd .NHD4Gf{color: rgba(33,33,33,1);}.qeLZfd .aw5Odc{color: rgba(0,101,128,1);}.qeLZfd .dhtgD:hover{color: rgba(0,0,0,1);}.qeLZfd .dhtgD:visited{color: rgba(0,101,128,1);}.qeLZfd .iwQgFb{background-color: rgba(0,0,0,0.150000006);}.qeLZfd .OUGEr{color: rgba(33,33,33,1);}.qeLZfd .duRjpb .OUGEr{color: rgba(34,110,147,1);}.qeLZfd .JYVBee .OUGEr{color: rgba(34,110,147,1);}.qeLZfd .OmQG5e .OUGEr{color: rgba(33,33,33,1);}.qeLZfd:before{background-color: rgba(242,242,242,1); display: block;}.lQAHbd .zfr3Q{color: rgba(255,255,255,1);}.lQAHbd .qnVSj{color: rgba(255,255,255,1);}.lQAHbd .Glwbz{color: rgba(255,255,255,1);}.lQAHbd .duRjpb{color: rgba(255,255,255,1);}.lQAHbd .qLrapd{color: rgba(255,255,255,1);}.lQAHbd .JYVBee{color: rgba(255,255,255,1);}.lQAHbd .aHM7ed{color: rgba(255,255,255,1);}.lQAHbd .OmQG5e{color: rgba(255,255,255,1);}.lQAHbd .NHD4Gf{color: rgba(255,255,255,1);}.lQAHbd .aw5Odc{color: rgba(255,255,255,1);}.lQAHbd .dhtgD:hover{color: rgba(255,255,255,1);}.lQAHbd .dhtgD:visited{color: rgba(255,255,255,1);}.lQAHbd .iwQgFb{background-color: rgba(255,255,255,0.150000006);}.lQAHbd .OUGEr{color: rgba(255,255,255,1);}.lQAHbd .duRjpb .OUGEr{color: rgba(255,255,255,1);}.lQAHbd .JYVBee .OUGEr{color: rgba(255,255,255,1);}.lQAHbd .OmQG5e .OUGEr{color: rgba(255,255,255,1);}.lQAHbd .CbiMKe{background-color: rgba(255,255,255,1);}.lQAHbd:before{background-color: rgba(30,108,147,1); display: block;}.cJgDec .zfr3Q{color: rgba(255,255,255,1);}.cJgDec .zfr3Q .OUGEr{color: rgba(255,255,255,1);}.cJgDec .qnVSj{color: rgba(255,255,255,1);}.cJgDec .Glwbz{color: rgba(255,255,255,1);}.cJgDec .qLrapd{color: rgba(255,255,255,1);}.cJgDec .aHM7ed{color: rgba(255,255,255,1);}.cJgDec .NHD4Gf{color: rgba(255,255,255,1);}.cJgDec .IFuOkc:before{background-color: rgba(33,33,33,1); opacity: 0; display: block;}.O13XJf{height: 340px; padding-bottom: 60px; padding-top: 60px;}.O13XJf .IFuOkc{background-color: rgba(34,110,147,1); background-image: url(https://ssl.gstatic.com/atari/images/simple-header-blended-small.png);}.O13XJf .IFuOkc:before{background-color: rgba(33,33,33,1); opacity: 0.4; display: block;}.O13XJf .zfr3Q{color: rgba(255,255,255,1);}.O13XJf .qnVSj{color: rgba(255,255,255,1);}.O13XJf .Glwbz{color: rgba(255,255,255,1);}.O13XJf .duRjpb{color: rgba(255,255,255,1);}.O13XJf .qLrapd{color: rgba(255,255,255,1);}.O13XJf .JYVBee{color: rgba(255,255,255,1);}.O13XJf .aHM7ed{color: rgba(255,255,255,1);}.O13XJf .OmQG5e{color: rgba(255,255,255,1);}.O13XJf .NHD4Gf{color: rgba(255,255,255,1);}.tpmmCb .zfr3Q{color: rgba(33,33,33,1);}.tpmmCb .zfr3Q .OUGEr{color: rgba(33,33,33,1);}.tpmmCb .qnVSj{color: rgba(33,33,33,1);}.tpmmCb .Glwbz{color: rgba(33,33,33,1);}.tpmmCb .qLrapd{color: rgba(33,33,33,1);}.tpmmCb .aHM7ed{color: rgba(33,33,33,1);}.tpmmCb .NHD4Gf{color: rgba(33,33,33,1);}.tpmmCb .IFuOkc:before{background-color: rgba(255,255,255,1); display: block;}.tpmmCb .Wew9ke{fill: rgba(33,33,33,1);}.aw5Odc{color: rgba(0,101,128,1);}.dhtgD:hover{color: rgba(0,122,147,1);}.dhtgD:active{color: rgba(0,122,147,1);}.dhtgD:visited{color: rgba(0,101,128,1);}.Zjiec{color: rgba(255,255,255,1); font-family: Lato, sans-serif; font-size: 19pt; font-weight: 300; letter-spacing: 1px; line-height: 1.3; padding-bottom: 62.5px; padding-left: 48px; padding-right: 36px; padding-top: 11.5px;}.XMyrgf{margin-top: 0px; margin-left: 48px; margin-bottom: 24px; margin-right: 24px;}.TlfmSc{color: rgba(255,255,255,1); font-family: Lato, sans-serif; font-size: 15pt; font-weight: 300; line-height: 1.333;}.Mz8gvb{color: rgba(255,255,255,1);}.zDUgLc{background-color: rgba(33,33,33,1);}.QTKDff.chg4Jd:focus{background-color: rgba(255,255,255,0.1199999973);}.YTv4We{color: rgba(178,178,178,1);}.YTv4We:hover:before{background-color: rgba(255,255,255,0.1199999973); display: block;}.YTv4We.chg4Jd:focus:before{border-color: rgba(255,255,255,0.3600000143); display: block;}.eWDljc{background-color: rgba(33,33,33,1);}.eWDljc .hDrhEe{padding-left: 8px;}.ZXW7w{color: rgba(255,255,255,1); opacity: 0.6;}.PsKE7e{color: rgba(255,255,255,1); font-family: Lato, sans-serif; font-size: 12pt; font-weight: 300;}.lhZOrc{color: rgba(73,170,212,1);}.hDrhEe:hover{color: rgba(73,170,212,1);}.M9vuGd{color: rgba(73,170,212,1); font-weight: 400;}.jgXgSe:hover{color: rgba(73,170,212,1);}.j10yRb:hover{color: rgba(0,188,212,1);}.j10yRb.chg4Jd:focus:before{border-color: rgba(255,255,255,0.3600000143); display: block;}.tCHXDc{color: rgba(255,255,255,1);}.iWs3gf.chg4Jd:focus{background-color: rgba(255,255,255,0.1199999973);}.wgxiMe{background-color: rgba(33,33,33,1);}.fOU46b .TlfmSc{color: rgba(255,255,255,1);}.fOU46b .KJll8d{background-color: rgba(255,255,255,1);}.fOU46b .Mz8gvb{color: rgba(255,255,255,1);}.fOU46b .Mz8gvb.chg4Jd:focus:before{border-color: rgba(255,255,255,1); display: block;}.fOU46b .qV4dIc{color: rgba(255,255,255,0.8700000048);}.fOU46b .jgXgSe:hover{color: rgba(255,255,255,1);}.fOU46b .M9vuGd{color: rgba(255,255,255,1);}.fOU46b .tCHXDc{color: rgba(255,255,255,0.8700000048);}.fOU46b .iWs3gf.chg4Jd:focus{background-color: rgba(255,255,255,0.1199999973);}.fOU46b .G8QRnc .Mz8gvb{color: rgba(0,0,0,0.8000000119);}.fOU46b .G8QRnc .Mz8gvb.chg4Jd:focus:before{border-color: rgba(0,0,0,0.8000000119); display: block;}.fOU46b .G8QRnc .ZXW7w{color: rgba(0,0,0,0.8000000119);}.fOU46b .G8QRnc .TlfmSc{color: rgba(0,0,0,0.8000000119);}.fOU46b .G8QRnc .KJll8d{background-color: rgba(0,0,0,0.8000000119);}.fOU46b .G8QRnc .qV4dIc{color: rgba(0,0,0,0.6399999857);}.fOU46b .G8QRnc .jgXgSe:hover{color: rgba(0,0,0,0.8199999928);}.fOU46b .G8QRnc .M9vuGd{color: rgba(0,0,0,0.8199999928);}.fOU46b .G8QRnc .tCHXDc{color: rgba(0,0,0,0.6399999857);}.fOU46b .G8QRnc .iWs3gf.chg4Jd:focus{background-color: rgba(0,0,0,0.1199999973);}.fOU46b .usN8rf .Mz8gvb{color: rgba(0,0,0,0.8000000119);}.fOU46b .usN8rf .Mz8gvb.chg4Jd:focus:before{border-color: rgba(0,0,0,0.8000000119); display: block;}.fOU46b .usN8rf .ZXW7w{color: rgba(0,0,0,0.8000000119);}.fOU46b .usN8rf .TlfmSc{color: rgba(0,0,0,0.8000000119);}.fOU46b .usN8rf .KJll8d{background-color: rgba(0,0,0,0.8000000119);}.fOU46b .usN8rf .qV4dIc{color: rgba(0,0,0,0.6399999857);}.fOU46b .usN8rf .jgXgSe:hover{color: rgba(0,0,0,0.8199999928);}.fOU46b .usN8rf .M9vuGd{color: rgba(0,0,0,0.8199999928);}.fOU46b .usN8rf .tCHXDc{color: rgba(0,0,0,0.6399999857);}.fOU46b .usN8rf .iWs3gf.chg4Jd:focus{background-color: rgba(0,0,0,0.1199999973);}.fOU46b .aCIEDd .qV4dIc{color: rgba(33,33,33,1);}.fOU46b .aCIEDd .TlfmSc{color: rgba(33,33,33,1);}.fOU46b .aCIEDd .KJll8d{background-color: rgba(33,33,33,1);}.fOU46b .aCIEDd .ZXW7w{color: rgba(33,33,33,1);}.fOU46b .aCIEDd .jgXgSe:hover{color: rgba(33,33,33,1); opacity: 0.82;}.fOU46b .aCIEDd .Mz8gvb{color: rgba(33,33,33,1);}.fOU46b .aCIEDd .tCHXDc{color: rgba(33,33,33,1);}.fOU46b .aCIEDd .iWs3gf.chg4Jd:focus{background-color: rgba(33,33,33,0.1199999973);}.fOU46b .a3ETed .qV4dIc{color: rgba(255,255,255,1);}.fOU46b .a3ETed .TlfmSc{color: rgba(255,255,255,1);}.fOU46b .a3ETed .KJll8d{background-color: rgba(255,255,255,1);}.fOU46b .a3ETed .ZXW7w{color: rgba(255,255,255,1);}.fOU46b .a3ETed .jgXgSe:hover{color: rgba(255,255,255,1); opacity: 0.82;}.fOU46b .a3ETed .Mz8gvb{color: rgba(255,255,255,1);}.fOU46b .a3ETed .tCHXDc{color: rgba(255,255,255,1);}.fOU46b .a3ETed .iWs3gf.chg4Jd:focus{background-color: rgba(255,255,255,0.1199999973);}@media only screen and (min-width: 1280px){.XeSM4.b2Iqye.fOU46b .LBrwzc .tCHXDc{color: rgba(255,255,255,0.8700000048);}}.XeSM4.b2Iqye.fOU46b .LBrwzc .iWs3gf.chg4Jd:focus{background-color: rgba(255,255,255,0.1199999973);}@media only screen and (min-width: 1280px){.KuNac.b2Iqye.fOU46b .tCHXDc{color: rgba(0,0,0,0.6399999857);}}.KuNac.b2Iqye.fOU46b .iWs3gf.chg4Jd:focus{background-color: rgba(0,0,0,0.1199999973);}.fOU46b .zDUgLc{opacity: 0;}.LBrwzc .ZXW7w{color: rgba(0,0,0,1);}.LBrwzc .KJll8d{background-color: rgba(0,0,0,1);}.GBy4H .ZXW7w{color: rgba(255,255,255,1);}.GBy4H .KJll8d{background-color: rgba(255,255,255,1);}.eBSUbc{background-color: rgba(33,33,33,1); color: rgba(0,188,212,0.6999999881);}.BFDQOb:hover{color: rgba(73,170,212,1);}.ImnMyf{background-color: rgba(255,255,255,1); color: rgba(33,33,33,1);}.Vs12Bd{background-color: rgba(242,242,242,1); color: rgba(33,33,33,1);}.S5d9Rd{background-color: rgba(30,108,147,1); color: rgba(255,255,255,1);}.zfr3Q{color: rgba(33,33,33,1); font-family: Lato, sans-serif; font-size: 11pt; font-weight: 400; line-height: 1.6667; margin-top: 12px;}.qnVSj{color: rgba(33,33,33,1);}.Glwbz{color: rgba(33,33,33,1);}.duRjpb{color: rgba(34,110,147,1); font-family: Lato, sans-serif; font-size: 34pt; font-weight: 300; letter-spacing: 0.5px; line-height: 1.2; margin-top: 30px;}.Ap4VC{margin-bottom: -30px;}.qLrapd{color: rgba(34,110,147,1);}.JYVBee{color: rgba(34,110,147,1); font-family: Lato, sans-serif; font-size: 19pt; font-weight: 400; line-height: 1.4; margin-top: 20px;}.CobnVe{margin-bottom: -20px;}.aHM7ed{color: rgba(34,110,147,1);}.OmQG5e{color: rgba(33,33,33,1); font-family: Lato, sans-serif; font-size: 15pt; font-style: normal; font-weight: 400; line-height: 1.25; margin-top: 16px;}.GV3q8e{margin-bottom: -16px;}.NHD4Gf{color: rgba(33,33,33,1);}.LB7kq .duRjpb{font-size: 64pt; letter-spacing: 2px; line-height: 1; margin-top: 40px;}.LB7kq .JYVBee{font-size: 25pt; font-weight: 300; line-height: 1.1; margin-top: 25px;}@media only screen and (max-width: 479px){.LB7kq .duRjpb{font-size: 40pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.LB7kq .duRjpb{font-size: 53pt;}}@media only screen and (max-width: 479px){.LB7kq .JYVBee{font-size: 19pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.LB7kq .JYVBee{font-size: 22pt;}}.O13XJf{height: 340px; padding-bottom: 60px; padding-top: 60px;}@media only screen and (min-width: 480px) and (max-width: 767px){.O13XJf{height: 280px; padding-bottom: 40px; padding-top: 40px;}}@media only screen and (max-width: 479px){.O13XJf{height: 250px; padding-bottom: 30px; padding-top: 30px;}}.SBrW1{height: 520px;}@media only screen and (min-width: 480px) and (max-width: 767px){.SBrW1{height: 520px;}}@media only screen and (max-width: 479px){.SBrW1{height: 400px;}}.Wew9ke{fill: rgba(255,255,255,1);}.gk8rDe{height: 180px; padding-bottom: 32px; padding-top: 60px;}.gk8rDe .zfr3Q{color: rgba(0,0,0,1);}.gk8rDe .duRjpb{color: rgba(34,110,147,1); font-size: 45pt; line-height: 1.1;}.gk8rDe .qLrapd{color: rgba(34,110,147,1);}.gk8rDe .JYVBee{color: rgba(34,110,147,1); font-size: 27pt; line-height: 1.35; margin-top: 15px;}.gk8rDe .aHM7ed{color: rgba(34,110,147,1);}.gk8rDe .OmQG5e{color: rgba(33,33,33,1);}.gk8rDe .NHD4Gf{color: rgba(33,33,33,1);}@media only screen and (max-width: 479px){.gk8rDe .duRjpb{font-size: 30pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.gk8rDe .duRjpb{font-size: 38pt;}}@media only screen and (max-width: 479px){.gk8rDe .JYVBee{font-size: 20pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.gk8rDe .JYVBee{font-size: 24pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.gk8rDe{padding-top: 45px;}}@media only screen and (max-width: 479px){.gk8rDe{padding-bottom: 0px; padding-top: 30px;}}.dhtgD{text-decoration: underline;}.JzO0Vc{background-color: rgba(33,33,33,1); font-family: Lato, sans-serif; width: 250px;}@media only screen and (min-width: 1280px){.JzO0Vc{padding-top: 48.5px;}}.TlfmSc{font-family: Lato, sans-serif; font-size: 15pt; font-weight: 300; line-height: 1.333;}.PsKE7e{font-family: Lato, sans-serif; font-size: 12pt;}.IKA38e{line-height: 1.21;}.hDrhEe{padding-bottom: 11.5px; padding-top: 11.5px;}.zDUgLc{opacity: 1;}.QmpIrf{background-color: rgba(30,108,147,1); border-color: rgba(255,255,255,1); color: rgba(255,255,255,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.xkUom{border-color: rgba(30,108,147,1); color: rgba(30,108,147,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.xkUom:hover{background-color: rgba(30,108,147,0.1000000015);}.KjwKmc{color: rgba(30,108,147,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal; line-height: normal;}.KjwKmc:hover{background-color: rgba(30,108,147,0.1000000015);}.lQAHbd .QmpIrf{background-color: rgba(255,255,255,1); border-color: rgba(34,110,147,1); color: rgba(34,110,147,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.lQAHbd .xkUom{border-color: rgba(242,242,242,1); color: rgba(242,242,242,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.lQAHbd .xkUom:hover{background-color: rgba(255,255,255,0.1000000015);}.lQAHbd .KjwKmc{color: rgba(242,242,242,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.lQAHbd .KjwKmc:hover{background-color: rgba(255,255,255,0.1000000015);}.lQAHbd .Mt0nFe{border-color: rgba(255,255,255,0.200000003);}.cJgDec .QmpIrf{background-color: rgba(255,255,255,1); border-color: rgba(34,110,147,1); color: rgba(34,110,147,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.cJgDec .xkUom{border-color: rgba(242,242,242,1); color: rgba(242,242,242,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.cJgDec .xkUom:hover{background-color: rgba(255,255,255,0.1000000015);}.cJgDec .KjwKmc{color: rgba(242,242,242,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.cJgDec .KjwKmc:hover{background-color: rgba(255,255,255,0.1000000015);}.tpmmCb .QmpIrf{background-color: rgba(255,255,255,1); border-color: rgba(34,110,147,1); color: rgba(34,110,147,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.tpmmCb .xkUom{border-color: rgba(30,108,147,1); color: rgba(30,108,147,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.tpmmCb .xkUom:hover{background-color: rgba(30,108,147,0.1000000015);}.tpmmCb .KjwKmc{color: rgba(30,108,147,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.tpmmCb .KjwKmc:hover{background-color: rgba(30,108,147,0.1000000015);}.gk8rDe .QmpIrf{background-color: rgba(30,108,147,1); border-color: rgba(255,255,255,1); color: rgba(255,255,255,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.gk8rDe .xkUom{border-color: rgba(30,108,147,1); color: rgba(30,108,147,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.gk8rDe .xkUom:hover{background-color: rgba(30,108,147,0.1000000015);}.gk8rDe .KjwKmc{color: rgba(30,108,147,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.gk8rDe .KjwKmc:hover{background-color: rgba(30,108,147,0.1000000015);}.O13XJf .QmpIrf{background-color: rgba(255,255,255,1); border-color: rgba(34,110,147,1); color: rgba(34,110,147,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.O13XJf .xkUom{border-color: rgba(242,242,242,1); color: rgba(242,242,242,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.O13XJf .xkUom:hover{background-color: rgba(255,255,255,0.1000000015);}.O13XJf .KjwKmc{color: rgba(242,242,242,1); font-family: Lato, sans-serif; font-size: 11pt; line-height: normal;}.O13XJf .KjwKmc:hover{background-color: rgba(255,255,255,0.1000000015);}.Y4CpGd{font-family: Lato, sans-serif; font-size: 11pt;}.CMArNe{background-color: rgba(242,242,242,1);}.LBrwzc .TlfmSc{color: rgba(0,0,0,0.8000000119);}.LBrwzc .YTv4We{color: rgba(0,0,0,0.6399999857);}.LBrwzc .YTv4We.chg4Jd:focus:before{border-color: rgba(0,0,0,0.6399999857); display: block;}.LBrwzc .Mz8gvb{color: rgba(0,0,0,0.6399999857);}.LBrwzc .tCHXDc{color: rgba(0,0,0,0.6399999857);}.LBrwzc .iWs3gf.chg4Jd:focus{background-color: rgba(0,0,0,0.1199999973);}.LBrwzc .wgxiMe{background-color: rgba(255,255,255,1);}.LBrwzc .qV4dIc{color: rgba(0,0,0,0.6399999857);}.LBrwzc .M9vuGd{color: rgba(0,0,0,0.8000000119); font-weight: bold;}.LBrwzc .Zjiec{color: rgba(0,0,0,0.8000000119);}.LBrwzc .IKA38e{color: rgba(0,0,0,0.6399999857);}.LBrwzc .lhZOrc.IKA38e{color: rgba(0,0,0,0.8000000119); font-weight: bold;}.LBrwzc .j10yRb:hover{color: rgba(0,0,0,0.8000000119);}.LBrwzc .eBSUbc{color: rgba(0,0,0,0.8000000119);}.LBrwzc .hDrhEe:hover{color: rgba(0,0,0,0.8000000119);}.LBrwzc .jgXgSe:hover{color: rgba(0,0,0,0.8000000119);}.LBrwzc .M9vuGd:hover{color: rgba(0,0,0,0.8000000119);}.LBrwzc .zDUgLc{border-bottom-color: rgba(204,204,204,1); border-bottom-width: 1px; border-bottom-style: solid;}.fOU46b .LBrwzc .M9vuGd{color: rgba(0,0,0,0.8000000119);}.fOU46b .LBrwzc .jgXgSe:hover{color: rgba(0,0,0,0.8000000119);}.fOU46b .LBrwzc .zDUgLc{opacity: 1; border-bottom-style: none;}.fOU46b .LBrwzc .tCHXDc{color: rgba(0,0,0,0.6399999857);}.fOU46b .LBrwzc .iWs3gf.chg4Jd:focus{background-color: rgba(0,0,0,0.1199999973);}.fOU46b .GBy4H .M9vuGd{color: rgba(255,255,255,1);}.fOU46b .GBy4H .jgXgSe:hover{color: rgba(255,255,255,1);}.fOU46b .GBy4H .zDUgLc{opacity: 1;}.fOU46b .GBy4H .tCHXDc{color: rgba(255,255,255,0.8700000048);}.fOU46b .GBy4H .iWs3gf.chg4Jd:focus{background-color: rgba(255,255,255,0.1199999973);}.XeSM4.G9Qloe.fOU46b .LBrwzc .tCHXDc{color: rgba(0,0,0,0.6399999857);}.XeSM4.G9Qloe.fOU46b .LBrwzc .iWs3gf.chg4Jd:focus{background-color: rgba(0,0,0,0.1199999973);}.GBy4H .lhZOrc.IKA38e{color: rgba(255,255,255,1);}.GBy4H .eBSUbc{color: rgba(255,255,255,0.8700000048);}.GBy4H .hDrhEe:hover{color: rgba(255,255,255,1);}.GBy4H .j10yRb:hover{color: rgba(255,255,255,1);}.GBy4H .YTv4We{color: rgba(255,255,255,1);}.GBy4H .YTv4We.chg4Jd:focus:before{border-color: rgba(255,255,255,1); display: block;}.GBy4H .tCHXDc{color: rgba(255,255,255,0.8700000048);}.GBy4H .iWs3gf.chg4Jd:focus{background-color: rgba(255,255,255,0.1199999973);}.GBy4H .jgXgSe:hover{color: rgba(255,255,255,1);}.GBy4H .jgXgSe:hover{color: rgba(255,255,255,1);}.GBy4H .M9vuGd{color: rgba(255,255,255,1);}.GBy4H .M9vuGd:hover{color: rgba(255,255,255,1);}.QcmuFb{padding-left: 20px;}.vDPrib{padding-left: 40px;}.TBDXjd{padding-left: 60px;}.bYeK8e{padding-left: 80px;}.CuqSDe{padding-left: 100px;}.Havqpe{padding-left: 120px;}.JvDrRe{padding-left: 140px;}.o5lrIf{padding-left: 160px;}.yOJW7c{padding-left: 180px;}.rB8cye{padding-left: 200px;}.RuayVd{padding-right: 20px;}.YzcKX{padding-right: 40px;}.reTV0b{padding-right: 60px;}.vSYeUc{padding-right: 80px;}.PxtZIe{padding-right: 100px;}.ahQMed{padding-right: 120px;}.rzhcXb{padding-right: 140px;}.PBhj0b{padding-right: 160px;}.TlN46c{padding-right: 180px;}.GEdNnc{padding-right: 200px;}.TMjjoe{font-family: Lato, sans-serif; font-size: 9pt; line-height: 1.2; margin-top: 0px;}@media only screen and (min-width: 1280px){.yxgWrb{margin-left: 250px;}}@media only screen and (max-width: 479px){.Zjiec{font-size: 15pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.Zjiec{font-size: 17pt;}}@media only screen and (max-width: 479px){.TlfmSc{font-size: 13pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.TlfmSc{font-size: 14pt;}}@media only screen and (max-width: 479px){.PsKE7e{font-size: 12pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.PsKE7e{font-size: 12pt;}}@media only screen and (max-width: 479px){.duRjpb{font-size: 24pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.duRjpb{font-size: 29pt;}}@media only screen and (max-width: 479px){.JYVBee{font-size: 15pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.JYVBee{font-size: 17pt;}}@media only screen and (max-width: 479px){.OmQG5e{font-size: 13pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.OmQG5e{font-size: 14pt;}}@media only screen and (max-width: 479px){.TlfmSc{font-size: 13pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.TlfmSc{font-size: 14pt;}}@media only screen and (max-width: 479px){.PsKE7e{font-size: 12pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.PsKE7e{font-size: 12pt;}}@media only screen and (max-width: 479px){.TMjjoe{font-size: 9pt;}}@media only screen and (min-width: 480px) and (max-width: 767px){.TMjjoe{font-size: 9pt;}}</style><script nonce="HDOKn2eyy6fLTs66nTfu4w">_at_config = [null,"AIzaSyChg3MFqzdi1P5J-YvEyakkSA1yU7HRcDI","897606708560-a63d8ia0t9dhtpdt4i3djab2m42see7o.apps.googleusercontent.com",null,null,null,null,null,null,null,null,null,null,null,"SITES_%s",null,null,null,null,null,null,null,null,null,["AHKXmL1UyEL-ZVAnND23GVAhG1voiAYwBANRGWiwdRPoQd1f2Fzrh--A4_kdimqmcUQ62ppy0R1o",1,"CMbq1efU9JQDFUa3IwAdQ_4IRg",1780819286127942,[5703839,5704621,5706832,5706836,5738513,5738529,5740798,5740814,5743108,5743124,5747261,5762243,5762259,5776501,5776517,14101306,14101502,14101510,14101534,49472063,49472071,49644015,49644023,49769337,49769345,49822921,49822929,49823164,49823172,49833462,49833470,49842855,49842863,49924706,49924714,50223641,50223649,50266222,50266230,50273528,50273536,50297076,50297084,50503779,50503787,50549555,50549563,50561343,50561351,50586962,50586970,70971256,70971264,71079938,71079946,71085241,71085249,71120968,71120976,71387889,71387897,71465947,71465955,71528597,71528605,71530083,71530091,71544834,71544842,71546425,71546433,71658040,71658048,71659813,71659821,71689860,71689868,71710040,71710048,71798420,71798436,71825383,71825391,71855000,71855008,71897827,71897835,71960540,71960548,94327671,94327679,94353368,94353376,94434257,94434265,94523168,94523176,94624865,94624873,94629757,94629765,94660795,94660803,94661802,94661810,94692298,94692306,94744856,94744864,94785229,94785237,94864653,94864661,94904089,94904097,94918952,94918960,94940194,95087186,95087194,95087227,95087235,95112873,95112881,95314802,95314810,95317482,95317490,99251983,99251991,99368792,99368800,99402331,99402339,99440853,99440861,99457807,99457815,101492731,101492739,101519280,101519288,101562406,101562414,101631191,101631199,101687117,101687125,101836971,101836979,101837416,101837424,101855239,101855247,101887674,101887682,101889043,101889051,101917185,101917193,101922739,101922747,101922880,101922888,101933491,101933499,102030642,102030650,102059541,102059549,102070930,102070938,102146687,102146695,102161447,102161455,102198282,102198290,102199034,102199050,102244489,102244497,102249831,102262249,102262257,102280628,102280636,102287864,102287872,102343036,102343044,102343380,102343388,102402679,102402687,102430621,102430629,102469860,102469868,102517339,102517344,102548521,102548529,102673375,102685384,102685389,102685929,102685934,102690600,102690608,102691157,102691162,102691290,102691295,102718396,102721209,102721214,102727402,102727407,102741226,102741234,102761474,102761479,102762315,102762323,102787563,102807790,102807798,102867835,102867843,102883758,102883766,102902848,102902856,102903660,102903668,102909750,102909755,102921493,102921501,102925819,102925827,102926523,102926531,102932587,102932595,102944189,102944194,102944268,102944273,102944503,102944508,102944582,102944587,102944680,102944685,102944785,102944790,102956685,102956693,102972669,102972677,102987007,102987015,102988272,102988277,102988402,102988407,102988695,102988700,102988929,102988934,103011418,103011426,103163044,103163052,103176010,103176018,103281950,103281955,103285966,103285974,103286263,103286271,103286444,103286452,103288306,103288314,103289103,103289108,103289273,103289278,103296034,103296042,103326407,103326415,103343830,103343838,103354296,103354304,103354852,103354860,103355353,103355361,103355643,103355651,104530130,104573899,104573907,104575332,104575337,104575491,104575496,104575691,104575696,104575894,104615595,104615603,104699504,104699512,104761751,104761759,104794443,104794451,104907811,104907819,104962265,104976617,104976625,104983169,104983177,105082097,105082105,105083748,105083756,105112583,105112588,105125317,105125325,105180894,105180902,105216989,105216997,105283687,105283695,105292835,105292843,105346285,105346293,105360418,105360426,105371923,105371931,105373824,105373832,105393811,105393819,105439171,105439179,105449705,105449713,115509982,115509990,115601129,115601137,115626258,115626266,115626439,115626447,115669258,115669266,115779821,115779829,115780458,115780466,115818444,115818449,115821111,115821119,115822445,115822453,115909741,115909749,115943274,115943282,115990671,115990679,116054063,116054068,116059345,116059353,116068898,116068906,116176809,116176817,116221334,116221342,116250605,116250613,116276461,116276469,116307748,116361234,116372477,116372485,116407665,116416034,116416042,116425644,116448407,116449516,116470832,116495787,116496398,116503963,116538516,116538524,116542683,116550348,116567571,116567576,116593749,116609471,116609479,116613094,116613710,116685399,116685789,116700025,116700030,116704081,116704119,116714309,116714312,116783822,116783827,116840681,116840686,116858277,116858282,116874913,116877099,116919494,116923674,116924992,116980487,116980495,116999226,116999234,117021158,117021174,117026762,117026878,117026880,117037068,117037076,117037621,117037626,117091891,117091899,117136347,117166647,117268957,117268965,117283949,117283954,117286791,117286799,117290330,117290338,117309374,117309382,117310090,117310098,117381059,117381067,117382832,117405371,117405376,117410074,117428167,117428175,117457958,117457966,117528468,117528471,117530135,117556934,117557278,117617889,117632590,117642488,117660022,117660030,117683635,117706016,117707653,117707661,117711597,117726546,117726554,117728353,117728361,117734391,117736030,117755703,117755716,117755820,117756394,117775368,117782123,117783568,117783576,117848945,117848953,117859868,117859913,117866199,117866207,117895900,117895908,117937848,117937856,117952935,117995685,117995689,117997204,117999163,118010933,118018703,118044535,118094558,118094563,118155411,118171121,118171213,118172011,118179262,118182951,118219914,118223025,118223041,118237135,118237143,118240392,118246247,118254618,118269184,118275356,118281144,118281152,118342369,118346423,118346877,118346885,118347706,118349323,118349325,118349356,118364657,118367791,118367937,118367945,118368676,118368684,118373667,118394777,118394782,118417364,118417372,118449075,118462069,118494715,118509496,118511786,118519229,118532140,118532142,118654314,118669236,118676482,118676484,118717388,118736896,118780368,118781593,118781601,118792272,118796209,118796216,118807052,118809999,118810531,118825246,118830481,118830620,118830622,118830624,118830626,118830628,118830630,118830632,118830634,118830636,118830638,118830640,118835027,118855606,118908865,118969829,118970617,118980566,118980574,119044056,119061297,119078243,119087275,119106919,119159957,119164990,119164992,119164995,119187339,119209341,119209378,119221438,119243630,119262908]],null,null,null,null,0,null,null,null,null,null,null,null,null,null,"https://drive.google.com",null,null,null,null,null,null,null,null,null,0,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"v2internal","https://docs.google.com",null,null,null,null,null,null,"https://sites.google.com/new/",null,null,null,null,null,0,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,"",null,null,null,null,null,null,null,null,null,null,null,null,6,null,null,"https://accounts.google.com/o/oauth2/auth","https://accounts.google.com/o/oauth2/postmessageRelay",null,null,null,null,78,"https://sites.google.com/new/?usp\u003dviewer_footer",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"https://www.gstatic.com/atari/embeds/05acf2f48052137958a41565358fb972/intermediate-frame-minified.html",0,null,"v2beta",null,null,null,null,null,null,4,"https://accounts.google.com/o/oauth2/iframe",null,null,null,null,null,null,"https://1930997023-atari-embeds.googleusercontent.com/embeds/1eea06de280c5ab9b261c0869a310ca0/inner-frame-minified.html",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"https://sites.google.com/ysjh.ntpc.edu.tw/ysjhart/%E8%89%B2%E7%9B%B8",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0,null,null,null,null,null,null,0,null,"",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,null,null,null,0,"[]",null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,null,[1780819286129,"editors.sites-viewer-frontend_20260601.02_p0","924529401",null,1,1,""],null,null,null,null,0,null,null,0,null,null,null,null,null,null,null,null,20,500,"https://domains.google.com",null,0,null,null,null,null,null,null,null,null,null,null,null,0,null,null,null,null,null,null,null,null,null,null,1,0,1,0,0,0,0,null,null,null,null,null,"https://www.google.com/calendar/embed",null,null,null,null,0,null,null,1,0,null,null,0,null,null,null,0,null,0,null,null,null,null,null,0,null,null,null,null,0,"PROD",null,null,1,0,null,null,0,"wYCZkqoz10fBWirfAym0S1sADKbJ",1,1,0,null,0,0,0,0,0,0,0,0]; window.globals = {"enableAnalytics":true,"webPropertyId":"","showDebug":false,"hashedSiteId":"541ddb420c167c4cf6ffafd4e51976e5df71bfba0fab3ec9bb3a352af31bb417","normalizedPath":"ysjh.ntpc.edu.tw/ysjhart/色相","pageTitle":"色相"}; function gapiLoaded() {if (globals.gapiLoaded == undefined) {globals.gapiLoaded = true;} else {globals.gapiLoaded();}}window.messages = []; window.addEventListener && window.addEventListener('message', function(e) {if (window.messages && e.data && e.data.magic == 'SHIC') {window.messages.push(e);}});</script><script src="https://apis.google.com/js/client.js?onload=gapiLoaded" nonce="HDOKn2eyy6fLTs66nTfu4w"></script><script nonce="HDOKn2eyy6fLTs66nTfu4w">(function(){var aa=typeof Object.create=="function"?Object.create:function(a){var b=function(){};b.prototype=a;return new b},l=typeof Object.defineProperties=="function"?Object.defineProperty:function(a,b,c){if(a==Array.prototype||a==Object.prototype)return a;a[b]=c.value;return a},ba=function(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var b=0;b<a.length;++b){var c=a[b];if(c&&c.Math==Math)return c}throw Error("Cannot find global object");
+},ca=ba(this),m=function(a,b){if(b)a:{var c=ca;a=a.split(".");for(var d=0;d<a.length-1;d++){var f=a[d];if(!(f in c))break a;c=c[f]}a=a[a.length-1];d=c[a];b=b(d);b!=d&&b!=null&&l(c,a,{configurable:!0,writable:!0,value:b})}},da;if(typeof Object.setPrototypeOf=="function")da=Object.setPrototypeOf;else{var ea;a:{var fa={a:!0},ha={};try{ha.__proto__=fa;ea=ha.a;break a}catch(a){}ea=!1}da=ea?function(a,b){a.__proto__=b;if(a.__proto__!==b)throw new TypeError(a+" is not extensible");return a}:null}
+var ia=da,ja=function(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}},q=function(a){var b=typeof Symbol!="undefined"&&Symbol.iterator&&a[Symbol.iterator];if(b)return b.call(a);if(typeof a.length=="number")return{next:ja(a)};throw Error(String(a)+" is not an iterable or ArrayLike");},r=function(a){if(!(a instanceof Array)){a=q(a);for(var b,c=[];!(b=a.next()).done;)c.push(b.value);a=c}return a},ka=function(a){return t(a,a)},t=function(a,b){a.raw=b;Object.freeze&&(Object.freeze(a),
+Object.freeze(b));return a},u=function(a,b){return Object.prototype.hasOwnProperty.call(a,b)},la=typeof Object.assign=="function"?Object.assign:function(a,b){if(a==null)throw new TypeError("No nullish arg");a=Object(a);for(var c=1;c<arguments.length;c++){var d=arguments[c];if(d)for(var f in d)u(d,f)&&(a[f]=d[f])}return a};m("Object.assign",function(a){return a||la});var ma=function(){for(var a=Number(this),b=[],c=a;c<arguments.length;c++)b[c-a]=arguments[c];return b};
+m("globalThis",function(a){return a||ca});m("Symbol",function(a){if(a)return a;var b=function(g,n){this.P=g;l(this,"description",{configurable:!0,writable:!0,value:n})};b.prototype.toString=function(){return this.P};var c="jscomp_symbol_"+(Math.random()*1E9>>>0)+"_",d=0,f=function(g){if(this instanceof f)throw new TypeError("Symbol is not a constructor");return new b(c+(g||"")+"_"+d++,g)};return f});
+m("Symbol.iterator",function(a){if(a)return a;a=Symbol("Symbol.iterator");l(Array.prototype,a,{configurable:!0,writable:!0,value:function(){return na(ja(this))}});return a});var na=function(a){a={next:a};a[Symbol.iterator]=function(){return this};return a};m("Symbol.dispose",function(a){return a?a:Symbol("Symbol.dispose")});
+var oa=function(a,b){a instanceof String&&(a+="");var c=0,d=!1,f={next:function(){if(!d&&c<a.length){var g=c++;return{value:b(g,a[g]),done:!1}}d=!0;return{done:!0,value:void 0}}};f[Symbol.iterator]=function(){return f};return f};m("Array.prototype.keys",function(a){return a?a:function(){return oa(this,function(b){return b})}});
+m("WeakMap",function(a){function b(){}function c(h){var k=typeof h;return k==="object"&&h!==null||k==="function"}function d(h){if(!u(h,g)){var k=new b;l(h,g,{value:k})}}function f(h){var k=Object[h];k&&(Object[h]=function(p){if(p instanceof b)return p;Object.isExtensible(p)&&d(p);return k(p)})}if(function(){if(!a||!Object.seal)return!1;try{var h=Object.seal({}),k=Object.seal({}),p=new a([[h,2],[k,3]]);if(p.get(h)!=2||p.get(k)!=3)return!1;p.delete(h);p.set(k,4);return!p.has(h)&&p.get(k)==4}catch(H){return!1}}())return a;
+var g="$jscomp_hidden_"+Math.random();f("freeze");f("preventExtensions");f("seal");var n=0,e=function(h){this.o=(n+=Math.random()+1).toString();if(h){h=q(h);for(var k;!(k=h.next()).done;)k=k.value,this.set(k[0],k[1])}};e.prototype.set=function(h,k){if(!c(h))throw Error("Invalid WeakMap key");d(h);if(!u(h,g))throw Error("WeakMap key fail: "+h);h[g][this.o]=k;return this};e.prototype.get=function(h){return c(h)&&u(h,g)?h[g][this.o]:void 0};e.prototype.has=function(h){return c(h)&&u(h,g)&&u(h[g],this.o)};
+e.prototype.delete=function(h){return c(h)&&u(h,g)&&u(h[g],this.o)?delete h[g][this.o]:!1};return e});
+m("Map",function(a){if(function(){if(!a||typeof a!="function"||!a.prototype.entries||typeof Object.seal!="function")return!1;try{var e=Object.seal({x:4}),h=new a(q([[e,"s"]]));if(h.get(e)!="s"||h.size!=1||h.get({x:4})||h.set({x:4},"t")!=h||h.size!=2)return!1;var k=h.entries(),p=k.next();if(p.done||p.value[0]!=e||p.value[1]!="s")return!1;p=k.next();return p.done||p.value[0].x!=4||p.value[1]!="t"||!k.next().done?!1:!0}catch(H){return!1}}())return a;var b=new WeakMap,c=function(e){this[0]={};this[1]=
+g();this.size=0;if(e){e=q(e);for(var h;!(h=e.next()).done;)h=h.value,this.set(h[0],h[1])}};c.prototype.set=function(e,h){e=e===0?0:e;var k=d(this,e);k.list||(k.list=this[0][k.id]=[]);k.entry?k.entry.value=h:(k.entry={next:this[1],j:this[1].j,head:this[1],key:e,value:h},k.list.push(k.entry),this[1].j.next=k.entry,this[1].j=k.entry,this.size++);return this};c.prototype.delete=function(e){e=d(this,e);return e.entry&&e.list?(e.list.splice(e.index,1),e.list.length||delete this[0][e.id],e.entry.j.next=
+e.entry.next,e.entry.next.j=e.entry.j,e.entry.head=null,this.size--,!0):!1};c.prototype.clear=function(){this[0]={};this[1]=this[1].j=g();this.size=0};c.prototype.has=function(e){return!!d(this,e).entry};c.prototype.get=function(e){return(e=d(this,e).entry)&&e.value};c.prototype.entries=function(){return f(this,function(e){return[e.key,e.value]})};c.prototype.keys=function(){return f(this,function(e){return e.key})};c.prototype.values=function(){return f(this,function(e){return e.value})};c.prototype.forEach=
+function(e,h){for(var k=this.entries(),p;!(p=k.next()).done;)p=p.value,e.call(h,p[1],p[0],this)};c.prototype[Symbol.iterator]=c.prototype.entries;var d=function(e,h){var k=h&&typeof h;k=="object"||k=="function"?b.has(h)?k=b.get(h):(k=""+ ++n,b.set(h,k)):k="p_"+h;var p=e[0][k];if(p&&u(e[0],k))for(e=0;e<p.length;e++){var H=p[e];if(h!==h&&H.key!==H.key||h===H.key)return{id:k,list:p,index:e,entry:H}}return{id:k,list:p,index:-1,entry:void 0}},f=function(e,h){var k=e[1];return na(function(){if(k){for(;k.head!=
+e[1];)k=k.j;for(;k.next!=k.head;)return k=k.next,{done:!1,value:h(k)};k=null}return{done:!0,value:void 0}})},g=function(){var e={};return e.j=e.next=e.head=e},n=0;return c});
+m("Set",function(a){if(function(){if(!a||typeof a!="function"||!a.prototype.entries||typeof Object.seal!="function")return!1;try{var c=Object.seal({x:4}),d=new a(q([c]));if(!d.has(c)||d.size!=1||d.add(c)!=d||d.size!=1||d.add({x:4})!=d||d.size!=2)return!1;var f=d.entries(),g=f.next();if(g.done||g.value[0]!=c||g.value[1]!=c)return!1;g=f.next();return g.done||g.value[0]==c||g.value[0].x!=4||g.value[1]!=g.value[0]?!1:f.next().done}catch(n){return!1}}())return a;var b=function(c){this.i=new Map;if(c){c=
+q(c);for(var d;!(d=c.next()).done;)this.add(d.value)}this.size=this.i.size};b.prototype.add=function(c){c=c===0?0:c;this.i.set(c,c);this.size=this.i.size;return this};b.prototype.delete=function(c){c=this.i.delete(c);this.size=this.i.size;return c};b.prototype.clear=function(){this.i.clear();this.size=0};b.prototype.has=function(c){return this.i.has(c)};b.prototype.entries=function(){return this.i.entries()};b.prototype.values=function(){return this.i.values()};b.prototype.keys=b.prototype.values;
+b.prototype[Symbol.iterator]=b.prototype.values;b.prototype.forEach=function(c,d){var f=this;this.i.forEach(function(g){return c.call(d,g,g,f)})};return b});m("Array.prototype.entries",function(a){return a?a:function(){return oa(this,function(b,c){return[b,c]})}});m("Object.entries",function(a){return a?a:function(b){var c=[],d;for(d in b)u(b,d)&&c.push([d,b[d]]);return c}});
+m("Array.from",function(a){return a?a:function(b,c,d){c=c!=null?c:function(e){return e};var f=[],g=typeof Symbol!="undefined"&&Symbol.iterator&&b[Symbol.iterator];if(typeof g=="function"){b=g.call(b);for(var n=0;!(g=b.next()).done;)f.push(c.call(d,g.value,n++))}else for(g=b.length,n=0;n<g;n++)f.push(c.call(d,b[n],n));return f}});m("Number.isFinite",function(a){return a?a:function(b){return typeof b!=="number"?!1:!isNaN(b)&&b!==Infinity&&b!==-Infinity}});
+m("String.prototype.startsWith",function(a){return a?a:function(b,c){if(this==null)throw new TypeError("The 'this' value for String.prototype.startsWith must not be null or undefined");if(b instanceof RegExp)throw new TypeError("First argument to String.prototype.startsWith must not be a regular expression");var d=this+"";b+="";var f=d.length,g=b.length;c=Math.max(0,Math.min(c|0,d.length));for(var n=0;n<g&&c<f;)if(d[c++]!=b[n++])return!1;return n>=g}});
+m("Object.values",function(a){return a?a:function(b){var c=[],d;for(d in b)u(b,d)&&c.push(b[d]);return c}});m("Math.log2",function(a){return a?a:function(b){return Math.log(b)/Math.LN2}});m("Array.prototype.values",function(a){return a?a:function(){return oa(this,function(b,c){return c})}});m("Object.hasOwn",function(a){return a?a:function(b,c){return Object.prototype.hasOwnProperty.call(b,c)}});/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+var v=this||self,pa=function(a){var b=typeof a;return b!="object"?b:a?Array.isArray(a)?"array":b:"null"},qa=function(a,b){function c(){}c.prototype=b.prototype;a.ba=b.prototype;a.prototype=new c;a.prototype.constructor=a;a.ab=function(d,f,g){for(var n=Array(arguments.length-2),e=2;e<arguments.length;e++)n[e-2]=arguments[e];return b.prototype[f].apply(d,n)}};/*
+
+ Copyright Google LLC
+ SPDX-License-Identifier: Apache-2.0
+*/
+var ra="src srcdoc codebase data href rel action formaction sandbox icon".split(" ");var sa={};function ta(){if(sa!==sa)throw Error("Bad secret");};var ua=function(a){ta();this.Z=a};ua.prototype.toString=function(){return this.Z};var va=ka([""]),wa=t(["\x00"],["\\0"]),xa=t(["\n"],["\\n"]),ya=t(["\x00"],["\\u0000"]),za=ka([""]),Aa=t(["\x00"],["\\0"]),Ba=t(["\n"],["\\n"]),Ca=t(["\x00"],["\\u0000"]);function w(a){return Object.isFrozen(a)&&Object.isFrozen(a.raw)}function x(a){return a.toString().indexOf("`")===-1}var Da=x(function(a){return a(va)})||x(function(a){return a(wa)})||x(function(a){return a(xa)})||x(function(a){return a(ya)}),Ea=w(za)&&w(Aa)&&w(Ba)&&w(Ca);var Fa=function(a){ta();this.aa=a};Fa.prototype.toString=function(){return this.aa};new Fa("about:blank");new Fa("about:invalid#zClosurez");var Ga=[],Ha=function(a){console.warn("A URL with content '"+a+"' was sanitized away.")};Ga.indexOf(Ha)===-1&&Ga.push(Ha);var Ia=ka(["mica-"]);
+(function(a){if(!Array.isArray(a)||!Array.isArray(a.raw)||a.length!==a.raw.length||!Da&&a===a.raw||!(Da&&!Ea||w(a))||1!==a.length)throw new TypeError("\n    ############################## ERROR ##############################\n\n    It looks like you are trying to call a template tag function (fn`...`)\n    using the normal function syntax (fn(...)), which is not supported.\n\n    The functions in the safevalues library are not designed to be called\n    like normal functions, and doing so invalidates the security guarantees\n    that safevalues provides.\n\n    If you are stuck and not sure how to proceed, please reach out to us\n    instead through:\n     - go/ise-hardening-yaqs (preferred) // LINE-INTERNAL\n     - g/ise-hardening // LINE-INTERNAL\n     - https://github.com/google/safevalues/issues\n\n    ############################## ERROR ##############################");var b=
+a[0].toLowerCase();if(b.indexOf("on")===0||"on".indexOf(b)===0)throw Error("Prefix '"+a[0]+"' does not guarantee the attribute to be safe as it is also a prefix for event handler attributesPlease use 'addEventListener' to set event handlers.");ra.forEach(function(c){if(c.indexOf(b)===0)throw Error("Prefix '"+a[0]+"' does not guarantee the attribute to be safe as it is also a prefix for the security sensitive attribute '"+(c+"'. Please use native or safe DOM APIs to set the attribute."));});return new ua(b)})(Ia);function y(a,b){if(Error.captureStackTrace)Error.captureStackTrace(this,y);else{var c=Error().stack;c&&(this.stack=c)}a&&(this.message=String(a));b!==void 0&&(this.cause=b)}qa(y,Error);y.prototype.name="CustomError";function z(a,b){a=a.split("%s");for(var c="",d=a.length-1,f=0;f<d;f++)c+=a[f]+(f<b.length?b[f]:"%s");y.call(this,c+a[d])}qa(z,y);z.prototype.name="AssertionError";function A(a,b,c,d){var f="Assertion failed";if(c){f+=": "+c;var g=d}else a&&(f+=": "+a,g=b);throw new z(""+f,g||[]);}
+var B=function(a,b,c){a||A("",null,b,Array.prototype.slice.call(arguments,2));return a},Ja=function(a,b,c){a==null&&A("Expected to exist: %s.",[a],b,Array.prototype.slice.call(arguments,2));return a},Ka=function(a,b){throw new z("Failure"+(a?": "+a:""),Array.prototype.slice.call(arguments,1));},La=function(a,b,c){typeof a!=="string"&&A("Expected string but got %s: %s.",[pa(a),a],b,Array.prototype.slice.call(arguments,2))},Ma=function(a,b,c){Array.isArray(a)||A("Expected array but got %s: %s.",[pa(a),
+a],b,Array.prototype.slice.call(arguments,2));return a};var Na;function Oa(a){var b;((b=Na)!=null?b:Na=[]).push(a)};var C=function(a,b,c,d){d=d===void 0?!1:d;B(a,"Invalid service id + "+a);c=c||[];for(var f=0;f<c.length;f++)B(c[f],"Invalid dependency "+c[f]+" (index in dependency array: "+f+") for service "+a);this.K=a;this.l=b||null;this.C=[];Pa(this,c,d);this.N=!1};C.prototype.toString=function(){return this.K};
+var Pa=function(a,b,c){c=c===void 0?!1:c;B(!a.N,"Error while adding dependencies. The dependencies cannot be changed after they were read.");a.C=a.C.concat(b);if(c){if(!a.l)throw Error("A module ID must be set on the Fava ServiceId "+a.K+" in order to modify extra edges.");b.map(function(d){return d.l}).forEach(function(d){Oa(function(f){f.R(B(a.l),d)})})}},Ra=function(){var a=D.m,b=[D.B],c=Qa;c=c===void 0?!1:c;B(!a.N,"Error while removing dependencies. The dependencies cannot be changed after they were read.");
+if(c){if(!a.l)throw Error("A module ID must be set on the Fava ServiceId "+a.K+" in order to modify extra edges.");b.map(function(d){return d.l}).forEach(function(d){Oa(function(f){f.lb(B(a.l),d)})})}a.C=a.C.filter(function(d){return b.indexOf(d)===-1})};new C("n73qwf","n73qwf");new C("MpJwZc","MpJwZc");function E(){this.D=this.D;this.F=this.F}E.prototype.D=!1;E.prototype.dispose=function(){this.D||(this.D=!0,this.W())};E.prototype[Symbol.dispose]=function(){this.dispose()};E.prototype.W=function(){if(this.F)for(;this.F.length;)this.F.shift()()};var Sa,F;a:{for(var Ta=["CLOSURE_FLAGS"],G=v,Ua=0;Ua<Ta.length;Ua++)if(G=G[Ta[Ua]],G==null){F=null;break a}F=G}var Va=F&&F[513659523];Sa=Va!=null?Va:!0;function Wa(a){var b=Xa,c;for(c in b)a.call(void 0,b[c],c,b)};function Ya(a,b){b=b===void 0?new Set:b;if(b.has(a))return"(Recursive reference)";switch(typeof a){case "object":if(a){var c=Object.getPrototypeOf(a);switch(c){case Map.prototype:case Set.prototype:case Array.prototype:b.add(a);var d="["+Array.from(a,function(f){return Ya(f,b)}).join(", ")+"]";b.delete(a);c!==Array.prototype&&(d=Za(c.constructor)+"("+d+")");return d;case Object.prototype:return b.add(a),c="{"+Object.entries(a).map(function(f){var g=q(f);f=g.next().value;g=g.next().value;return f+
+": "+Ya(g,b)}).join(", ")+"}",b.delete(a),c;default:return d="Object",c&&c.constructor&&(d=Za(c.constructor)),typeof a.toString==="function"&&a.toString!==Object.prototype.toString?d+"("+String(a)+")":"(object "+d+")"}}break;case "function":return"function "+Za(a);case "number":if(!Number.isFinite(a))return String(a);break;case "bigint":return a.toString(10)+"n";case "symbol":return a.toString()}return JSON.stringify(a)}
+function Za(a){var b=a.displayName;return b&&typeof b==="string"||(b=a.name)&&typeof b==="string"?b:(a=/function\s+([^\(]+)/m.exec(String(a)))?a[1]:"(Anonymous)"};function I(a,b){var c=$a;a||ab("Guard truthy failed:",b||c||"Expected truthy, got "+Ya(a))}var $a=void 0;function bb(a){return typeof a==="function"?a():a}function ab(){throw Error(ma.apply(0,arguments).map(bb).filter(Boolean).join("\n").trim().replace(/:$/,""));};try{var cb,db,eb=(db=(cb=window)==null?void 0:cb.top)!=null?db:v;eb.U3bHHf!=null||(eb.U3bHHf=0);eb.U3bHHf++}catch(a){v.U3bHHf!=null||(v.U3bHHf=0),v.U3bHHf++};var J=function(a,b){this.name=a;this.value=b};J.prototype.toString=function(){return this.name};var K=new J("OFF",Infinity),fb=new J("WARNING",900),gb=new J("CONFIG",700),hb=function(){this.A=0;this.clear()},ib;hb.prototype.clear=function(){this.L=Array(this.A);this.M=-1;this.O=!1};var mb=function(){this.reset(jb||K,kb,lb,void 0,void 0)};mb.prototype.reset=function(){};
+var nb=function(a,b){this.level=null;this.X=[];this.parent=(b===void 0?null:b)||null;this.children=[];this.J={getName:function(){return a}}},ob=function(a){if(a.level)return a.level;if(a.parent)return ob(a.parent);Ka("Root logger has no level set.");return K},qb=function(){for(var a=L,b=pb;b;)b.X.forEach(function(c){c(a)}),b=b.parent},rb=function(){this.entries={};var a=new nb("");a.level=gb;this.entries[""]=a},sb,M=function(a,b){var c=a.entries[b];if(c)return c;c=M(a,b.slice(0,Math.max(b.lastIndexOf("."),
+0)));var d=new nb(b,c);a.entries[b]=d;c.children.push(d);return d},tb=function(){sb||(sb=new rb);return sb},N=function(a){return M(tb(),a).J};var ub;if(v==null?0:(ub=v.Symbol)==null?0:ub.for){var vb=Symbol.for("google.goem");v[vb]||(v[vb]=new WeakMap)};var O=new Set;I(!0,"Event name <wZVHld> may not contain ':' or ';'");if(O.has("wZVHld"))throw Error("Event <wZVHld> has already been declared.");O.add("wZVHld");I(!0,"Event name <nDa8ic> may not contain ':' or ';'");if(O.has("nDa8ic"))throw Error("Event <nDa8ic> has already been declared.");O.add("nDa8ic");I(!0,"Event name <o07HZc> may not contain ':' or ';'");if(O.has("o07HZc"))throw Error("Event <o07HZc> has already been declared.");O.add("o07HZc");I(!0,"Event name <UjQMac> may not contain ':' or ';'");
+if(O.has("UjQMac"))throw Error("Event <UjQMac> has already been declared.");O.add("UjQMac");I(!0,"Event name <ti6hGc> may not contain ':' or ';'");if(O.has("ti6hGc"))throw Error("Event <ti6hGc> has already been declared.");O.add("ti6hGc");I(!0,"Event name <ZYIfFd> may not contain ':' or ';'");if(O.has("ZYIfFd"))throw Error("Event <ZYIfFd> has already been declared.");O.add("ZYIfFd");I(!0,"Event name <TGB85e> may not contain ':' or ';'");if(O.has("TGB85e"))throw Error("Event <TGB85e> has already been declared.");O.add("TGB85e");I(!0,"Event name <RXQi4b> may not contain ':' or ';'");
+if(O.has("RXQi4b"))throw Error("Event <RXQi4b> has already been declared.");O.add("RXQi4b");I(!0,"Event name <sn54Q> may not contain ':' or ';'");if(O.has("sn54Q"))throw Error("Event <sn54Q> has already been declared.");O.add("sn54Q");I(!0,"Event name <eQsQB> may not contain ':' or ';'");if(O.has("eQsQB"))throw Error("Event <eQsQB> has already been declared.");O.add("eQsQB");I(!0,"Event name <CGLD0d> may not contain ':' or ';'");
+if(O.has("CGLD0d"))throw Error("Event <CGLD0d> has already been declared.");O.add("CGLD0d");I(!0,"Event name <ZpywWb> may not contain ':' or ';'");if(O.has("ZpywWb"))throw Error("Event <ZpywWb> has already been declared.");O.add("ZpywWb");I(!0,"Event name <O1htCb> may not contain ':' or ';'");if(O.has("O1htCb"))throw Error("Event <O1htCb> has already been declared.");O.add("O1htCb");I(!0,"Event name <k9KYye> may not contain ':' or ';'");
+if(O.has("k9KYye"))throw Error("Event <k9KYye> has already been declared.");O.add("k9KYye");I(!0,"Event name <g6cJHd> may not contain ':' or ';'");if(O.has("g6cJHd"))throw Error("Event <g6cJHd> has already been declared.");O.add("g6cJHd");I(!0,"Event name <otb29e> may not contain ':' or ';'");if(O.has("otb29e"))throw Error("Event <otb29e> has already been declared.");O.add("otb29e");I(!0,"Event name <FNFY6c> may not contain ':' or ';'");
+if(O.has("FNFY6c"))throw Error("Event <FNFY6c> has already been declared.");O.add("FNFY6c");I(!0,"Event name <TvD9Pc> may not contain ':' or ';'");if(O.has("TvD9Pc"))throw Error("Event <TvD9Pc> has already been declared.");O.add("TvD9Pc");I(!0,"Event name <AHmuwe> may not contain ':' or ';'");if(O.has("AHmuwe"))throw Error("Event <AHmuwe> has already been declared.");O.add("AHmuwe");I(!0,"Event name <O22p3e> may not contain ':' or ';'");
+if(O.has("O22p3e"))throw Error("Event <O22p3e> has already been declared.");O.add("O22p3e");I(!0,"Event name <JIbuQc> may not contain ':' or ';'");if(O.has("JIbuQc"))throw Error("Event <JIbuQc> has already been declared.");O.add("JIbuQc");I(!0,"Event name <ih4XEb> may not contain ':' or ';'");if(O.has("ih4XEb"))throw Error("Event <ih4XEb> has already been declared.");O.add("ih4XEb");I(!0,"Event name <sPvj8e> may not contain ':' or ';'");
+if(O.has("sPvj8e"))throw Error("Event <sPvj8e> has already been declared.");O.add("sPvj8e");I(!0,"Event name <GvneHb> may not contain ':' or ';'");if(O.has("GvneHb"))throw Error("Event <GvneHb> has already been declared.");O.add("GvneHb");I(!0,"Event name <rcuQ6b> may not contain ':' or ';'");if(O.has("rcuQ6b"))throw Error("Event <rcuQ6b> has already been declared.");O.add("rcuQ6b");I(!0,"Event name <dyRcpb> may not contain ':' or ';'");
+if(O.has("dyRcpb"))throw Error("Event <dyRcpb> has already been declared.");O.add("dyRcpb");I(!0,"Event name <u0pjoe> may not contain ':' or ';'");if(O.has("u0pjoe"))throw Error("Event <u0pjoe> has already been declared.");O.add("u0pjoe");"#".replace(/([-()\[\]{}+?*.$\^|,:#<!\\])/g,"\\$1").replace(/\x08/g,"\\x08");var wb=[];var P=function(){this.I={}};P.prototype.register=function(a,b){I(a,"registerInterface() or atInterface() was called with a ServiceId that doesn't exist. The first parameter to this function must exactly match the class name which was passed to goog.module / goog.provide, but in ALL_CAPS and without the suffix. \nFor example, goog.module('ns.FooBarInterface') creates FOO_BAR as its ServiceId.\nSee http://go/wiz-ids");I(!this.I[a.toString()],"<"+a+"> is already registered.");this.I[a.toString()]=b};
+var yb=function(a){var b=xb().I[a.toString()];if(!b)throw I(b,"Could not find interface "+a+".Interface ServiceIds must exactly match the class name which was passed to goog.module / goog.provide, but with the Wiz.id suffix without the suffix.\nFor example, goog.module('ns.FooBarInterface') creates 'ns.FooBarInterfaceWiz.id' as its ServiceId.\nSee http://go/wiz-ids"),Error("Interface "+a+" cannot be retrieved.");return b},xb=function(){B(!Object.isSealed(P),"Cannot use getInstance() with a sealed constructor.");
+var a="H";if(P.H&&P.hasOwnProperty(a))a=P.H;else{wb.push(P);var b=new P;P.H=b;B(P.hasOwnProperty(a),"Could not instantiate singleton.");a=b}return a};var zb=new Map,Ab=new Map,Bb=new Map,Cb=new Map;function Db(a,b){b=Eb(Bb,a,function(){return b});(a=b.l)&&Eb(Cb,a,function(){return b});return b}function Eb(a,b,c){var d=a.get(b);d||(d=c(b),a.set(b,d));return d};var Fb=["jscontroller","jsmodel","jsowner"];function Gb(a){a=a===void 0?"":a;return Fb.map(function(b){return a+" ["+b+"]"}).join(",")+","+(a+' [jsaction*="trigger."]')}Gb();["[jsname=coFSxe]","[mica-app-id]"].map(function(a){return Gb(a)});(function(){try{if(typeof window.EventTarget==="function")return new EventTarget}catch(a){}try{return document.createElement("div")}catch(a){}return null})();var Hb=typeof Symbol==="function"&&typeof Symbol()==="symbol";function Ib(a,b,c){return typeof Symbol==="function"&&typeof Symbol()==="symbol"?(c===void 0?0:c)&&Symbol.for&&a?Symbol.for(a):a!=null?Symbol(a):Symbol():b}var Jb=Ib("jas",void 0,!0),Kb=Ib("destroyedStructure","destroyedStructure");B(Math.round(Math.log2(Math.max.apply(Math,r(Object.values({Ea:1,Da:2,Ca:4,La:8,Ua:16,Ja:32,ia:64,xa:128,ua:256,Ta:512,va:1024,ya:2048,Ka:4096,Fa:8192})))))===13);var Lb=Hb?Ja(Jb):"jb",Mb=Object.getOwnPropertyDescriptor(Array.prototype,"Y");Object.defineProperties(Array.prototype,{Y:{get:function(){var a=Nb(this);return Mb?Mb.get.call(this)+"|"+a:a},configurable:!0,enumerable:!1}});
+function Nb(a){function b(f,g){f&c&&d.push(g)}var c=Ma(a,"state is only maintained on arrays.")[Lb]|0,d=[];b(1,"IS_REPEATED_FIELD");b(2,"IS_IMMUTABLE_ARRAY");b(4,"IS_API_FORMATTED");b(512,"STRING_FORMATTED");b(1024,"GBIGINT_FORMATTED");b(1024,"BINARY");b(8,"ONLY_MUTABLE_VALUES");b(16,"UNFROZEN_SHARED");b(32,"MUTABLE_REFERENCES_ARE_OWNED");b(64,"CONSTRUCTED");b(128,"HAS_MESSAGE_ID");b(256,"FROZEN_ARRAY");b(2048,"HAS_WRAPPER");b(4096,"MUTABLE_SUBSTRUCTURES");b(8192,"KNOWN_MAP_ARRAY");c&64&&(B(c&64),
+a=c>>14&1023||536870912,a!==536870912&&d.push("pivot: "+a));return d.join(",")};var Ob=typeof Symbol!="undefined"&&typeof Symbol.hasInstance!="undefined";Object.freeze({});var Pb=function(){throw Error("please construct maps as mutable then call toImmutable");};if(Ob){var Qb=function(){throw Error("Cannot perform instanceof checks on ImmutableMap: please use isImmutableMap or isMutableMap to assert on the mutability of a map. See go/jspb-api-gotchas#immutable-classes for more information");},Rb={};Object.defineProperties(Pb,(Rb[Symbol.hasInstance]={value:Qb,configurable:!1,writable:!1,enumerable:!1},Rb));B(Pb[Symbol.hasInstance]===Qb,"defineProperties did not work: was it monkey-patched?")};if(typeof Proxy!=="undefined"){var Q=Sb;new Proxy({},{getPrototypeOf:Q,setPrototypeOf:Q,isExtensible:Q,preventExtensions:Q,getOwnPropertyDescriptor:Q,defineProperty:Q,has:Q,get:Q,set:Q,deleteProperty:Q,apply:Q,construct:Q})}function Sb(a,b){if(b===Kb)return!0;throw Error("this array or object is owned by JSPB and should not be reused, did you mean to copy it with copyJspbArray? See go/jspb-api-gotchas#construct_from_array");};B(!0);N("wiz.inject.debug_injection_timeout_scheduler");var Tb=new Set;function Ub(){return["No root trace was ever created in this execution context; There are ",Tb.size," other active traces."]}var Vb=globalThis;Object.hasOwn(Vb,"traceContext")||Object.defineProperty(Vb,"traceContext",{get:Ub});function Wb(){};(function(){var a=v.jspbGetTypeName;v.jspbGetTypeName=a?function(b){return a(b)||void 0}:Wb})();var Xb=[].concat(r("click dblclick focus focusin blur error focusout keydown keyup keypress load mouseover mouseout mouseenter mouseleave mousemove submit toggle touchstart touchend touchmove touchcancel auxclick change compositionstart compositionupdate compositionend beforeinput input select selectstart textinput copy cut paste mousedown mouseup wheel contextmenu dragover dragenter dragleave drop dragstart dragend pointerdown pointermove pointerup pointercancel pointerenter pointerleave pointerover pointerout gotpointercapture lostpointercapture ended loadedmetadata pagehide pageshow visibilitychange beforematch".split(" ")),
+["transitionend","animationend","animationstart"]);Object.freeze(Xb);function Yb(a){return Eb(zb,a.toString(),function(){return new Set})};Yb("GmEyCb").add("qTnoBf");function Zb(a,b,c,d){d=d===void 0?!1:d;b=new C(a,b||void 0,c,d===void 0?!1:d);return Db(a,b)};function $b(a){return Zb(a,a,[])};var ac=new Set;function bc(a){if(ac.has(a.toString()))throw Error("ID "+a.toString()+" is already registered as a synchronous Wiz object.");ac.add(a.toString())};var R=$b("qTnoBf");bc(R);Yb("GmEyCb").add("yGfSdd");var cc=$b("yGfSdd");bc(cc);var dc=RegExp("^(?:([^:/?#.]+):)?(?://(?:([^\\\\/?#]*)@)?([^\\\\/?#]*?)(?::([0-9]+))?(?=[\\\\/?#]|$))?([^?#]+)?(?:\\?([^#]*))?(?:#([\\s\\S]*))?$");function ec(a,b){if(a){a=a.split("&");for(var c=0;c<a.length;c++){var d=a[c].indexOf("="),f=null;if(d>=0){var g=a[c].substring(0,d);f=a[c].substring(d+1)}else g=a[c];b(g,f?decodeURIComponent(f.replace(/\+/g," ")):"")}}}
+function fc(a,b,c){La(a);if(Array.isArray(b)){Ma(b);for(var d=0;d<b.length;d++)fc(a,String(b[d]),c)}else b!=null&&c.push(a+(b===""?"":"="+encodeURIComponent(String(b))))};var S=function(){this.g={};this.G="";this.v={}};S.prototype.toString=function(){var a=this.G+hc(this);var b=this.v;var c=[],d;for(d in b)fc(d,b[d],c);b=c.join("&");c="";b!=""&&(c="?"+b);return a+c};
+var ic=function(a){a=T(a,"md");return!!a&&a!=="0"},hc=function(a){var b=[];B(a.g.k!==void 0,"An SCS JS URL must have a row key.");var c=function(d){a.g[d]!==void 0&&b.push(d+"="+a.g[d])};ic(a)?(c("md"),c("k"),c("ck"),c("am"),c("rs"),c("gssmodulesetproto"),c("slk"),c("dti")):(c("sdch"),c("k"),c("ck"),c("am"),c("amc"),c("rt"),"d"in a.g||(a.g.d="0"),c("d"),c("exm"),c("excm"),(a.g.excm||a.g.exm)&&b.push("ed=1"),c("im"),c("dg"),c("sm"),T(a,"br")!="1"&&T(a,"br")!="0"||c("br"),c("br-d"),T(a,"rb")=="1"&&
+c("rb"),T(a,"zs")!=="0"&&c("zs"),jc(a)!==""&&c("wt"),c("gssmodulesetproto"),c("ujg"),c("sp"),c("rs"),c("cb"),c("ccb"),c("ee"),c("slk"),c("dti"),c("ic"),c("m"));return b.join("/")},T=function(a,b){return a.g[b]?a.g[b]:null};S.prototype.getQueryParameter=function(a){return this.v[a]};
+var jc=function(a){switch(T(a,"wt")){case "0":return"0";case "1":return"1";case "2":return"2";default:return""}},kc=function(a){var b=T(a,"ee");if(!b)return{};a={};b=q(b.split(";"));for(var c=b.next();!c.done;c=b.next()){var d=q(c.value.split(":"));c=d.next().value;d=d.next().value;a[c]={};d=q(d.split(","));for(var f=d.next();!f.done;f=d.next())a[c][f.value]=!0}return a};S.prototype.clone=function(){var a=new S;a.g=Object.assign({},this.g);a.G=this.G;a.v=Object.assign({},this.v);return a};
+var nc=function(a){var b=b===void 0?!0:b;var c=lc(a);B(mc(c),"URL is not a valid SCS JS URL.");var d=new S,f=c.match(dc)[5];Wa(function(n){var e=f.match("/"+n+"=([^/]+)");e&&((e=e[1])?d.g[n]=e:delete d.g[n])});var g="";g=a.indexOf("_/ss/")!=-1?"_/ss/":"_/js/";d.G=a.substr(0,a.indexOf(g)+g.length);if(!b)return d;(a=c.match(dc)[6]||null)&&ec(a,function(n,e){d.v[n]=e});return d},mc=function(a){a=(a=lc(a).match(dc)[5]||null)?decodeURI(a):a;return a===null?!1:RegExp("(/_/js/)|(/_/ss/)","g").test(a)?/\/k=/.test(a):
+!1},lc=function(a){return a.startsWith("https://uberproxy-pen-redirect.corp.google.com/uberproxy/pen?url=")?a.substr(65):a},Xa={Na:"k",ja:"ck",Ia:"m",sa:"exm",qa:"excm",da:"am",ea:"amc",Ga:"mm",Ma:"rt",za:"d",ra:"ed",Sa:"sv",ka:"deob",fa:"cb",ha:"ccb",ga:"cbi",Qa:"rs",Oa:"sdch",Aa:"im",la:"dg",oa:"br",na:"br-d",pa:"rb",Ya:"zs",Xa:"wt",ta:"ee",Ra:"sm",Ha:"md",wa:"gssmodulesetproto",Wa:"ujg",Va:"sp",Pa:"slk",ma:"dti",Ba:"ic"};function oc(){var a=v._F_jsUrl?"":"base-js";a=a===void 0?"":a;var b="";var c=v._F_jsUrl;a:{if(typeof document!=="undefined"&&document&&document.getElementById&&(a=document.getElementById(a))){var d=a.tagName.toUpperCase();if(d=="SCRIPT"||d=="LINK")break a}a=null}a&&(b=a.src?a.src:a.getAttribute("href"));if(c&&b){if(c!=b)throw Error("Ambiguous base-js URL: found both _F_jsUrl "+c+" and base-js tag "+b);b=c}else b=c||b;if(!mc(b))throw Error("Unable to determine JS module path parameters.");return b}
+;var pc=!1,qc=!1;var Qa=!function(){if(pc)return qc;pc=!0;try{var a=oc()}catch(d){return!1}var b=kc(nc(a)),c=Object.keys(b);if(c.length===0)return!1;Oa(function(d){for(var f=q(c),g=f.next();!g.done;g=f.next()){g=g.value;for(var n=q(Object.keys(b[g])),e=n.next();!e.done;e=n.next())d.R(g,e.value)}});return qc=!0}();var rc=[],sc=function(a,b){if((new Set([].concat(r(a.S),r(a.T)))).has(b.toString()))return!0;a=new Set([].concat(r(a.U),r(a.V)));a=q(a);for(var c=a.next();!c.done;c=a.next())if(sc(yb(c.value),b))return!0;return!1};var U=Zb("GmEyCb","NJ1rfe",cc?[cc]:void 0,Qa);xb().register(U,new function(a,b,c,d,f,g){var n=this;this.m=a;this.S=b;this.T=c;this.U=d;this.V=f;this.B=g===void 0?null:g;this.u=null;this.ca=!1;this.J=N("wiz.interface.Interface");rc.push(this);this.toString=function(){var e,h,k=(h=(e=n.u)!=null?e:n.B)!=null?h:"no default implementation";return n.m+" <"+k+">"}}(U,Yb(U),new Set,Eb(Ab,U.toString(),function(){return new Set}),new Set,cc));bc(U);var D=yb(U);
+if(D.u!==R){I(!D.u,"Failed to set the default implementation to <"+R+">: The default implementation of a wiz.atInterface may only be overridden once, and it was already overridden by <"+(D.u+">"));I(!D.ca,"The defaultImplementationId for <"+D.m+"> was already read. Make sure to only set it from your base module. It is currently set to <"+(D.B+">"));I(R instanceof C,"serviceId <"+R+"> should be a fava.services.ServiceId");if(ac.has(D.m.toString())){var tc=ac.has(R.toString());I(tc,"The default implementation ("+R+
+") passed to setDefaultImplementationId is not a synchronous Wiz object and cannot be used with a synchronously instantiable interface ("+(D.m+")."))}if(!sc(D,R)){var V=D.J,uc="serviceId <"+R+"> doesn't implement <"+D.m+">";if(V){var vc=uc,W=fb,wc;if(wc=V){var xc;if(xc=V&&W){var yc=W.value,zc;zc=V?ob(M(tb(),V.getName())):K;xc=yc>=zc.value}wc=xc}if(wc){W=W||K;var pb=M(tb(),V.getName());typeof vc==="function"&&(vc=vc());var X;ib||(ib=new hb);X=ib;var L;var jb=W,kb=vc,lb=V.getName();if(X.A>0){var Ac=
+(X.M+1)%X.A;X.M=Ac;if(X.O){var Bc=X.L[Ac];Bc.reset(jb,kb,lb);L=Bc}else X.O=Ac==X.A-1,L=X.L[Ac]=new mb}else L=new mb;qb()}}}D.B&&Ra();Pa(D.m,[R],Qa);D.u=R};var Y=function(){E.call(this)};Y.prototype=aa(E.prototype);Y.prototype.constructor=Y;if(ia)ia(Y,E);else for(var Z in E)if(Z!="prototype")if(Object.defineProperties){var Cc=Object.getOwnPropertyDescriptor(E,Z);Cc&&Object.defineProperty(Y,Z,Cc)}else Y[Z]=E[Z];Y.ba=E.prototype;Y.prototype.init=function(){};N("fava.debug.ErrorReporter");new Y;N("goog.net.XhrIo");N("goog.debug.ErrorReporter");N("fava.debug.DebugService");Object.assign({},{attributes:{},handleError:function(a){throw a;}},{bb:!0,eb:!1,fb:Sa,gb:Sa,hb:!1,Za:!1,cb:!0,ib:!1,kb:!1});new C("a");}).call(this);
+</script><script nonce="HDOKn2eyy6fLTs66nTfu4w">const imageUrl =  null ;
+      function bgImgLoaded() {
+        if (!globals.headerBgImgLoaded) {
+          globals.headerBgImgLoaded = new Date().getTime();
+        } else {
+          globals.headerBgImgLoaded();
+        }
+      }
+      if (imageUrl) {
+        const img = new Image();
+        img.src = imageUrl;
+        img.onload = bgImgLoaded;
+        globals.headerBgImgExists = true;
+      } else {
+        globals.headerBgImgExists = false;
+      }
+      </script></head><body dir="ltr" class="" itemscope itemtype="http://schema.org/WebPage" id="yDmH0d" css="yDmH0d"><div jscontroller="pc62j" jsmodel="iTeaXe" jsaction="rcuQ6b:WYd;GvneHb:og1FDd;vbaUQc:uAM5ec;"><div jscontroller="X4BaPc" jsaction="rcuQ6b:WYd;o6xM5b:Pg9eo;HuL2Hd:mHeCvf;VMhF5:FFYy5e;sk3Qmb:HI1Mdd;JIbuQc:rSzFEd(z2EeY),aSaF6e(ilzYPe);"><div jscontroller="o1L5Wb" data-sitename="ysjhart" data-search-scope="1" data-domain="ysjh.ntpc.edu.tw" data-universe="1" jsmodel="fNFZH" jsaction="Pe9H6d:cZFEp;O0t7nc:cC5KLb;WyADff:AQk9Jb;WMZaJ:VsGN3;hJluRd:UADL7b;zuqEgd:HI9w0;tr6QDd:Y8aXB;MxH79b:xDkBfb;JIbuQc:SPXMTb(uxAMZ),LjG1Ed(a6mxbb);BNPLhd:TbIyBd;fGqJod:Tb1xee;" jsname="G0jgYd"><div jsname="gYwusb" class="p9b27"></div><div jscontroller="RrXLpc" jsname="XeeWQc" role="banner" jsaction="keydown:uiKYid(OH0EC);rcuQ6b:WYd;zuqEgd:ufqpf;JIbuQc:XfTnxb(lfEfFf),AlTiYc(GeGHKb),AlTiYc(m1xNUe),zZlNMe(pZn8Oc);YqO5N:ELcyfe;"><div jsname="bF1uUb" class="BuY5Fd" jsaction="click:xVuwSc;"></div><div jsname="MVsrn" class="TbNlJb "><div role="button" class="U26fgb mUbCce fKz7Od h3nfre M9Bg4d" jscontroller="VXdfxd" jsaction="click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc(preventDefault=true); touchcancel:JMtRjd;" jsshadow jsname="GeGHKb" aria-label="Back to site" aria-disabled="false" tabindex="0" data-tooltip="Back to site" data-tooltip-vertical-offset="-12" data-tooltip-horizontal-offset="0"><div class="VTBa7b MbhUzd" jsname="ksKsZd"></div><span jsslot class="xjKiLb"><span class="Ce1Y1c" style="top: -12px"><svg class="V4YR2c" viewBox="0 0 24 24" focusable="false"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></span></span></div><div class="E2UJ5" jsname="M6JdT"><div class="rFrNMe b7AJhc zKHdkd" jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV" jsshadow jsname="OH0EC" aria-expanded="true"><div class="aCsJod oJeWuf"><div class="aXBtI I0VJ4d Wic03c"><span jsslot class="A37UZe qgcB3c iHd5yb"><div role="button" class="U26fgb mUbCce fKz7Od i3PoXe M9Bg4d" jscontroller="VXdfxd" jsaction="click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc(preventDefault=true); touchcancel:JMtRjd;" jsshadow jsname="lfEfFf" aria-label="Search" aria-disabled="false" tabindex="0" data-tooltip="Search" data-tooltip-vertical-offset="-12" data-tooltip-horizontal-offset="0"><div class="VTBa7b MbhUzd" jsname="ksKsZd"></div><span jsslot class="xjKiLb"><span class="Ce1Y1c" style="top: -12px"><svg class="vu8Pwe" viewBox="0 0 24 24" focusable="false"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></span></div><div class="EmVfjc SKShhf" data-loadingmessage="Loading…" jscontroller="qAKInc" jsaction="animationend:kWijWc;dyRcpb:dyRcpb" jsname="aZ2wEe"><div class="Cg7hO" aria-live="assertive" jsname="vyyg5"></div><div jsname="Hxlbvc" class="xu46lf"><div class="ir3uv uWlRce co39ub"><div class="xq3j6 ERcjC"><div class="X6jHbb GOJTSe"></div></div><div class="HBnAAc"><div class="X6jHbb GOJTSe"></div></div><div class="xq3j6 dj3yTd"><div class="X6jHbb GOJTSe"></div></div></div><div class="ir3uv GFoASc Cn087"><div class="xq3j6 ERcjC"><div class="X6jHbb GOJTSe"></div></div><div class="HBnAAc"><div class="X6jHbb GOJTSe"></div></div><div class="xq3j6 dj3yTd"><div class="X6jHbb GOJTSe"></div></div></div><div class="ir3uv WpeOqd hfsr6b"><div class="xq3j6 ERcjC"><div class="X6jHbb GOJTSe"></div></div><div class="HBnAAc"><div class="X6jHbb GOJTSe"></div></div><div class="xq3j6 dj3yTd"><div class="X6jHbb GOJTSe"></div></div></div><div class="ir3uv rHV3jf EjXFBf"><div class="xq3j6 ERcjC"><div class="X6jHbb GOJTSe"></div></div><div class="HBnAAc"><div class="X6jHbb GOJTSe"></div></div><div class="xq3j6 dj3yTd"><div class="X6jHbb GOJTSe"></div></div></div></div></div><div role="button" class="U26fgb mUbCce fKz7Od JyJRXe M9Bg4d" jscontroller="VXdfxd" jsaction="click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc(preventDefault=true); touchcancel:JMtRjd;" jsshadow jsname="m1xNUe" aria-label="Back to site" aria-disabled="false" tabindex="0" data-tooltip="Back to site" data-tooltip-vertical-offset="-12" data-tooltip-horizontal-offset="0"><div class="VTBa7b MbhUzd" jsname="ksKsZd"></div><span jsslot class="xjKiLb"><span class="Ce1Y1c" style="top: -12px"><svg class="V4YR2c" viewBox="0 0 24 24" focusable="false"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></span></span></div></span><div class="Xb9hP"><input type="search" class="whsOnd zHQkBf" jsname="YPqjbf" autocomplete="off" tabindex="0" aria-label="Search this site" value="" aria-disabled="false" autofocus role="combobox" data-initial-value=""/><div jsname="LwH6nd" class="ndJi5d snByac" aria-hidden="true">Search this site</div></div><span jsslot class="A37UZe sxyYjd MQL3Ob"><div role="button" class="U26fgb mUbCce fKz7Od Kk06A M9Bg4d" jscontroller="VXdfxd" jsaction="click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc(preventDefault=true); touchcancel:JMtRjd;" jsshadow jsname="pZn8Oc" aria-label="Clear search" aria-disabled="false" tabindex="0" data-tooltip="Clear search" data-tooltip-vertical-offset="-12" data-tooltip-horizontal-offset="0"><div class="VTBa7b MbhUzd" jsname="ksKsZd"></div><span jsslot class="xjKiLb"><span class="Ce1Y1c" style="top: -12px"><svg class="fAUEUd" viewBox="0 0 24 24" focusable="false"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></span></div></span><div class="i9lrp mIZh1c"></div><div jsname="XmnwAc" class="OabDMe cXrdqd"></div></div></div><div class="LXRPh"><div jsname="ty6ygf" class="ovnfwe Is7Fhb"></div></div></div><div class="InHK7" jsname="aN0umc"><div class="GG9xTc" jsaction="click:wTqBkf;" jsname="e7EaC" tabindex="0" aria-label="Embedded Files"><svg class="vu8Pwe KYLCw" viewBox="0 0 24 24" focusable="false"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg><span class="HCIIgf">Embedded Files</span></div></div></div></div></div></div><div jsname="tiN4bf"><style nonce="Vic3QyqzkyPKDULp9PJmUQ">.rrJNTc{opacity: 0;}.bKy5e{pointer-events: none; position: absolute; top: 0;}</style><div class="bKy5e"><div class="rrJNTc" tabindex="-1"><div class="VfPpkd-dgl2Hf-ppHlrf-sM5MNb" data-is-touch-wrapper='true'><button class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-dgl2Hf LjDxcd XhPA0b LQeN7 WsSUlf jz7fPb" jscontroller="soHxf" jsaction="click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc; touchcancel:JMtRjd; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;mlnRJb:fLiPzd;" data-idom-class="LjDxcd XhPA0b LQeN7 WsSUlf jz7fPb" jsname="z2EeY" tabindex="0"><div class="VfPpkd-Jh9lGc"></div><div class="VfPpkd-J1Ukfc-LhBDec"></div><div class="VfPpkd-RLmnJb"></div><span jsname="V67aGc" class="VfPpkd-vQzf8d">Skip to main content</span></button></div><div class="VfPpkd-dgl2Hf-ppHlrf-sM5MNb" data-is-touch-wrapper='true'><button class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-dgl2Hf LjDxcd XhPA0b LQeN7 WsSUlf br90J" jscontroller="soHxf" jsaction="click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc; touchcancel:JMtRjd; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;mlnRJb:fLiPzd;" data-idom-class="LjDxcd XhPA0b LQeN7 WsSUlf br90J" jsname="ilzYPe" tabindex="0"><div class="VfPpkd-Jh9lGc"></div><div class="VfPpkd-J1Ukfc-LhBDec"></div><div class="VfPpkd-RLmnJb"></div><span jsname="V67aGc" class="VfPpkd-vQzf8d">Skip to navigation</span></button></div></div></div><div class="M63kCb N63NQ"></div><div class="QZ3zWd"><div class="fktJzd AKpWA fOU46b yMcSQd Ly6Unf G9Qloe XeSM4 XxIgdb" jsname="UzWXSb" data-uses-custom-theme="false" data-legacy-theme-name="QualityBasics" data-legacy-theme-font-kit="Light" data-legacy-theme-color-kit="Blue" jscontroller="Md9ENb" jsaction="gsiSmd:Ffcznf;yj5fUd:cpPetb;HNXL3:q0Vyke;e2SXKd:IPDu5e;BdXpgd:nhk7K;rcuQ6b:WYd;"><header id="atIdViewHeader"><div style="position:fixed; width: 100%; z-index: 100;"><div id="docs-banner-container"><div id="docs-banners"><div id="HB1eCd-mzNpsf-r8s4j-ORHb"></div><div id="HB1eCd-TZk80d-r8s4j-ORHb" aria-live="assertive" aria-atomic="true"></div><div id="HB1eCd-Vkfede-rJCtOc-b3rLgd-ORHb" aria-live="assertive" aria-atomic="true"></div></div><div class="HB1eCd-Vkfede-NBtyUd-PvRhvb-LwH6nd"></div></div></div><div class="BbxBP G8QRnc K5Zlne" jsname="WA9qLc" jscontroller="RQOkef" jsaction="rcuQ6b:JdcaS;MxH79b:JdcaS;VbOlFf:ywL4Jf;FaOgy:ywL4Jf; keydown:Hq2uPe; wheel:Ut4Ahc;" data-top-navigation="true" data-is-preview="false"><div class="DXsoRd YTv4We oNsfjf" role="button" tabindex="0" jsaction="click:LUvzV" jsname="z4Tpl" id="s9iPrd" aria-haspopup="true" aria-controls="yuynLe" aria-expanded="false"><svg class="wFCWne" viewBox="0 0 24 24" stroke="currentColor" jsname="B1n9ub" focusable="false"><g transform="translate(12,12)"><path class="hlJH0" d="M-9 -5 L9 -5" fill="none" stroke-width="2"/><path class="HBu6N" d="M-9 0 L9 0" fill="none" stroke-width="2"/><path class="cLAGQe" d="M-9 5 L9 5" fill="none" stroke-width="2"/></g></svg></div><nav class="JzO0Vc" jsname="ihoMLd" role="navigation" tabindex="-1" id="yuynLe" jsaction="transitionend:UD2r5"><a class="Zjiec oNsfjf" href="/ysjh.ntpc.edu.tw/ysjhart/首頁"><span>色彩學</span></a><ul class="jYxBte Fpy8Db" tabindex="-1"><li jsname="ibnC6b" data-nav-level="1"><div class="PsKE7e r8s4j-R6PoUb IKA38e baH5ib oNsfjf"><div class="I35ICb" jsaction="keydown:mPuKz(QwLHlb); click:vHQTA(QwLHlb);"><a class="aJHbb dk90Ob hDrhEe HlqNPb" jsname="QwLHlb" role="link" tabindex="0" data-navtype="1" href="/ysjh.ntpc.edu.tw/ysjhart/首頁" data-url="/ysjh.ntpc.edu.tw/ysjhart/首頁" data-type="1" data-level="1">首頁</a></div></div></li><li jsname="ibnC6b" data-nav-level="1"><div class="PsKE7e r8s4j-R6PoUb IKA38e baH5ib oNsfjf lhZOrc" aria-current="true"><div class="I35ICb" jsaction="keydown:mPuKz(QwLHlb); click:vHQTA(QwLHlb);"><a class="aJHbb dk90Ob hDrhEe HlqNPb" jsname="QwLHlb" role="link" tabindex="0" data-navtype="3" aria-selected="true" href="/ysjh.ntpc.edu.tw/ysjhart/色相" data-url="/ysjh.ntpc.edu.tw/ysjhart/色相" data-type="1" data-level="1">色相</a></div></div></li></ul></nav><div class="VLoccc K5Zlne QDWEj U8eYrb" jsname="rtFGi"><div class="Pvc6xe"><div jsname="I8J07e" class="TlfmSc YSH9J"><a class="GAuSPc" jsname="jIujaf" href="/ysjh.ntpc.edu.tw/ysjhart/首頁"><span class="QTKDff">色彩學</span></a></div><nav class="plFg0c" jscontroller="HXO1uc" jsaction="rcuQ6b:rcuQ6b;MxH79b:CfS0pe;" id="WDxLfe" data-is-preview="false" style="visibility: hidden;" role="navigation" tabindex="-1"><ul jsname="waIgnc" class="K1Ci7d oXBWEc jYxBte"><li jsname="ibnC6b" data-nav-level="1" class="VsJjtf"><div class="PsKE7e qV4dIc Qrrb5 YSH9J"><div class="I35ICb" jsaction="click:vHQTA(QwLHlb); keydown:mPuKz(QwLHlb);"><a class="aJHbb dk90Ob jgXgSe HlqNPb" jscontroller="yUHiM" jsaction="rcuQ6b:WYd;" jsname="QwLHlb" role="link" tabindex="0" data-navtype="1" href="/ysjh.ntpc.edu.tw/ysjhart/首頁" data-url="/ysjh.ntpc.edu.tw/ysjhart/首頁" data-type="1" data-level="1">首頁</a></div></div><div class="rgLkl"></div></li><li jsname="ibnC6b" data-nav-level="1" class="VsJjtf"><div class="PsKE7e qV4dIc Qrrb5 YSH9J M9vuGd" aria-current="true"><div class="I35ICb" jsaction="click:vHQTA(QwLHlb); keydown:mPuKz(QwLHlb);"><a class="aJHbb dk90Ob jgXgSe HlqNPb" jscontroller="yUHiM" jsaction="rcuQ6b:WYd;" jsname="QwLHlb" role="link" tabindex="0" data-navtype="3" aria-selected="true" href="/ysjh.ntpc.edu.tw/ysjhart/色相" data-url="/ysjh.ntpc.edu.tw/ysjhart/色相" data-type="1" data-level="1">色相</a></div></div><div class="rgLkl"></div></li><li jsname="ibnC6b" data-nav-level="1" class="VsJjtf ZmrVpf oXBWEc" more-menu-item jsaction="mouseenter:Vx8Jlb; mouseleave:ysDRUd"><div class="PsKE7e qV4dIc Qrrb5 YSH9J"><div class="I35ICb" jsaction="click:vHQTA(QwLHlb); keydown:mPuKz(QwLHlb);"><a class="aJHbb dk90Ob jgXgSe HlqNPb" jscontroller="yUHiM" jsaction="rcuQ6b:WYd;" jsname="QwLHlb" role="link" tabindex="0" data-navtype="1" aria-expanded="false" aria-haspopup="true" data-level="1">More</a><div class="mBHtvb u5fiyc" role="presentation" title="Expand/Collapse" jsaction="click:oESVTe" jsname="ix0Hvc"><svg class="dvmRw" viewBox="0 0 24 24" stroke="currentColor" jsname="HIH2V" focusable="false"><g transform="translate(9.7,12) rotate(45)"><path class="K4B8Y" d="M-4.2 0 L4.2 0" stroke-width="2"/></g><g transform="translate(14.3,12) rotate(-45)"><path class="MrYMx" d="M-4.2 0 L4.2 0" stroke-width="2"/></g></svg></div></div></div><div class="oGuwee eWDljc RPRy1e Mkt3Tc" style="display:none;" jsname="QXE97" jsaction="transitionend:SJBdh" role="group"><ul class="VcS63b"><li jsname="ibnC6b" data-nav-level="2" class="ijMPi ZmrVpf" in-more-item><div class="PsKE7e IKA38e oNsfjf"><div class="I35ICb" jsaction="click:vHQTA(QwLHlb); keydown:mPuKz(QwLHlb);"><a class="aJHbb hDrhEe HlqNPb" jscontroller="yUHiM" jsaction="rcuQ6b:WYd;" jsname="QwLHlb" role="link" tabindex="0" data-navtype="1" href="/ysjh.ntpc.edu.tw/ysjhart/首頁" data-url="/ysjh.ntpc.edu.tw/ysjhart/首頁" data-type="1" data-in-more-submenu="true" data-level="2">首頁</a></div></div></li><li jsname="ibnC6b" data-nav-level="2" class="ijMPi ZmrVpf" in-more-item><div class="PsKE7e IKA38e oNsfjf lhZOrc" aria-current="true"><div class="I35ICb" jsaction="click:vHQTA(QwLHlb); keydown:mPuKz(QwLHlb);"><a class="aJHbb hDrhEe HlqNPb" jscontroller="yUHiM" jsaction="rcuQ6b:WYd;" jsname="QwLHlb" role="link" tabindex="0" data-navtype="3" aria-selected="true" href="/ysjh.ntpc.edu.tw/ysjhart/色相" data-url="/ysjh.ntpc.edu.tw/ysjhart/色相" data-type="1" data-in-more-submenu="true" data-level="2">色相</a></div></div></li></ul></div></li></ul></nav><div jscontroller="gK4msf" class="RBEWZc" jsname="h04Zod" jsaction="rcuQ6b:WYd;JIbuQc:AT95Ub;VbOlFf:HgE5D;FaOgy:HgE5D;MxH79b:JdcaS;" data-side-navigation="false"><div role="button" class="U26fgb mUbCce fKz7Od iWs3gf Wdnjke M9Bg4d" jscontroller="VXdfxd" jsaction="click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc(preventDefault=true); touchcancel:JMtRjd;" jsshadow jsname="R9oOZd" aria-label="Open search bar" aria-disabled="false" tabindex="0" data-tooltip="Open search bar" aria-expanded="false" data-tooltip-vertical-offset="-12" data-tooltip-horizontal-offset="0"><div class="VTBa7b MbhUzd" jsname="ksKsZd"></div><span jsslot class="xjKiLb"><span class="Ce1Y1c" style="top: -12px"><svg class="vu8Pwe tCHXDc YSH9J" viewBox="0 0 24 24" focusable="false"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></span></div></div></div><div jsname="mADGA" class="zDUgLc"></div></div><div class="TxnWlb" jsname="BDdyze" jsaction="click:LUvzV"></div></div></header><div jsname="ZBtY8b" tabindex="-1" class="UtePc RCETm kz4BIe Tw5Lhf" dir="ltr"><div class="DUndBc "><div jscontroller="VYKRW" jsaction="rcuQ6b:rcuQ6b;" class="Pe0Cwb GMX0Ib"><div class="WIdY2d M1aSXe"><div jsname="WXxXjd" style="padding-top: 88.8888888889%"></div><div class="YMEQtf"><div jsname="jkaScf" jscontroller="szRU7e" class="w536ob" data-enable-interaction="true" data-url="https://608287648-atari-embeds.googleusercontent.com/embeds/1eea06de280c5ab9b261c0869a310ca0/inner-frame-minified.html" data-code="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-Hant&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+  &lt;title&gt;色相環研究所：CMY 12色解鎖挑戰&lt;/title&gt;
+  &lt;style&gt;
+    :root {
+      --bg: #fff7e8;
+      --card: #ffffff;
+      --ink: #263238;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #ff9f1c;
+      --accent-dark: #d97706;
+      --good: #16a34a;
+      --bad: #dc2626;
+      --lock: #9ca3af;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: &quot;Noto Sans TC&quot;, &quot;Microsoft JhengHei&quot;, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 214, 0, 0.25), transparent 28%),
+        radial-gradient(circle at top right, rgba(0, 191, 239, 0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255, 0, 168, 0.13), transparent 25%),
+        var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 30px 18px 18px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto 48px;
+    }
+
+    .progress-card {
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: 0 16px 40px rgba(31, 41, 55, 0.08);
+      position: sticky;
+      top: 8px;
+      z-index: 5;
+      backdrop-filter: blur(10px);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .step-tab {
+      border: 2px solid var(--line);
+      background: #fff;
+      border-radius: 18px;
+      padding: 12px 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      text-align: center;
+      font-weight: 900;
+      color: var(--muted);
+      min-height: 66px;
+      font-family: inherit;
+    }
+
+    .step-tab small {
+      display: block;
+      font-weight: 700;
+      margin-top: 4px;
+      color: inherit;
+      line-height: 1.25;
+    }
+
+    .step-tab.active {
+      border-color: var(--accent);
+      color: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(217, 119, 6, 0.14);
+    }
+
+    .step-tab.done {
+      border-color: rgba(22, 163, 74, 0.4);
+      color: var(--good);
+      background: #f0fdf4;
+    }
+
+    .step-tab.locked {
+      cursor: not-allowed;
+      color: var(--lock);
+      background: #f3f4f6;
+      opacity: 0.78;
+    }
+
+    .panel {
+      margin-top: 20px;
+      background: var(--card);
+      border-radius: 28px;
+      box-shadow: 0 18px 55px rgba(31, 41, 55, 0.11);
+      padding: clamp(20px, 3vw, 34px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .section-title {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-weight: 1000;
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(255, 159, 28, 0.25);
+      flex-shrink: 0;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 34px);
+    }
+
+    .hint {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #9a3412;
+      border-radius: 18px;
+      padding: 14px 16px;
+      line-height: 1.75;
+      margin: 14px 0 22px;
+    }
+
+    .question-card,
+    .mini-card {
+      background: #f9fafb;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .question {
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+    }
+
+    label.option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid var(--line);
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: 0.15s;
+    }
+
+    label.option:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    input[type=&quot;radio&quot;] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+      align-items: center;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.15s;
+      font-family: inherit;
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 8px 18px rgba(255, 159, 28, 0.24);
+    }
+
+    button.secondary {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    button.ghost {
+      background: #fff;
+      color: var(--accent-dark);
+      border: 2px solid #fed7aa;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      transform: none;
+      box-shadow: none;
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .feedback {
+      min-height: 26px;
+      font-weight: 900;
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+
+    .feedback.good { color: var(--good); }
+    .feedback.bad { color: var(--bad); }
+
+    .locked-message {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .locked-message .lock-icon {
+      font-size: 52px;
+      margin-bottom: 16px;
+    }
+
+    .wheel-area {
+      display: grid;
+      grid-template-columns: minmax(430px, 1fr) minmax(260px, 330px);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .wheel-bank-side {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      position: sticky;
+      top: 118px;
+    }
+
+    .wheel {
+      position: relative;
+      width: min(650px, 100%);
+      aspect-ratio: 1;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: #fffaf2;
+      border: 2px dashed #fbbf24;
+      box-shadow: inset 0 0 0 18px rgba(255, 247, 237, 0.9);
+    }
+
+    .slot {
+      position: absolute;
+      width: 112px;
+      height: 60px;
+      border-radius: 18px;
+      border: 2px dashed #cbd5e1;
+      background: rgba(255,255,255,0.92);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 900;
+      font-size: 14px;
+      transform: translate(-50%, -50%);
+      transition: 0.15s;
+      padding: 4px;
+    }
+
+    .slot.over {
+      border-color: var(--accent);
+      background: #fffbeb;
+      transform: translate(-50%, -50%) scale(1.04);
+    }
+
+    .slot .slot-label {
+      font-size: 15px;
+      font-weight: 1000;
+      color: #92400e;
+      line-height: 1.15;
+    }
+
+    .slot .slot-hint {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+
+    .slot .color-chip {
+      width: 94px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #111;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.75);
+      border: 1px solid rgba(0,0,0,0.12);
+      font-size: 13px;
+      line-height: 1.2;
+      cursor: pointer;
+    }
+
+    .slot .color-chip:hover {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: #f9fafb;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 14px;
+      min-height: 180px;
+    }
+
+    .palette.grid-bank {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(74px, 1fr));
+      gap: 10px;
+      align-items: start;
+      align-content: start;
+      width: 100%;
+      max-width: 330px;
+      margin: 0;
+    }
+
+    .palette.grid-bank .draggable {
+      width: 100%;
+      min-width: 0;
+      padding: 10px 8px;
+      font-size: 14px;
+    }
+
+    .draggable,
+    .color-choice {
+      border-radius: 999px;
+      padding: 10px 13px;
+      min-width: 86px;
+      text-align: center;
+      font-weight: 900;
+      cursor: grab;
+      border: 1px solid rgba(0,0,0,0.16);
+      user-select: none;
+      box-shadow: 0 6px 14px rgba(31, 41, 55, 0.08);
+      color: #111;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.72);
+    }
+
+    .draggable:active { cursor: grabbing; }
+
+    .drop-zone-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    .drop-zone {
+      min-height: 230px;
+      border: 2px dashed #cbd5e1;
+      border-radius: 22px;
+      background: #fff;
+      padding: 14px;
+      transition: 0.15s;
+    }
+
+    .drop-zone.over {
+      border-color: var(--accent);
+      background: #fffbeb;
+    }
+
+    .drop-zone h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+      text-align: center;
+    }
+
+    .drop-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-content: flex-start;
+    }
+
+    .bank-title {
+      margin: 0 0 10px;
+      font-weight: 1000;
+      color: var(--muted);
+    }
+
+    .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .color-choice {
+      cursor: pointer;
+      position: relative;
+      opacity: 0.95;
+      font-family: inherit;
+    }
+
+    .color-choice.selected {
+      outline: 4px solid var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .quiz-round {
+      border-left: 6px solid var(--accent);
+      background: #f9fafb;
+      border-radius: 20px;
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .score-note {
+      color: var(--muted);
+      font-size: 14px;
+      margin-left: auto;
+    }
+
+    .finish {
+      text-align: center;
+      padding: 28px 10px;
+    }
+
+    .finish-icon { font-size: 72px; }
+
+    .finish h2 {
+      font-size: clamp(30px, 5vw, 52px);
+      margin-top: 10px;
+    }
+
+    .finish p {
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.8;
+    }
+
+    .stamp {
+      display: inline-block;
+      border: 4px solid var(--good);
+      color: var(--good);
+      border-radius: 16px;
+      padding: 10px 18px;
+      font-weight: 1000;
+      font-size: 24px;
+      transform: rotate(-3deg);
+      margin-top: 12px;
+    }
+
+    .tiny {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .wheel-round-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .mini-wheel-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 8px 0 4px;
+    }
+
+    .mini-wheel {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: #fffaf2;
+      border: 2px dashed #fbbf24;
+      box-shadow: inset 0 0 0 16px rgba(255, 247, 237, 0.92);
+      overflow: visible;
+      margin: 18px;
+    }
+
+    .wheel-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid #fde68a;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 6px;
+      font-weight: 1000;
+      color: #92400e;
+      line-height: 1.35;
+      box-shadow: 0 10px 22px rgba(217, 119, 6, 0.12);
+    }
+
+    .wheel-node {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,0,0,0.14);
+      transform: translate(-50%, -50%);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 1000;
+      font-size: 12px;
+      line-height: 1.15;
+      cursor: pointer;
+      color: #111;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.75);
+      box-shadow: 0 6px 14px rgba(31, 41, 55, 0.10);
+      padding: 4px;
+      user-select: none;
+      font-family: inherit;
+    }
+
+    .wheel-node:hover { transform: translate(-50%, -50%) scale(1.04); }
+
+    .wheel-node.main-target {
+      cursor: default;
+      z-index: 3;
+      outline: 3px solid #111827;
+      outline-offset: 4px;
+      box-shadow: 0 0 0 8px rgba(255,255,255,0.96), 0 6px 14px rgba(31, 41, 55, 0.10);
+    }
+
+    .wheel-node.selected {
+      z-index: 1;
+      outline: 5px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .round-tip {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 920px) {
+      .steps { grid-template-columns: 1fr; }
+      .progress-card { position: static; }
+      .wheel-area {
+        grid-template-columns: minmax(360px, 1fr) minmax(230px, 310px);
+      }
+      .slot {
+        width: 92px;
+        height: 54px;
+        font-size: 12px;
+      }
+      .slot .color-chip {
+        width: 76px;
+        height: 38px;
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .wheel-area { grid-template-columns: 1fr; }
+      .wheel-bank-side { position: static; }
+      .palette.grid-bank { max-width: none; }
+      .mini-wheel {
+        width: 252px;
+        height: 252px;
+        margin: 18px;
+        overflow: visible;
+      }
+      .wheel-node {
+        width: 52px;
+        height: 52px;
+        font-size: 11px;
+      }
+      .wheel-center {
+        width: 88px;
+        height: 88px;
+        font-size: 13px;
+      }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;色相環研究所：CMY 12色解鎖挑戰&lt;/h1&gt;
+    &lt;div class=&quot;subtitle&quot;&gt;五個小節都要全對，才能一步一步解鎖下一關！&lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;main class=&quot;container&quot;&gt;
+    &lt;section class=&quot;progress-card&quot;&gt;
+      &lt;div class=&quot;steps&quot; id=&quot;tabs&quot;&gt;&lt;/div&gt;
+    &lt;/section&gt;
+    &lt;section class=&quot;panel&quot; id=&quot;gamePanel&quot;&gt;&lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;script&gt;
+    const colors = [
+      { id: &quot;Y&quot;, name: &quot;黃&quot;, hex: &quot;#FFD600&quot; },
+      { id: &quot;YO&quot;, name: &quot;黃橙&quot;, hex: &quot;#FF9F00&quot; },
+      { id: &quot;R&quot;, name: &quot;紅&quot;, hex: &quot;#FF2A2A&quot; },
+      { id: &quot;RV&quot;, name: &quot;紅紫&quot;, hex: &quot;#E1007A&quot; },
+      { id: &quot;M&quot;, name: &quot;洋紅&quot;, hex: &quot;#FF00A8&quot; },
+      { id: &quot;V&quot;, name: &quot;紫&quot;, hex: &quot;#8A2BE2&quot; },
+      { id: &quot;B&quot;, name: &quot;藍&quot;, hex: &quot;#005BFF&quot; },
+      { id: &quot;BG&quot;, name: &quot;藍綠&quot;, hex: &quot;#00A6A6&quot; },
+      { id: &quot;C&quot;, name: &quot;青&quot;, hex: &quot;#00BFEF&quot; },
+      { id: &quot;CG&quot;, name: &quot;青綠&quot;, hex: &quot;#00C878&quot; },
+      { id: &quot;G&quot;, name: &quot;綠&quot;, hex: &quot;#20C933&quot; },
+      { id: &quot;YG&quot;, name: &quot;黃綠&quot;, hex: &quot;#A8E600&quot; }
+    ];
+
+    const wheelAnswer = colors.map(c =&gt; c.id);
+
+    const contrastMap = {
+      Y: &quot;B&quot;, YO: &quot;BG&quot;, R: &quot;C&quot;, RV: &quot;CG&quot;,
+      M: &quot;G&quot;, V: &quot;YG&quot;, B: &quot;Y&quot;, BG: &quot;YO&quot;,
+      C: &quot;R&quot;, CG: &quot;RV&quot;, G: &quot;M&quot;, YG: &quot;V&quot;
+    };
+
+    const analogousMap = {
+      Y: [&quot;YG&quot;, &quot;YO&quot;],
+      YO: [&quot;Y&quot;, &quot;R&quot;],
+      R: [&quot;YO&quot;, &quot;RV&quot;],
+      RV: [&quot;R&quot;, &quot;M&quot;],
+      M: [&quot;RV&quot;, &quot;V&quot;],
+      V: [&quot;M&quot;, &quot;B&quot;],
+      B: [&quot;V&quot;, &quot;BG&quot;],
+      BG: [&quot;B&quot;, &quot;C&quot;],
+      C: [&quot;BG&quot;, &quot;CG&quot;],
+      CG: [&quot;C&quot;, &quot;G&quot;],
+      G: [&quot;CG&quot;, &quot;YG&quot;],
+      YG: [&quot;G&quot;, &quot;Y&quot;]
+    };
+
+    const wheelSlotTypes = [
+      { label: &quot;三原色&quot;, type: &quot;primary&quot; },
+      { label: &quot;三次色&quot;, type: &quot;tertiary&quot; },
+      { label: &quot;二次色&quot;, type: &quot;secondary&quot; },
+      { label: &quot;三次色&quot;, type: &quot;tertiary&quot; },
+      { label: &quot;三原色&quot;, type: &quot;primary&quot; },
+      { label: &quot;三次色&quot;, type: &quot;tertiary&quot; },
+      { label: &quot;二次色&quot;, type: &quot;secondary&quot; },
+      { label: &quot;三次色&quot;, type: &quot;tertiary&quot; },
+      { label: &quot;三原色&quot;, type: &quot;primary&quot; },
+      { label: &quot;三次色&quot;, type: &quot;tertiary&quot; },
+      { label: &quot;二次色&quot;, type: &quot;secondary&quot; },
+      { label: &quot;三次色&quot;, type: &quot;tertiary&quot; }
+    ];
+
+    const colorTypes = {
+      Y: &quot;primary&quot;, M: &quot;primary&quot;, C: &quot;primary&quot;,
+      R: &quot;secondary&quot;, G: &quot;secondary&quot;, B: &quot;secondary&quot;,
+      YO: &quot;tertiary&quot;, RV: &quot;tertiary&quot;, V: &quot;tertiary&quot;,
+      BG: &quot;tertiary&quot;, CG: &quot;tertiary&quot;, YG: &quot;tertiary&quot;
+    };
+
+    const steps = [&quot;色相定義&quot;, &quot;CMY 12色相環&quot;, &quot;認識色系&quot;, &quot;類似色&quot;, &quot;對比色&quot;];
+
+    let currentStep = 0;
+    let unlockedStep = 0;
+    let completed = [false, false, false, false, false];
+
+    const tabs = document.getElementById(&quot;tabs&quot;);
+    const panel = document.getElementById(&quot;gamePanel&quot;);
+
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i &gt; 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function pickRandomColorIds(count) {
+      return shuffleArray(colors.map(c =&gt; c.id)).slice(0, count);
+    }
+
+    function hexToRgb(hex) {
+      const clean = hex.replace(&quot;#&quot;, &quot;&quot;);
+      return {
+        r: parseInt(clean.substring(0, 2), 16),
+        g: parseInt(clean.substring(2, 4), 16),
+        b: parseInt(clean.substring(4, 6), 16)
+      };
+    }
+
+    function rgbToHex(r, g, b) {
+      const toHex = value =&gt; Math.max(0, Math.min(255, Math.round(value))).toString(16).padStart(2, &quot;0&quot;);
+      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    }
+
+    function mixColor(hex, targetHex, amount) {
+      const base = hexToRgb(hex);
+      const target = hexToRgb(targetHex);
+      return rgbToHex(
+        base.r + (target.r - base.r) * amount,
+        base.g + (target.g - base.g) * amount,
+        base.b + (target.b - base.b) * amount
+      );
+    }
+
+    function sameFamilyVariants(id) {
+      const base = colors.find(c =&gt; c.id === id);
+      return [
+        { id: `${id}_light`, name: `淺${base.name}`, hex: mixColor(base.hex, &quot;#FFFFFF&quot;, 0.48), familyBase: id },
+        { id: `${id}_deep`, name: `深${base.name}`, hex: mixColor(base.hex, &quot;#111111&quot;, 0.35), familyBase: id }
+      ];
+    }
+
+    function getAnalogousShadeOptions(main) {
+      const correct = sameFamilyVariants(main);
+      const distractorPool = [];
+      colors.forEach(c =&gt; {
+        if (c.id !== main) {
+          sameFamilyVariants(c.id).forEach(v =&gt; distractorPool.push(v));
+        }
+      });
+      const distractors = shuffleArray(distractorPool).slice(0, 3);
+      return shuffleArray([...correct, ...distractors]);
+    }
+
+    function getContrastExtraOptions(main) {
+      const opposite = contrastMap[main];
+      const correctIds = analogousMap[opposite];
+      const correct = correctIds.map(id =&gt; {
+        const c = colors.find(x =&gt; x.id === id);
+        return { id: c.id, name: c.name, hex: c.hex };
+      });
+
+      const distractorPool = colors
+        .filter(c =&gt; !correctIds.includes(c.id) &amp;&amp; c.id !== main &amp;&amp; c.id !== opposite)
+        .map(c =&gt; ({ id: c.id, name: c.name, hex: c.hex }));
+
+      const distractors = shuffleArray(distractorPool).slice(0, 3);
+      return shuffleArray([...correct, ...distractors]);
+    }
+
+    function shuffledOptions(options) {
+      return shuffleArray(options)
+        .map(option =&gt; radio(option.name, option.value, option.text))
+        .join(&quot;&quot;);
+    }
+
+    function colorStyle(id) {
+      const c = colors.find(x =&gt; x.id === id);
+      return `background:${c.hex};`;
+    }
+
+    function colorName(id) {
+      return colors.find(x =&gt; x.id === id)?.name || id;
+    }
+
+    function makeColorPill(c, draggable = false) {
+      return `&lt;div class=&quot;draggable&quot; draggable=&quot;${draggable}&quot; data-id=&quot;${c.id}&quot; style=&quot;background:${c.hex};&quot;&gt;${c.name}&lt;/div&gt;`;
+    }
+
+    function renderTabs() {
+      tabs.innerHTML = &quot;&quot;;
+      steps.forEach((label, index) =&gt; {
+        const btn = document.createElement(&quot;button&quot;);
+        btn.className = &quot;step-tab&quot;;
+        if (index === currentStep) btn.classList.add(&quot;active&quot;);
+        if (completed[index]) btn.classList.add(&quot;done&quot;);
+        if (index &gt; unlockedStep) btn.classList.add(&quot;locked&quot;);
+
+        btn.innerHTML = `${completed[index] ? &quot;✓&quot; : index &gt; unlockedStep ? &quot;🔒&quot; : index + 1}&lt;small&gt;${label}&lt;/small&gt;`;
+        btn.addEventListener(&quot;click&quot;, () =&gt; {
+          if (index &gt; unlockedStep) {
+            renderLocked(index);
+            return;
+          }
+          currentStep = index;
+          render();
+        });
+        tabs.appendChild(btn);
+      });
+    }
+
+    function render() {
+      renderTabs();
+      if (currentStep === 0) renderHueDefinition();
+      if (currentStep === 1) renderWheel();
+      if (currentStep === 2) renderColorFamilies();
+      if (currentStep === 3) renderAnalogous();
+      if (currentStep === 4) renderContrast();
+      if (currentStep === 5) renderFinish();
+    }
+
+    function renderLocked(index) {
+      renderTabs();
+      panel.innerHTML = `
+        &lt;div class=&quot;locked-message&quot;&gt;
+          &lt;div class=&quot;lock-icon&quot;&gt;🔒&lt;/div&gt;
+          &lt;h2&gt;這一關還沒有解鎖喔！&lt;/h2&gt;
+          &lt;p class=&quot;subtitle&quot;&gt;請先完成第 ${unlockedStep + 1} 小節，再來挑戰「${steps[index]}」。&lt;/p&gt;
+        &lt;/div&gt;
+      `;
+    }
+
+    function passStep(message) {
+      completed[currentStep] = true;
+      unlockedStep = Math.max(unlockedStep, currentStep + 1);
+      renderTabs();
+
+      const feedback = document.querySelector(&quot;.feedback&quot;);
+      if (feedback) {
+        feedback.className = &quot;feedback good&quot;;
+        feedback.textContent = message;
+      }
+
+      const nextBtn = document.getElementById(&quot;nextBtn&quot;);
+      if (nextBtn) nextBtn.disabled = false;
+    }
+
+    function goNext() {
+      if (currentStep &lt; 4) {
+        currentStep += 1;
+        render();
+      } else {
+        currentStep = 5;
+        renderFinish();
+      }
+    }
+
+    function radio(name, value, text) {
+      return `
+        &lt;label class=&quot;option&quot;&gt;
+          &lt;input type=&quot;radio&quot; name=&quot;${name}&quot; value=&quot;${value}&quot;&gt;
+          &lt;span&gt;${text}&lt;/span&gt;
+        &lt;/label&gt;
+      `;
+    }
+
+    function renderHueDefinition(message = &quot;&quot;, messageType = &quot;&quot;) {
+      panel.innerHTML = `
+        &lt;div class=&quot;section-title&quot;&gt;
+          &lt;div class=&quot;badge&quot;&gt;1&lt;/div&gt;
+          &lt;h2&gt;了解色相的定義&lt;/h2&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;hint&quot;&gt;
+          色相就是色彩的「名字」或「種類」，例如黃、洋紅、青、紅、綠、藍。&lt;br&gt;
+          這一關要全部答對，才能進入 CMY 12 色相環。
+        &lt;/div&gt;
+
+        &lt;div class=&quot;question-card&quot;&gt;
+          &lt;div class=&quot;question&quot;&gt;Q1：下面哪一個是在說「色相」？&lt;/div&gt;
+          &lt;div class=&quot;options&quot;&gt;
+            ${shuffledOptions([
+              { name: &quot;q1&quot;, value: &quot;A&quot;, text: &quot;色彩的明暗程度&quot; },
+              { name: &quot;q1&quot;, value: &quot;B&quot;, text: &quot;色彩的鮮豔程度&quot; },
+              { name: &quot;q1&quot;, value: &quot;C&quot;, text: &quot;色彩的名稱或種類&quot; },
+              { name: &quot;q1&quot;, value: &quot;D&quot;, text: &quot;色彩的大小&quot; }
+            ])}
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;question-card&quot;&gt;
+          &lt;div class=&quot;question&quot;&gt;Q2：下列哪一組都是色相？&lt;/div&gt;
+          &lt;div class=&quot;options&quot;&gt;
+            ${shuffledOptions([
+              { name: &quot;q2&quot;, value: &quot;A&quot;, text: &quot;深、淺、亮、暗&quot; },
+              { name: &quot;q2&quot;, value: &quot;B&quot;, text: &quot;紅、黃、藍、綠&quot; },
+              { name: &quot;q2&quot;, value: &quot;C&quot;, text: &quot;大、小、長、短&quot; },
+              { name: &quot;q2&quot;, value: &quot;D&quot;, text: &quot;厚、薄、遠、近&quot; }
+            ])}
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;question-card&quot;&gt;
+          &lt;div class=&quot;question&quot;&gt;Q3：當我們問「這是什麼顏色？」最接近在問什麼？&lt;/div&gt;
+          &lt;div class=&quot;options&quot;&gt;
+            ${shuffledOptions([
+              { name: &quot;q3&quot;, value: &quot;A&quot;, text: &quot;色相&quot; },
+              { name: &quot;q3&quot;, value: &quot;B&quot;, text: &quot;尺寸&quot; },
+              { name: &quot;q3&quot;, value: &quot;C&quot;, text: &quot;重量&quot; },
+              { name: &quot;q3&quot;, value: &quot;D&quot;, text: &quot;材質&quot; }
+            ])}
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;actions&quot;&gt;
+          &lt;button class=&quot;primary&quot; onclick=&quot;checkHueDefinition()&quot;&gt;檢查答案&lt;/button&gt;
+          &lt;button class=&quot;secondary&quot; onclick=&quot;renderHueDefinition()&quot;&gt;重新挑戰&lt;/button&gt;
+          &lt;button id=&quot;nextBtn&quot; class=&quot;ghost&quot; onclick=&quot;goNext()&quot; ${completed[0] ? &quot;&quot; : &quot;disabled&quot;}&gt;前往下一小節&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;feedback ${messageType}&quot;&gt;${message}&lt;/div&gt;
+      `;
+    }
+
+    window.checkHueDefinition = function() {
+      const answers = { q1: &quot;C&quot;, q2: &quot;B&quot;, q3: &quot;A&quot; };
+      let wrong = 0;
+
+      for (const q in answers) {
+        const picked = document.querySelector(`input[name=&quot;${q}&quot;]:checked`);
+        if (!picked || picked.value !== answers[q]) wrong++;
+      }
+
+      if (wrong === 0) {
+        completed[currentStep] = true;
+        unlockedStep = Math.max(unlockedStep, currentStep + 1);
+        renderTabs();
+        renderHueDefinition(&quot;色相偵探入門成功！選項已重新洗牌，你也可以前往下一小節。&quot;, &quot;good&quot;);
+      } else {
+        renderHueDefinition(`還有 ${wrong} 題需要修正。選項已重新洗牌，請重新觀察：色相是在問「這是什麼顏色？」`, &quot;bad&quot;);
+      }
+    };
+
+    function renderWheel() {
+      const shuffled = shuffleArray(colors);
+      panel.innerHTML = `
+        &lt;div class=&quot;section-title&quot;&gt;
+          &lt;div class=&quot;badge&quot;&gt;2&lt;/div&gt;
+          &lt;h2&gt;CMY 的 12 色相環&lt;/h2&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;hint&quot;&gt;
+          把右側 3×4 色卡銀行拖曳到左側色相環。空格會提示「三原色、二次色、三次色」，幫你先找到大方向。&lt;br&gt;
+          小提醒：三原色是黃、洋紅、青；二次色是紅、綠、藍；三次色會落在它們中間。三原色可以改變安放順序，只要放在三原色格，系統會依照你的三原色位置推算整圈。
+        &lt;/div&gt;
+
+        &lt;div class=&quot;wheel-area&quot;&gt;
+          &lt;div class=&quot;wheel&quot; id=&quot;wheel&quot;&gt;&lt;/div&gt;
+          &lt;aside class=&quot;wheel-bank-side&quot;&gt;
+            &lt;p class=&quot;bank-title&quot;&gt;色卡銀行&lt;/p&gt;
+            &lt;div class=&quot;palette grid-bank&quot; id=&quot;palette&quot;&gt;
+              ${shuffled.map(c =&gt; makeColorPill(c, true)).join(&quot;&quot;)}
+            &lt;/div&gt;
+            &lt;p class=&quot;tiny&quot;&gt;操作方式：拖曳右側色卡到左側空格；若要更換位置，可以拖另一張色卡覆蓋，也可以在已放入的色卡上點兩下，讓它回到色卡銀行。&lt;/p&gt;
+          &lt;/aside&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;actions&quot;&gt;
+          &lt;button class=&quot;primary&quot; onclick=&quot;checkWheel()&quot;&gt;檢查色相環&lt;/button&gt;
+          &lt;button class=&quot;secondary&quot; onclick=&quot;renderWheel()&quot;&gt;重新挑戰&lt;/button&gt;
+          &lt;button id=&quot;nextBtn&quot; class=&quot;ghost&quot; onclick=&quot;goNext()&quot; ${completed[1] ? &quot;&quot; : &quot;disabled&quot;}&gt;前往下一小節&lt;/button&gt;
+          &lt;span class=&quot;score-note&quot;&gt;必須 12 格全部正確才能過關&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;feedback&quot;&gt;&lt;/div&gt;
+      `;
+
+      createWheelSlots();
+      enableDragAndDrop();
+    }
+
+    function createWheelSlots() {
+      const wheel = document.getElementById(&quot;wheel&quot;);
+      const center = 50;
+      const radius = 39;
+
+      for (let i = 0; i &lt; 12; i++) {
+        const angle = -90 + i * 30;
+        const rad = angle * Math.PI / 180;
+        const x = center + radius * Math.cos(rad);
+        const y = center + radius * Math.sin(rad);
+
+        const slot = document.createElement(&quot;div&quot;);
+        slot.className = &quot;slot&quot;;
+        slot.dataset.index = i;
+        slot.dataset.slotType = wheelSlotTypes[i].type;
+        slot.style.left = x + &quot;%&quot;;
+        slot.style.top = y + &quot;%&quot;;
+        emptySlotLabel(slot);
+        wheel.appendChild(slot);
+      }
+    }
+
+    function emptySlotLabel(slot) {
+      const index = Number(slot.dataset.index);
+      const label = wheelSlotTypes[index]?.label || &quot;空格&quot;;
+      slot.innerHTML = `&lt;span class=&quot;slot-label&quot;&gt;${label}&lt;/span&gt;&lt;span class=&quot;slot-hint&quot;&gt;空格&lt;/span&gt;`;
+      delete slot.dataset.colorId;
+    }
+
+    function returnSlotColorToBank(slot) {
+      const id = slot.dataset.colorId;
+      if (!id) return;
+      const color = colors.find(c =&gt; c.id === id);
+      if (!color) return;
+      const bank = document.getElementById(&quot;palette&quot;);
+      bank.insertAdjacentHTML(&quot;beforeend&quot;, makeColorPill(color, true));
+      emptySlotLabel(slot);
+      enableDragAndDrop();
+    }
+
+    function enableDragAndDrop() {
+      document.querySelectorAll(&quot;.draggable&quot;).forEach(item =&gt; {
+        item.addEventListener(&quot;dragstart&quot;, e =&gt; {
+          e.dataTransfer.setData(&quot;text/plain&quot;, item.dataset.id);
+        });
+      });
+
+      document.querySelectorAll(&quot;.slot, .drop-zone, #palette&quot;).forEach(zone =&gt; {
+        zone.addEventListener(&quot;dragover&quot;, e =&gt; {
+          e.preventDefault();
+          zone.classList.add(&quot;over&quot;);
+        });
+
+        zone.addEventListener(&quot;dragleave&quot;, () =&gt; zone.classList.remove(&quot;over&quot;));
+
+        zone.addEventListener(&quot;drop&quot;, e =&gt; {
+          e.preventDefault();
+          zone.classList.remove(&quot;over&quot;);
+
+          const id = e.dataTransfer.getData(&quot;text/plain&quot;);
+          const original = document.querySelector(`.draggable[data-id=&quot;${id}&quot;]`);
+          if (!original) return;
+
+          if (zone.classList.contains(&quot;slot&quot;)) {
+            if (zone.dataset.colorId) {
+              const oldColor = colors.find(c =&gt; c.id === zone.dataset.colorId);
+              document.getElementById(&quot;palette&quot;).insertAdjacentHTML(&quot;beforeend&quot;, makeColorPill(oldColor, true));
+            }
+            zone.dataset.colorId = id;
+            zone.innerHTML = `&lt;div class=&quot;color-chip&quot; style=&quot;${colorStyle(id)}&quot; title=&quot;點兩下可退回色卡銀行&quot; ondblclick=&quot;returnSlotColorToBank(this.closest(&#39;.slot&#39;))&quot;&gt;${colorName(id)}&lt;/div&gt;`;
+            original.remove();
+          } else if (zone.classList.contains(&quot;drop-zone&quot;)) {
+            zone.querySelector(&quot;.drop-items&quot;).appendChild(original);
+          } else if (zone.id === &quot;palette&quot;) {
+            zone.appendChild(original);
+          }
+          enableDragAndDrop();
+        });
+      });
+    }
+
+    function isRotatedCorrect(arr, answer) {
+      if (arr.includes(undefined) || arr.length !== answer.length) return false;
+
+      // 第二關判斷邏輯：
+      // 學生可以改變三原色安放順序，只要三原色落在三原色格，
+      // 並且每兩個三原色之間的中間色順序符合 CMY 混色邏輯，就算正確。
+      const primaryIndexes = [0, 4, 8];
+      const primarySet = new Set([&quot;Y&quot;, &quot;M&quot;, &quot;C&quot;]);
+      const placedPrimaries = primaryIndexes.map(index =&gt; arr[index]);
+
+      if (!placedPrimaries.every(id =&gt; primarySet.has(id))) return false;
+      if (new Set(placedPrimaries).size !== 3) return false;
+
+      const canonicalClockwise = [&quot;Y&quot;, &quot;YO&quot;, &quot;R&quot;, &quot;RV&quot;, &quot;M&quot;, &quot;V&quot;, &quot;B&quot;, &quot;BG&quot;, &quot;C&quot;, &quot;CG&quot;, &quot;G&quot;, &quot;YG&quot;];
+      const canonicalCounterClockwise = [&quot;Y&quot;, &quot;YG&quot;, &quot;G&quot;, &quot;CG&quot;, &quot;C&quot;, &quot;BG&quot;, &quot;B&quot;, &quot;V&quot;, &quot;M&quot;, &quot;RV&quot;, &quot;R&quot;, &quot;YO&quot;];
+
+      function expectedSegment(sequence, startPrimary, endPrimary) {
+        const start = sequence.indexOf(startPrimary);
+        const shifted = sequence.slice(start).concat(sequence.slice(0, start));
+        const end = shifted.indexOf(endPrimary);
+        if (end !== 4) return null;
+        return shifted.slice(1, 4);
+      }
+
+      function matchesDirection(sequence) {
+        for (let group = 0; group &lt; 3; group++) {
+          const startIndex = primaryIndexes[group];
+          const endIndex = primaryIndexes[(group + 1) % 3];
+
+          const startPrimary = arr[startIndex];
+          const endPrimary = arr[endIndex];
+          const expected = expectedSegment(sequence, startPrimary, endPrimary);
+          if (!expected) return false;
+
+          const actual = [
+            arr[(startIndex + 1) % 12],
+            arr[(startIndex + 2) % 12],
+            arr[(startIndex + 3) % 12]
+          ];
+
+          if (!expected.every((id, offset) =&gt; id === actual[offset])) return false;
+        }
+
+        return true;
+      }
+
+      return matchesDirection(canonicalClockwise) || matchesDirection(canonicalCounterClockwise);
+    }
+
+    function countTypeMistakes(placed) {
+      return placed.filter((id, index) =&gt; colorTypes[id] !== wheelSlotTypes[index].type).length;
+    }
+
+    function bestFlexibleMatches(placed) {
+      if (placed.includes(undefined) || placed.length !== 12) return 0;
+
+      const primaryIndexes = [0, 4, 8];
+      const primarySet = new Set([&quot;Y&quot;, &quot;M&quot;, &quot;C&quot;]);
+      const placedPrimaries = primaryIndexes.map(index =&gt; placed[index]);
+
+      if (!placedPrimaries.every(id =&gt; primarySet.has(id)) || new Set(placedPrimaries).size !== 3) {
+        return placed.filter((id, index) =&gt; colorTypes[id] === wheelSlotTypes[index].type).length;
+      }
+
+      const canonicalClockwise = [&quot;Y&quot;, &quot;YO&quot;, &quot;R&quot;, &quot;RV&quot;, &quot;M&quot;, &quot;V&quot;, &quot;B&quot;, &quot;BG&quot;, &quot;C&quot;, &quot;CG&quot;, &quot;G&quot;, &quot;YG&quot;];
+      const canonicalCounterClockwise = [&quot;Y&quot;, &quot;YG&quot;, &quot;G&quot;, &quot;CG&quot;, &quot;C&quot;, &quot;BG&quot;, &quot;B&quot;, &quot;V&quot;, &quot;M&quot;, &quot;RV&quot;, &quot;R&quot;, &quot;YO&quot;];
+      const candidates = [];
+
+      function buildCandidate(sequence) {
+        const candidate = Array(12).fill(null);
+        for (let group = 0; group &lt; 3; group++) {
+          const startIndex = primaryIndexes[group];
+          const endIndex = primaryIndexes[(group + 1) % 3];
+          const startPrimary = placed[startIndex];
+          const endPrimary = placed[endIndex];
+
+          const start = sequence.indexOf(startPrimary);
+          const shifted = sequence.slice(start).concat(sequence.slice(0, start));
+          const end = shifted.indexOf(endPrimary);
+          if (end !== 4) return null;
+
+          candidate[startIndex] = startPrimary;
+          candidate[(startIndex + 1) % 12] = shifted[1];
+          candidate[(startIndex + 2) % 12] = shifted[2];
+          candidate[(startIndex + 3) % 12] = shifted[3];
+        }
+        return candidate;
+      }
+
+      [canonicalClockwise, canonicalCounterClockwise].forEach(sequence =&gt; {
+        const candidate = buildCandidate(sequence);
+        if (candidate) candidates.push(candidate);
+      });
+
+      if (candidates.length === 0) return 0;
+
+      return Math.max(...candidates.map(candidate =&gt; placed.filter((id, index) =&gt; id === candidate[index]).length));
+    }
+
+    window.checkWheel = function() {
+      const slots = [...document.querySelectorAll(&quot;.slot&quot;)].sort((a, b) =&gt; Number(a.dataset.index) - Number(b.dataset.index));
+      const placed = slots.map(s =&gt; s.dataset.colorId);
+      const feedback = document.querySelector(&quot;.feedback&quot;);
+
+      if (placed.some(x =&gt; !x)) {
+        const empty = placed.filter(x =&gt; !x).length;
+        feedback.className = &quot;feedback bad&quot;;
+        feedback.textContent = `還有 ${empty} 格沒有放色卡喔！請先把 12 色放滿。`;
+        return;
+      }
+
+      if (isRotatedCorrect(placed, wheelAnswer)) {
+        passStep(&quot;色相環啟動成功！你已經完成 CMY 12 色排列。&quot;);
+      } else {
+        const bestMatches = bestFlexibleMatches(placed);
+        const typeMistakes = countTypeMistakes(placed);
+        feedback.className = &quot;feedback bad&quot;;
+
+        if (typeMistakes &gt; 0) {
+          feedback.textContent = `色相環還沒有完全接上，而且有 ${typeMistakes} 張色卡放到不符合的類型空格。請先確認三原色、二次色、三次色的位置，再觀察混色順序。`;
+        } else {
+          feedback.textContent = `色相環還沒有完全接上，目前至少有 ${12 - bestMatches} 個位置需要再觀察。類型位置對了，再留意三原色之間的混色順序。`;
+        }
+      }
+    };
+
+    function renderColorFamilies() {
+      const items = [
+        { id: &quot;light-yellow&quot;, name: &quot;淺黃色&quot;, family: &quot;yellow&quot;, hex: &quot;#FFF3B0&quot; },
+        { id: &quot;lemon-yellow&quot;, name: &quot;檸檬黃&quot;, family: &quot;yellow&quot;, hex: &quot;#FDE047&quot; },
+        { id: &quot;chrome-yellow&quot;, name: &quot;銘黃色&quot;, family: &quot;yellow&quot;, hex: &quot;#FACC15&quot; },
+        { id: &quot;earth-yellow&quot;, name: &quot;土黃色&quot;, family: &quot;yellow&quot;, hex: &quot;#CA8A04&quot; },
+
+        { id: &quot;sky-blue&quot;, name: &quot;天藍色&quot;, family: &quot;blue&quot;, hex: &quot;#7DD3FC&quot; },
+        { id: &quot;lake-blue&quot;, name: &quot;湖水藍&quot;, family: &quot;blue&quot;, hex: &quot;#38BDF8&quot; },
+        { id: &quot;deep-blue&quot;, name: &quot;深藍色&quot;, family: &quot;blue&quot;, hex: &quot;#2563EB&quot; },
+        { id: &quot;indigo&quot;, name: &quot;靛藍色&quot;, family: &quot;blue&quot;, hex: &quot;#3730A3&quot; },
+
+        { id: &quot;pink&quot;, name: &quot;粉紅色&quot;, family: &quot;red&quot;, hex: &quot;#FDA4AF&quot; },
+        { id: &quot;rose&quot;, name: &quot;玫瑰紅&quot;, family: &quot;red&quot;, hex: &quot;#E11D48&quot; },
+        { id: &quot;peach-red&quot;, name: &quot;桃紅色&quot;, family: &quot;red&quot;, hex: &quot;#EC4899&quot; },
+        { id: &quot;wine-red&quot;, name: &quot;酒紅色&quot;, family: &quot;red&quot;, hex: &quot;#9F1239&quot; }
+      ];
+
+      const shuffledItems = shuffleArray(items);
+
+      panel.innerHTML = `
+        &lt;div class=&quot;section-title&quot;&gt;
+          &lt;div class=&quot;badge&quot;&gt;3&lt;/div&gt;
+          &lt;h2&gt;學會什麼是色系&lt;/h2&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;hint&quot;&gt;
+          色系像是「色彩家族」。同一個色系不一定一模一樣，但看起來會接近同一個主要色相。&lt;br&gt;
+          例如黃色系可以有淺黃色、銘黃色、土黃色。
+        &lt;/div&gt;
+
+        &lt;div class=&quot;mini-card&quot;&gt;
+          &lt;p class=&quot;bank-title&quot;&gt;色卡銀行&lt;/p&gt;
+          &lt;div class=&quot;palette&quot; id=&quot;palette&quot;&gt;
+            ${shuffledItems.map(item =&gt; `&lt;div class=&quot;draggable&quot; draggable=&quot;true&quot; data-id=&quot;${item.id}&quot; data-family=&quot;${item.family}&quot; style=&quot;background:${item.hex};&quot;&gt;${item.name}&lt;/div&gt;`).join(&quot;&quot;)}
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;drop-zone-grid&quot;&gt;
+          ${familyZone(&quot;yellow&quot;, &quot;黃色系&quot;)}
+          ${familyZone(&quot;blue&quot;, &quot;藍色系&quot;)}
+          ${familyZone(&quot;red&quot;, &quot;紅色系&quot;)}
+        &lt;/div&gt;
+
+        &lt;div class=&quot;actions&quot;&gt;
+          &lt;button class=&quot;primary&quot; onclick=&quot;checkFamilies()&quot;&gt;檢查分類&lt;/button&gt;
+          &lt;button class=&quot;secondary&quot; onclick=&quot;renderColorFamilies()&quot;&gt;重新挑戰&lt;/button&gt;
+          &lt;button id=&quot;nextBtn&quot; class=&quot;ghost&quot; onclick=&quot;goNext()&quot; ${completed[2] ? &quot;&quot; : &quot;disabled&quot;}&gt;前往下一小節&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;feedback&quot;&gt;&lt;/div&gt;
+      `;
+
+      enableDragAndDrop();
+    }
+
+    function familyZone(id, title) {
+      return `
+        &lt;div class=&quot;drop-zone&quot; data-family-target=&quot;${id}&quot;&gt;
+          &lt;h3&gt;${title}&lt;/h3&gt;
+          &lt;div class=&quot;drop-items&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      `;
+    }
+
+    window.checkFamilies = function() {
+      let wrong = 0;
+      let total = 0;
+
+      document.querySelectorAll(&quot;.drop-zone&quot;).forEach(zone =&gt; {
+        const target = zone.dataset.familyTarget;
+        zone.querySelectorAll(&quot;.draggable&quot;).forEach(item =&gt; {
+          total++;
+          if (item.dataset.family !== target) wrong++;
+        });
+      });
+
+      const bankLeft = document.querySelectorAll(&quot;#palette .draggable&quot;).length;
+      const feedback = document.querySelector(&quot;.feedback&quot;);
+
+      if (bankLeft &gt; 0) {
+        feedback.className = &quot;feedback bad&quot;;
+        feedback.textContent = `還有 ${bankLeft} 張色卡沒有分類喔！`;
+        return;
+      }
+
+      if (wrong === 0 &amp;&amp; total === 12) {
+        passStep(&quot;色彩家族分類完成！你已經會判斷色系了。&quot;);
+      } else {
+        feedback.className = &quot;feedback bad&quot;;
+        feedback.textContent = `有 ${wrong} 張色卡跑錯家族囉！請看看它比較接近哪一種主要色相。`;
+      }
+    };
+
+    function wheelQuestion(main, index, mode) {
+      const centerText = mode === &quot;analogous&quot; ? &quot;請找出&lt;br&gt;2 個類似色&quot; : &quot;請找出&lt;br&gt;正對比色&quot;;
+
+      return `
+        &lt;div class=&quot;mini-wheel-wrap&quot;&gt;
+          &lt;div class=&quot;mini-wheel&quot; data-round=&quot;${index}&quot; data-main=&quot;${main}&quot; data-mode=&quot;${mode}&quot;&gt;
+            ${colors.map((c, i) =&gt; wheelNode(c, i, main, index, mode)).join(&quot;&quot;)}
+            &lt;div class=&quot;wheel-center&quot;&gt;${centerText}&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      `;
+    }
+
+    function wheelNode(color, i, main, round, mode) {
+      const angle = -90 + i * 30;
+      const isMain = color.id === main;
+      // 題目色往圓圈外移動，避免覆蓋或干擾旁邊色彩判別
+      const radius = isMain ? 47 : 40;
+      const x = 50 + radius * Math.cos(angle * Math.PI / 180);
+      const y = 50 + radius * Math.sin(angle * Math.PI / 180);
+      const handler = mode === &quot;analogous&quot; ? &quot;toggleAnalogousWheelSelection(this, 2)&quot; : &quot;selectContrastWheel(this)&quot;;
+
+      return `
+        &lt;button
+          type=&quot;button&quot;
+          class=&quot;wheel-node ${isMain ? &quot;main-target&quot; : &quot;&quot;}&quot;
+          data-color=&quot;${color.id}&quot;
+          data-round=&quot;${round}&quot;
+          data-mode=&quot;${mode}&quot;
+          style=&quot;left:${x}%; top:${y}%; background:${color.hex};&quot;
+          onclick=&quot;${isMain ? &quot;&quot; : handler}&quot;
+          ${isMain ? &quot;disabled&quot; : &quot;&quot;}
+          aria-label=&quot;${color.name}&quot;
+          title=&quot;${color.name}&quot;
+        &gt;${color.name}&lt;/button&gt;
+      `;
+    }
+
+    function renderAnalogous() {
+      const rounds = pickRandomColorIds(3).map(id =&gt; ({ main: id }));
+
+      panel.innerHTML = `
+        &lt;div class=&quot;section-title&quot;&gt;
+          &lt;div class=&quot;badge&quot;&gt;4&lt;/div&gt;
+          &lt;h2&gt;類似色：色相環＋同色系&lt;/h2&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;hint&quot;&gt;
+          題目會隨機出現。先在色相環上找出 &lt;strong&gt;2 個相鄰的類似色&lt;/strong&gt;，再到下方 5 個同色系選項中，找出 &lt;strong&gt;2 個正確答案&lt;/strong&gt;。
+        &lt;/div&gt;
+
+        ${rounds.map((r, i) =&gt; analogousRound(r.main, i)).join(&quot;&quot;)}
+
+        &lt;div class=&quot;actions&quot;&gt;
+          &lt;button class=&quot;primary&quot; onclick=&quot;checkAnalogous()&quot;&gt;檢查類似色&lt;/button&gt;
+          &lt;button class=&quot;secondary&quot; onclick=&quot;renderAnalogous()&quot;&gt;重新挑戰&lt;/button&gt;
+          &lt;button id=&quot;nextBtn&quot; class=&quot;ghost&quot; onclick=&quot;goNext()&quot; ${completed[3] ? &quot;&quot; : &quot;disabled&quot;}&gt;前往下一小節&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;feedback&quot;&gt;&lt;/div&gt;
+      `;
+    }
+
+    function analogousRound(main, index) {
+      const shadeOptions = getAnalogousShadeOptions(main);
+      return `
+        &lt;div class=&quot;quiz-round&quot; data-round=&quot;${index}&quot; data-main=&quot;${main}&quot;&gt;
+          &lt;div class=&quot;wheel-round-layout&quot;&gt;
+            &lt;div class=&quot;question&quot;&gt;第 ${index + 1} 題：請找出 &lt;strong&gt;${colorName(main)}&lt;/strong&gt; 的類似色。&lt;/div&gt;
+            ${wheelQuestion(main, index, &quot;analogous&quot;)}
+
+            &lt;div class=&quot;mini-card&quot; style=&quot;margin-top:10px;&quot;&gt;
+              &lt;div class=&quot;question&quot; style=&quot;font-size:16px;&quot;&gt;下面 5 個同色系選項中，請選出 2 個屬於 &lt;strong&gt;${colorName(main)}&lt;/strong&gt; 的類似色變化：&lt;/div&gt;
+              &lt;div class=&quot;choice-row&quot;&gt;
+                ${shadeOptions.map(v =&gt; `&lt;button class=&quot;color-choice analogous-extra&quot; data-color=&quot;${v.id}&quot; data-round=&quot;${index}&quot; style=&quot;background:${v.hex};&quot; onclick=&quot;toggleAnalogousExtra(this, 2)&quot;&gt;${v.name}&lt;/button&gt;`).join(&quot;&quot;)}
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;round-tip&quot;&gt;先找左右相鄰的兩色，再找出同色系深淺變化的兩色。&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      `;
+    }
+
+    window.toggleAnalogousWheelSelection = function(btn, limit) {
+      const round = btn.dataset.round;
+      const selected = document.querySelectorAll(`.wheel-node.selected[data-round=&quot;${round}&quot;][data-mode=&quot;analogous&quot;]`);
+      if (btn.classList.contains(&quot;selected&quot;)) {
+        btn.classList.remove(&quot;selected&quot;);
+      } else {
+        if (selected.length &gt;= limit) return;
+        btn.classList.add(&quot;selected&quot;);
+      }
+    };
+
+    window.toggleAnalogousExtra = function(btn, limit) {
+      const round = btn.dataset.round;
+      const selected = document.querySelectorAll(`.analogous-extra.selected[data-round=&quot;${round}&quot;]`);
+      if (btn.classList.contains(&quot;selected&quot;)) {
+        btn.classList.remove(&quot;selected&quot;);
+      } else {
+        if (selected.length &gt;= limit) return;
+        btn.classList.add(&quot;selected&quot;);
+      }
+    };
+
+    window.checkAnalogous = function() {
+      let wrongRounds = 0;
+
+      document.querySelectorAll(&#39;.quiz-round[data-main]&#39;).forEach(round =&gt; {
+        if (!round.querySelector(&#39;.analogous-extra&#39;) &amp;&amp; !round.querySelector(&#39;.contrast-extra&#39;)) return;
+      });
+
+      document.querySelectorAll(&#39;.quiz-round&#39;).forEach(round =&gt; {
+        const hasAnalogous = round.querySelector(&#39;.analogous-extra&#39;);
+        if (!hasAnalogous) return;
+
+        const main = round.dataset.main;
+        const correctWheel = analogousMap[main].slice().sort().join(&quot;,&quot;);
+        const selectedWheel = [...round.querySelectorAll(&#39;.wheel-node.selected[data-mode=&quot;analogous&quot;]&#39;)].map(btn =&gt; btn.dataset.color).sort().join(&quot;,&quot;);
+
+        const correctExtra = sameFamilyVariants(main).map(v =&gt; v.id).sort().join(&quot;,&quot;);
+        const selectedExtra = [...round.querySelectorAll(&#39;.analogous-extra.selected&#39;)].map(btn =&gt; btn.dataset.color).sort().join(&quot;,&quot;);
+
+        if (selectedWheel !== correctWheel || selectedExtra !== correctExtra) wrongRounds++;
+      });
+
+      const feedback = document.querySelector(&quot;.feedback&quot;);
+      if (wrongRounds === 0) {
+        passStep(&quot;類似色配對成功！你已經能同時判斷色相環上的類似色，以及同色系的深淺變化。&quot;);
+      } else {
+        feedback.className = &quot;feedback bad&quot;;
+        feedback.textContent = `還有 ${wrongRounds} 題需要修正。請確認：色相環上相鄰 2 色，以及下方同色系正確 2 色。`;
+      }
+    };
+
+    function renderContrast() {
+      const rounds = pickRandomColorIds(4).map(id =&gt; ({ main: id }));
+
+      panel.innerHTML = `
+        &lt;div class=&quot;section-title&quot;&gt;
+          &lt;div class=&quot;badge&quot;&gt;5&lt;/div&gt;
+          &lt;h2&gt;對比色：正對比色＋延伸對比色&lt;/h2&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;hint&quot;&gt;
+          題目會隨機出現。先在色相環上找出 &lt;strong&gt;1 個正對比色&lt;/strong&gt;，再到下方 5 個選項中，選出 &lt;strong&gt;2 個延伸對比色&lt;/strong&gt;。
+        &lt;/div&gt;
+
+        ${rounds.map((r, i) =&gt; contrastRound(r.main, i)).join(&quot;&quot;)}
+
+        &lt;div class=&quot;actions&quot;&gt;
+          &lt;button class=&quot;primary&quot; onclick=&quot;checkContrast()&quot;&gt;檢查對比色&lt;/button&gt;
+          &lt;button class=&quot;secondary&quot; onclick=&quot;renderContrast()&quot;&gt;重新挑戰&lt;/button&gt;
+          &lt;button id=&quot;nextBtn&quot; class=&quot;ghost&quot; onclick=&quot;goNext()&quot; ${completed[4] ? &quot;&quot; : &quot;disabled&quot;}&gt;完成第一區塊&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;feedback&quot;&gt;&lt;/div&gt;
+      `;
+    }
+
+    function contrastRound(main, index) {
+      const extraOptions = getContrastExtraOptions(main);
+      return `
+        &lt;div class=&quot;quiz-round&quot; data-round=&quot;${index}&quot; data-main=&quot;${main}&quot;&gt;
+          &lt;div class=&quot;wheel-round-layout&quot;&gt;
+            &lt;div class=&quot;question&quot;&gt;第 ${index + 1} 題：請在色相環上找出 &lt;strong&gt;${colorName(main)}&lt;/strong&gt; 的正對比色。&lt;/div&gt;
+            ${wheelQuestion(main, index, &quot;contrast&quot;)}
+
+            &lt;div class=&quot;mini-card&quot; style=&quot;margin-top:10px;&quot;&gt;
+              &lt;div class=&quot;question&quot; style=&quot;font-size:16px;&quot;&gt;選出上方的正對比色後，請在下面 5 個選項中，再找出 2 個延伸對比色：&lt;/div&gt;
+              &lt;div class=&quot;choice-row&quot;&gt;
+                ${extraOptions.map(v =&gt; `&lt;button class=&quot;color-choice contrast-extra&quot; data-color=&quot;${v.id}&quot; data-round=&quot;${index}&quot; style=&quot;background:${v.hex};&quot; onclick=&quot;toggleContrastExtra(this, 2)&quot;&gt;${v.name}&lt;/button&gt;`).join(&quot;&quot;)}
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;round-tip&quot;&gt;先找正對面的顏色，再找出正對比色左右兩邊的兩色。&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      `;
+    }
+
+    window.selectContrastWheel = function(btn) {
+      const round = btn.dataset.round;
+      document.querySelectorAll(`.wheel-node[data-round=&quot;${round}&quot;][data-mode=&quot;contrast&quot;]`).forEach(node =&gt; {
+        if (!node.classList.contains(&quot;main-target&quot;)) node.classList.remove(&quot;selected&quot;);
+      });
+      btn.classList.add(&quot;selected&quot;);
+    };
+
+    window.toggleContrastExtra = function(btn, limit) {
+      const round = btn.dataset.round;
+      const selected = document.querySelectorAll(`.contrast-extra.selected[data-round=&quot;${round}&quot;]`);
+      if (btn.classList.contains(&quot;selected&quot;)) {
+        btn.classList.remove(&quot;selected&quot;);
+      } else {
+        if (selected.length &gt;= limit) return;
+        btn.classList.add(&quot;selected&quot;);
+      }
+    };
+
+    window.checkContrast = function() {
+      let wrongRounds = 0;
+
+      document.querySelectorAll(&#39;.quiz-round&#39;).forEach(round =&gt; {
+        const hasContrast = round.querySelector(&#39;.contrast-extra&#39;);
+        if (!hasContrast) return;
+
+        const main = round.dataset.main;
+        const correctWheel = contrastMap[main];
+        const selectedWheel = round.querySelector(&#39;.wheel-node.selected[data-mode=&quot;contrast&quot;]&#39;)?.dataset.color || &quot;&quot;;
+
+        const correctExtra = analogousMap[contrastMap[main]].slice().sort().join(&quot;,&quot;);
+        const selectedExtra = [...round.querySelectorAll(&#39;.contrast-extra.selected&#39;)].map(btn =&gt; btn.dataset.color).sort().join(&quot;,&quot;);
+
+        if (selectedWheel !== correctWheel || selectedExtra !== correctExtra) wrongRounds++;
+      });
+
+      const feedback = document.querySelector(&quot;.feedback&quot;);
+      if (wrongRounds === 0) {
+        passStep(&quot;對比色挑戰成功！你已經掌握正對比色，以及正對比色左右兩邊的延伸對比色。&quot;);
+      } else {
+        feedback.className = &quot;feedback bad&quot;;
+        feedback.textContent = `還有 ${wrongRounds} 題需要修正。請確認：色相環上的正對比色 1 個，以及下方延伸對比色 2 個。`;
+      }
+    };
+
+    function renderFinish() {
+      renderTabs();
+      panel.innerHTML = `
+        &lt;div class=&quot;finish&quot;&gt;
+          &lt;div class=&quot;finish-icon&quot;&gt;🎨&lt;/div&gt;
+          &lt;h2&gt;第一區塊完成！&lt;/h2&gt;
+          &lt;p&gt;
+            你已經完成第一關五個關卡，順利通關！&lt;br&gt;
+            已成功完成「色相定義、CMY 12色相環、色系、類似色、對比色」五個任務。
+          &lt;/p&gt;
+          &lt;div class=&quot;stamp&quot;&gt;CMY 色相環解鎖成功&lt;/div&gt;
+          &lt;div class=&quot;mini-card&quot; style=&quot;max-width:520px; margin:18px auto 0; background:#fff7ed; border:2px solid #fed7aa;&quot;&gt;
+            &lt;div class=&quot;question&quot; style=&quot;margin-bottom:8px; color:#9a3412;&quot;&gt;恭喜獲得開鎖密碼&lt;/div&gt;
+            &lt;div style=&quot;font-size:38px; font-weight:1000; letter-spacing:4px; color:#d97706;&quot;&gt;HUE&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;actions&quot; style=&quot;justify-content:center;&quot;&gt;
+            &lt;button class=&quot;ghost&quot; onclick=&quot;currentStep=0; render()&quot;&gt;回到第一小節複習&lt;/button&gt;
+            &lt;button class=&quot;secondary&quot; onclick=&quot;resetAll()&quot;&gt;重新開始&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      `;
+    }
+
+    let lastTapTime = 0;
+    let lastTapElement = null;
+
+    document.addEventListener(&quot;touchend&quot;, function(event) {
+      const chip = event.target.closest(&quot;.slot .color-chip&quot;);
+      if (!chip) return;
+      const now = Date.now();
+      if (lastTapElement === chip &amp;&amp; now - lastTapTime &lt; 420) {
+        event.preventDefault();
+        returnSlotColorToBank(chip.closest(&quot;.slot&quot;));
+        lastTapElement = null;
+        lastTapTime = 0;
+      } else {
+        lastTapElement = chip;
+        lastTapTime = now;
+      }
+    }, { passive: false });
+
+    window.resetAll = function() {
+      currentStep = 0;
+      unlockedStep = 0;
+      completed = [false, false, false, false, false];
+      render();
+    };
+
+    render();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;" jsaction="rcuQ6b:WYd;"><div class="EmVfjc qs41qe UzswCe" data-loadingmessage=" " jscontroller="qAKInc" jsaction="animationend:kWijWc;dyRcpb:dyRcpb" data-active="true" jsname="Hy6Uif"><div class="Cg7hO" aria-live="assertive" jsname="vyyg5"> </div><div jsname="Hxlbvc" class="xu46lf"><div class="ir3uv uWlRce co39ub"><div class="xq3j6 ERcjC"><div class="X6jHbb GOJTSe"></div></div><div class="HBnAAc"><div class="X6jHbb GOJTSe"></div></div><div class="xq3j6 dj3yTd"><div class="X6jHbb GOJTSe"></div></div></div><div class="ir3uv GFoASc Cn087"><div class="xq3j6 ERcjC"><div class="X6jHbb GOJTSe"></div></div><div class="HBnAAc"><div class="X6jHbb GOJTSe"></div></div><div class="xq3j6 dj3yTd"><div class="X6jHbb GOJTSe"></div></div></div><div class="ir3uv WpeOqd hfsr6b"><div class="xq3j6 ERcjC"><div class="X6jHbb GOJTSe"></div></div><div class="HBnAAc"><div class="X6jHbb GOJTSe"></div></div><div class="xq3j6 dj3yTd"><div class="X6jHbb GOJTSe"></div></div></div><div class="ir3uv rHV3jf EjXFBf"><div class="xq3j6 ERcjC"><div class="X6jHbb GOJTSe"></div></div><div class="HBnAAc"><div class="X6jHbb GOJTSe"></div></div><div class="xq3j6 dj3yTd"><div class="X6jHbb GOJTSe"></div></div></div></div></div><iframe jsname="WMhH6e" class=" YMEQtf" frameborder="0" sandbox="allow-scripts allow-popups allow-forms allow-same-origin allow-popups-to-escape-sandbox allow-downloads allow-storage-access-by-user-activation" id="79b59350e4bf0cf3_8" name="79b59350e4bf0cf3_8" scrolling="no" title="Custom embed" aria-label="Custom embed"></iframe></div></div></div></div></div></div><div jscontroller="j1RDQb" jsaction="rcuQ6b:rcuQ6b;MxH79b:JdcaS;FaOgy:XuHpsb;" class="dZA9kd ynRLnc" data-last-updated-at-time="1780811622661" data-is-preview="false"><div role="button" class="U26fgb JRtysb WzwrXb I12f0b K2mXPb zXBiaf ynRLnc" jscontroller="iSvg6e" jsaction="click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc(preventDefault=true); touchcancel:JMtRjd;;keydown:I481le;" jsshadow jsname="Bg3gkf" aria-label="Site actions" aria-disabled="false" tabindex="0" aria-haspopup="true" aria-expanded="false" data-menu-corner="bottom-start" data-anchor-corner="top-start"><div class="NWlf3e MbhUzd" jsname="ksKsZd"></div><span jsslot class="MhXXcc oJeWuf"><span class="Lw7GHd snByac"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class=" NMm5M"><path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"/></svg></span></span><div jsname="xl07Ob" style="display:none" aria-hidden="true"><div class="JPdR6b hVNH5c" jscontroller="uY3Nvd" jsaction="IpSVtb:TvD9Pc;fEN2Ze:xzS4ub;frq95c:LNeFm;cFpp9e:J9oOtd; click:H8nU8b; mouseup:H8nU8b; keydown:I481le; keypress:Kr2w4b; blur:O22p3e; focus:H8nU8b" role="menu" tabindex="0" style="position:fixed"><div class="XvhY1d" jsaction="mousedown:p8EH2c; touchstart:p8EH2c;"><div class="JAPqpe K0NPx"><span jsslot class="z80M1 FeRvI" jsaction="click:o6ZaF(preventDefault=true); mousedown:lAhnzb; mouseup:Osgxgf; mouseenter:SKyDAe; mouseleave:xq3APb;touchstart:jJiBRc; touchmove:kZeBdd; touchend:VfAz8" jsname="j7LFlb" aria-label="Report abuse" role="menuitem" tabindex="-1"><div class="aBBjbd MbhUzd" jsname="ksKsZd"></div><div class="uyYuVb oJeWuf" jscontroller="HYv29e" jsaction="JIbuQc:dQ6O0c;" jsname="lV5oke" data-abuse-reporting-widget-proto="%.@.null,&quot;https://sites.google.com/ysjh.ntpc.edu.tw/ysjhart/%E8%89%B2%E7%9B%B8&quot;]"><div class="jO7h3c">Report abuse</div></div></span><span jsslot class="z80M1 FeRvI" jsaction="click:o6ZaF(preventDefault=true); mousedown:lAhnzb; mouseup:Osgxgf; mouseenter:SKyDAe; mouseleave:xq3APb;touchstart:jJiBRc; touchmove:kZeBdd; touchend:VfAz8" jsname="j7LFlb" aria-label="Page details" role="menuitem" tabindex="-1"><div class="aBBjbd MbhUzd" jsname="ksKsZd"></div><div class="uyYuVb oJeWuf" jsaction="JIbuQc:hriXLd;" jsname="Rg8K2c"><div class="jO7h3c">Page details</div></div></span></div></div></div></div></div></div><div jscontroller="j1RDQb" jsaction="focusin:gBxDVb(srlkmf); focusout:zvXhGb(srlkmf); click:ro2KTd(psdQ5e);JIbuQc:DSypkd(Bg3gkf);MxH79b:JdcaS;rcuQ6b:rcuQ6b;" class="LqzjUe ynRLnc" data-last-updated-at-time="1780811622661" data-is-preview="false"><div jsname="psdQ5e" class="Q0cSn"></div><div jsname="bN97Pc" class="hBW7Hb"><div role="button" class="U26fgb mUbCce fKz7Od kpPxtd QMuaBc M9Bg4d" jscontroller="VXdfxd" jsaction="click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc(preventDefault=true); touchcancel:JMtRjd;" jsshadow jsname="Bg3gkf" aria-label="Site actions" aria-disabled="false" tabindex="-1" aria-hidden="true"><div class="VTBa7b MbhUzd" jsname="ksKsZd"></div><span jsslot class="xjKiLb"><span class="Ce1Y1c" style="top: -12px"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class=" NMm5M"><path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"/></svg></span></span></div><div jsname="srlkmf" class="hUphyc"><div class="YkaBSd"><div class="iBkmkf"><span>Page updated</span> <span jsname="CFIm1b" class="dji00c" jsaction="AHmuwe:eGiyHb; mouseover:eGiyHb;" tabindex="0" role="contentinfo"></span></div></div><div class="YkaBSd" jscontroller="HYv29e" jsaction="click:dQ6O0c;" data-abuse-reporting-widget-proto="%.@.null,&quot;https://sites.google.com/ysjh.ntpc.edu.tw/ysjhart/%E8%89%B2%E7%9B%B8&quot;]"><div role="button" class="U26fgb kpPxtd J7BuEb" jsshadow aria-label="Report abuse" aria-disabled="false" tabindex="0">Report abuse</div></div></div></div></div></div></div></div><script nonce="HDOKn2eyy6fLTs66nTfu4w">DOCS_timing['cov']=new Date().getTime();</script><script src="https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.a9HMNyoGWjc.O/am=CCAATgAE/d=1/rs=AGEqA5k6LDHnY_1_ZxggQ_Ykam3fmRU4Kg/m=view" id="base-js" nonce="HDOKn2eyy6fLTs66nTfu4w"></script></div></div><div jscontroller="YV8yqd" jsaction="rcuQ6b:npT2md"></div></body></html>

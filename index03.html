@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>第三道封印|彩度：色彩能量站</title>
+  <style>
+    :root{
+      --ink:#0f172a;
+      --muted:#64748b;
+      --line:#cbd5e1;
+      --soft:#f1f5f9;
+      --amber:#fffbeb;
+      --amberText:#78350f;
+      --green:#ecfdf5;
+      --greenText:#064e3b;
+      --rose:#fff1f2;
+      --roseText:#881337;
+      --orange:#fff7ed;
+      --orangeText:#7c2d12;
+      --white:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 8% 0%,#fde68a,transparent 30%),
+        radial-gradient(circle at 95% 8%,#bfdbfe,transparent 28%),
+        linear-gradient(180deg,#fff7ed,#f8fafc);
+    }
+    .app{max-width:1280px;margin:0 auto;padding:28px 18px 54px}
+    header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+    .eyebrow{font-size:14px;font-weight:900;color:var(--muted);margin-bottom:4px}
+    h1{font-size:clamp(30px,4.8vw,54px);line-height:1.08;margin:0;font-weight:1000;letter-spacing:-1.5px}
+    h2{font-size:clamp(26px,4vw,44px);line-height:1.12;margin:0 0 12px;font-weight:1000;letter-spacing:-1px}
+    h3{font-size:22px;margin:0 0 6px;font-weight:1000}
+    p{margin:0;color:#475569;line-height:1.8;font-weight:700}
+    .progress{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .pill{border-radius:999px;background:rgba(255,255,255,.78);border:1px solid #e2e8f0;padding:8px 14px;font-size:14px;font-weight:1000;color:#334155}
+    .pill.done{background:var(--green);color:var(--greenText);border-color:#bbf7d0}
+    .pill.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .card{background:rgba(255,255,255,.93);border:1px solid rgba(226,232,240,.85);border-radius:32px;box-shadow:0 24px 60px rgba(15,23,42,.12);padding:28px}
+    .home-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:20px}
+    .start-pill{display:inline-flex;background:var(--ink);color:#fff;border-radius:999px;padding:10px 16px;font-weight:1000;margin-bottom:20px}
+    .notice{border-radius:24px;background:var(--amber);color:var(--amberText);padding:17px;margin:20px 0;font-weight:900;line-height:1.7}
+    .level-list{display:grid;gap:14px}
+    .level-item{background:rgba(255,255,255,.86);border-radius:28px;padding:18px;display:flex;gap:14px;box-shadow:0 10px 24px rgba(15,23,42,.08)}
+    .icon{width:46px;height:46px;border-radius:18px;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:1000;flex:0 0 auto}
+    .icon.locked{background:#94a3b8}
+    .btn{border:0;border-radius:18px;padding:16px 24px;background:var(--ink);color:#fff;font-size:18px;font-weight:1000;cursor:pointer;min-height:56px;transition:.18s;touch-action:manipulation}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(15,23,42,.16)}
+    .btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+    .btn.outline{background:#fff;color:var(--ink);border:1px solid var(--line)}
+    .hidden{display:none!important}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .feedback{margin-top:20px;border-radius:24px;background:var(--soft);color:#334155;padding:17px;text-align:center;font-weight:1000;line-height:1.7}
+    .pass{margin-top:18px;border-radius:24px;background:var(--green);color:var(--greenText);padding:18px;font-weight:1000;line-height:1.7}
+    .fail{margin-top:18px;border-radius:24px;background:var(--rose);color:var(--roseText);padding:18px;font-weight:1000;line-height:1.7}
+    .color-choice-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+    .color-card{border:2px solid #e2e8f0;background:#fff;border-radius:26px;padding:10px;cursor:pointer;transition:.18s}
+    .color-card:hover{transform:translateY(-4px);box-shadow:0 14px 24px rgba(15,23,42,.12)}
+    .color-block{height:132px;border-radius:20px;border:1px solid #e2e8f0}
+    .color-label{text-align:center;margin-top:10px;font-weight:1000;color:#334155}
+    .drag-zone{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:16px}
+    .drag-card{background:#fff;border-radius:24px;padding:12px;box-shadow:0 6px 18px rgba(15,23,42,.08);border:2px solid transparent;cursor:grab;user-select:none;touch-action:manipulation}
+    .drag-card:active{cursor:grabbing}
+    .drag-card.dragging{opacity:.45;border-color:var(--ink)}
+    .drag-card.over{border-color:var(--ink)}
+    .drag-card.tap-selected{border-color:#0f172a;box-shadow:0 0 0 4px #bfdbfe, 0 10px 22px rgba(15,23,42,.18)}
+    .swatch{height:140px;border-radius:18px;border:1px solid #e2e8f0}
+    .drag-hint{text-align:center;font-weight:1000;color:#64748b;margin-top:10px;font-size:16px}
+    .tap-tip{margin-top:8px;text-align:center;font-size:13px;font-weight:900;color:#94a3b8}
+    .rank-labels{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:22px;text-align:center;color:#64748b;font-weight:1000;font-size:14px}
+    .wave-scroll{overflow-x:auto;padding-bottom:6px}
+    .wave-labels{display:grid;grid-template-columns:repeat(7,160px);gap:10px;margin-top:16px;width:max-content}
+    .wave-label{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:12px 8px;text-align:center;font-weight:1000;color:#64748b;line-height:1.35}
+    .wave-drag-zone{display:grid;grid-template-columns:repeat(7,160px);gap:10px;margin-top:14px;width:max-content}
+    .wave-drag-zone .drag-card{padding:10px;border-radius:22px}
+    .wave-drag-zone .swatch{height:120px}
+    .level4-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px;margin-top:22px}
+    .panel{background:var(--soft);border-radius:30px;padding:20px}
+    .selected-note{background:#fff;border-radius:22px;padding:14px;font-weight:1000;color:#334155;margin:12px 0 18px}
+    .slider-group{display:grid;gap:18px}
+    .slider-label{font-weight:1000;margin-bottom:8px}
+    input[type=range]{width:100%;accent-color:var(--ink)}
+    .preview{height:78px;border:1px solid #e2e8f0;border-radius:24px;margin-top:10px}
+    .grid-wrap{background:#fff;border-radius:28px;padding:8px;box-shadow:inset 0 2px 12px rgba(15,23,42,.08)}
+    .color-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+    .cell{aspect-ratio:1/1;border-radius:12px;border:1px solid #e2e8f0;cursor:pointer;transition:.15s;background:#fff}
+    .cell:hover{transform:translateY(-2px);box-shadow:0 8px 14px rgba(15,23,42,.12)}
+    .cell.selected{border:2px solid var(--ink);box-shadow:0 0 0 3px #cbd5e1}
+    .cell.empty{
+      border:2px dashed #94a3b8;
+      background:repeating-linear-gradient(45deg, #ffffff 0px, #ffffff 10px, #f8fafc 10px, #f8fafc 20px);
+    }
+    .input{width:100%;min-height:50px;border-radius:18px;border:1px solid #e2e8f0;padding:0 14px;font-size:16px;font-weight:900;outline:0}
+    .input:focus{box-shadow:0 0 0 4px #f1f5f9}
+    .checklist{margin-top:14px;background:#fff;border-radius:24px;padding:16px;box-shadow:0 6px 16px rgba(15,23,42,.06)}
+    .check-item{padding:8px 0;font-weight:1000;color:#334155}
+    .check-item.done{color:var(--greenText)}
+    .missing-box{margin-top:12px;border-radius:18px;padding:14px;font-weight:900;line-height:1.7;background:var(--rose);color:var(--roseText)}
+    .missing-box.good{background:var(--green);color:var(--greenText)}
+    .missing-box.demo{background:var(--orange);color:var(--orangeText)}
+    .button-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .result-actions{justify-content:center}
+
+    .submit-steps{
+      margin:22px auto 0;
+      max-width:760px;
+      border-radius:26px;
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      padding:18px;
+      text-align:left;
+    }
+
+    .submit-steps h3{
+      margin:0 0 10px;
+      font-size:20px;
+    }
+
+    .submit-step{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:8px 0;
+      font-weight:900;
+      color:#334155;
+      line-height:1.55;
+    }
+
+    .submit-step .num{
+      width:28px;
+      height:28px;
+      border-radius:999px;
+      background:#0f172a;
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-size:14px;
+      flex:0 0 auto;
+      margin-top:1px;
+    }
+
+    .btn.upload{
+      background:#2563eb;
+    }
+
+    .btn.unlock{
+      background:#facc15;
+      color:#0f172a;
+      border:2px solid #0f172a;
+    }
+
+    .btn.unlock:disabled{
+      opacity:.45;
+      color:#0f172a;
+      background:#fde68a;
+    }
+
+    .upload-warning{
+      margin-top:10px;
+      border-radius:18px;
+      padding:12px 14px;
+      background:#fff7ed;
+      color:#7c2d12;
+      font-weight:900;
+      line-height:1.55;
+    }
+
+
+    .unlock-banner{
+      margin:24px auto 0;
+      max-width:760px;
+      border-radius:30px;
+      padding:26px 24px;
+      background:
+        radial-gradient(circle at top left,#fde68a,transparent 34%),
+        linear-gradient(135deg,#0f172a,#312e81);
+      color:#fff;
+      box-shadow:0 28px 70px rgba(15,23,42,.35);
+      border:3px solid rgba(253,224,71,.75);
+      transform:scale(.98);
+      animation:unlockPop .55s ease forwards, glowPulse 1.4s ease-in-out infinite alternate;
+    }
+
+    .unlock-banner .small{
+      font-size:16px;
+      font-weight:900;
+      letter-spacing:.06em;
+      opacity:.9;
+      margin-bottom:8px;
+    }
+
+    .unlock-banner .main{
+      font-size:clamp(26px,4vw,44px);
+      line-height:1.22;
+      font-weight:1000;
+      letter-spacing:-.8px;
+    }
+
+    .unlock-banner .code{
+      display:inline-block;
+      margin-top:16px;
+      border-radius:999px;
+      background:#facc15;
+      color:#0f172a;
+      padding:10px 22px;
+      font-size:clamp(22px,3vw,34px);
+      font-weight:1000;
+      box-shadow:0 10px 26px rgba(250,204,21,.3);
+    }
+
+    @keyframes unlockPop{
+      from{opacity:0;transform:scale(.88) translateY(16px)}
+      to{opacity:1;transform:scale(1) translateY(0)}
+    }
+
+    @keyframes glowPulse{
+      from{box-shadow:0 22px 60px rgba(15,23,42,.32), 0 0 0 rgba(250,204,21,0)}
+      to{box-shadow:0 28px 75px rgba(15,23,42,.42), 0 0 34px rgba(250,204,21,.42)}
+    }
+
+    
+    /* 第三關平板精簡版面：七格縮小，更容易整排辨識 */
+    #level3{
+      padding:18px;
+    }
+
+    #level3 .row{
+      gap:8px;
+      margin-bottom:6px;
+    }
+
+    #level3 h2{
+      font-size:clamp(22px,3.2vw,34px);
+      margin-bottom:6px;
+    }
+
+    #level3 p{
+      line-height:1.45;
+      font-size:15px;
+    }
+
+    #level3 .notice{
+      margin:12px 0;
+      padding:12px 14px;
+      font-size:14px;
+      line-height:1.5;
+      border-radius:18px;
+    }
+
+    #level3 .wave-scroll{
+      overflow-x:auto;
+      padding-bottom:4px;
+    }
+
+    #level3 .wave-labels{
+      grid-template-columns:repeat(7, 128px);
+      gap:8px;
+      margin-top:10px;
+    }
+
+    #level3 .wave-label{
+      padding:10px 6px;
+      border-radius:14px;
+      font-size:14px;
+      line-height:1.3;
+    }
+
+    #level3 .wave-drag-zone{
+      grid-template-columns:repeat(7, 128px);
+      gap:8px;
+      margin-top:10px;
+    }
+
+    #level3 .wave-drag-zone .drag-card{
+      padding:8px;
+      border-radius:18px;
+    }
+
+    #level3 .wave-drag-zone .swatch{
+      height:84px;
+      border-radius:14px;
+    }
+
+    #level3 .drag-hint{
+      margin-top:5px;
+      font-size:13px;
+      line-height:1.25;
+    }
+
+    #level3 .tap-tip{
+      display:none;
+    }
+
+    #level3 .feedback,
+    #level3 .pass,
+    #level3 .fail{
+      margin-top:10px;
+      padding:10px 12px;
+      font-size:14px;
+      line-height:1.45;
+      border-radius:18px;
+    }
+
+    #level3 .button-row{
+      margin-top:10px;
+    }
+
+    #level3 .btn{
+      min-height:44px;
+      padding:10px 16px;
+      font-size:15px;
+      border-radius:14px;
+    }
+
+    /* 第四關平板精簡版面：格子縮小、版面更緊湊 */
+    #level4{
+      padding:18px;
+    }
+
+    #level4 h2{
+      font-size:clamp(22px,3.2vw,34px);
+      margin-bottom:6px;
+    }
+
+    #level4 p{
+      font-size:15px;
+      line-height:1.45;
+    }
+
+    #level4 .notice{
+      margin:12px 0;
+      padding:12px 14px;
+      font-size:14px;
+      line-height:1.5;
+      border-radius:18px;
+    }
+
+    #level4 .level4-layout{
+      gap:14px;
+      align-items:start;
+    }
+
+    #level4 .panel{
+      padding:14px;
+      border-radius:22px;
+    }
+
+    #level4 .selected-note{
+      margin:8px 0 12px;
+      padding:10px 12px;
+      border-radius:16px;
+      font-size:14px;
+    }
+
+    #level4 .slider-group{
+      gap:12px;
+    }
+
+    #level4 .slider-label{
+      margin-bottom:6px;
+      font-size:14px;
+    }
+
+    #level4 .preview{
+      height:58px;
+      border-radius:16px;
+      margin-top:8px;
+    }
+
+    #level4 .grid-wrap{
+      padding:6px;
+      border-radius:20px;
+    }
+
+    #level4 .color-grid{
+      gap:4px;
+    }
+
+    #level4 .cell{
+      border-radius:8px;
+    }
+
+    #level4 .checklist{
+      margin-top:10px;
+      padding:12px;
+      border-radius:18px;
+    }
+
+    #level4 .check-item{
+      padding:5px 0;
+      font-size:14px;
+      line-height:1.35;
+    }
+
+    #level4 .missing-box{
+      margin-top:10px;
+      padding:10px 12px;
+      font-size:14px;
+      line-height:1.45;
+      border-radius:16px;
+    }
+
+    #level4 .button-row{
+      margin-top:10px;
+    }
+
+    #level4 .btn{
+      min-height:44px;
+      padding:10px 14px;
+      font-size:15px;
+      border-radius:14px;
+    }
+
+    #level4 .input{
+      min-height:44px;
+      font-size:15px;
+      border-radius:14px;
+    }
+
+    @media(max-width:1024px){
+      #level3{
+        padding:16px;
+      }
+
+      #level3 .wave-labels{
+        grid-template-columns:repeat(7, 116px);
+      }
+
+      #level3 .wave-drag-zone{
+        grid-template-columns:repeat(7, 116px);
+      }
+
+      #level3 .wave-drag-zone .swatch{
+        height:76px;
+      }
+
+      #level4 .level4-layout{
+        grid-template-columns:0.82fr 1.18fr;
+      }
+
+      #level4 .color-grid{
+        gap:3px;
+      }
+    }
+
+    @media(max-width:760px){
+      #level3 .wave-labels{
+        grid-template-columns:repeat(7, 104px);
+      }
+
+      #level3 .wave-drag-zone{
+        grid-template-columns:repeat(7, 104px);
+      }
+
+      #level3 .wave-drag-zone .swatch{
+        height:70px;
+      }
+
+      #level4 .level4-layout{
+        grid-template-columns:1fr;
+      }
+
+      #level4 .grid-wrap{
+        padding:5px;
+      }
+    }
+
+    /* 第二關平板精簡版面：讓一頁更容易完整顯示 */
+    #level2{
+      padding:18px;
+    }
+
+    #level2 .row{
+      gap:8px;
+      margin-bottom:6px;
+    }
+
+    #level2 h2{
+      font-size:clamp(22px,3.2vw,34px);
+      margin-bottom:6px;
+    }
+
+    #level2 p{
+      line-height:1.45;
+      font-size:15px;
+    }
+
+    #level2 .rank-labels{
+      margin-top:10px;
+      gap:8px;
+      font-size:13px;
+    }
+
+    #level2 .drag-zone{
+      gap:8px;
+      margin-top:8px;
+      grid-template-columns:repeat(5, minmax(0, 1fr));
+    }
+
+    #level2 .drag-card{
+      padding:7px;
+      border-radius:18px;
+    }
+
+    #level2 .swatch{
+      height:74px;
+      border-radius:14px;
+    }
+
+    #level2 .drag-hint{
+      margin-top:5px;
+      font-size:13px;
+      line-height:1.25;
+    }
+
+    #level2 .tap-tip{
+      display:none;
+    }
+
+    #level2 .feedback{
+      margin-top:10px;
+      padding:10px 12px;
+      font-size:14px;
+      line-height:1.45;
+      border-radius:18px;
+    }
+
+    #level2 .pass,
+    #level2 .fail{
+      margin-top:10px;
+      padding:10px 12px;
+      font-size:14px;
+      line-height:1.45;
+      border-radius:18px;
+    }
+
+    #level2 .button-row{
+      margin-top:10px;
+    }
+
+    #level2 .btn{
+      min-height:44px;
+      padding:10px 16px;
+      font-size:15px;
+      border-radius:14px;
+    }
+
+    @media(max-width:1024px){
+      #level2{
+        padding:16px;
+      }
+
+      #level2 .drag-zone{
+        grid-template-columns:repeat(5, minmax(92px, 1fr));
+        overflow-x:auto;
+        padding-bottom:4px;
+      }
+
+      #level2 .swatch{
+        height:68px;
+      }
+    }
+
+    @media(max-width:760px){
+      #level2 .drag-zone{
+        grid-template-columns:repeat(5, 96px);
+      }
+
+      #level2 .swatch{
+        height:62px;
+      }
+
+      #level2 .drag-hint{
+        font-size:12px;
+      }
+    }
+
+    @media(max-width:1024px){
+      .home-grid,.level4-layout{grid-template-columns:1fr}
+      .color-choice-grid{grid-template-columns:repeat(2,1fr)}
+      .drag-zone{grid-template-columns:repeat(2,1fr)}
+      .rank-labels{display:none}
+      .app{padding:22px 14px 40px}
+    }
+    @media(max-width:520px){
+      .card{padding:20px;border-radius:24px}
+      .color-choice-grid{grid-template-columns:1fr}
+      .color-grid{gap:4px}
+      .grid-wrap{padding:6px}
+      .cell{border-radius:8px}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>
+        <div class="eyebrow">🎨 第三道封印・彩度任務</div>
+        <h1>第三道封印|彩度：色彩能量站</h1>
+      </div>
+      <div class="progress">
+        <div class="pill" id="p1">第一關 未通關</div>
+        <div class="pill" id="p2">第二關 未解鎖</div>
+        <div class="pill" id="p3">第三關 未解鎖</div>
+        <div class="pill" id="p4">第四關 未解鎖</div>
+        <div class="pill dark" id="sealStatus">封印未解鎖</div>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="home-grid">
+        <div class="card">
+          <div class="start-pill">✨ 任務開始</div>
+          <h2>破解第三道封印，找回色彩能量！</h2>
+          <p>彩度，就是顏色的鮮豔程度。越鮮豔、越有顏色感，彩度越高；越灰、越濁、越安靜，彩度越低。</p>
+          <div class="notice">重要提醒：彩度看的是「鮮不鮮豔」，不是「亮不亮」。本遊戲採關卡通關模式，通關後才能解鎖下一關。</div>
+          <button class="btn" id="startBtn">開始第一關</button>
+        </div>
+
+        <div class="level-list">
+          <div class="level-item">
+            <div class="icon">一</div>
+            <div>
+              <div class="eyebrow">第一關</div>
+              <h3>彩度偵測器</h3>
+              <p>四張色卡中，選出彩度最高的顏色。完成所有題目即可解鎖第二關。</p>
+            </div>
+          </div>
+          <div class="level-item">
+            <div class="icon locked" id="homeIcon2">二</div>
+            <div>
+              <div class="eyebrow">第二關</div>
+              <h3>灰霧退散排列賽</h3>
+              <p>拖曳挪移色卡，依彩度由低到高排列。完成所有排序即可解鎖第三關。</p>
+            </div>
+          </div>
+          <div class="level-item">
+            <div class="icon locked" id="homeIcon3">三</div>
+            <div>
+              <div class="eyebrow">第三關</div>
+              <h3>低高低彩度波</h3>
+              <p>每題一排有七格色卡，從左邊加黑的低彩度，中間純色，到右邊加白的低彩度，拖曳排列成同色系的低高低波形。前四題使用同色系，第五題加入不同色系變化。</p>
+            </div>
+          </div>
+          <div class="level-item">
+            <div class="icon locked" id="homeIcon4">四</div>
+            <div>
+              <div class="eyebrow">第四關</div>
+              <h3>色彩能量調整師</h3>
+              <p>完成彩度格子配色作品，破解彩度封印。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="level1" class="card hidden">
+        <div class="row">
+          <div>
+            <div class="pill">第一關｜彩度偵測器</div>
+            <h2>請選出彩度最高的顏色</h2>
+            <p id="level1Info"></p>
+          </div>
+          <div class="pill dark">四張色卡挑戰</div>
+        </div>
+
+        <div class="color-choice-grid" id="level1Cards"></div>
+        <div class="feedback" id="level1Feedback">小提醒：彩度越高，顏色越鮮豔、越不像灰色。</div>
+        <div id="level1Pass" class="pass hidden"></div>
+        <div class="button-row" style="justify-content:flex-end;">
+          <button class="btn" id="nextLevel1Btn" disabled>下一題</button>
+        </div>
+      </section>
+
+      <section id="level2" class="card hidden">
+        <div class="row">
+          <div>
+            <div class="pill">第二關｜灰霧退散排列賽</div>
+            <h2>拖曳色卡，由低彩度排到高彩度</h2>
+            <p id="level2Info"></p>
+          </div>
+          <div class="pill dark">排序挑戰</div>
+        </div>
+
+        <div class="rank-labels">
+          <div>最低</div><div></div><div></div><div></div><div>最高</div>
+        </div>
+        <div class="drag-zone" id="dragZone"></div>
+
+        <div class="feedback" id="level2Feedback">桌機可拖曳色卡；平板可先點一下選取色卡，再點另一張交換位置。排好後按下檢查通關。</div>
+        <div id="level2Pass" class="pass hidden"></div>
+        <div id="level2Fail" class="fail hidden"></div>
+        <div class="button-row" style="justify-content:space-between;">
+          <button class="btn outline" id="resetThisSetBtn">重排本組</button>
+          <button class="btn" id="checkLevel2Btn">檢查通關</button>
+        </div>
+      </section>
+
+      <section id="level3" class="card hidden">
+        <div class="row">
+          <div>
+            <div class="pill">第三關｜低高低彩度波</div>
+            <h2>一排七格，拖曳成低高低彩度波</h2>
+            <p id="level3Info"></p>
+          </div>
+          <div class="pill dark">五題過關</div>
+        </div>
+
+        <div class="notice">請把這一排七格色卡拖曳成同色系彩度波：最左邊是加黑的低彩度，中間是純色高彩度，最右邊是加白的低彩度。前四題使用同色系，第五題加入不同色系變化。</div>
+
+        <div class="wave-scroll">
+          <div class="wave-labels" id="waveLabels"></div>
+        </div>
+        <div class="wave-scroll">
+          <div class="wave-drag-zone" id="waveDragZone"></div>
+        </div>
+
+        <div class="feedback" id="level3Feedback">桌機可拖曳色卡；平板可先點一下選取色卡，再點另一張交換位置。請依照上方提示排列成低高低彩度波。</div>
+        <div id="level3Pass" class="pass hidden"></div>
+        <div id="level3Fail" class="fail hidden"></div>
+
+        <div class="button-row" style="justify-content:space-between;">
+          <button class="btn outline" id="resetWaveBtn">重排本題</button>
+          <button class="btn" id="checkLevel3Btn">檢查通關</button>
+        </div>
+      </section>
+
+      <section id="level4" class="card hidden">
+        <div>
+          <div class="pill">第四關｜色彩能量調整師</div>
+          <h2>完成彩度格子配色作品</h2>
+          <p>點選任一格，再調整色相、彩度與明度，按下「填入選取格」。請在作品中完成通關條件：24 格都要完成、3 個低彩度（加白－明度高）、3 個低彩度（加黑－明度低）、4 個高彩度（純色－明度中）、彩度對比、明度對比、彩度類似、明度類似與作品命名。</p>
+          <div class="notice">本關使用格子填色：請完成 24 格，並同時安排 3 個低彩度（加白－明度高）、3 個低彩度（加黑－明度低）、4 個高彩度（純色－明度中），再形成彩度對比、明度對比、彩度類似與明度類似。符合所有條件後，即可破解第三道封印。</div>
+        </div>
+
+        <div class="level4-layout">
+          <div class="panel">
+            <h3>顏色調整面板</h3>
+            <div class="selected-note">目前選取：已選取一格</div>
+            <div class="slider-group">
+              <div><div class="slider-label">色相</div><input type="range" id="hueSlider" min="0" max="360" value="210"></div>
+              <div><div class="slider-label">彩度</div><input type="range" id="satSlider" min="0" max="100" value="80"></div>
+              <div><div class="slider-label">明度</div><input type="range" id="lightSlider" min="20" max="90" value="55"></div>
+            </div>
+            <div style="margin-top:18px;">
+              <div class="slider-label">預覽顏色</div>
+              <div class="preview" id="previewColor"></div>
+            </div>
+
+            <div class="button-row">
+              <button class="btn" id="fillCellBtn">填入選取格</button>
+              <button class="btn outline" id="clearCellBtn">清除這一格</button>
+              <button class="btn outline" id="clearAllBtn">全部重來</button>
+            </div>
+
+            <div class="button-row">
+              <button class="btn outline" id="lowDemoBtn">低彩示範</button>
+              <button class="btn outline" id="highDemoBtn">高彩示範</button>
+              <button class="btn outline" id="mixDemoBtn">對比示範</button>
+            </div>
+
+            <div class="notice" style="background:white;color:#334155;">
+              示範只用來觀察，不能直接通關。按「全部重來」後自行完成作品，並符合所有帶有數量要求的通關條件，才可以解鎖封印。
+            </div>
+          </div>
+
+          <div>
+            <div class="grid-wrap"><div class="color-grid" id="colorGrid"></div></div>
+
+            <div class="checklist">
+              <h3>通關條件檢查</h3>
+              <div id="checklistItems"></div>
+              <div id="missingBox" class="missing-box"></div>
+            </div>
+
+            <div id="level4Pass" class="pass hidden"></div>
+            <div id="level4Fail" class="fail hidden"></div>
+
+            <div class="button-row">
+              <input class="input" id="artName" placeholder="作品名稱，例如：我的彩度能量格">
+              <button class="btn" id="finishBtn">檢查通關</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="result" class="card hidden" style="text-align:center;max-width:900px;margin:0 auto;">
+        <div style="font-size:56px;">🏆</div>
+        <h2>第三道封印|彩度 解鎖成功！</h2>
+        <p>你已完成彩度偵測、彩度排序、前四題同色系＋第五題不同色系的低高低彩度波，以及彩度格子創作。請先下載作品圖片並上傳作業，完成上繳後才能領取開鎖密碼。</p>
+        <div id="resultArtName" class="notice" style="background:white;color:var(--ink);font-size:20px;"></div>
+        <div class="notice" style="text-align:left;">學習提醒：彩度不是亮暗，而是鮮豔程度。不同色相也可以比較彩度，高彩度適合做重點、主角或活潑氣氛；低彩度可能來自加黑或加白；高彩度適合做重點。好的配色可以同時安排多個低彩度與高彩度區塊，形成彩度對比與明度對比，也能保留彩度類似與明度類似的區域。</div>
+        <div class="submit-steps">
+          <h3>作品上繳流程</h3>
+          <div class="submit-step"><div class="num">1</div><div>先下載作品圖片，確認圖片中有你的作品。</div></div>
+          <div class="submit-step"><div class="num">2</div><div>點選「上傳作品到 Google 表單（加分）」，把作品圖片上傳到表單。</div></div>
+          <div class="submit-step"><div class="num">3</div><div>送出表單後，回到這個頁面，點選「我已完成上繳，領取密碼」。</div></div>
+          <div class="upload-warning">提醒：請完成表單上傳後再領取密碼。網頁不會自動讀取 Google 表單結果，請依照老師規定確實上繳。</div>
+        </div>
+
+        <div id="unlockBanner" class="unlock-banner hidden">
+          <div class="small">封印解鎖提示</div>
+          <div class="main">「第三道封印|彩度」解鎖成功</div>
+          <div class="code">開鎖密碼：Chroma</div>
+        </div>
+
+        <div class="button-row result-actions">
+          <button class="btn outline" id="downloadBtn">下載作品圖片</button>
+          <button class="btn upload" id="uploadFormBtn">上傳作品到 Google 表單（加分）</button>
+          <button class="btn unlock" id="claimPasswordBtn" disabled>我已完成上繳，領取密碼</button>
+          <button class="btn outline" id="backToArtBtn">回到作品</button>
+          <button class="btn" id="restartBtn">重新挑戰</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const hslColor = (h,s,l=50)=>`hsl(${h} ${s}% ${l}%)`;
+    const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+
+    const level1Questions = [
+      {label:"紅色系", hue:0, options:[18,42,66,88], answer:88},
+      {label:"藍色系", hue:220, options:[86,24,58,38], answer:86},
+      {label:"綠色系", hue:135, options:[30,82,48,16], answer:82},
+      {label:"紫色系", hue:285, options:[22,54,84,36], answer:84},
+      {label:"橘色系", hue:36, options:[92,28,64,44], answer:92},
+      {label:"混合挑戰", mixed:true, options:[
+        {h:10,s:24},{h:55,s:48},{h:205,s:68},{h:145,s:88}
+      ], answerId:3},
+    ];
+
+    const level2Sets = [
+      {name:"紅色能量", instruction:"請依照彩度由低到高排列。", cards:[
+        {id:"r1",h:0,s:18,l:52},{id:"r2",h:0,s:34,l:52},{id:"r3",h:0,s:50,l:52},{id:"r4",h:0,s:66,l:52},{id:"r5",h:0,s:84,l:52}
+      ]},
+      {name:"藍色能量", instruction:"請依照彩度由低到高排列。", cards:[
+        {id:"b1",h:220,s:16,l:52},{id:"b2",h:220,s:32,l:52},{id:"b3",h:220,s:48,l:52},{id:"b4",h:220,s:66,l:52},{id:"b5",h:220,s:86,l:52}
+      ]},
+      {name:"混合色相挑戰", instruction:"顏色種類不同，請看鮮豔程度，不要只看色相。", cards:[
+        {id:"m1",h:330,s:15,l:52},{id:"m2",h:35,s:30,l:52},{id:"m3",h:185,s:48,l:52},{id:"m4",h:260,s:68,l:52},{id:"m5",h:110,s:86,l:52}
+      ]},
+    ];
+
+    const wavePattern = [
+      {role:"dark3", title:"彩度低", sub:"加黑多"},
+      {role:"dark2", title:"彩度偏低", sub:"加黑中"},
+      {role:"dark1", title:"彩度較高", sub:"加黑少"},
+      {role:"pure", title:"彩度高", sub:"純色"},
+      {role:"light1", title:"彩度較高", sub:"加白少"},
+      {role:"light2", title:"彩度偏低", sub:"加白中"},
+      {role:"light3", title:"彩度低", sub:"加白多"},
+    ];
+    const sameHueRounds = [0, 35, 140, 265];
+    const mixedHueRound = [0, 25, 55, 140, 185, 220, 285];
+
+    const state = {
+      screen:"home",
+      l1Index:0,
+      l1Answered:false,
+      l1Passed:false,
+      l2Index:0,
+      l2Cards:[],
+      l2Passed:false,
+      l3Round:0,
+      l3Cards:[],
+      l3Passed:false,
+      reorderPick:{ level2:null, level3:null },
+      selectedCell:0,
+      hue:210,
+      sat:80,
+      light:55,
+      fills:Array(24).fill(null),
+      artName:"",
+      isDemoWork:false,
+      l4Passed:false,
+    };
+
+    function shuffle(arr){
+      const copy=[...arr];
+      for(let i=copy.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [copy[i],copy[j]]=[copy[j],copy[i]];
+      }
+      return copy;
+    }
+    function presetShuffle(arr){
+      return arr.length === 5 ? [arr[2],arr[0],arr[4],arr[1],arr[3]] : [...arr];
+    }
+
+    function prepareLevel2Set(index=0){
+      state.l2Cards = presetShuffle(level2Sets[index].cards);
+    }
+
+    function generateWaveCards(){
+      const round = state.l3Round;
+      const cards = [];
+
+      if(round < 4){
+        const hue = sameHueRounds[round];
+        cards.push(
+          { id:`r${round}-d3`, role:"dark3", h:hue, s:28, l:18 },
+          { id:`r${round}-d2`, role:"dark2", h:hue, s:34, l:28 },
+          { id:`r${round}-d1`, role:"dark1", h:hue, s:42, l:38 },
+          { id:`r${round}-p`, role:"pure", h:hue, s:92, l:52 },
+          { id:`r${round}-l1`, role:"light1", h:hue, s:46, l:70 },
+          { id:`r${round}-l2`, role:"light2", h:hue, s:38, l:80 },
+          { id:`r${round}-l3`, role:"light3", h:hue, s:30, l:89 },
+        );
+      } else {
+        mixedHueRound.forEach((hue, idx) => {
+          const role = wavePattern[idx].role;
+          if(role === "dark3") cards.push({ id:`m-${idx}`, role, h:hue, s:28, l:18 });
+          if(role === "dark2") cards.push({ id:`m-${idx}`, role, h:hue, s:34, l:28 });
+          if(role === "dark1") cards.push({ id:`m-${idx}`, role, h:hue, s:42, l:38 });
+          if(role === "pure")  cards.push({ id:`m-${idx}`, role, h:hue, s:92, l:52 });
+          if(role === "light1") cards.push({ id:`m-${idx}`, role, h:hue, s:46, l:70 });
+          if(role === "light2") cards.push({ id:`m-${idx}`, role, h:hue, s:38, l:80 });
+          if(role === "light3") cards.push({ id:`m-${idx}`, role, h:hue, s:30, l:89 });
+        });
+      }
+
+      state.l3Cards = shuffle(cards);
+    }
+
+    function showScreen(id){
+      ["home","level1","level2","level3","level4","result"].forEach(x=>document.getElementById(x).classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+      state.screen=id;
+      updateProgress();
+    }
+
+    function updateProgress(){
+      const p1=document.getElementById("p1");
+      const p2=document.getElementById("p2");
+      const p3=document.getElementById("p3");
+      const p4=document.getElementById("p4");
+      const seal=document.getElementById("sealStatus");
+
+      p1.textContent = state.l1Passed ? "第一關 已通關" : "第一關 未通關";
+      p2.textContent = state.l1Passed ? (state.l2Passed ? "第二關 已通關" : "第二關 已解鎖") : "第二關 未解鎖";
+      p3.textContent = state.l2Passed ? (state.l3Passed ? "第三關 已通關" : "第三關 已解鎖") : "第三關 未解鎖";
+      p4.textContent = state.l3Passed ? (state.l4Passed ? "第四關 已通關" : "第四關 已解鎖") : "第四關 未解鎖";
+      seal.textContent = state.l4Passed ? "封印解鎖成功" : "封印未解鎖";
+
+      p1.classList.toggle("done", state.l1Passed);
+      p2.classList.toggle("done", state.l2Passed);
+      p3.classList.toggle("done", state.l3Passed);
+      p4.classList.toggle("done", state.l4Passed);
+      seal.classList.toggle("done", state.l4Passed);
+
+      document.getElementById("homeIcon2").classList.toggle("locked", !state.l1Passed);
+      document.getElementById("homeIcon3").classList.toggle("locked", !state.l2Passed);
+      document.getElementById("homeIcon4").classList.toggle("locked", !state.l3Passed);
+    }
+
+    function renderLevel1(){
+      const q=level1Questions[state.l1Index];
+      document.getElementById("level1Info").textContent = `題目進度：${state.l1Index+1} / ${level1Questions.length}｜${q.label}`;
+      document.getElementById("level1Feedback").textContent = "小提醒：彩度越高，顏色越鮮豔、越不像灰色。";
+      document.getElementById("nextLevel1Btn").disabled = !state.l1Answered;
+      document.getElementById("nextLevel1Btn").textContent = state.l1Index === level1Questions.length-1 ? "確認第一關通關" : "下一題";
+      document.getElementById("level1Pass").classList.add("hidden");
+      const wrap=document.getElementById("level1Cards");
+      wrap.innerHTML="";
+
+      const options = q.mixed ? q.options.map((o,i)=>({...o, id:i})) : q.options.map((s,i)=>({h:q.hue,s,id:i}));
+      options.forEach(opt=>{
+        const btn=document.createElement("button");
+        btn.className="color-card";
+        btn.innerHTML=`<div class="color-block" style="background:${hslColor(opt.h,opt.s,52)}"></div><div class="color-label">色卡</div>`;
+        btn.onclick=()=>answerLevel1(opt);
+        wrap.appendChild(btn);
+      });
+      updateProgress();
+    }
+
+    function answerLevel1(opt){
+      const q=level1Questions[state.l1Index];
+      const correct = q.mixed ? opt.id === q.answerId : opt.s === q.answer;
+      if(!correct){
+        document.getElementById("level1Feedback").textContent = "再觀察看看：哪一張最鮮豔、最不像灰色？";
+        state.l1Answered=false;
+        document.getElementById("nextLevel1Btn").disabled=true;
+        return;
+      }
+      state.l1Answered=true;
+      document.getElementById("level1Feedback").textContent = "正確！你找到了彩度最高的色卡。";
+      document.getElementById("nextLevel1Btn").disabled=false;
+    }
+
+    function nextLevel1(){
+      if(state.l1Index === level1Questions.length-1){
+        state.l1Passed=true;
+        const box=document.getElementById("level1Pass");
+        box.textContent="第一關通關！彩度偵測完成，第二關已解鎖。";
+        box.classList.remove("hidden");
+        const btn=document.getElementById("nextLevel1Btn");
+        btn.textContent="前往第二關";
+        btn.onclick=()=>{
+          btn.onclick=nextLevel1;
+          prepareLevel2Set(state.l2Index);
+          renderLevel2();
+          showScreen("level2");
+        };
+        updateProgress();
+        return;
+      }
+      state.l1Index++;
+      state.l1Answered=false;
+      renderLevel1();
+    }
+
+    let dragFrom=null;
+
+    function getZoneSource(zoneType){
+      return zoneType==="level2" ? state.l2Cards : state.l3Cards;
+    }
+
+    function handleTapReorder(zoneType, index){
+      const picked = state.reorderPick[zoneType];
+
+      if(picked === null){
+        state.reorderPick[zoneType] = index;
+      }else if(picked === index){
+        state.reorderPick[zoneType] = null;
+      }else{
+        const source = getZoneSource(zoneType);
+        [source[picked], source[index]] = [source[index], source[picked]];
+        state.reorderPick[zoneType] = null;
+      }
+
+      if(zoneType==="level2"){
+        renderLevel2();
+      }else{
+        renderLevel3();
+      }
+    }
+
+    function addDragEvents(el, zoneType){
+      el.addEventListener("dragstart",()=>{
+        dragFrom=Number(el.dataset.index);
+        el.classList.add("dragging");
+      });
+      el.addEventListener("dragend",()=>el.classList.remove("dragging"));
+      el.addEventListener("dragover",e=>{
+        e.preventDefault();
+        el.classList.add("over");
+      });
+      el.addEventListener("dragleave",()=>el.classList.remove("over"));
+      el.addEventListener("drop",e=>{
+        e.preventDefault();
+        el.classList.remove("over");
+        const to=Number(el.dataset.index);
+        if(dragFrom===null || dragFrom===to) return;
+        const source = getZoneSource(zoneType);
+        const moved=source.splice(dragFrom,1)[0];
+        source.splice(to,0,moved);
+        dragFrom=null;
+        state.reorderPick[zoneType] = null;
+        if(zoneType==="level2") renderLevel2(); else renderLevel3();
+      });
+
+      el.addEventListener("click",()=>{
+        handleTapReorder(zoneType, Number(el.dataset.index));
+      });
+
+      el.addEventListener("touchend",(e)=>{
+        e.preventDefault();
+        handleTapReorder(zoneType, Number(el.dataset.index));
+      }, {passive:false});
+    }
+
+    function renderLevel2(){
+      const set=level2Sets[state.l2Index];
+      document.getElementById("level2Info").textContent=`題目進度：${state.l2Index+1} / ${level2Sets.length}｜${set.name}｜${set.instruction}`;
+      document.getElementById("level2Feedback").textContent="平板操作：點一張色卡，再點另一張交換。排好後按檢查通關。";
+      document.getElementById("level2Pass").classList.add("hidden");
+      document.getElementById("level2Fail").classList.add("hidden");
+      document.getElementById("checkLevel2Btn").textContent="檢查通關";
+
+      const zone=document.getElementById("dragZone");
+      zone.innerHTML="";
+      state.l2Cards.forEach((card,i)=>{
+        const el=document.createElement("div");
+        const isPicked = state.reorderPick.level2 === i;
+        el.className="drag-card"+(isPicked ? " tap-selected" : "");
+        el.draggable=true;
+        el.dataset.index=i;
+        el.innerHTML=`<div class="swatch" style="background:${hslColor(card.h,card.s,card.l)}"></div><div class="drag-hint">${isPicked ? "已選取" : "點選交換"}</div><div class="tap-tip">平板可點一下選卡，再點另一張</div>`;
+        addDragEvents(el,"level2");
+        zone.appendChild(el);
+      });
+      updateProgress();
+    }
+
+    function resetThisSet(){
+      state.reorderPick.level2 = null;
+      prepareLevel2Set(state.l2Index);
+      renderLevel2();
+    }
+
+    function checkLevel2(){
+      const correct=level2Sets[state.l2Index].cards;
+      const ok=state.l2Cards.every((card,i)=>card.id===correct[i].id);
+      const pass=document.getElementById("level2Pass");
+      const fail=document.getElementById("level2Fail");
+      const btn=document.getElementById("checkLevel2Btn");
+      if(!ok){
+        fail.textContent="順序還不對。請重新拖曳排列：越灰越低，越鮮豔越高。";
+        fail.classList.remove("hidden");
+        pass.classList.add("hidden");
+        return;
+      }
+
+      fail.classList.add("hidden");
+      if(state.l2Index === level2Sets.length-1){
+        state.l2Passed=true;
+        pass.textContent="第二關通關！彩度排序完成，第三關「低高低彩度波」已解鎖。";
+        pass.classList.remove("hidden");
+        btn.textContent="前往第三關";
+        btn.onclick=()=>{
+          btn.onclick=checkLevel2;
+          state.reorderPick.level3 = null;
+          state.l3Round=0;
+          generateWaveCards();
+          renderLevel3();
+          showScreen("level3");
+        };
+        updateProgress();
+      }else{
+        pass.textContent="本組通關！準備進入下一組排序。";
+        pass.classList.remove("hidden");
+        btn.textContent="下一組";
+        btn.onclick=()=>{
+          btn.onclick=checkLevel2;
+          state.reorderPick.level2 = null;
+          state.l2Index++;
+          prepareLevel2Set(state.l2Index);
+          renderLevel2();
+        };
+      }
+    }
+
+    function renderLevel3(){
+      const roundLabel = state.l3Round < 4 ? "同色系挑戰" : "不同色系變化";
+      document.getElementById("level3Info").textContent = `題目進度：${state.l3Round+1} / 5｜${roundLabel}`;
+      document.getElementById("level3Feedback").textContent="平板操作：點一張色卡，再點另一張交換。請排成左低、中高、右低。";
+      document.getElementById("level3Pass").classList.add("hidden");
+      document.getElementById("level3Fail").classList.add("hidden");
+      document.getElementById("checkLevel3Btn").textContent="檢查通關";
+
+      const labels=document.getElementById("waveLabels");
+      labels.innerHTML="";
+      wavePattern.forEach(item=>{
+        const div=document.createElement("div");
+        div.className="wave-label";
+        div.innerHTML=`${item.title}<br>${item.sub}`;
+        labels.appendChild(div);
+      });
+
+      const zone=document.getElementById("waveDragZone");
+      zone.innerHTML="";
+      state.l3Cards.forEach((card,i)=>{
+        const el=document.createElement("div");
+        const isPicked = state.reorderPick.level3 === i;
+        el.className="drag-card"+(isPicked ? " tap-selected" : "");
+        el.draggable=true;
+        el.dataset.index=i;
+        el.innerHTML=`<div class="swatch" style="background:${hslColor(card.h,card.s,card.l)}"></div><div class="drag-hint">${isPicked ? "已選取" : "點選交換"}</div><div class="tap-tip">平板可點一下選卡，再點另一張</div>`;
+        addDragEvents(el,"level3");
+        zone.appendChild(el);
+      });
+      updateProgress();
+    }
+
+    function resetWave(){
+      state.reorderPick.level3 = null;
+      generateWaveCards();
+      renderLevel3();
+    }
+
+    function checkLevel3(){
+      const expected = wavePattern.map(item => item.role);
+      const ok=state.l3Cards.every((card,i)=>card.role===expected[i]);
+      const pass=document.getElementById("level3Pass");
+      const fail=document.getElementById("level3Fail");
+      const btn=document.getElementById("checkLevel3Btn");
+
+      if(!ok){
+        fail.textContent="順序還不對。請排成：左邊加黑的低彩度，越往中間越接近純色；中間是純色高彩度；再往右邊逐漸加白，形成低高低的排列。";
+        fail.classList.remove("hidden");
+        pass.classList.add("hidden");
+        return;
+      }
+
+      fail.classList.add("hidden");
+      if(state.l3Round === 4){
+        state.l3Passed=true;
+        pass.textContent="第三關通關！你已完成前四題同色系與第五題不同色系變化的低高低彩度波，第四關創作已解鎖。";
+        pass.classList.remove("hidden");
+        btn.textContent="前往第四關";
+        btn.onclick=()=>{
+          btn.onclick=checkLevel3;
+          renderLevel4();
+          showScreen("level4");
+        };
+        updateProgress();
+      }else{
+        pass.textContent="本題通關！準備進入下一題七格低高低挑戰。";
+        pass.classList.remove("hidden");
+        btn.textContent="下一題";
+        btn.onclick=()=>{
+          btn.onclick=checkLevel3;
+          state.reorderPick.level3 = null;
+          state.l3Round++;
+          generateWaveCards();
+          renderLevel3();
+        };
+      }
+    }
+
+    function parseHsl(color){
+      const parts=color.replace("hsl(","").replace(")","").split(" ");
+      return {
+        h:Number(parts[0] || 0),
+        s:Number((parts[1]||"0%").replace("%","")),
+        l:Number((parts[2]||"0%").replace("%","")),
+      };
+    }
+
+    function hueFamily(h){
+      const normalized = ((h % 360) + 360) % 360;
+      return Math.floor(normalized / 45);
+    }
+
+    function maxClusterWithinGap(values, gap){
+      if(!values.length) return 0;
+      const sorted=[...values].sort((a,b)=>a-b);
+      let best = 1;
+      let left = 0;
+      for(let right=0; right<sorted.length; right++){
+        while(sorted[right] - sorted[left] > gap){
+          left++;
+        }
+        best = Math.max(best, right - left + 1);
+      }
+      return best;
+    }
+
+    function evaluateLevel4(){
+      if(state.isDemoWork){
+        return {ok:false, missing:["請按全部重來後自行完成作品"], demo:true};
+      }
+
+      const filledCount = state.fills.filter(Boolean).length;
+      const allFilled = filledCount >= 24;
+      const colors = state.fills.filter(Boolean).map(parseHsl);
+
+      // 低彩度（加白－明度高）：彩度低、明度高
+      const whiteLowCount = colors.filter(c => c.s <= 45 && c.l >= 70).length;
+
+      // 低彩度（加黑－明度低）：彩度低、明度低
+      const blackLowCount = colors.filter(c => c.s <= 45 && c.l <= 35).length;
+
+      // 高彩度（純色－明度中）：彩度高、明度在中間，不是太白也不是太黑
+      const pureHighColors = colors.filter(c => c.s >= 70 && c.l >= 40 && c.l <= 65);
+      const pureHighHueCount = new Set(pureHighColors.map(c => hueFamily(c.h))).size;
+
+      const lowChromaCount = colors.filter(c => c.s <= 45).length;
+      const highChromaCount = colors.filter(c => c.s >= 70).length;
+      const hasChromaContrast = lowChromaCount >= 6 && highChromaCount >= 4;
+
+      const lowLightCount = colors.filter(c => c.l <= 35).length;
+      const highLightCount = colors.filter(c => c.l >= 70).length;
+      const hasLightContrast = lowLightCount >= 3 && highLightCount >= 3;
+
+      const chromaSimilarCount = maxClusterWithinGap(colors.map(c => c.s), 10);
+      const lightSimilarCount = maxClusterWithinGap(colors.map(c => c.l), 8);
+      const hasChromaSimilar = chromaSimilarCount >= 4;
+      const hasLightSimilar = lightSimilarCount >= 4;
+
+      const nameLength = state.artName.trim().length;
+      const hasName = nameLength >= 2;
+
+      const missing=[];
+      if(!allFilled) missing.push("完成 24 格填色");
+      if(whiteLowCount < 3) missing.push("加入 3 個低彩度（加白－明度高）");
+      if(blackLowCount < 3) missing.push("加入 3 個低彩度（加黑－明度低）");
+      if(pureHighHueCount < 4) missing.push("加入 4 個高彩度（純色－明度中）");
+      if(!hasChromaContrast) missing.push("形成彩度的對比（至少 6 格低彩度＋4 格高彩度）");
+      if(!hasLightContrast) missing.push("形成明度的對比（至少 3 格低明度＋3 格高明度）");
+      if(!hasChromaSimilar) missing.push("形成彩度的類似（至少 4 格彩度相近）");
+      if(!hasLightSimilar) missing.push("形成明度的類似（至少 4 格明度相近）");
+      if(!hasName) missing.push("作品命名至少 2 個字");
+
+      return {
+        ok:missing.length===0,
+        missing,
+        filledCount,
+        allFilled,
+        whiteLowCount,
+        blackLowCount,
+        pureHighHueCount,
+        lowChromaCount,
+        highChromaCount,
+        hasChromaContrast,
+        lowLightCount,
+        highLightCount,
+        hasLightContrast,
+        chromaSimilarCount,
+        lightSimilarCount,
+        hasChromaSimilar,
+        hasLightSimilar,
+        nameLength,
+        hasName,
+      };
+    }
+
+    function currentColor(){return hslColor(state.hue,state.sat,state.light)}
+
+    function renderLevel4(){
+      const grid=document.getElementById("colorGrid");
+      grid.innerHTML="";
+      state.fills.forEach((color,i)=>{
+        const cell=document.createElement("button");
+        cell.className="cell"+(state.selectedCell===i?" selected":"")+(color ? "" : " empty");
+        cell.style.background=color||"";
+        cell.onclick=()=>{state.selectedCell=i;renderLevel4()};
+        grid.appendChild(cell);
+      });
+      document.getElementById("hueSlider").value=state.hue;
+      document.getElementById("satSlider").value=state.sat;
+      document.getElementById("lightSlider").value=state.light;
+      document.getElementById("previewColor").style.background=currentColor();
+      document.getElementById("artName").value=state.artName;
+      document.getElementById("level4Pass").classList.add("hidden");
+      document.getElementById("level4Fail").classList.add("hidden");
+
+      const ev=evaluateLevel4();
+      const items=[
+        [`24 格都要完成｜目前 ${ev.filledCount}/24`, ev.allFilled && !ev.demo],
+        [`3 個低彩度（加白－明度高）｜目前 ${ev.whiteLowCount}/3`, ev.whiteLowCount >= 3 && !ev.demo],
+        [`3 個低彩度（加黑－明度低）｜目前 ${ev.blackLowCount}/3`, ev.blackLowCount >= 3 && !ev.demo],
+        [`4 個高彩度（純色－明度中）｜目前 ${ev.pureHighHueCount}/4`, ev.pureHighHueCount >= 4 && !ev.demo],
+        [`彩度的對比｜低彩度 ${ev.lowChromaCount} 格 / 高彩度 ${ev.highChromaCount} 格`, ev.hasChromaContrast && !ev.demo],
+        [`明度的對比｜低明度 ${ev.lowLightCount} 格 / 高明度 ${ev.highLightCount} 格`, ev.hasLightContrast && !ev.demo],
+        [`彩度的類似｜相近彩度最多 ${ev.chromaSimilarCount} 格`, ev.hasChromaSimilar && !ev.demo],
+        [`明度的類似｜相近明度最多 ${ev.lightSimilarCount} 格`, ev.hasLightSimilar && !ev.demo],
+        [`作品命名至少 2 個字｜目前 ${ev.nameLength} 字`, ev.hasName],
+      ];
+      document.getElementById("checklistItems").innerHTML=items.map(([text,done])=>`<div class="check-item ${done?'done':''}">${done?'✓':'□'} ${text}</div>`).join("");
+
+      const box=document.getElementById("missingBox");
+      if(ev.ok){
+        box.className="missing-box good";
+        box.textContent="太好了！目前已符合所有通關條件。";
+      }else{
+        box.className="missing-box "+(ev.demo?"demo":"");
+        box.innerHTML="<div style='margin-bottom:4px;'>目前還缺的項目：</div>"+ev.missing.map(x=>`<div>・${x}</div>`).join("");
+      }
+      updateProgress();
+    }
+
+    function fillCell(){state.fills[state.selectedCell]=currentColor();renderLevel4()}
+    function clearCell(){state.fills[state.selectedCell]=null;renderLevel4()}
+    function clearAll(){state.fills=Array(24).fill(null);state.selectedCell=0;state.isDemoWork=false;renderLevel4()}
+
+    function autoDemo(type){
+      for(let i=0;i<24;i++){
+        const h=(state.hue+i*12)%360;
+        const s= type==="low" ? clamp(18+(i%3)*6,0,100) : type==="high" ? clamp(78+(i%3)*7,0,100) : i%2===0 ? 22 : 88;
+        state.fills[i]=hslColor(h,s,55);
+      }
+      state.isDemoWork=true;
+      renderLevel4();
+    }
+
+    function finishLevel4(){
+      const ev=evaluateLevel4();
+      const pass=document.getElementById("level4Pass");
+      const fail=document.getElementById("level4Fail");
+      if(ev.ok){
+        state.l4Passed=true;
+        pass.textContent="第三道封印|彩度 解鎖成功！你已完成色彩能量任務。";
+        pass.classList.remove("hidden");
+        fail.classList.add("hidden");
+        renderResult();
+        showScreen("result");
+      }else{
+        fail.textContent= ev.demo ? "示範作品不能通關，請按「全部重來」後自行完成。" : "第四關尚未通關，請依照缺少項目修正作品，再完成挑戰。";
+        fail.classList.remove("hidden");
+        pass.classList.add("hidden");
+        renderLevel4();
+      }
+    }
+
+    function renderResult(){
+      document.getElementById("resultArtName").textContent = state.artName.trim() ? `作品名稱：${state.artName.trim()}` : "作品名稱：我的彩度能量格";
+      const banner=document.getElementById("unlockBanner");
+      if(banner) banner.classList.add("hidden");
+      const claimBtn=document.getElementById("claimPasswordBtn");
+      if(claimBtn) claimBtn.disabled=true;
+      updateProgress();
+    }
+
+    function showUnlockBanner(){
+      const banner=document.getElementById("unlockBanner");
+      if(!banner) return;
+      banner.classList.remove("hidden");
+      banner.scrollIntoView({behavior:"smooth", block:"center"});
+    }
+
+    function downloadArtwork(){
+      const canvas=document.createElement("canvas");
+      canvas.width=1200; canvas.height=960;
+      const ctx=canvas.getContext("2d");
+      if(!ctx) return;
+      ctx.fillStyle="#fff"; ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle="#0f172a"; ctx.font="bold 46px sans-serif"; ctx.textAlign="center";
+      ctx.fillText(state.artName.trim()||"我的彩度能量格",600,86);
+      ctx.fillStyle="#475569"; ctx.font="26px sans-serif";
+      ctx.fillText("第三道封印|彩度：色彩能量站｜第四關作品",600,130);
+      const cols=6, cell=130, gap=10, startX=(1200-(cols*cell+(cols-1)*gap))/2, startY=190;
+      state.fills.forEach((color,i)=>{
+        const col=i%cols,row=Math.floor(i/cols),x=startX+col*(cell+gap),y=startY+row*(cell+gap);
+        ctx.fillStyle=color||"hsl(0 0% 94%)";
+        ctx.fillRect(x,y,cell,cell);
+        ctx.strokeStyle="#cbd5e1"; ctx.lineWidth=4; ctx.strokeRect(x,y,cell,cell);
+      });
+      ctx.fillStyle="#0f172a"; ctx.font="bold 34px sans-serif";
+      ctx.fillText("第三道封印|彩度 解鎖成功",600,810);
+      ctx.fillStyle="#facc15";
+      ctx.fillRect(390,835,420,58);
+      ctx.fillStyle="#0f172a";
+      ctx.font="bold 30px sans-serif";
+      ctx.fillText("開鎖密碼：Chroma",600,874);
+      ctx.fillStyle="#475569"; ctx.font="22px sans-serif";
+      ctx.fillText("彩度看的是鮮豔程度，不是亮暗。",600,920);
+      const link=document.createElement("a");
+      const safe=(state.artName.trim()||"彩度作品").replace(/[\\/:*?"<>|]/g,"_");
+      link.download=`${safe}.png`;
+      link.href=canvas.toDataURL("image/png");
+      link.click();
+    }
+
+    function openUploadForm(){
+      const btn=document.getElementById("claimPasswordBtn");
+      if(btn) btn.disabled=false;
+      window.open("https://forms.gle/Vwa1LS5wUF56WYxy8", "_blank");
+    }
+
+    function claimPassword(){
+      showUnlockBanner();
+    }
+
+    function resetAll(){
+      state.screen="home";
+      state.l1Index=0; state.l1Answered=false; state.l1Passed=false;
+      state.l2Index=0; state.l2Passed=false; prepareLevel2Set(0);
+      state.l3Round=0; state.l3Passed=false; generateWaveCards();
+      state.reorderPick = { level2:null, level3:null };
+      state.selectedCell=0; state.hue=210; state.sat=80; state.light=55;
+      state.fills=Array(24).fill(null); state.artName=""; state.isDemoWork=false; state.l4Passed=false;
+      document.getElementById("checkLevel2Btn").onclick=checkLevel2;
+      document.getElementById("checkLevel2Btn").textContent="檢查通關";
+      document.getElementById("checkLevel3Btn").onclick=checkLevel3;
+      document.getElementById("checkLevel3Btn").textContent="檢查通關";
+      const banner=document.getElementById("unlockBanner");
+      if(banner) banner.classList.add("hidden");
+      const claimBtn=document.getElementById("claimPasswordBtn");
+      if(claimBtn) claimBtn.disabled=true;
+      renderLevel1(); renderLevel2(); renderLevel3(); renderLevel4(); showScreen("home");
+    }
+
+    document.getElementById("startBtn").onclick=()=>{renderLevel1();showScreen("level1")};
+    document.getElementById("nextLevel1Btn").onclick=nextLevel1;
+    document.getElementById("resetThisSetBtn").onclick=resetThisSet;
+    document.getElementById("checkLevel2Btn").onclick=checkLevel2;
+    document.getElementById("resetWaveBtn").onclick=resetWave;
+    document.getElementById("checkLevel3Btn").onclick=checkLevel3;
+    document.getElementById("hueSlider").oninput=e=>{state.hue=Number(e.target.value);renderLevel4()};
+    document.getElementById("satSlider").oninput=e=>{state.sat=Number(e.target.value);renderLevel4()};
+    document.getElementById("lightSlider").oninput=e=>{state.light=Number(e.target.value);renderLevel4()};
+    document.getElementById("fillCellBtn").onclick=fillCell;
+    document.getElementById("clearCellBtn").onclick=clearCell;
+    document.getElementById("clearAllBtn").onclick=clearAll;
+    document.getElementById("lowDemoBtn").onclick=()=>autoDemo("low");
+    document.getElementById("highDemoBtn").onclick=()=>autoDemo("high");
+    document.getElementById("mixDemoBtn").onclick=()=>autoDemo("mix");
+    document.getElementById("artName").oninput=e=>{state.artName=e.target.value;renderLevel4()};
+    document.getElementById("finishBtn").onclick=finishLevel4;
+    document.getElementById("downloadBtn").onclick=downloadArtwork;
+    document.getElementById("uploadFormBtn").onclick=openUploadForm;
+    document.getElementById("claimPasswordBtn").onclick=claimPassword;
+    document.getElementById("backToArtBtn").onclick=()=>{renderLevel4();showScreen("level4")};
+    document.getElementById("restartBtn").onclick=resetAll;
+
+    prepareLevel2Set(0);
+    generateWaveCards();
+    renderLevel1(); renderLevel2(); renderLevel3(); renderLevel4(); showScreen("home");
+  </script>
+<script>
+  (() => {
+    const nextButton = document.createElement("a");
+    nextButton.href = "chroma-password.html";
+    nextButton.textContent = "學習驗收";
+    nextButton.style.cssText = [
+      "position:fixed",
+      "right:22px",
+      "bottom:22px",
+      "z-index:9999",
+      "display:none",
+      "min-height:54px",
+      "border-radius:999px",
+      "padding:12px 22px",
+      "background:#ff9f1c",
+      "color:#17120a",
+      "font-family:'Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif",
+      "font-size:18px",
+      "font-weight:900",
+      "text-decoration:none",
+      "box-shadow:0 10px 24px rgba(15,23,42,0.24)",
+      "align-items:center",
+      "justify-content:center"
+    ].join(";");
+    document.body.appendChild(nextButton);
+
+    function hasPasswordText() {
+      const rawText = document.body.innerText || "";
+      const text = rawText.replace(/\s/g, "");
+      return text.includes("開鎖密碼") || text.includes("Chroma") || text.includes("CHROMA");
+    }
+
+    function updateNextButton() {
+      nextButton.style.display = hasPasswordText() ? "inline-flex" : "none";
+    }
+
+    updateNextButton();
+    window.addEventListener("load", updateNextButton);
+    document.addEventListener("click", () => window.setTimeout(updateNextButton, 120));
+    document.addEventListener("change", () => window.setTimeout(updateNextButton, 120));
+
+    const observer = new MutationObserver(updateNextButton);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ["class", "style", "hidden"]
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>第一道封印｜色相：12色相環解鎖</title>
+  <style>
+    :root {
+      --bg: #fff7e8;
+      --card: #ffffff;
+      --ink: #263238;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #ff9f1c;
+      --accent-dark: #d97706;
+      --good: #16a34a;
+      --bad: #dc2626;
+      --lock: #9ca3af;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 214, 0, 0.25), transparent 28%),
+        radial-gradient(circle at top right, rgba(0, 191, 239, 0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255, 0, 168, 0.13), transparent 25%),
+        var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 30px 18px 18px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto 48px;
+    }
+
+    .progress-card {
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: 0 16px 40px rgba(31, 41, 55, 0.08);
+      position: sticky;
+      top: 8px;
+      z-index: 5;
+      backdrop-filter: blur(10px);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .step-tab {
+      border: 2px solid var(--line);
+      background: #fff;
+      border-radius: 18px;
+      padding: 12px 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      text-align: center;
+      font-weight: 900;
+      color: var(--muted);
+      min-height: 66px;
+      font-family: inherit;
+    }
+
+    .step-tab small {
+      display: block;
+      font-weight: 700;
+      margin-top: 4px;
+      color: inherit;
+      line-height: 1.25;
+    }
+
+    .step-tab.active {
+      border-color: var(--accent);
+      color: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(217, 119, 6, 0.14);
+    }
+
+    .step-tab.done {
+      border-color: rgba(22, 163, 74, 0.4);
+      color: var(--good);
+      background: #f0fdf4;
+    }
+
+    .step-tab.locked {
+      cursor: not-allowed;
+      color: var(--lock);
+      background: #f3f4f6;
+      opacity: 0.78;
+    }
+
+    .panel {
+      margin-top: 20px;
+      background: var(--card);
+      border-radius: 28px;
+      box-shadow: 0 18px 55px rgba(31, 41, 55, 0.11);
+      padding: clamp(20px, 3vw, 34px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .section-title {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-weight: 1000;
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(255, 159, 28, 0.25);
+      flex-shrink: 0;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 34px);
+    }
+
+    .hint {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #9a3412;
+      border-radius: 18px;
+      padding: 14px 16px;
+      line-height: 1.75;
+      margin: 14px 0 22px;
+    }
+
+    .question-card,
+    .mini-card {
+      background: #f9fafb;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .question {
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+    }
+
+    label.option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid var(--line);
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: 0.15s;
+    }
+
+    label.option:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+      align-items: center;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.15s;
+      font-family: inherit;
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 8px 18px rgba(255, 159, 28, 0.24);
+    }
+
+    button.secondary {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    button.ghost {
+      background: #fff;
+      color: var(--accent-dark);
+      border: 2px solid #fed7aa;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      transform: none;
+      box-shadow: none;
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .feedback {
+      min-height: 26px;
+      font-weight: 900;
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+
+    .feedback.good { color: var(--good); }
+    .feedback.bad { color: var(--bad); }
+
+    .locked-message {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .locked-message .lock-icon {
+      font-size: 52px;
+      margin-bottom: 16px;
+    }
+
+    .wheel-area {
+      display: grid;
+      grid-template-columns: minmax(430px, 1fr) minmax(260px, 330px);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .wheel-bank-side {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      position: sticky;
+      top: 118px;
+    }
+
+    .wheel {
+      position: relative;
+      width: min(650px, 100%);
+      aspect-ratio: 1;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: #fffaf2;
+      border: 2px dashed #fbbf24;
+      box-shadow: inset 0 0 0 18px rgba(255, 247, 237, 0.9);
+    }
+
+    .slot {
+      position: absolute;
+      width: 112px;
+      height: 60px;
+      border-radius: 18px;
+      border: 2px dashed #cbd5e1;
+      background: rgba(255,255,255,0.92);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 900;
+      font-size: 14px;
+      transform: translate(-50%, -50%);
+      transition: 0.15s;
+      padding: 4px;
+    }
+
+    .slot.over {
+      border-color: var(--accent);
+      background: #fffbeb;
+      transform: translate(-50%, -50%) scale(1.04);
+    }
+
+    .slot .slot-label {
+      font-size: 15px;
+      font-weight: 1000;
+      color: #92400e;
+      line-height: 1.15;
+    }
+
+    .slot .slot-hint {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+
+    .slot .color-chip {
+      width: 94px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #111;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.75);
+      border: 1px solid rgba(0,0,0,0.12);
+      font-size: 13px;
+      line-height: 1.2;
+      cursor: pointer;
+    }
+
+    .slot .color-chip:hover {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: #f9fafb;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 14px;
+      min-height: 180px;
+    }
+
+    .palette.grid-bank {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(74px, 1fr));
+      gap: 10px;
+      align-items: start;
+      align-content: start;
+      width: 100%;
+      max-width: 330px;
+      margin: 0;
+    }
+
+    .palette.grid-bank .draggable {
+      width: 100%;
+      min-width: 0;
+      padding: 10px 8px;
+      font-size: 14px;
+    }
+
+    .draggable,
+    .color-choice {
+      border-radius: 999px;
+      padding: 10px 13px;
+      min-width: 86px;
+      text-align: center;
+      font-weight: 900;
+      cursor: grab;
+      border: 1px solid rgba(0,0,0,0.16);
+      user-select: none;
+      box-shadow: 0 6px 14px rgba(31, 41, 55, 0.08);
+      color: #111;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.72);
+    }
+
+    .draggable:active { cursor: grabbing; }
+
+    .drop-zone-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    .drop-zone {
+      min-height: 230px;
+      border: 2px dashed #cbd5e1;
+      border-radius: 22px;
+      background: #fff;
+      padding: 14px;
+      transition: 0.15s;
+    }
+
+    .drop-zone.over {
+      border-color: var(--accent);
+      background: #fffbeb;
+    }
+
+    .drop-zone h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+      text-align: center;
+    }
+
+    .drop-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-content: flex-start;
+    }
+
+    .bank-title {
+      margin: 0 0 10px;
+      font-weight: 1000;
+      color: var(--muted);
+    }
+
+    .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .color-choice {
+      cursor: pointer;
+      position: relative;
+      opacity: 0.95;
+      font-family: inherit;
+    }
+
+    .color-choice.selected {
+      outline: 4px solid var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .quiz-round {
+      border-left: 6px solid var(--accent);
+      background: #f9fafb;
+      border-radius: 20px;
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .score-note {
+      color: var(--muted);
+      font-size: 14px;
+      margin-left: auto;
+    }
+
+    .finish {
+      text-align: center;
+      padding: 28px 10px;
+    }
+
+    .finish-icon { font-size: 72px; }
+
+    .finish h2 {
+      font-size: clamp(30px, 5vw, 52px);
+      margin-top: 10px;
+    }
+
+    .finish p {
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.8;
+    }
+
+    .stamp {
+      display: inline-block;
+      border: 4px solid var(--good);
+      color: var(--good);
+      border-radius: 16px;
+      padding: 10px 18px;
+      font-weight: 1000;
+      font-size: 24px;
+      transform: rotate(-3deg);
+      margin-top: 12px;
+    }
+
+    .tiny {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .wheel-round-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .mini-wheel-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 8px 0 4px;
+    }
+
+    .mini-wheel {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: #fffaf2;
+      border: 2px dashed #fbbf24;
+      box-shadow: inset 0 0 0 16px rgba(255, 247, 237, 0.92);
+      overflow: visible;
+      margin: 18px;
+    }
+
+    .wheel-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid #fde68a;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 6px;
+      font-weight: 1000;
+      color: #92400e;
+      line-height: 1.35;
+      box-shadow: 0 10px 22px rgba(217, 119, 6, 0.12);
+    }
+
+    .wheel-node {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,0,0,0.14);
+      transform: translate(-50%, -50%);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 1000;
+      font-size: 12px;
+      line-height: 1.15;
+      cursor: pointer;
+      color: #111;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.75);
+      box-shadow: 0 6px 14px rgba(31, 41, 55, 0.10);
+      padding: 4px;
+      user-select: none;
+      font-family: inherit;
+    }
+
+    .wheel-node:hover { transform: translate(-50%, -50%) scale(1.04); }
+
+    .wheel-node.main-target {
+      cursor: default;
+      z-index: 3;
+      outline: 3px solid #111827;
+      outline-offset: 4px;
+      box-shadow: 0 0 0 8px rgba(255,255,255,0.96), 0 6px 14px rgba(31, 41, 55, 0.10);
+    }
+
+    .wheel-node.selected {
+      z-index: 1;
+      outline: 5px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .round-tip {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      margin-top: 2px;
+    }
+
+
+    .selected-card {
+      outline: 4px solid var(--accent);
+      outline-offset: 3px;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px rgba(217, 119, 6, 0.18);
+    }
+
+    .slot.click-ready,
+    .drop-zone.click-ready {
+      border-color: var(--accent);
+      background: #fffbeb;
+    }
+
+    .click-instruction {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      color: #075985;
+      border-radius: 18px;
+      padding: 12px 14px;
+      line-height: 1.7;
+      margin: 12px 0 18px;
+      font-weight: 800;
+    }
+
+    .mix-guide {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin: 14px 0 20px;
+    }
+
+    .guide-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 12px;
+      line-height: 1.65;
+      box-shadow: 0 6px 14px rgba(31, 41, 55, 0.05);
+    }
+
+    .guide-card strong {
+      color: #92400e;
+    }
+
+    .formula {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      margin: 2px;
+      font-weight: 1000;
+      color: #9a3412;
+    }
+
+    @media (max-width: 920px) {
+      .steps { grid-template-columns: 1fr; }
+      .progress-card { position: static; }
+      .wheel-area {
+        grid-template-columns: minmax(360px, 1fr) minmax(230px, 310px);
+      }
+      .slot {
+        width: 92px;
+        height: 54px;
+        font-size: 12px;
+      }
+      .slot .color-chip {
+        width: 76px;
+        height: 38px;
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .wheel-area { grid-template-columns: 1fr; }
+      .wheel-bank-side { position: static; }
+      .palette.grid-bank { max-width: none; }
+      .mini-wheel {
+        width: 252px;
+        height: 252px;
+        margin: 18px;
+        overflow: visible;
+      }
+      .wheel-node {
+        width: 52px;
+        height: 52px;
+        font-size: 11px;
+      }
+      .wheel-center {
+        width: 88px;
+        height: 88px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>第一道封印｜色相：12色相環解鎖</h1>
+    <div class="subtitle">五個小節都要全對，才能一步一步解鎖下一關！</div>
+  </header>
+
+  <main class="container">
+    <section class="progress-card">
+      <div class="steps" id="tabs"></div>
+    </section>
+    <section class="panel" id="gamePanel"></section>
+  </main>
+
+  <script>
+    const colors = [
+      { id: "Y", name: "黃", hex: "#FFD600" },
+      { id: "YO", name: "黃橙", hex: "#FF9F00" },
+      { id: "R", name: "紅", hex: "#FF2A2A" },
+      { id: "RV", name: "紅紫", hex: "#E1007A" },
+      { id: "M", name: "洋紅", hex: "#FF00A8" },
+      { id: "V", name: "紫", hex: "#8A2BE2" },
+      { id: "B", name: "藍", hex: "#005BFF" },
+      { id: "BG", name: "藍綠", hex: "#00A6A6" },
+      { id: "C", name: "青", hex: "#00BFEF" },
+      { id: "CG", name: "青綠", hex: "#00C878" },
+      { id: "G", name: "綠", hex: "#20C933" },
+      { id: "YG", name: "黃綠", hex: "#A8E600" }
+    ];
+
+    const wheelAnswer = colors.map(c => c.id);
+
+    const contrastMap = {
+      Y: "B", YO: "BG", R: "C", RV: "CG",
+      M: "G", V: "YG", B: "Y", BG: "YO",
+      C: "R", CG: "RV", G: "M", YG: "V"
+    };
+
+    const analogousMap = {
+      Y: ["YG", "YO"],
+      YO: ["Y", "R"],
+      R: ["YO", "RV"],
+      RV: ["R", "M"],
+      M: ["RV", "V"],
+      V: ["M", "B"],
+      B: ["V", "BG"],
+      BG: ["B", "C"],
+      C: ["BG", "CG"],
+      CG: ["C", "G"],
+      G: ["CG", "YG"],
+      YG: ["G", "Y"]
+    };
+
+    const wheelSlotTypes = [
+      { label: "三原色", type: "primary" },
+      { label: "三次色", type: "tertiary" },
+      { label: "二次色", type: "secondary" },
+      { label: "三次色", type: "tertiary" },
+      { label: "三原色", type: "primary" },
+      { label: "三次色", type: "tertiary" },
+      { label: "二次色", type: "secondary" },
+      { label: "三次色", type: "tertiary" },
+      { label: "三原色", type: "primary" },
+      { label: "三次色", type: "tertiary" },
+      { label: "二次色", type: "secondary" },
+      { label: "三次色", type: "tertiary" }
+    ];
+
+    const colorTypes = {
+      Y: "primary", M: "primary", C: "primary",
+      R: "secondary", G: "secondary", B: "secondary",
+      YO: "tertiary", RV: "tertiary", V: "tertiary",
+      BG: "tertiary", CG: "tertiary", YG: "tertiary"
+    };
+
+    const steps = ["色相定義", "CMY 12色相環", "認識色系", "類似色", "對比色"];
+
+    let currentStep = 0;
+    let unlockedStep = 0;
+    let completed = [false, false, false, false, false];
+    let selectedWheelCardId = null;
+    let selectedFamilyCardEl = null;
+
+    const tabs = document.getElementById("tabs");
+    const panel = document.getElementById("gamePanel");
+
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function pickRandomColorIds(count) {
+      return shuffleArray(colors.map(c => c.id)).slice(0, count);
+    }
+
+    function hexToRgb(hex) {
+      const clean = hex.replace("#", "");
+      return {
+        r: parseInt(clean.substring(0, 2), 16),
+        g: parseInt(clean.substring(2, 4), 16),
+        b: parseInt(clean.substring(4, 6), 16)
+      };
+    }
+
+    function rgbToHex(r, g, b) {
+      const toHex = value => Math.max(0, Math.min(255, Math.round(value))).toString(16).padStart(2, "0");
+      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    }
+
+    function mixColor(hex, targetHex, amount) {
+      const base = hexToRgb(hex);
+      const target = hexToRgb(targetHex);
+      return rgbToHex(
+        base.r + (target.r - base.r) * amount,
+        base.g + (target.g - base.g) * amount,
+        base.b + (target.b - base.b) * amount
+      );
+    }
+
+    function sameFamilyVariants(id) {
+      const base = colors.find(c => c.id === id);
+      return [
+        { id: `${id}_light`, name: `淺${base.name}`, hex: mixColor(base.hex, "#FFFFFF", 0.48), familyBase: id },
+        { id: `${id}_deep`, name: `深${base.name}`, hex: mixColor(base.hex, "#111111", 0.35), familyBase: id }
+      ];
+    }
+
+    function getAnalogousShadeOptions(main) {
+      const correct = sameFamilyVariants(main);
+      const distractorPool = [];
+      colors.forEach(c => {
+        if (c.id !== main) {
+          sameFamilyVariants(c.id).forEach(v => distractorPool.push(v));
+        }
+      });
+      const distractors = shuffleArray(distractorPool).slice(0, 3);
+      return shuffleArray([...correct, ...distractors]);
+    }
+
+    function getContrastExtraOptions(main) {
+      const opposite = contrastMap[main];
+      const correctIds = analogousMap[opposite];
+      const correct = correctIds.map(id => {
+        const c = colors.find(x => x.id === id);
+        return { id: c.id, name: c.name, hex: c.hex };
+      });
+
+      const distractorPool = colors
+        .filter(c => !correctIds.includes(c.id) && c.id !== main && c.id !== opposite)
+        .map(c => ({ id: c.id, name: c.name, hex: c.hex }));
+
+      const distractors = shuffleArray(distractorPool).slice(0, 3);
+      return shuffleArray([...correct, ...distractors]);
+    }
+
+    function shuffledOptions(options) {
+      return shuffleArray(options)
+        .map(option => radio(option.name, option.value, option.text))
+        .join("");
+    }
+
+    function colorStyle(id) {
+      const c = colors.find(x => x.id === id);
+      return `background:${c.hex};`;
+    }
+
+    function colorName(id) {
+      return colors.find(x => x.id === id)?.name || id;
+    }
+
+    function makeColorPill(c, draggable = false) {
+      return `<div class="draggable" draggable="${draggable}" data-id="${c.id}" style="background:${c.hex};" onclick="selectWheelBankCard(this)">${c.name}</div>`;
+    }
+
+    function renderTabs() {
+      tabs.innerHTML = "";
+      steps.forEach((label, index) => {
+        const btn = document.createElement("button");
+        btn.className = "step-tab";
+        if (index === currentStep) btn.classList.add("active");
+        if (completed[index]) btn.classList.add("done");
+        if (index > unlockedStep) btn.classList.add("locked");
+
+        btn.innerHTML = `${completed[index] ? "✓" : index > unlockedStep ? "🔒" : index + 1}<small>${label}</small>`;
+        btn.addEventListener("click", () => {
+          if (index > unlockedStep) {
+            renderLocked(index);
+            return;
+          }
+          currentStep = index;
+          render();
+        });
+        tabs.appendChild(btn);
+      });
+    }
+
+    function render() {
+      renderTabs();
+      if (currentStep === 0) renderHueDefinition();
+      if (currentStep === 1) renderWheel();
+      if (currentStep === 2) renderColorFamilies();
+      if (currentStep === 3) renderAnalogous();
+      if (currentStep === 4) renderContrast();
+      if (currentStep === 5) renderFinish();
+    }
+
+    function renderLocked(index) {
+      renderTabs();
+      panel.innerHTML = `
+        <div class="locked-message">
+          <div class="lock-icon">🔒</div>
+          <h2>這一關還沒有解鎖喔！</h2>
+          <p class="subtitle">請先完成第 ${unlockedStep + 1} 小節，再來挑戰「${steps[index]}」。</p>
+        </div>
+      `;
+    }
+
+    function passStep(message) {
+      completed[currentStep] = true;
+      unlockedStep = Math.max(unlockedStep, currentStep + 1);
+      renderTabs();
+
+      const feedback = document.querySelector(".feedback");
+      if (feedback) {
+        feedback.className = "feedback good";
+        feedback.textContent = message;
+      }
+
+      const nextBtn = document.getElementById("nextBtn");
+      if (nextBtn) nextBtn.disabled = false;
+    }
+
+    function goNext() {
+      if (currentStep < 4) {
+        currentStep += 1;
+        render();
+      } else {
+        currentStep = 5;
+        renderFinish();
+      }
+    }
+
+    function radio(name, value, text) {
+      return `
+        <label class="option">
+          <input type="radio" name="${name}" value="${value}">
+          <span>${text}</span>
+        </label>
+      `;
+    }
+
+    function renderHueDefinition(message = "", messageType = "") {
+      panel.innerHTML = `
+        <div class="section-title">
+          <div class="badge">1</div>
+          <h2>了解色相的定義</h2>
+        </div>
+        <div class="hint">
+          色相就是色彩的「名字」或「種類」，例如黃、洋紅、青、紅、綠、藍。<br>
+          這一關要全部答對，才能進入 CMY 12 色相環。
+        </div>
+
+        <div class="question-card">
+          <div class="question">Q1：下面哪一個是在說「色相」？</div>
+          <div class="options">
+            ${shuffledOptions([
+              { name: "q1", value: "A", text: "色彩的明暗程度" },
+              { name: "q1", value: "B", text: "色彩的鮮豔程度" },
+              { name: "q1", value: "C", text: "色彩的名稱或種類" },
+              { name: "q1", value: "D", text: "色彩的大小" }
+            ])}
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question">Q2：下列哪一組都是色相？</div>
+          <div class="options">
+            ${shuffledOptions([
+              { name: "q2", value: "A", text: "深、淺、亮、暗" },
+              { name: "q2", value: "B", text: "紅、黃、藍、綠" },
+              { name: "q2", value: "C", text: "大、小、長、短" },
+              { name: "q2", value: "D", text: "厚、薄、遠、近" }
+            ])}
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question">Q3：當我們問「這是什麼顏色？」最接近在問什麼？</div>
+          <div class="options">
+            ${shuffledOptions([
+              { name: "q3", value: "A", text: "色相" },
+              { name: "q3", value: "B", text: "尺寸" },
+              { name: "q3", value: "C", text: "重量" },
+              { name: "q3", value: "D", text: "材質" }
+            ])}
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="primary" onclick="checkHueDefinition()">檢查答案</button>
+          <button class="secondary" onclick="renderHueDefinition()">重新挑戰</button>
+          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[0] ? "" : "disabled"}>前往下一小節</button>
+        </div>
+        <div class="feedback ${messageType}">${message}</div>
+      `;
+    }
+
+    window.checkHueDefinition = function() {
+      const answers = { q1: "C", q2: "B", q3: "A" };
+      let wrong = 0;
+
+      for (const q in answers) {
+        const picked = document.querySelector(`input[name="${q}"]:checked`);
+        if (!picked || picked.value !== answers[q]) wrong++;
+      }
+
+      if (wrong === 0) {
+        completed[currentStep] = true;
+        unlockedStep = Math.max(unlockedStep, currentStep + 1);
+        renderTabs();
+        renderHueDefinition("色相偵探入門成功！選項已重新洗牌，你也可以前往下一小節。", "good");
+      } else {
+        renderHueDefinition(`還有 ${wrong} 題需要修正。選項已重新洗牌，請重新觀察：色相是在問「這是什麼顏色？」`, "bad");
+      }
+    };
+
+    function renderWheel() {
+      const shuffled = shuffleArray(colors);
+      panel.innerHTML = `
+        <div class="section-title">
+          <div class="badge">2</div>
+          <h2>CMY 的 12 色相環</h2>
+        </div>
+        <div class="hint">
+          請完成 CMY 的 12 色相環。平板操作請用「點選」：<strong>先點右側色卡，再點左側空格</strong>，色卡就會放入。空格會提示「三原色、二次色、三次色」，幫你先找到大方向。<br>
+          小提醒：三原色是黃、洋紅、青；二次色是紅、綠、藍；三次色會落在它們中間。三原色可以改變安放順序，只要放在三原色格，系統會依照你的三原色位置推算整圈。三原色可以改變安放順序，只要放在三原色格，系統會依照你的三原色位置推算整圈。
+        </div>
+
+
+        <div class="click-instruction">
+          操作方式：① 點選右側色卡 → ② 點選左側空格。<br>
+          如果放錯，點兩下已放入的色卡，就會回到色卡銀行。
+        </div>
+
+        <div class="mix-guide">
+          <div class="guide-card">
+            <strong>第一步：先找三原色</strong><br>
+            三原色是 <span class="formula">黃 Y</span><span class="formula">洋紅 M</span><span class="formula">青 C</span>，請先放到「三原色」空格。
+          </div>
+          <div class="guide-card">
+            <strong>第二步：推二次色</strong><br>
+            兩個三原色中間的正中間是二次色：<br>
+            <span class="formula">黃＋洋紅＝紅</span><br>
+            <span class="formula">洋紅＋青＝藍</span><br>
+            <span class="formula">青＋黃＝綠</span>
+          </div>
+          <div class="guide-card">
+            <strong>第三步：推三次色</strong><br>
+            三次色會在「原色」和「二次色」中間，名字通常也會把兩邊顏色合起來，例如：黃和紅中間是黃橙，紅和洋紅中間是紅紫。
+          </div>
+        </div>
+
+        <div class="wheel-area">
+          <div class="wheel" id="wheel"></div>
+          <aside class="wheel-bank-side">
+            <p class="bank-title">色卡銀行</p>
+            <div class="palette grid-bank" id="palette">
+              ${shuffled.map(c => makeColorPill(c, true)).join("")}
+            </div>
+            <p class="tiny">操作方式：點選右側色卡，再點左側空格；若要更換位置，可以再點另一張色卡覆蓋，也可以在已放入的色卡上點兩下，讓它回到色卡銀行。</p>
+          </aside>
+        </div>
+
+        <div class="actions">
+          <button class="primary" onclick="checkWheel()">檢查色相環</button>
+          <button class="secondary" onclick="renderWheel()">重新挑戰</button>
+          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[1] ? "" : "disabled"}>前往下一小節</button>
+          <span class="score-note">必須 12 格全部正確才能過關</span>
+        </div>
+        <div class="feedback"></div>
+      `;
+
+      createWheelSlots();
+      enableDragAndDrop();
+    }
+
+    function createWheelSlots() {
+      const wheel = document.getElementById("wheel");
+      const center = 50;
+      const radius = 39;
+
+      for (let i = 0; i < 12; i++) {
+        const angle = -90 + i * 30;
+        const rad = angle * Math.PI / 180;
+        const x = center + radius * Math.cos(rad);
+        const y = center + radius * Math.sin(rad);
+
+        const slot = document.createElement("div");
+        slot.className = "slot";
+        slot.onclick = function() { placeSelectedWheelCard(this); };
+        slot.dataset.index = i;
+        slot.dataset.slotType = wheelSlotTypes[i].type;
+        slot.style.left = x + "%";
+        slot.style.top = y + "%";
+        emptySlotLabel(slot);
+        wheel.appendChild(slot);
+      }
+    }
+
+    function emptySlotLabel(slot) {
+      const index = Number(slot.dataset.index);
+      const label = wheelSlotTypes[index]?.label || "空格";
+      slot.innerHTML = `<span class="slot-label">${label}</span><span class="slot-hint">空格</span>`;
+      delete slot.dataset.colorId;
+    }
+
+    function returnSlotColorToBank(slot) {
+      const id = slot.dataset.colorId;
+      if (!id) return;
+      const color = colors.find(c => c.id === id);
+      if (!color) return;
+      const bank = document.getElementById("palette");
+      bank.insertAdjacentHTML("beforeend", makeColorPill(color, true));
+      emptySlotLabel(slot);
+      enableDragAndDrop();
+    }
+
+
+    function clearWheelBankSelection() {
+      document.querySelectorAll("#palette .draggable").forEach(card => card.classList.remove("selected-card"));
+      document.querySelectorAll(".slot").forEach(slot => slot.classList.remove("click-ready"));
+      selectedWheelCardId = null;
+    }
+
+    window.selectWheelBankCard = function(card) {
+      if (currentStep !== 1) return;
+      selectedWheelCardId = card.dataset.id;
+      document.querySelectorAll("#palette .draggable").forEach(item => item.classList.remove("selected-card"));
+      card.classList.add("selected-card");
+      document.querySelectorAll(".slot").forEach(slot => slot.classList.add("click-ready"));
+    };
+
+    window.placeSelectedWheelCard = function(slot) {
+      if (currentStep !== 1 || !selectedWheelCardId) return;
+      const original = document.querySelector(`#palette .draggable[data-id="${selectedWheelCardId}"]`);
+      if (!original) return;
+
+      if (slot.dataset.colorId) {
+        const oldColor = colors.find(c => c.id === slot.dataset.colorId);
+        document.getElementById("palette").insertAdjacentHTML("beforeend", makeColorPill(oldColor, true));
+      }
+
+      slot.dataset.colorId = selectedWheelCardId;
+      slot.innerHTML = `<div class="color-chip" style="${colorStyle(selectedWheelCardId)}" title="點兩下可退回色卡銀行" onclick="event.stopPropagation()" ondblclick="returnSlotColorToBank(this.closest('.slot'))">${colorName(selectedWheelCardId)}</div>`;
+
+      original.remove();
+      clearWheelBankSelection();
+      enableDragAndDrop();
+    };
+
+    function enableDragAndDrop() {
+      document.querySelectorAll(".draggable").forEach(item => {
+        item.addEventListener("dragstart", e => {
+          e.dataTransfer.setData("text/plain", item.dataset.id);
+        });
+      });
+
+      document.querySelectorAll(".slot, .drop-zone, #palette").forEach(zone => {
+        zone.addEventListener("dragover", e => {
+          e.preventDefault();
+          zone.classList.add("over");
+        });
+
+        zone.addEventListener("dragleave", () => zone.classList.remove("over"));
+
+        zone.addEventListener("drop", e => {
+          e.preventDefault();
+          zone.classList.remove("over");
+
+          const id = e.dataTransfer.getData("text/plain");
+          const original = document.querySelector(`.draggable[data-id="${id}"]`);
+          if (!original) return;
+
+          if (zone.classList.contains("slot")) {
+            if (zone.dataset.colorId) {
+              const oldColor = colors.find(c => c.id === zone.dataset.colorId);
+              document.getElementById("palette").insertAdjacentHTML("beforeend", makeColorPill(oldColor, true));
+            }
+            zone.dataset.colorId = id;
+            zone.innerHTML = `<div class="color-chip" style="${colorStyle(id)}" title="點兩下可退回色卡銀行" onclick="event.stopPropagation()" ondblclick="returnSlotColorToBank(this.closest('.slot'))">${colorName(id)}</div>`;
+            original.remove();
+          } else if (zone.classList.contains("drop-zone")) {
+            zone.querySelector(".drop-items").appendChild(original);
+          } else if (zone.id === "palette") {
+            zone.appendChild(original);
+          }
+          enableDragAndDrop();
+        });
+      });
+    }
+
+    function isRotatedCorrect(arr, answer) {
+      if (arr.includes(undefined) || arr.length !== answer.length) return false;
+
+      // 第二關判斷邏輯：
+      // 學生可以改變三原色安放順序，只要三原色落在三原色格，
+      // 並且每兩個三原色之間的中間色順序符合 CMY 混色邏輯，就算正確。
+      const primaryIndexes = [0, 4, 8];
+      const primarySet = new Set(["Y", "M", "C"]);
+      const placedPrimaries = primaryIndexes.map(index => arr[index]);
+
+      if (!placedPrimaries.every(id => primarySet.has(id))) return false;
+      if (new Set(placedPrimaries).size !== 3) return false;
+
+      const canonicalClockwise = ["Y", "YO", "R", "RV", "M", "V", "B", "BG", "C", "CG", "G", "YG"];
+      const canonicalCounterClockwise = ["Y", "YG", "G", "CG", "C", "BG", "B", "V", "M", "RV", "R", "YO"];
+
+      function expectedSegment(sequence, startPrimary, endPrimary) {
+        const start = sequence.indexOf(startPrimary);
+        const shifted = sequence.slice(start).concat(sequence.slice(0, start));
+        const end = shifted.indexOf(endPrimary);
+        if (end !== 4) return null;
+        return shifted.slice(1, 4);
+      }
+
+      function matchesDirection(sequence) {
+        for (let group = 0; group < 3; group++) {
+          const startIndex = primaryIndexes[group];
+          const endIndex = primaryIndexes[(group + 1) % 3];
+
+          const startPrimary = arr[startIndex];
+          const endPrimary = arr[endIndex];
+          const expected = expectedSegment(sequence, startPrimary, endPrimary);
+          if (!expected) return false;
+
+          const actual = [
+            arr[(startIndex + 1) % 12],
+            arr[(startIndex + 2) % 12],
+            arr[(startIndex + 3) % 12]
+          ];
+
+          if (!expected.every((id, offset) => id === actual[offset])) return false;
+        }
+
+        return true;
+      }
+
+      return matchesDirection(canonicalClockwise) || matchesDirection(canonicalCounterClockwise);
+    }
+
+    function countTypeMistakes(placed) {
+      return placed.filter((id, index) => colorTypes[id] !== wheelSlotTypes[index].type).length;
+    }
+
+    function bestFlexibleMatches(placed) {
+      if (placed.includes(undefined) || placed.length !== 12) return 0;
+
+      const primaryIndexes = [0, 4, 8];
+      const primarySet = new Set(["Y", "M", "C"]);
+      const placedPrimaries = primaryIndexes.map(index => placed[index]);
+
+      if (!placedPrimaries.every(id => primarySet.has(id)) || new Set(placedPrimaries).size !== 3) {
+        return placed.filter((id, index) => colorTypes[id] === wheelSlotTypes[index].type).length;
+      }
+
+      const canonicalClockwise = ["Y", "YO", "R", "RV", "M", "V", "B", "BG", "C", "CG", "G", "YG"];
+      const canonicalCounterClockwise = ["Y", "YG", "G", "CG", "C", "BG", "B", "V", "M", "RV", "R", "YO"];
+      const candidates = [];
+
+      function buildCandidate(sequence) {
+        const candidate = Array(12).fill(null);
+        for (let group = 0; group < 3; group++) {
+          const startIndex = primaryIndexes[group];
+          const endIndex = primaryIndexes[(group + 1) % 3];
+          const startPrimary = placed[startIndex];
+          const endPrimary = placed[endIndex];
+
+          const start = sequence.indexOf(startPrimary);
+          const shifted = sequence.slice(start).concat(sequence.slice(0, start));
+          const end = shifted.indexOf(endPrimary);
+          if (end !== 4) return null;
+
+          candidate[startIndex] = startPrimary;
+          candidate[(startIndex + 1) % 12] = shifted[1];
+          candidate[(startIndex + 2) % 12] = shifted[2];
+          candidate[(startIndex + 3) % 12] = shifted[3];
+        }
+        return candidate;
+      }
+
+      [canonicalClockwise, canonicalCounterClockwise].forEach(sequence => {
+        const candidate = buildCandidate(sequence);
+        if (candidate) candidates.push(candidate);
+      });
+
+      if (candidates.length === 0) return 0;
+
+      return Math.max(...candidates.map(candidate => placed.filter((id, index) => id === candidate[index]).length));
+    }
+
+    window.checkWheel = function() {
+      const slots = [...document.querySelectorAll(".slot")].sort((a, b) => Number(a.dataset.index) - Number(b.dataset.index));
+      const placed = slots.map(s => s.dataset.colorId);
+      const feedback = document.querySelector(".feedback");
+
+      if (placed.some(x => !x)) {
+        const empty = placed.filter(x => !x).length;
+        feedback.className = "feedback bad";
+        feedback.textContent = `還有 ${empty} 格沒有放色卡喔！請先把 12 色放滿。`;
+        return;
+      }
+
+      if (isRotatedCorrect(placed, wheelAnswer)) {
+        passStep("色相環啟動成功！你已經完成 CMY 12 色排列。");
+      } else {
+        const bestMatches = bestFlexibleMatches(placed);
+        const typeMistakes = countTypeMistakes(placed);
+        feedback.className = "feedback bad";
+
+        if (typeMistakes > 0) {
+          feedback.textContent = `色相環還沒有完全接上，而且有 ${typeMistakes} 張色卡放到不符合的類型空格。請先確認三原色、二次色、三次色的位置，再觀察混色順序。`;
+        } else {
+          feedback.textContent = `色相環還沒有完全接上，目前至少有 ${12 - bestMatches} 個位置需要再觀察。類型位置對了，再留意三原色之間的混色順序。`;
+        }
+      }
+    };
+
+    function renderColorFamilies() {
+      const items = [
+        { id: "light-yellow", name: "淺黃色", family: "yellow", hex: "#FFF3B0" },
+        { id: "lemon-yellow", name: "檸檬黃", family: "yellow", hex: "#FDE047" },
+        { id: "chrome-yellow", name: "銘黃色", family: "yellow", hex: "#FACC15" },
+        { id: "earth-yellow", name: "土黃色", family: "yellow", hex: "#CA8A04" },
+
+        { id: "sky-blue", name: "天藍色", family: "blue", hex: "#7DD3FC" },
+        { id: "lake-blue", name: "湖水藍", family: "blue", hex: "#38BDF8" },
+        { id: "deep-blue", name: "深藍色", family: "blue", hex: "#2563EB" },
+        { id: "indigo", name: "靛藍色", family: "blue", hex: "#3730A3" },
+
+        { id: "pink", name: "粉紅色", family: "red", hex: "#FDA4AF" },
+        { id: "rose", name: "玫瑰紅", family: "red", hex: "#E11D48" },
+        { id: "peach-red", name: "桃紅色", family: "red", hex: "#EC4899" },
+        { id: "wine-red", name: "酒紅色", family: "red", hex: "#9F1239" }
+      ];
+
+      const shuffledItems = shuffleArray(items);
+
+      panel.innerHTML = `
+        <div class="section-title">
+          <div class="badge">3</div>
+          <h2>學會什麼是色系</h2>
+        </div>
+        <div class="hint">
+          色系像是「色彩家族」。同一個色系不一定一模一樣，但看起來會接近同一個主要色相。<br>
+          例如黃色系可以有淺黃色、銘黃色、土黃色。
+        </div>
+
+        <div class="click-instruction">
+          平板操作方式：① 點選上方色卡 → ② 點選下方的色系框。<br>
+          如果放錯，可以再點選色卡後改放到另一個色系框。
+        </div>
+
+        <div class="mini-card">
+          <p class="bank-title">色卡銀行</p>
+          <div class="palette" id="palette">
+            ${shuffledItems.map(item => `<div class="draggable" draggable="true" data-id="${item.id}" data-family="${item.family}" style="background:${item.hex};" onclick="selectFamilyCard(this)">${item.name}</div>`).join("")}
+          </div>
+        </div>
+
+        <div class="drop-zone-grid">
+          ${familyZone("yellow", "黃色系")}
+          ${familyZone("blue", "藍色系")}
+          ${familyZone("red", "紅色系")}
+        </div>
+
+        <div class="actions">
+          <button class="primary" onclick="checkFamilies()">檢查分類</button>
+          <button class="secondary" onclick="renderColorFamilies()">重新挑戰</button>
+          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[2] ? "" : "disabled"}>前往下一小節</button>
+        </div>
+        <div class="feedback"></div>
+      `;
+
+      enableDragAndDrop();
+    }
+
+    function familyZone(id, title) {
+      return `
+        <div class="drop-zone" data-family-target="${id}" onclick="placeSelectedFamilyCard(this)">
+          <h3>${title}</h3>
+          <div class="drop-items"></div>
+        </div>
+      `;
+    }
+
+
+    window.selectFamilyCard = function(card) {
+      if (currentStep !== 2) return;
+      selectedFamilyCardEl = card;
+      document.querySelectorAll(".mini-card .draggable, .drop-zone .draggable").forEach(item => item.classList.remove("selected-card"));
+      card.classList.add("selected-card");
+      document.querySelectorAll(".drop-zone").forEach(zone => zone.classList.add("click-ready"));
+    };
+
+    window.placeSelectedFamilyCard = function(zone) {
+      if (currentStep !== 2 || !selectedFamilyCardEl) return;
+      zone.querySelector(".drop-items").appendChild(selectedFamilyCardEl);
+      selectedFamilyCardEl.classList.remove("selected-card");
+      selectedFamilyCardEl = null;
+      document.querySelectorAll(".drop-zone").forEach(item => item.classList.remove("click-ready"));
+    };
+
+    window.checkFamilies = function() {
+      let wrong = 0;
+      let total = 0;
+
+      document.querySelectorAll(".drop-zone").forEach(zone => {
+        const target = zone.dataset.familyTarget;
+        zone.querySelectorAll(".draggable").forEach(item => {
+          total++;
+          if (item.dataset.family !== target) wrong++;
+        });
+      });
+
+      const bankLeft = document.querySelectorAll("#palette .draggable").length;
+      const feedback = document.querySelector(".feedback");
+
+      if (bankLeft > 0) {
+        feedback.className = "feedback bad";
+        feedback.textContent = `還有 ${bankLeft} 張色卡沒有分類喔！`;
+        return;
+      }
+
+      if (wrong === 0 && total === 12) {
+        passStep("色彩家族分類完成！你已經會判斷色系了。");
+      } else {
+        feedback.className = "feedback bad";
+        feedback.textContent = `有 ${wrong} 張色卡跑錯家族囉！請看看它比較接近哪一種主要色相。`;
+      }
+    };
+
+    function wheelQuestion(main, index, mode) {
+      const centerText = mode === "analogous" ? "請找出<br>2 個類似色" : "請找出<br>正對比色";
+
+      return `
+        <div class="mini-wheel-wrap">
+          <div class="mini-wheel" data-round="${index}" data-main="${main}" data-mode="${mode}">
+            ${colors.map((c, i) => wheelNode(c, i, main, index, mode)).join("")}
+            <div class="wheel-center">${centerText}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function wheelNode(color, i, main, round, mode) {
+      const angle = -90 + i * 30;
+      const isMain = color.id === main;
+      // 題目色往圓圈外移動，避免覆蓋或干擾旁邊色彩判別
+      const radius = isMain ? 47 : 40;
+      const x = 50 + radius * Math.cos(angle * Math.PI / 180);
+      const y = 50 + radius * Math.sin(angle * Math.PI / 180);
+      const handler = mode === "analogous" ? "toggleAnalogousWheelSelection(this, 2)" : "selectContrastWheel(this)";
+
+      return `
+        <button
+          type="button"
+          class="wheel-node ${isMain ? "main-target" : ""}"
+          data-color="${color.id}"
+          data-round="${round}"
+          data-mode="${mode}"
+          style="left:${x}%; top:${y}%; background:${color.hex};"
+          onclick="${isMain ? "" : handler}"
+          ${isMain ? "disabled" : ""}
+          aria-label="${color.name}"
+          title="${color.name}"
+        >${color.name}</button>
+      `;
+    }
+
+    function renderAnalogous() {
+      const rounds = pickRandomColorIds(3).map(id => ({ main: id }));
+
+      panel.innerHTML = `
+        <div class="section-title">
+          <div class="badge">4</div>
+          <h2>類似色：色相環＋同色系</h2>
+        </div>
+        <div class="hint">
+          <strong>類似色定義：</strong>類似色是色相環上位置相近的顏色，通常看起來比較和諧、柔和、有連續感。<br>
+          在這一關中，類似色包含兩種：<strong>色相環上左右相鄰的顏色</strong>，以及<strong>同色系的深淺變化</strong>。<br>
+          題目會隨機出現。先在色相環上找出 <strong>2 個相鄰的類似色</strong>，再到下方 5 個同色系選項中，找出 <strong>2 個正確答案</strong>。
+        </div>
+
+        ${rounds.map((r, i) => analogousRound(r.main, i)).join("")}
+
+        <div class="actions">
+          <button class="primary" onclick="checkAnalogous()">檢查類似色</button>
+          <button class="secondary" onclick="renderAnalogous()">重新挑戰</button>
+          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[3] ? "" : "disabled"}>前往下一小節</button>
+        </div>
+        <div class="feedback"></div>
+      `;
+    }
+
+    function analogousRound(main, index) {
+      const shadeOptions = getAnalogousShadeOptions(main);
+      return `
+        <div class="quiz-round" data-round="${index}" data-main="${main}">
+          <div class="wheel-round-layout">
+            <div class="question">第 ${index + 1} 題：請找出 <strong>${colorName(main)}</strong> 的類似色。</div>
+            ${wheelQuestion(main, index, "analogous")}
+
+            <div class="mini-card" style="margin-top:10px;">
+              <div class="question" style="font-size:16px;">下面 5 個同色系選項中，請選出 2 個屬於 <strong>${colorName(main)}</strong> 的類似色變化：</div>
+              <div class="choice-row">
+                ${shadeOptions.map(v => `<button class="color-choice analogous-extra" data-color="${v.id}" data-round="${index}" style="background:${v.hex};" onclick="toggleAnalogousExtra(this, 2)">${v.name}</button>`).join("")}
+              </div>
+            </div>
+
+            <div class="round-tip">先找左右相鄰的兩色，再找出同色系深淺變化的兩色。</div>
+          </div>
+        </div>
+      `;
+    }
+
+    window.toggleAnalogousWheelSelection = function(btn, limit) {
+      const round = btn.dataset.round;
+      const selected = document.querySelectorAll(`.wheel-node.selected[data-round="${round}"][data-mode="analogous"]`);
+      if (btn.classList.contains("selected")) {
+        btn.classList.remove("selected");
+      } else {
+        if (selected.length >= limit) return;
+        btn.classList.add("selected");
+      }
+    };
+
+    window.toggleAnalogousExtra = function(btn, limit) {
+      const round = btn.dataset.round;
+      const selected = document.querySelectorAll(`.analogous-extra.selected[data-round="${round}"]`);
+      if (btn.classList.contains("selected")) {
+        btn.classList.remove("selected");
+      } else {
+        if (selected.length >= limit) return;
+        btn.classList.add("selected");
+      }
+    };
+
+    window.checkAnalogous = function() {
+      let wrongRounds = 0;
+
+      document.querySelectorAll('.quiz-round[data-main]').forEach(round => {
+        if (!round.querySelector('.analogous-extra') && !round.querySelector('.contrast-extra')) return;
+      });
+
+      document.querySelectorAll('.quiz-round').forEach(round => {
+        const hasAnalogous = round.querySelector('.analogous-extra');
+        if (!hasAnalogous) return;
+
+        const main = round.dataset.main;
+        const correctWheel = analogousMap[main].slice().sort().join(",");
+        const selectedWheel = [...round.querySelectorAll('.wheel-node.selected[data-mode="analogous"]')].map(btn => btn.dataset.color).sort().join(",");
+
+        const correctExtra = sameFamilyVariants(main).map(v => v.id).sort().join(",");
+        const selectedExtra = [...round.querySelectorAll('.analogous-extra.selected')].map(btn => btn.dataset.color).sort().join(",");
+
+        if (selectedWheel !== correctWheel || selectedExtra !== correctExtra) wrongRounds++;
+      });
+
+      const feedback = document.querySelector(".feedback");
+      if (wrongRounds === 0) {
+        passStep("類似色配對成功！你已經能同時判斷色相環上的類似色，以及同色系的深淺變化。");
+      } else {
+        feedback.className = "feedback bad";
+        feedback.textContent = `還有 ${wrongRounds} 題需要修正。請確認：色相環上相鄰 2 色，以及下方同色系正確 2 色。`;
+      }
+    };
+
+    function renderContrast() {
+      const rounds = pickRandomColorIds(4).map(id => ({ main: id }));
+
+      panel.innerHTML = `
+        <div class="section-title">
+          <div class="badge">5</div>
+          <h2>對比色：正對比色＋延伸對比色</h2>
+        </div>
+        <div class="hint">
+          <strong>對比色定義：</strong>對比色是色相環上距離較遠、位置相對的顏色，放在一起會產生強烈、醒目、跳出來的效果。<br>
+          在這一關中，對比色包含兩種：<strong>色相環正對面的顏色</strong>，以及<strong>正對比色左右兩邊的延伸對比色</strong>。<br>
+          題目會隨機出現。先在色相環上找出 <strong>1 個正對比色</strong>，再到下方 5 個選項中，選出 <strong>2 個延伸對比色</strong>。
+        </div>
+
+        ${rounds.map((r, i) => contrastRound(r.main, i)).join("")}
+
+        <div class="actions">
+          <button class="primary" onclick="checkContrast()">檢查對比色</button>
+          <button class="secondary" onclick="renderContrast()">重新挑戰</button>
+          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[4] ? "" : "disabled"}>完成第一區塊</button>
+        </div>
+        <div class="feedback"></div>
+      `;
+    }
+
+    function contrastRound(main, index) {
+      const extraOptions = getContrastExtraOptions(main);
+      return `
+        <div class="quiz-round" data-round="${index}" data-main="${main}">
+          <div class="wheel-round-layout">
+            <div class="question">第 ${index + 1} 題：請在色相環上找出 <strong>${colorName(main)}</strong> 的正對比色。</div>
+            ${wheelQuestion(main, index, "contrast")}
+
+            <div class="mini-card" style="margin-top:10px;">
+              <div class="question" style="font-size:16px;">選出上方的正對比色後，請在下面 5 個選項中，再找出 2 個延伸對比色：</div>
+              <div class="choice-row">
+                ${extraOptions.map(v => `<button class="color-choice contrast-extra" data-color="${v.id}" data-round="${index}" style="background:${v.hex};" onclick="toggleContrastExtra(this, 2)">${v.name}</button>`).join("")}
+              </div>
+            </div>
+
+            <div class="round-tip">先找正對面的顏色，再找出正對比色左右兩邊的兩色。</div>
+          </div>
+        </div>
+      `;
+    }
+
+    window.selectContrastWheel = function(btn) {
+      const round = btn.dataset.round;
+      document.querySelectorAll(`.wheel-node[data-round="${round}"][data-mode="contrast"]`).forEach(node => {
+        if (!node.classList.contains("main-target")) node.classList.remove("selected");
+      });
+      btn.classList.add("selected");
+    };
+
+    window.toggleContrastExtra = function(btn, limit) {
+      const round = btn.dataset.round;
+      const selected = document.querySelectorAll(`.contrast-extra.selected[data-round="${round}"]`);
+      if (btn.classList.contains("selected")) {
+        btn.classList.remove("selected");
+      } else {
+        if (selected.length >= limit) return;
+        btn.classList.add("selected");
+      }
+    };
+
+    window.checkContrast = function() {
+      let wrongRounds = 0;
+
+      document.querySelectorAll('.quiz-round').forEach(round => {
+        const hasContrast = round.querySelector('.contrast-extra');
+        if (!hasContrast) return;
+
+        const main = round.dataset.main;
+        const correctWheel = contrastMap[main];
+        const selectedWheel = round.querySelector('.wheel-node.selected[data-mode="contrast"]')?.dataset.color || "";
+
+        const correctExtra = analogousMap[contrastMap[main]].slice().sort().join(",");
+        const selectedExtra = [...round.querySelectorAll('.contrast-extra.selected')].map(btn => btn.dataset.color).sort().join(",");
+
+        if (selectedWheel !== correctWheel || selectedExtra !== correctExtra) wrongRounds++;
+      });
+
+      const feedback = document.querySelector(".feedback");
+      if (wrongRounds === 0) {
+        passStep("對比色挑戰成功！你已經掌握正對比色，以及正對比色左右兩邊的延伸對比色。");
+      } else {
+        feedback.className = "feedback bad";
+        feedback.textContent = `還有 ${wrongRounds} 題需要修正。請確認：色相環上的正對比色 1 個，以及下方延伸對比色 2 個。`;
+      }
+    };
+
+    function renderFinish() {
+      renderTabs();
+      panel.innerHTML = `
+        <div class="finish">
+          <div class="finish-icon">🎨</div>
+          <h2>第一區塊完成！</h2>
+          <p>
+            你已經完成第一關五個關卡，順利通關！<br>
+            已成功完成「色相定義、CMY 12色相環、色系、類似色、對比色」五個任務，第一道封印正式解除。
+          </p>
+          <div class="stamp">第一道封印｜色相 解鎖成功</div>
+          <div class="mini-card" style="max-width:520px; margin:18px auto 0; background:#fff7ed; border:2px solid #fed7aa;">
+            <div class="question" style="margin-bottom:8px; color:#9a3412;">恭喜獲得開鎖密碼</div>
+            <div style="font-size:38px; font-weight:1000; letter-spacing:4px; color:#d97706;">HUE</div>
+          </div>
+          <div class="actions" style="justify-content:center;">
+            <button class="ghost" onclick="currentStep=0; render()">回到第一小節複習</button>
+            <button class="secondary" onclick="resetAll()">重新開始</button>
+          </div>
+        </div>
+      `;
+    }
+
+    let lastTapTime = 0;
+    let lastTapElement = null;
+
+    document.addEventListener("touchend", function(event) {
+      const chip = event.target.closest(".slot .color-chip");
+      if (!chip) return;
+      const now = Date.now();
+      if (lastTapElement === chip && now - lastTapTime < 420) {
+        event.preventDefault();
+        returnSlotColorToBank(chip.closest(".slot"));
+        lastTapElement = null;
+        lastTapTime = 0;
+      } else {
+        lastTapElement = chip;
+        lastTapTime = now;
+      }
+    }, { passive: false });
+
+    window.resetAll = function() {
+      currentStep = 0;
+      unlockedStep = 0;
+      completed = [false, false, false, false, false];
+      render();
+    };
+
+    render();
+  </script>
+<style>
+  .hue-password-button {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 9999;
+    display: none;
+    min-height: 54px;
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 22px;
+    background: #ff9f1c;
+    color: #17120a;
+    font-family: "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.24);
+  }
+
+  .hue-password-button.is-ready {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+<a class="hue-password-button" href="hue-password.html">學習驗收</a>
+<script>
+  (() => {
+    const passwordButton = document.querySelector(".hue-password-button");
+    if (!passwordButton) return;
+
+    function shouldShowPasswordButton() {
+      const visibleText = document.body.innerText || "";
+      const stillLocked = visibleText.includes("🔒");
+      return !stillLocked;
+    }
+
+    function updatePasswordButton() {
+      passwordButton.classList.toggle("is-ready", shouldShowPasswordButton());
+    }
+
+    updatePasswordButton();
+    window.addEventListener("load", updatePasswordButton);
+    document.addEventListener("click", () => window.setTimeout(updatePasswordButton, 80));
+    document.addEventListener("change", () => window.setTimeout(updatePasswordButton, 80));
+
+    const observer = new MutationObserver(updatePasswordButton);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ["class", "style", "disabled", "hidden"]
+    });
+  })();
+</script>
+</body>
+</html>

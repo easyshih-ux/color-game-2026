@@ -103,7 +103,8 @@
     }
 
     textarea,
-    input[type="text"] {
+    input[type="text"],
+    input[type="file"] {
       width: 100%;
       border: 2px solid #dbe4f2;
       border-radius: 12px;
@@ -121,7 +122,8 @@
     }
 
     textarea:focus,
-    input[type="text"]:focus {
+    input[type="text"]:focus,
+    input[type="file"]:focus {
       outline: 4px solid rgba(255, 203, 69, 0.42);
       border-color: #ff9f1c;
     }
@@ -267,14 +269,19 @@
         </fieldset>
 
         <fieldset>
-          <legend>6. 姓名或座號</legend>
+          <legend>6. 上傳彩度加分圖片</legend>
+          <input name="bonusImage" type="file" accept="image/*" required>
+          <p class="intro">請選擇你的彩度加分作品圖片。系統會把檔名記錄在 Excel 中。</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>7. 姓名或座號</legend>
           <input name="student" type="text" placeholder="可填座號或姓名" required>
         </fieldset>
 
         <div class="button-row">
           <button type="submit">送出評價</button>
-          <button id="downloadButton" class="secondary" type="button">下載回饋紀錄</button>
-          <a class="link-button secondary" href="final-ending.html">回完美破關</a>
+          <button id="downloadButton" class="secondary" type="button">下載 Excel 紀錄</button>
         </div>
       </form>
 
@@ -308,6 +315,7 @@
 
     function getFormData() {
       const data = new FormData(form);
+      const bonusImage = data.get("bonusImage");
       return {
         time: new Date().toLocaleString("zh-TW"),
         student: data.get("student") || "",
@@ -315,15 +323,43 @@
         favorite: data.get("favorite") || "",
         difficulty: data.get("difficulty") || "",
         skills: data.getAll("skills").join("、"),
-        comment: data.get("comment") || ""
+        comment: data.get("comment") || "",
+        bonusImage: bonusImage && bonusImage.name ? bonusImage.name : ""
       };
     }
 
-    function toCsv(records) {
-      const headers = ["時間", "姓名或座號", "學習幫助", "最有成就感", "難度", "練習能力", "一句回饋"];
-      const keys = ["time", "student", "learning", "favorite", "difficulty", "skills", "comment"];
-      const rows = records.map((record) => keys.map((key) => `"${String(record[key] || "").replace(/"/g, '""')}"`).join(","));
-      return "\uFEFF" + headers.join(",") + "\n" + rows.join("\n");
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function toExcelHtml(records) {
+      const headers = ["時間", "姓名或座號", "學習幫助", "最有成就感", "難度", "練習能力", "一句回饋", "彩度加分圖片檔名"];
+      const keys = ["time", "student", "learning", "favorite", "difficulty", "skills", "comment", "bonusImage"];
+      const rows = records.map((record) => {
+        return "<tr>" + keys.map((key) => `<td>${escapeHtml(record[key])}</td>`).join("") + "</tr>";
+      }).join("");
+
+      return `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    table { border-collapse: collapse; }
+    th, td { border: 1px solid #999; padding: 8px; mso-number-format:"\\@"; }
+    th { background: #ffe8a3; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <table>
+    <thead><tr>${headers.map((header) => `<th>${escapeHtml(header)}</th>`).join("")}</tr></thead>
+    <tbody>${rows}</tbody>
+  </table>
+</body>
+</html>`;
     }
 
     form.addEventListener("submit", (event) => {
@@ -338,15 +374,18 @@
       prizeTime.textContent = record.time;
       prizeCard.classList.add("is-visible");
       prizeCard.scrollIntoView({ behavior: "smooth", block: "center" });
+      window.setTimeout(() => {
+        window.location.href = "final-ending.html";
+      }, 1600);
     });
 
     downloadButton.addEventListener("click", () => {
       const records = getRecords();
-      const blob = new Blob([toCsv(records)], { type: "text/csv;charset=utf-8" });
+      const blob = new Blob([toExcelHtml(records)], { type: "application/vnd.ms-excel;charset=utf-8" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = "色彩學遊戲評價.csv";
+      link.download = "色彩學遊戲評價.xls";
       link.click();
       URL.revokeObjectURL(url);
     });

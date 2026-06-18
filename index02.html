@@ -328,6 +328,7 @@
       font-size: clamp(34px, 6vw, 76px);
       font-weight: 1000;
       color: #2f4f67;
+      text-shadow: 0 2px 0 rgba(255,255,255,0.7);
       letter-spacing: 4px;
       line-height: 1.1;
     }
@@ -711,170 +712,6 @@
     }
 
   </style>
-
-<style>
-  /* === 統一最後結尾風格：三道封印共用 === */
-  .unified-ending,
-  .unified-ending * { box-sizing: border-box; }
-
-  .unified-ending {
-    position: relative;
-    overflow: hidden;
-    width: min(920px, 100%);
-    margin: 0 auto;
-    text-align: center;
-    border-radius: 34px;
-    padding: clamp(28px, 4vw, 48px) clamp(20px, 4vw, 46px);
-    background:
-      radial-gradient(circle at 14% 10%, rgba(250, 204, 21, .45), transparent 28%),
-      radial-gradient(circle at 88% 18%, rgba(147, 197, 253, .38), transparent 30%),
-      radial-gradient(circle at 80% 90%, rgba(251, 146, 60, .26), transparent 32%),
-      linear-gradient(145deg, #fffdf5 0%, #fff8e7 52%, #f6fbff 100%);
-    border: 3px solid rgba(245, 158, 11, .45);
-    box-shadow: 0 28px 80px rgba(15, 23, 42, .18);
-    color: #243447;
-  }
-
-  .unified-ending::before {
-    content: "";
-    position: absolute;
-    inset: 16px;
-    border: 2px dashed rgba(245, 158, 11, .36);
-    border-radius: 26px;
-    pointer-events: none;
-  }
-
-  .unified-ending::after {
-    content: "✦";
-    position: absolute;
-    right: 30px;
-    top: 24px;
-    font-size: 44px;
-    color: rgba(245, 158, 11, .5);
-  }
-
-  .unified-kicker {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 16px;
-    padding: 9px 18px;
-    border-radius: 999px;
-    background: #1f2937;
-    color: #fff;
-    font-weight: 1000;
-    letter-spacing: .08em;
-    font-size: 15px;
-  }
-
-  .unified-ending h2,
-  .unified-title {
-    margin: 0;
-    font-size: clamp(30px, 4.5vw, 54px) !important;
-    line-height: 1.18 !important;
-    font-weight: 1000 !important;
-    letter-spacing: -1px;
-    color: #7c3f09 !important;
-  }
-
-  .unified-message {
-    max-width: 720px;
-    margin: 18px auto 0;
-    color: #526171;
-    font-size: clamp(17px, 2vw, 21px);
-    line-height: 1.85;
-    font-weight: 800;
-  }
-
-  .unified-stamp {
-    display: inline-block;
-    margin: 22px 0 0;
-    padding: 10px 20px;
-    border-radius: 18px;
-    border: 4px solid #16a34a;
-    color: #15803d;
-    background: rgba(240, 253, 244, .88);
-    font-size: clamp(18px, 2.2vw, 25px);
-    font-weight: 1000;
-    transform: rotate(-2deg);
-  }
-
-  .unified-password-box {
-    width: min(560px, 100%);
-    margin: 22px auto 0;
-    padding: 18px 22px;
-    border-radius: 26px;
-    background: rgba(255, 255, 255, .88);
-    border: 3px dashed #f59e0b;
-    box-shadow: 0 14px 30px rgba(15, 23, 42, .09);
-  }
-
-  .unified-password-label {
-    color: #92400e;
-    font-size: 17px;
-    font-weight: 1000;
-    margin-bottom: 8px;
-  }
-
-  .unified-password {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 18px;
-    background: #fffbeb;
-    color: #0f172a;
-    font-size: clamp(34px, 5vw, 58px);
-    font-weight: 1000;
-    letter-spacing: .12em;
-  }
-
-  .unified-note {
-    margin-top: 12px;
-    color: #6b7280;
-    font-size: 15px;
-    line-height: 1.7;
-    font-weight: 800;
-  }
-
-  .unified-actions,
-  .unified-ending .button-row,
-  .unified-ending .actions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 24px;
-  }
-
-  .unified-ending button,
-  .unified-ending .btn,
-  .unified-ending a {
-    border-radius: 999px !important;
-    min-height: 52px;
-  }
-
-  .unified-submit-steps {
-    max-width: 720px;
-    margin: 22px auto 0;
-    border-radius: 26px;
-    background: rgba(248, 250, 252, .86);
-    border: 1px solid #e2e8f0;
-    padding: 18px;
-    text-align: left;
-  }
-
-  .unified-submit-steps h3 { margin: 0 0 10px; font-size: 20px; }
-  .unified-submit-step { display: flex; gap: 10px; padding: 8px 0; font-weight: 900; color: #334155; line-height: 1.55; }
-  .unified-submit-step .num { width: 28px; height: 28px; border-radius: 999px; background: #1f2937; color: #fff; display: grid; place-items: center; font-size: 14px; flex: 0 0 auto; margin-top: 1px; }
-
-  @media (max-width: 680px) {
-    .unified-ending { border-radius: 26px; padding: 26px 18px; }
-    .unified-ending::before { inset: 10px; border-radius: 20px; }
-    .unified-ending::after { display: none; }
-  }
-</style>
-
 </head>
 <body>
   <main class="game">
@@ -922,8 +759,8 @@
 
     <section class="flash-area" id="flashArea">
       <div class="flash-head">
-        <div class="flash-question" id="flashQuestion">高明度</div>
-        <div class="flash-progress" id="flashProgress">1 / 20</div>
+        <div class="flash-question" id="flashQuestion">最高明度</div>
+        <div class="flash-progress" id="flashProgress">1 / 24</div>
         <div class="flash-timer" id="flashTimer">60 秒</div>
       </div>
       <div class="flash-grid" id="flashGrid"></div>
@@ -935,22 +772,13 @@
   </main>
 
   <div class="unlock-overlay" id="unlockOverlay">
-    <div class="unified-ending unlock-card">
-      <div class="unified-kicker">✦ MISSION CLEAR ✦</div>
-      <h2 class="unified-title">第二道封印｜明度<br>解鎖成功</h2>
-      <p class="unified-message">
-        你已完成黑白灰階、同色系明度、不同色明度比較與光影閃現任務，<br>
-        第二把色彩鑰匙正式入手！
-      </p>
-      <div class="unified-stamp">第二道封印解除</div>
-      <div class="unified-password-box">
-        <div class="unified-password-label">恭喜獲得開鎖密碼</div>
-        <div class="unified-password">VALUE</div>
-        <div class="unified-note">請記下密碼，完成學習驗收後再前往下一道封印。</div>
-      </div>
-      <div class="unified-actions">
-        <button class="unlock-close" type="button" onclick="hideUnlockOverlay()">我記住了</button>
-      </div>
+    <div class="unlock-card">
+      <div class="unlock-badge">MISSION CLEAR</div>
+      <h2 class="unlock-title">「第二道封印|明度」<br>解鎖成功</h2>
+      <div class="unlock-subtitle">獲得開鎖密碼</div>
+      <div class="unlock-password">VALUE</div>
+      <div class="unlock-note">請記下密碼，前往下一道封印挑戰。</div>
+      <button class="unlock-close" type="button" onclick="hideUnlockOverlay()">我記住了</button>
     </div>
   </div>
 
@@ -1021,13 +849,13 @@
         title: "閃現十六格",
         shortTitle: "第四關",
         desc: "快速打中亮暗",
-        mission: "<strong>第四關：</strong>閃現十六格。題目出現「高明度」時，請點最高明度；題目出現「低明度」時，請點最低明度。請在 60 秒內完成 20 題。",
+        mission: "<strong>第四關：</strong>閃現十六格。題目出現「最高明度」時，請點最最高明度；題目出現「最低明度」時，請點最最低明度。請在 60 秒內完成 24 題。",
         success: "第二道封印|明度 解鎖成功，獲得開鎖密碼：VALUE"
       }
     ];
 
     const CARD_COUNT = 10;
-    const FLASH_TOTAL = 20;
+    const FLASH_TOTAL = 24;
     const FLASH_TIME_LIMIT = 60;
     let currentLevelIndex = 0;
     let draggedCard = null;
@@ -1360,7 +1188,7 @@
       flashQuestions = createFlashQuestions();
       startFlashTimer();
       renderFlashQuestion();
-      message.innerHTML = "看清楚題目：高明度請打最亮，低明度請打最暗。60 秒內完成 20 題就過關。";
+      message.innerHTML = "看清楚題目：最最高明度請打最亮，最最低明度請打最暗。60 秒內完成 24 題就過關。";
     }
 
     function startFlashTimer() {
@@ -1371,14 +1199,20 @@
         flashTimeLeft--;
         flashTimer.textContent = `${flashTimeLeft} 秒`;
         if (flashTimeLeft <= 0) {
-          clearInterval(flashTimerId);
-          acceptingFlashClick = false;
-          flashQuestion.textContent = "時間到";
-          flashProgress.textContent = `${flashIndex} / ${FLASH_TOTAL}`;
-          flashGrid.innerHTML = "";
-          message.innerHTML = "時間到！請按「重新開始本關」，再挑戰一次第四關。";
+          handleFlashTimeout();
         }
       }, 1000);
+    }
+
+    function handleFlashTimeout() {
+      clearInterval(flashTimerId);
+      flashTimeLeft = 0;
+      flashTimer.textContent = "0 秒";
+      acceptingFlashClick = false;
+      flashQuestion.textContent = "時間到";
+      flashProgress.textContent = `${flashIndex} / ${FLASH_TOTAL}`;
+      flashGrid.innerHTML = "";
+      message.innerHTML = "時間到！答錯會扣 2 秒，請按「重新開始本關」再挑戰一次第四關。";
     }
 
     function createFlashQuestions() {
@@ -1400,14 +1234,14 @@
         clearInterval(flashTimerId);
         completeCurrentLevel();
         flashQuestion.textContent = "VALUE";
-        flashProgress.textContent = "20 / 20";
+        flashProgress.textContent = "24 / 24";
         flashGrid.innerHTML = "";
         return;
       }
 
       acceptingFlashClick = true;
       const question = flashQuestions[flashIndex];
-      flashQuestion.textContent = question.target === "high" ? "高明度" : "低明度";
+      flashQuestion.textContent = question.target === "high" ? "最高明度" : "最低明度";
       flashProgress.textContent = `${flashIndex + 1} / ${FLASH_TOTAL}`;
       flashGrid.innerHTML = "";
 
@@ -1440,9 +1274,15 @@
         }, 650);
       } else {
         card.classList.add("wrong-click");
+        flashTimeLeft = Math.max(0, flashTimeLeft - 2);
+        flashTimer.textContent = `${flashTimeLeft} 秒`;
+        if (flashTimeLeft <= 0) {
+          handleFlashTimeout();
+          return;
+        }
         message.innerHTML = question.target === "high"
-          ? "再看一次：題目是高明度，要找最接近白的那格。"
-          : "再看一次：題目是低明度，要找最接近黑的那格。";
+          ? "再看一次：題目是最高明度，要找最接近白的那格。"
+          : "再看一次：題目是最低明度，要找最接近黑的那格。";
         setTimeout(() => card.classList.remove("wrong-click"), 500);
       }
     }
@@ -1450,50 +1290,5 @@
     setupDropArea(cardPool);
     renderLevel();
   </script>
-
-<a class="brightness-password-button" href="brightness-password.html" style="position:fixed;right:22px;bottom:22px;z-index:9999;border:0;border-radius:999px;background:#ff9f1c;color:#17120a;font-family:'Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif;font-weight:900;text-decoration:none;box-shadow:0 10px 24px rgba(15,23,42,0.24);">學習驗收</a>
-<style>
-  .brightness-password-button {
-    min-height: 72px !important;
-    padding: 18px 34px !important;
-    font-size: 24px !important;
-  }
-
-  .brightness-password-button:not(.show-after-code) {
-    display: none !important;
-  }
-
-  .brightness-password-button.show-after-code {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-</style>
-<script>
-  (() => {
-    const passwordButton = document.querySelector(".brightness-password-button");
-    if (!passwordButton) return;
-
-    function updateAfterPasswordShown() {
-      const compactText = (document.body.innerText || "").replace(/\s/g, "");
-      passwordButton.classList.toggle("show-after-code", compactText.includes("開鎖密碼"));
-    }
-
-    updateAfterPasswordShown();
-    window.addEventListener("load", updateAfterPasswordShown);
-    document.addEventListener("click", () => window.setTimeout(updateAfterPasswordShown, 120));
-    document.addEventListener("change", () => window.setTimeout(updateAfterPasswordShown, 120));
-
-    const observer = new MutationObserver(updateAfterPasswordShown);
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      characterData: true,
-      attributes: true,
-      attributeFilter: ["class", "style", "hidden"]
-    });
-  })();
-</script>
-  <script src="game-timer.js"></script>
 </body>
 </html>

@@ -477,6 +477,31 @@
       color: #3d3325;
     }
 
+    .unlock-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .unlock-actions .unlock-close {
+      margin-top: 0;
+    }
+
+    .unlock-next {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 12px 22px;
+      border-radius: 14px;
+      background: #2f4f67;
+      color: #ffffff;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
     @keyframes popIn {
       from {
         transform: scale(0.92);
@@ -777,8 +802,11 @@
       <h2 class="unlock-title">「第二道封印|明度」<br>解鎖成功</h2>
       <div class="unlock-subtitle">獲得開鎖密碼</div>
       <div class="unlock-password">VALUE</div>
-      <div class="unlock-note">請記下密碼，前往下一道封印挑戰。</div>
-      <button class="unlock-close" type="button" onclick="hideUnlockOverlay()">我記住了</button>
+      <div class="unlock-note">請記下密碼，完成明度學習驗收後再前往下一道封印。</div>
+      <div class="unlock-actions">
+        <button class="unlock-close" type="button" onclick="hideUnlockOverlay()">留在本頁</button>
+        <a class="unlock-next" href="brightness-password.html">前往學習驗收</a>
+      </div>
     </div>
   </div>
 

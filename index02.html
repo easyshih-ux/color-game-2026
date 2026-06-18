@@ -711,6 +711,170 @@
     }
 
   </style>
+
+<style>
+  /* === 統一最後結尾風格：三道封印共用 === */
+  .unified-ending,
+  .unified-ending * { box-sizing: border-box; }
+
+  .unified-ending {
+    position: relative;
+    overflow: hidden;
+    width: min(920px, 100%);
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 34px;
+    padding: clamp(28px, 4vw, 48px) clamp(20px, 4vw, 46px);
+    background:
+      radial-gradient(circle at 14% 10%, rgba(250, 204, 21, .45), transparent 28%),
+      radial-gradient(circle at 88% 18%, rgba(147, 197, 253, .38), transparent 30%),
+      radial-gradient(circle at 80% 90%, rgba(251, 146, 60, .26), transparent 32%),
+      linear-gradient(145deg, #fffdf5 0%, #fff8e7 52%, #f6fbff 100%);
+    border: 3px solid rgba(245, 158, 11, .45);
+    box-shadow: 0 28px 80px rgba(15, 23, 42, .18);
+    color: #243447;
+  }
+
+  .unified-ending::before {
+    content: "";
+    position: absolute;
+    inset: 16px;
+    border: 2px dashed rgba(245, 158, 11, .36);
+    border-radius: 26px;
+    pointer-events: none;
+  }
+
+  .unified-ending::after {
+    content: "✦";
+    position: absolute;
+    right: 30px;
+    top: 24px;
+    font-size: 44px;
+    color: rgba(245, 158, 11, .5);
+  }
+
+  .unified-kicker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    background: #1f2937;
+    color: #fff;
+    font-weight: 1000;
+    letter-spacing: .08em;
+    font-size: 15px;
+  }
+
+  .unified-ending h2,
+  .unified-title {
+    margin: 0;
+    font-size: clamp(30px, 4.5vw, 54px) !important;
+    line-height: 1.18 !important;
+    font-weight: 1000 !important;
+    letter-spacing: -1px;
+    color: #7c3f09 !important;
+  }
+
+  .unified-message {
+    max-width: 720px;
+    margin: 18px auto 0;
+    color: #526171;
+    font-size: clamp(17px, 2vw, 21px);
+    line-height: 1.85;
+    font-weight: 800;
+  }
+
+  .unified-stamp {
+    display: inline-block;
+    margin: 22px 0 0;
+    padding: 10px 20px;
+    border-radius: 18px;
+    border: 4px solid #16a34a;
+    color: #15803d;
+    background: rgba(240, 253, 244, .88);
+    font-size: clamp(18px, 2.2vw, 25px);
+    font-weight: 1000;
+    transform: rotate(-2deg);
+  }
+
+  .unified-password-box {
+    width: min(560px, 100%);
+    margin: 22px auto 0;
+    padding: 18px 22px;
+    border-radius: 26px;
+    background: rgba(255, 255, 255, .88);
+    border: 3px dashed #f59e0b;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, .09);
+  }
+
+  .unified-password-label {
+    color: #92400e;
+    font-size: 17px;
+    font-weight: 1000;
+    margin-bottom: 8px;
+  }
+
+  .unified-password {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 18px;
+    background: #fffbeb;
+    color: #0f172a;
+    font-size: clamp(34px, 5vw, 58px);
+    font-weight: 1000;
+    letter-spacing: .12em;
+  }
+
+  .unified-note {
+    margin-top: 12px;
+    color: #6b7280;
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 800;
+  }
+
+  .unified-actions,
+  .unified-ending .button-row,
+  .unified-ending .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .unified-ending button,
+  .unified-ending .btn,
+  .unified-ending a {
+    border-radius: 999px !important;
+    min-height: 52px;
+  }
+
+  .unified-submit-steps {
+    max-width: 720px;
+    margin: 22px auto 0;
+    border-radius: 26px;
+    background: rgba(248, 250, 252, .86);
+    border: 1px solid #e2e8f0;
+    padding: 18px;
+    text-align: left;
+  }
+
+  .unified-submit-steps h3 { margin: 0 0 10px; font-size: 20px; }
+  .unified-submit-step { display: flex; gap: 10px; padding: 8px 0; font-weight: 900; color: #334155; line-height: 1.55; }
+  .unified-submit-step .num { width: 28px; height: 28px; border-radius: 999px; background: #1f2937; color: #fff; display: grid; place-items: center; font-size: 14px; flex: 0 0 auto; margin-top: 1px; }
+
+  @media (max-width: 680px) {
+    .unified-ending { border-radius: 26px; padding: 26px 18px; }
+    .unified-ending::before { inset: 10px; border-radius: 20px; }
+    .unified-ending::after { display: none; }
+  }
+</style>
+
 </head>
 <body>
   <main class="game">
@@ -771,13 +935,22 @@
   </main>
 
   <div class="unlock-overlay" id="unlockOverlay">
-    <div class="unlock-card">
-      <div class="unlock-badge">MISSION CLEAR</div>
-      <h2 class="unlock-title">「第二道封印|明度」<br>解鎖成功</h2>
-      <div class="unlock-subtitle">獲得開鎖密碼</div>
-      <div class="unlock-password">VALUE</div>
-      <div class="unlock-note">請記下密碼，前往下一道封印挑戰。</div>
-      <button class="unlock-close" type="button" onclick="hideUnlockOverlay()">我記住了</button>
+    <div class="unified-ending unlock-card">
+      <div class="unified-kicker">✦ MISSION CLEAR ✦</div>
+      <h2 class="unified-title">第二道封印｜明度<br>解鎖成功</h2>
+      <p class="unified-message">
+        你已完成黑白灰階、同色系明度、不同色明度比較與光影閃現任務，<br>
+        第二把色彩鑰匙正式入手！
+      </p>
+      <div class="unified-stamp">第二道封印解除</div>
+      <div class="unified-password-box">
+        <div class="unified-password-label">恭喜獲得開鎖密碼</div>
+        <div class="unified-password">VALUE</div>
+        <div class="unified-note">請記下密碼，完成學習驗收後再前往下一道封印。</div>
+      </div>
+      <div class="unified-actions">
+        <button class="unlock-close" type="button" onclick="hideUnlockOverlay()">我記住了</button>
+      </div>
     </div>
   </div>
 
@@ -1277,6 +1450,8 @@
     setupDropArea(cardPool);
     renderLevel();
   </script>
+
+<a class="brightness-password-button" href="value-password.html" style="position:fixed;right:22px;bottom:22px;z-index:9999;border:0;border-radius:999px;background:#ff9f1c;color:#17120a;font-family:'Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif;font-weight:900;text-decoration:none;box-shadow:0 10px 24px rgba(15,23,42,0.24);">學習驗收</a>
 <style>
   .brightness-password-button {
     min-height: 72px !important;

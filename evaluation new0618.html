@@ -59,8 +59,7 @@
     }
 
     fieldset {
-      display: grid;
-      gap: 12px;
+      display: block;
       margin: 0;
       border: 2px solid rgba(43, 97, 199, 0.22);
       border-radius: 14px;
@@ -69,16 +68,24 @@
     }
 
     legend {
+      display: block;
+      width: 100%;
+      max-width: 100%;
       padding: 0 8px;
       color: #113477;
       font-size: clamp(21px, 2.8vw, 26px);
       font-weight: 900;
+      line-height: 1.35;
+      white-space: normal;
+      word-break: keep-all;
+      overflow-wrap: normal;
     }
 
     .options {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 14px;
+      margin-top: 12px;
     }
 
     label.option {
@@ -370,7 +377,7 @@
           <div>班級座號：<span id="prizeStudent">--</span></div>
           <div>完成時間：<span id="prizeTime">--</span></div>
         </div>
-        <div class="prize-note">恭喜你完成所有關卡</div>
+        <div class="prize-note">解開封印的最後一頁</div>
       </section>
     </section>
   </main>

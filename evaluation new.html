@@ -212,6 +212,11 @@
       font-size: 22px;
       font-weight: 900;
     }
+
+    .final-button {
+      display: block;
+      margin-top: 18px;
+    }
   </style>
 </head>
 <body>
@@ -285,6 +290,7 @@
           <div>完成時間：<span id="prizeTime">--</span></div>
         </div>
         <div class="prize-note">請把這個畫面出示給老師領取獎品</div>
+        <a class="link-button final-button" href="final-ending.html">前往完美破關</a>
       </section>
     </section>
   </main>
@@ -359,6 +365,7 @@
         });
 
         form.reset();
+        alert("恭喜你完成所有關卡");
         result.textContent = "恭喜你完成所有關卡";
         result.classList.add("is-visible");
         prizeStudent.textContent = record.student;

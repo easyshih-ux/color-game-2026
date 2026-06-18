@@ -212,6 +212,14 @@
       font-size: 22px;
       font-weight: 900;
     }
+
+    .final-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 24px;
+      position: static;
+    }
   </style>
 </head>
 <body>
@@ -273,7 +281,6 @@
 
         <div class="button-row">
           <button type="submit">送出評價</button>
-          <button id="downloadButton" class="secondary" type="button">下載本機備份紀錄</button>
         </div>
       </form>
 
@@ -291,7 +298,6 @@
   <script>
     const form = document.querySelector("#evaluationForm");
     const result = document.querySelector("#result");
-    const downloadButton = document.querySelector("#downloadButton");
     const prizeCard = document.querySelector("#prizeCard");
     const prizeStudent = document.querySelector("#prizeStudent");
     const prizeTime = document.querySelector("#prizeTime");
@@ -315,13 +321,6 @@
         skills: data.getAll("skills").join("、"),
         comment: data.get("comment") || ""
       };
-    }
-
-    function toCsv(records) {
-      const headers = ["時間", "班級座號", "學習幫助", "最有成就感", "難度", "練習能力", "一句回饋"];
-      const keys = ["time", "student", "learning", "favorite", "difficulty", "skills", "comment"];
-      const rows = records.map((record) => keys.map((key) => `"${String(record[key] || "").replace(/"/g, '""')}"`).join(","));
-      return "\uFEFF" + headers.join(",") + "\n" + rows.join("\n");
     }
 
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzPOELjeAbjP2jpsJ2YajVDUHxADdCQEcYyov-eot6-ofzHXh_J8xU1fr9yvBaFQBLixw/exec";
@@ -374,20 +373,6 @@
       }
     });
 
-    downloadButton.addEventListener("click", () => {
-      const records = getRecords();
-      if (!records.length) {
-        alert("目前還沒有本機備份紀錄可以下載喔！");
-        return;
-      }
-      const blob = new Blob([toCsv(records)], { type: "text/csv;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "色彩學遊戲評價_本機備份.csv";
-      link.click();
-      URL.revokeObjectURL(url);
-    });
   </script>
   <script>
     (() => {

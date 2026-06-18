@@ -18,7 +18,7 @@ PAGES = [
     "chroma-password.html",
     "elements-intro.html",
     "elements-password.html",
-    "evaluation_google_sheet.html",
+    "evaluation new.html",
     "final-ending.html",
 ]
 PNG_REFERENCE = re.compile(r"(?P<quote>[\"'])(?P<path>[^\"'<>]+?\.png)(?P=quote)", re.IGNORECASE)

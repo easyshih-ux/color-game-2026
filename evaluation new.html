@@ -212,11 +212,6 @@
       font-size: 22px;
       font-weight: 900;
     }
-
-    .final-button {
-      display: block;
-      margin-top: 18px;
-    }
   </style>
 </head>
 <body>
@@ -289,8 +284,6 @@
           <div>班級座號：<span id="prizeStudent">--</span></div>
           <div>完成時間：<span id="prizeTime">--</span></div>
         </div>
-        <div class="prize-note">請把這個畫面出示給老師領取獎品</div>
-        <a class="link-button final-button" href="final-ending.html">前往完美破關</a>
       </section>
     </section>
   </main>
@@ -395,6 +388,18 @@
       link.click();
       URL.revokeObjectURL(url);
     });
+  </script>
+  <script>
+    (() => {
+      const prizeCard = document.querySelector("#prizeCard");
+      if (!prizeCard || prizeCard.querySelector('a[href="final-ending.html"]')) return;
+
+      const finalButton = document.createElement("a");
+      finalButton.className = "link-button final-button";
+      finalButton.href = "final-ending.html";
+      finalButton.textContent = "前往完美破關";
+      prizeCard.appendChild(finalButton);
+    })();
   </script>
 </body>
 </html>

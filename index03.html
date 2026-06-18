@@ -898,8 +898,8 @@
         <div>
           <div class="pill">第四關｜色彩能量調整師</div>
           <h2>完成彩度格子配色作品</h2>
-          <p>點選任一格，再調整色相、彩度與明度，按下「填入選取格」。請在作品中完成通關條件：24 格都要完成、3 個低彩度（加白－明度高）、3 個低彩度（加黑－明度低）、4 個高彩度（純色－明度中）、彩度對比、明度對比、彩度類似、明度類似與作品命名。</p>
-          <div class="notice">本關使用格子填色：請完成 24 格，並同時安排 3 個低彩度（加白－明度高）、3 個低彩度（加黑－明度低）、4 個高彩度（純色－明度中），再形成彩度對比、明度對比、彩度類似與明度類似。符合所有條件後，即可破解第三道封印。</div>
+          <p>點選任一格，再調整色相、彩度與明度，按下「填入選取格」。請用 24 格完成一件有反覆節奏、彩度漸層、明度漸層與左右對稱的配色作品，同時保留加白低彩、加黑低彩與高彩純色的搭配。</p>
+          <div class="notice">構成挑戰：讓相近配色反覆出現至少 3 格；安排連續 4 格的彩度漸層與明度漸層；再讓至少一橫列出現 2 組左右對稱配色。符合所有條件後，即可破解第三道封印。</div>
         </div>
 
         <div class="level4-layout">
@@ -1420,6 +1420,43 @@
       return best;
     }
 
+    function hueDistance(a,b){
+      const diff=Math.abs(a-b)%360;
+      return Math.min(diff,360-diff);
+    }
+
+    function colorsAreSimilar(a,b){
+      return Boolean(a && b && hueDistance(a.h,b.h)<=20 && Math.abs(a.s-b.s)<=10 && Math.abs(a.l-b.l)<=10);
+    }
+
+    function getFourCellLines(colors){
+      const lines=[];
+      for(let row=0;row<4;row++){
+        for(let col=0;col<=2;col++){
+          lines.push([0,1,2,3].map(offset=>colors[row*6+col+offset]));
+        }
+      }
+      for(let col=0;col<6;col++){
+        lines.push([0,1,2,3].map(row=>colors[row*6+col]));
+      }
+      return lines;
+    }
+
+    function isVisualGradient(line,type){
+      if(line.some(color=>!color)) return false;
+      if(line.some(color=>hueDistance(color.h,line[0].h)>30)) return false;
+
+      const values=line.map(color=>color[type]);
+      const steps=values.slice(1).map((value,index)=>value-values[index]);
+      const movesUp=steps.every(step=>step>=8 && step<=35);
+      const movesDown=steps.every(step=>step<=-8 && step>=-35);
+      if(!movesUp && !movesDown) return false;
+
+      const steadyType=type==="s" ? "l" : "s";
+      const steadyValues=line.map(color=>color[steadyType]);
+      return Math.max(...steadyValues)-Math.min(...steadyValues)<=15;
+    }
+
     function evaluateLevel4(){
       if(state.isDemoWork){
         return {ok:false, missing:["請按全部重來後自行完成作品"], demo:true};
@@ -1427,7 +1464,8 @@
 
       const filledCount = state.fills.filter(Boolean).length;
       const allFilled = filledCount >= 24;
-      const colors = state.fills.filter(Boolean).map(parseHsl);
+      const spatialColors = state.fills.map(color=>color ? parseHsl(color) : null);
+      const colors = spatialColors.filter(Boolean);
 
       // 低彩度（加白－明度高）：彩度低、明度高
       const whiteLowCount = colors.filter(c => c.s <= 45 && c.l >= 70).length;
@@ -1439,18 +1477,25 @@
       const pureHighColors = colors.filter(c => c.s >= 70 && c.l >= 40 && c.l <= 65);
       const pureHighHueCount = new Set(pureHighColors.map(c => hueFamily(c.h))).size;
 
-      const lowChromaCount = colors.filter(c => c.s <= 45).length;
-      const highChromaCount = colors.filter(c => c.s >= 70).length;
-      const hasChromaContrast = lowChromaCount >= 6 && highChromaCount >= 4;
+      const repeatCount = colors.reduce((best,color)=>{
+        const similarCount=colors.filter(other=>colorsAreSimilar(color,other)).length;
+        return Math.max(best,similarCount);
+      },0);
+      const hasRepeat = repeatCount >= 3;
 
-      const lowLightCount = colors.filter(c => c.l <= 35).length;
-      const highLightCount = colors.filter(c => c.l >= 70).length;
-      const hasLightContrast = lowLightCount >= 3 && highLightCount >= 3;
+      const fourCellLines=getFourCellLines(spatialColors);
+      const hasChromaGradient=fourCellLines.some(line=>isVisualGradient(line,"s"));
+      const hasLightGradient=fourCellLines.some(line=>isVisualGradient(line,"l"));
 
-      const chromaSimilarCount = maxClusterWithinGap(colors.map(c => c.s), 10);
-      const lightSimilarCount = maxClusterWithinGap(colors.map(c => c.l), 8);
-      const hasChromaSimilar = chromaSimilarCount >= 4;
-      const hasLightSimilar = lightSimilarCount >= 4;
+      let symmetryPairCount=0;
+      for(let row=0;row<4;row++){
+        const start=row*6;
+        const pairCount=[[0,5],[1,4],[2,3]].filter(([left,right])=>
+          colorsAreSimilar(spatialColors[start+left],spatialColors[start+right])
+        ).length;
+        symmetryPairCount=Math.max(symmetryPairCount,pairCount);
+      }
+      const hasSymmetry=symmetryPairCount>=2;
 
       const nameLength = state.artName.trim().length;
       const hasName = nameLength >= 2;
@@ -1460,10 +1505,10 @@
       if(whiteLowCount < 3) missing.push("加入 3 個低彩度（加白－明度高）");
       if(blackLowCount < 3) missing.push("加入 3 個低彩度（加黑－明度低）");
       if(pureHighHueCount < 4) missing.push("加入 4 個高彩度（純色－明度中）");
-      if(!hasChromaContrast) missing.push("形成彩度的對比（至少 6 格低彩度＋4 格高彩度）");
-      if(!hasLightContrast) missing.push("形成明度的對比（至少 3 格低明度＋3 格高明度）");
-      if(!hasChromaSimilar) missing.push("形成彩度的類似（至少 4 格彩度相近）");
-      if(!hasLightSimilar) missing.push("形成明度的類似（至少 4 格明度相近）");
+      if(!hasRepeat) missing.push("建立反覆節奏（相近配色至少重複 3 格）");
+      if(!hasChromaGradient) missing.push("建立彩度漸層（連續 4 格同色系，彩度逐步變化）");
+      if(!hasLightGradient) missing.push("建立明度漸層（連續 4 格同色系，明度逐步變化）");
+      if(!hasSymmetry) missing.push("建立左右對稱（同一橫列至少 2 組鏡像配色）");
       if(!hasName) missing.push("作品命名至少 2 個字");
 
       return {
@@ -1474,16 +1519,12 @@
         whiteLowCount,
         blackLowCount,
         pureHighHueCount,
-        lowChromaCount,
-        highChromaCount,
-        hasChromaContrast,
-        lowLightCount,
-        highLightCount,
-        hasLightContrast,
-        chromaSimilarCount,
-        lightSimilarCount,
-        hasChromaSimilar,
-        hasLightSimilar,
+        repeatCount,
+        hasRepeat,
+        hasChromaGradient,
+        hasLightGradient,
+        symmetryPairCount,
+        hasSymmetry,
         nameLength,
         hasName,
       };
@@ -1515,10 +1556,10 @@
         [`3 個低彩度（加白－明度高）｜目前 ${ev.whiteLowCount}/3`, ev.whiteLowCount >= 3 && !ev.demo],
         [`3 個低彩度（加黑－明度低）｜目前 ${ev.blackLowCount}/3`, ev.blackLowCount >= 3 && !ev.demo],
         [`4 個高彩度（純色－明度中）｜目前 ${ev.pureHighHueCount}/4`, ev.pureHighHueCount >= 4 && !ev.demo],
-        [`彩度的對比｜低彩度 ${ev.lowChromaCount} 格 / 高彩度 ${ev.highChromaCount} 格`, ev.hasChromaContrast && !ev.demo],
-        [`明度的對比｜低明度 ${ev.lowLightCount} 格 / 高明度 ${ev.highLightCount} 格`, ev.hasLightContrast && !ev.demo],
-        [`彩度的類似｜相近彩度最多 ${ev.chromaSimilarCount} 格`, ev.hasChromaSimilar && !ev.demo],
-        [`明度的類似｜相近明度最多 ${ev.lightSimilarCount} 格`, ev.hasLightSimilar && !ev.demo],
+        [`反覆節奏｜相近配色重複 ${ev.repeatCount}/3 格`, ev.hasRepeat && !ev.demo],
+        [`彩度漸層｜連續 4 格同色系，彩度逐步升高或降低`, ev.hasChromaGradient && !ev.demo],
+        [`明度漸層｜連續 4 格同色系，明度逐步升高或降低`, ev.hasLightGradient && !ev.demo],
+        [`左右對稱｜同一橫列鏡像配色 ${ev.symmetryPairCount}/2 組`, ev.hasSymmetry && !ev.demo],
         [`作品命名至少 2 個字｜目前 ${ev.nameLength} 字`, ev.hasName],
       ];
       document.getElementById("checklistItems").innerHTML=items.map(([text,done])=>`<div class="check-item ${done?'done':''}">${done?'✓':'□'} ${text}</div>`).join("");

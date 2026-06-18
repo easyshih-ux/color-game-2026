@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>色彩學遊戲測試截點</title>
   <style>
     * { box-sizing: border-box; }
@@ -34,7 +37,7 @@
   <main>
     <header>
       <h1>教師測試截點</h1>
-      <p class="note">點選任一截點會從該處重新計時。這個頁面不會出現在學生遊戲流程中。</p>
+      <p class="note">點選任一截點會從該處重新計時，並強制載入最新版本。這個頁面不會出現在學生遊戲流程中。</p>
     </header>
 
     <section>
@@ -76,7 +79,9 @@
     document.querySelectorAll("[data-href]").forEach((button) => {
       button.addEventListener("click", () => {
         window.localStorage.setItem("colorGameTimer", JSON.stringify({ startedAt: Date.now(), finishedAt: null }));
-        window.location.href = button.dataset.href;
+        const target = new URL(button.dataset.href, window.location.href);
+        target.searchParams.set("updated", Date.now());
+        window.location.href = target.href;
       });
     });
   </script>

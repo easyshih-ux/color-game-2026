@@ -69,7 +69,7 @@
 
     .steps {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 10px;
     }
 
@@ -577,20 +577,33 @@
       font-family: inherit;
     }
 
-    .wheel-node:hover { transform: translate(-50%, -50%) scale(1.04); }
+    button.wheel-node:hover:not(:disabled),
+    button.wheel-node:active:not(:disabled),
+    button.wheel-node.selected:hover,
+    button.wheel-node.selected:active {
+      transform: translate(-50%, -50%);
+    }
 
     .wheel-node.main-target {
       cursor: default;
       z-index: 3;
-      outline: 3px solid #111827;
-      outline-offset: 4px;
-      box-shadow: 0 0 0 8px rgba(255,255,255,0.96), 0 6px 14px rgba(31, 41, 55, 0.10);
+      opacity: 1;
+      transform: translate(-50%, -50%);
+      outline: 4px solid #111827;
+      outline-offset: 2px;
+      box-shadow: 0 6px 14px rgba(31, 41, 55, 0.16);
     }
 
     .wheel-node.selected {
-      z-index: 1;
-      outline: 5px solid var(--accent);
+      z-index: 4;
+      outline: 4px solid var(--accent);
       outline-offset: 2px;
+      box-shadow: 0 6px 14px rgba(31, 41, 55, 0.10);
+    }
+
+    .wheel-node.main-target:hover,
+    .wheel-node.selected:hover {
+      transform: translate(-50%, -50%);
     }
 
     .round-tip {
@@ -657,6 +670,99 @@
       color: #9a3412;
     }
 
+    .mix-lab {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.85fr) minmax(300px, 1.15fr);
+      gap: 18px;
+      align-items: stretch;
+      margin: 18px 0;
+    }
+
+    .mix-target-card,
+    .mix-workbench {
+      border: 2px solid var(--line);
+      border-radius: 24px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .mix-target-swatch {
+      min-height: 150px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      margin-top: 14px;
+      color: #fff;
+      font-size: 28px;
+      font-weight: 1000;
+      text-shadow: 0 2px 7px rgba(0, 0, 0, 0.42);
+      box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.52);
+    }
+
+    .mix-color-explanation {
+      margin: 14px 0 8px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+      line-height: 1.65;
+      font-weight: 800;
+    }
+
+    .mix-bowl {
+      width: min(260px, 100%);
+      min-height: 138px;
+      margin: 0 auto 18px;
+      border: 8px solid #e5e7eb;
+      border-radius: 20px 20px 90px 90px;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      text-align: center;
+      font-weight: 1000;
+      transition: background 0.25s;
+      box-shadow: inset 0 -12px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .paint-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .paint-button {
+      border: 3px solid transparent;
+      border-radius: 18px;
+      padding: 13px 8px;
+      color: #17202a;
+      font-size: 16px;
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+    }
+
+    .paint-button span { display: block; font-size: 24px; margin-top: 3px; }
+    .paint-button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .mix-progress {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(54px, 1fr));
+      gap: 7px;
+      margin: 14px 0;
+    }
+
+    .mix-progress-dot {
+      min-height: 42px;
+      border-radius: 12px;
+      background: #e5e7eb;
+      display: grid;
+      place-items: center;
+      font-weight: 1000;
+      color: #64748b;
+    }
+
+    .mix-progress-dot.done { background: #dcfce7; color: #15803d; }
+    .mix-progress-dot.current { outline: 3px solid var(--accent); background: #fff7ed; color: #9a3412; }
+
     @media (max-width: 920px) {
       .steps { grid-template-columns: 1fr; }
       .progress-card { position: static; }
@@ -670,854 +776,7 @@
       }
       .slot .color-chip {
         width: 76px;
-        height: 38px;
-        font-size: 11px;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .wheel-area { grid-template-columns: 1fr; }
-      .wheel-bank-side { position: static; }
-      .palette.grid-bank { max-width: none; }
-      .mini-wheel {
-        width: 252px;
-        height: 252px;
-        margin: 18px;
-        overflow: visible;
-      }
-      .wheel-node {
-        width: 52px;
-        height: 52px;
-        font-size: 11px;
-      }
-      .wheel-center {
-        width: 88px;
-        height: 88px;
-        font-size: 13px;
-      }
-    }
-  </style>
-
-<style>
-  /* === 統一最後結尾風格：三道封印共用 === */
-  .unified-ending,
-  .unified-ending * { box-sizing: border-box; }
-
-  .unified-ending {
-    position: relative;
-    overflow: hidden;
-    width: min(920px, 100%);
-    margin: 0 auto;
-    text-align: center;
-    border-radius: 34px;
-    padding: clamp(28px, 4vw, 48px) clamp(20px, 4vw, 46px);
-    background:
-      radial-gradient(circle at 14% 10%, rgba(250, 204, 21, .45), transparent 28%),
-      radial-gradient(circle at 88% 18%, rgba(147, 197, 253, .38), transparent 30%),
-      radial-gradient(circle at 80% 90%, rgba(251, 146, 60, .26), transparent 32%),
-      linear-gradient(145deg, #fffdf5 0%, #fff8e7 52%, #f6fbff 100%);
-    border: 3px solid rgba(245, 158, 11, .45);
-    box-shadow: 0 28px 80px rgba(15, 23, 42, .18);
-    color: #243447;
-  }
-
-  .unified-ending::before {
-    content: "";
-    position: absolute;
-    inset: 16px;
-    border: 2px dashed rgba(245, 158, 11, .36);
-    border-radius: 26px;
-    pointer-events: none;
-  }
-
-  .unified-ending::after {
-    content: "✦";
-    position: absolute;
-    right: 30px;
-    top: 24px;
-    font-size: 44px;
-    color: rgba(245, 158, 11, .5);
-  }
-
-  .unified-kicker {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 16px;
-    padding: 9px 18px;
-    border-radius: 999px;
-    background: #1f2937;
-    color: #fff;
-    font-weight: 1000;
-    letter-spacing: .08em;
-    font-size: 15px;
-  }
-
-  .unified-ending h2,
-  .unified-title {
-    margin: 0;
-    font-size: clamp(30px, 4.5vw, 54px) !important;
-    line-height: 1.18 !important;
-    font-weight: 1000 !important;
-    letter-spacing: -1px;
-    color: #7c3f09 !important;
-  }
-
-  .unified-message {
-    max-width: 720px;
-    margin: 18px auto 0;
-    color: #526171;
-    font-size: clamp(17px, 2vw, 21px);
-    line-height: 1.85;
-    font-weight: 800;
-  }
-
-  .unified-stamp {
-    display: inline-block;
-    margin: 22px 0 0;
-    padding: 10px 20px;
-    border-radius: 18px;
-    border: 4px solid #16a34a;
-    color: #15803d;
-    background: rgba(240, 253, 244, .88);
-    font-size: clamp(18px, 2.2vw, 25px);
-    font-weight: 1000;
-    transform: rotate(-2deg);
-  }
-
-  .unified-password-box {
-    width: min(560px, 100%);
-    margin: 22px auto 0;
-    padding: 18px 22px;
-    border-radius: 26px;
-    background: rgba(255, 255, 255, .88);
-    border: 3px dashed #f59e0b;
-    box-shadow: 0 14px 30px rgba(15, 23, 42, .09);
-  }
-
-  .unified-password-label {
-    color: #92400e;
-    font-size: 17px;
-    font-weight: 1000;
-    margin-bottom: 8px;
-  }
-
-  .unified-password {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 18px;
-    background: #fffbeb;
-    color: #0f172a;
-    font-size: clamp(34px, 5vw, 58px);
-    font-weight: 1000;
-    letter-spacing: .12em;
-  }
-
-  .unified-note {
-    margin-top: 12px;
-    color: #6b7280;
-    font-size: 15px;
-    line-height: 1.7;
-    font-weight: 800;
-  }
-
-  .unified-actions,
-  .unified-ending .button-row,
-  .unified-ending .actions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 24px;
-  }
-
-  .unified-ending button,
-  .unified-ending .btn,
-  .unified-ending a {
-    border-radius: 999px !important;
-    min-height: 52px;
-  }
-
-  .unified-submit-steps {
-    max-width: 720px;
-    margin: 22px auto 0;
-    border-radius: 26px;
-    background: rgba(248, 250, 252, .86);
-    border: 1px solid #e2e8f0;
-    padding: 18px;
-    text-align: left;
-  }
-
-  .unified-submit-steps h3 { margin: 0 0 10px; font-size: 20px; }
-  .unified-submit-step { display: flex; gap: 10px; padding: 8px 0; font-weight: 900; color: #334155; line-height: 1.55; }
-  .unified-submit-step .num { width: 28px; height: 28px; border-radius: 999px; background: #1f2937; color: #fff; display: grid; place-items: center; font-size: 14px; flex: 0 0 auto; margin-top: 1px; }
-
-  @media (max-width: 680px) {
-    .unified-ending { border-radius: 26px; padding: 26px 18px; }
-    .unified-ending::before { inset: 10px; border-radius: 20px; }
-    .unified-ending::after { display: none; }
-  }
-</style>
-
-</head>
-
-<body>
-  <header>
-    <h1>第一道封印｜色相：12色相環解鎖</h1>
-    <div class="subtitle">五個小節都要全對，才能一步一步解鎖下一關！</div>
-  </header>
-
-  <main class="container">
-    <section class="progress-card">
-      <div class="steps" id="tabs"></div>
-    </section>
-    <section class="panel" id="gamePanel"></section>
-  </main>
-
-  <script>
-    const colors = [
-      { id: "Y", name: "黃", hex: "#FFD600" },
-      { id: "YO", name: "黃橙", hex: "#FF9F00" },
-      { id: "R", name: "紅", hex: "#FF2A2A" },
-      { id: "RV", name: "紅紫", hex: "#E1007A" },
-      { id: "M", name: "洋紅", hex: "#FF00A8" },
-      { id: "V", name: "紫", hex: "#8A2BE2" },
-      { id: "B", name: "藍", hex: "#005BFF" },
-      { id: "BG", name: "藍綠", hex: "#00A6A6" },
-      { id: "C", name: "青", hex: "#00BFEF" },
-      { id: "CG", name: "青綠", hex: "#00C878" },
-      { id: "G", name: "綠", hex: "#20C933" },
-      { id: "YG", name: "黃綠", hex: "#A8E600" }
-    ];
-
-    const wheelAnswer = colors.map(c => c.id);
-
-    const contrastMap = {
-      Y: "B", YO: "BG", R: "C", RV: "CG",
-      M: "G", V: "YG", B: "Y", BG: "YO",
-      C: "R", CG: "RV", G: "M", YG: "V"
-    };
-
-    const analogousMap = {
-      Y: ["YG", "YO"],
-      YO: ["Y", "R"],
-      R: ["YO", "RV"],
-      RV: ["R", "M"],
-      M: ["RV", "V"],
-      V: ["M", "B"],
-      B: ["V", "BG"],
-      BG: ["B", "C"],
-      C: ["BG", "CG"],
-      CG: ["C", "G"],
-      G: ["CG", "YG"],
-      YG: ["G", "Y"]
-    };
-
-    const wheelSlotTypes = [
-      { label: "三原色", type: "primary" },
-      { label: "三次色", type: "tertiary" },
-      { label: "二次色", type: "secondary" },
-      { label: "三次色", type: "tertiary" },
-      { label: "三原色", type: "primary" },
-      { label: "三次色", type: "tertiary" },
-      { label: "二次色", type: "secondary" },
-      { label: "三次色", type: "tertiary" },
-      { label: "三原色", type: "primary" },
-      { label: "三次色", type: "tertiary" },
-      { label: "二次色", type: "secondary" },
-      { label: "三次色", type: "tertiary" }
-    ];
-
-    const colorTypes = {
-      Y: "primary", M: "primary", C: "primary",
-      R: "secondary", G: "secondary", B: "secondary",
-      YO: "tertiary", RV: "tertiary", V: "tertiary",
-      BG: "tertiary", CG: "tertiary", YG: "tertiary"
-    };
-
-    const steps = ["色相定義", "CMY 12色相環", "認識色系", "類似色", "對比色"];
-
-    let currentStep = 0;
-    let unlockedStep = 0;
-    let completed = [false, false, false, false, false];
-    let selectedWheelCardId = null;
-    let selectedFamilyCardEl = null;
-
-    const tabs = document.getElementById("tabs");
-    const panel = document.getElementById("gamePanel");
-
-    function shuffleArray(array) {
-      const arr = [...array];
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return arr;
-    }
-
-    function pickRandomColorIds(count) {
-      return shuffleArray(colors.map(c => c.id)).slice(0, count);
-    }
-
-    function hexToRgb(hex) {
-      const clean = hex.replace("#", "");
-      return {
-        r: parseInt(clean.substring(0, 2), 16),
-        g: parseInt(clean.substring(2, 4), 16),
-        b: parseInt(clean.substring(4, 6), 16)
-      };
-    }
-
-    function rgbToHex(r, g, b) {
-      const toHex = value => Math.max(0, Math.min(255, Math.round(value))).toString(16).padStart(2, "0");
-      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-    }
-
-    function mixColor(hex, targetHex, amount) {
-      const base = hexToRgb(hex);
-      const target = hexToRgb(targetHex);
-      return rgbToHex(
-        base.r + (target.r - base.r) * amount,
-        base.g + (target.g - base.g) * amount,
-        base.b + (target.b - base.b) * amount
-      );
-    }
-
-    function sameFamilyVariants(id) {
-      const base = colors.find(c => c.id === id);
-      return [
-        { id: `${id}_light`, name: `淺${base.name}`, hex: mixColor(base.hex, "#FFFFFF", 0.48), familyBase: id },
-        { id: `${id}_deep`, name: `深${base.name}`, hex: mixColor(base.hex, "#111111", 0.35), familyBase: id }
-      ];
-    }
-
-    function getAnalogousShadeOptions(main) {
-      const correct = sameFamilyVariants(main);
-      const distractorPool = [];
-      colors.forEach(c => {
-        if (c.id !== main) {
-          sameFamilyVariants(c.id).forEach(v => distractorPool.push(v));
-        }
-      });
-      const distractors = shuffleArray(distractorPool).slice(0, 3);
-      return shuffleArray([...correct, ...distractors]);
-    }
-
-    function getContrastExtraOptions(main) {
-      const opposite = contrastMap[main];
-      const correctIds = analogousMap[opposite];
-      const correct = correctIds.map(id => {
-        const c = colors.find(x => x.id === id);
-        return { id: c.id, name: c.name, hex: c.hex };
-      });
-
-      const distractorPool = colors
-        .filter(c => !correctIds.includes(c.id) && c.id !== main && c.id !== opposite)
-        .map(c => ({ id: c.id, name: c.name, hex: c.hex }));
-
-      const distractors = shuffleArray(distractorPool).slice(0, 3);
-      return shuffleArray([...correct, ...distractors]);
-    }
-
-    function shuffledOptions(options) {
-      return shuffleArray(options)
-        .map(option => radio(option.name, option.value, option.text))
-        .join("");
-    }
-
-    function colorStyle(id) {
-      const c = colors.find(x => x.id === id);
-      return `background:${c.hex};`;
-    }
-
-    function colorName(id) {
-      return colors.find(x => x.id === id)?.name || id;
-    }
-
-    function makeColorPill(c, draggable = false) {
-      return `<div class="draggable" draggable="${draggable}" data-id="${c.id}" style="background:${c.hex};" onclick="selectWheelBankCard(this)">${c.name}</div>`;
-    }
-
-    function renderTabs() {
-      tabs.innerHTML = "";
-      steps.forEach((label, index) => {
-        const btn = document.createElement("button");
-        btn.className = "step-tab";
-        if (index === currentStep) btn.classList.add("active");
-        if (completed[index]) btn.classList.add("done");
-        if (index > unlockedStep) btn.classList.add("locked");
-
-        btn.innerHTML = `${completed[index] ? "✓" : index > unlockedStep ? "🔒" : index + 1}<small>${label}</small>`;
-        btn.addEventListener("click", () => {
-          if (index > unlockedStep) {
-            renderLocked(index);
-            return;
-          }
-          currentStep = index;
-          render();
-        });
-        tabs.appendChild(btn);
-      });
-    }
-
-    function render() {
-      renderTabs();
-      if (currentStep === 0) renderHueDefinition();
-      if (currentStep === 1) renderWheel();
-      if (currentStep === 2) renderColorFamilies();
-      if (currentStep === 3) renderAnalogous();
-      if (currentStep === 4) renderContrast();
-      if (currentStep === 5) renderFinish();
-    }
-
-    function renderLocked(index) {
-      renderTabs();
-      panel.innerHTML = `
-        <div class="locked-message">
-          <div class="lock-icon">🔒</div>
-          <h2>這一關還沒有解鎖喔！</h2>
-          <p class="subtitle">請先完成第 ${unlockedStep + 1} 小節，再來挑戰「${steps[index]}」。</p>
-        </div>
-      `;
-    }
-
-    function passStep(message) {
-      completed[currentStep] = true;
-      unlockedStep = Math.max(unlockedStep, currentStep + 1);
-      renderTabs();
-
-      const feedback = document.querySelector(".feedback");
-      if (feedback) {
-        feedback.className = "feedback good";
-        feedback.textContent = message;
-      }
-
-      const nextBtn = document.getElementById("nextBtn");
-      if (nextBtn) nextBtn.disabled = false;
-    }
-
-    function goNext() {
-      if (currentStep < 4) {
-        currentStep += 1;
-        render();
-      } else {
-        currentStep = 5;
-        renderFinish();
-      }
-    }
-
-    function radio(name, value, text) {
-      return `
-        <label class="option">
-          <input type="radio" name="${name}" value="${value}">
-          <span>${text}</span>
-        </label>
-      `;
-    }
-
-    function renderHueDefinition(message = "", messageType = "") {
-      panel.innerHTML = `
-        <div class="section-title">
-          <div class="badge">1</div>
-          <h2>了解色相的定義</h2>
-        </div>
-        <div class="hint">
-          色相就是色彩的「名字」或「種類」，例如黃、洋紅、青、紅、綠、藍。<br>
-          這一關要全部答對，才能進入 CMY 12 色相環。
-        </div>
-
-        <div class="question-card">
-          <div class="question">Q1：下面哪一個是在說「色相」？</div>
-          <div class="options">
-            ${shuffledOptions([
-              { name: "q1", value: "A", text: "色彩的明暗程度" },
-              { name: "q1", value: "B", text: "色彩的鮮豔程度" },
-              { name: "q1", value: "C", text: "色彩的名稱或種類" },
-              { name: "q1", value: "D", text: "色彩的大小" }
-            ])}
-          </div>
-        </div>
-
-        <div class="question-card">
-          <div class="question">Q2：下列哪一組都是色相？</div>
-          <div class="options">
-            ${shuffledOptions([
-              { name: "q2", value: "A", text: "深、淺、亮、暗" },
-              { name: "q2", value: "B", text: "紅、黃、藍、綠" },
-              { name: "q2", value: "C", text: "大、小、長、短" },
-              { name: "q2", value: "D", text: "厚、薄、遠、近" }
-            ])}
-          </div>
-        </div>
-
-        <div class="question-card">
-          <div class="question">Q3：當我們問「這是什麼顏色？」最接近在問什麼？</div>
-          <div class="options">
-            ${shuffledOptions([
-              { name: "q3", value: "A", text: "色相" },
-              { name: "q3", value: "B", text: "尺寸" },
-              { name: "q3", value: "C", text: "重量" },
-              { name: "q3", value: "D", text: "材質" }
-            ])}
-          </div>
-        </div>
-
-        <div class="actions">
-          <button class="primary" onclick="checkHueDefinition()">檢查答案</button>
-          <button class="secondary" onclick="renderHueDefinition()">重新挑戰</button>
-          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[0] ? "" : "disabled"}>前往下一小節</button>
-        </div>
-        <div class="feedback ${messageType}">${message}</div>
-      `;
-    }
-
-    window.checkHueDefinition = function() {
-      const answers = { q1: "C", q2: "B", q3: "A" };
-      let wrong = 0;
-
-      for (const q in answers) {
-        const picked = document.querySelector(`input[name="${q}"]:checked`);
-        if (!picked || picked.value !== answers[q]) wrong++;
-      }
-
-      if (wrong === 0) {
-        completed[currentStep] = true;
-        unlockedStep = Math.max(unlockedStep, currentStep + 1);
-        renderTabs();
-        renderHueDefinition("色相偵探入門成功！選項已重新洗牌，你也可以前往下一小節。", "good");
-      } else {
-        renderHueDefinition(`還有 ${wrong} 題需要修正。選項已重新洗牌，請重新觀察：色相是在問「這是什麼顏色？」`, "bad");
-      }
-    };
-
-    function renderWheel() {
-      const shuffled = shuffleArray(colors);
-      panel.innerHTML = `
-        <div class="section-title">
-          <div class="badge">2</div>
-          <h2>CMY 的 12 色相環</h2>
-        </div>
-        <div class="hint">
-          請完成 CMY 的 12 色相環。平板操作請用「點選」：<strong>先點右側色卡，再點左側空格</strong>，色卡就會放入。空格會提示「三原色、二次色、三次色」，幫你先找到大方向。<br>
-          小提醒：三原色是黃、洋紅、青；二次色是紅、綠、藍；三次色會落在它們中間。三原色可以改變安放順序，只要放在三原色格，系統會依照你的三原色位置推算整圈。三原色可以改變安放順序，只要放在三原色格，系統會依照你的三原色位置推算整圈。
-        </div>
-
-
-        <div class="click-instruction">
-          操作方式：① 點選右側色卡 → ② 點選左側空格。<br>
-          如果放錯，點兩下已放入的色卡，就會回到色卡銀行。
-        </div>
-
-        <div class="mix-guide">
-          <div class="guide-card">
-            <strong>第一步：先找三原色</strong><br>
-            三原色是 <span class="formula">黃 Y</span><span class="formula">洋紅 M</span><span class="formula">青 C</span>，請先放到「三原色」空格。
-          </div>
-          <div class="guide-card">
-            <strong>第二步：推二次色</strong><br>
-            兩個三原色中間的正中間是二次色：<br>
-            <span class="formula">黃＋洋紅＝紅</span><br>
-            <span class="formula">洋紅＋青＝藍</span><br>
-            <span class="formula">青＋黃＝綠</span>
-          </div>
-          <div class="guide-card">
-            <strong>第三步：推三次色</strong><br>
-            三次色會在「原色」和「二次色」中間，名字通常也會把兩邊顏色合起來，例如：黃和紅中間是黃橙，紅和洋紅中間是紅紫。
-          </div>
-        </div>
-
-        <div class="wheel-area">
-          <div class="wheel" id="wheel"></div>
-          <aside class="wheel-bank-side">
-            <p class="bank-title">色卡銀行</p>
-            <div class="palette grid-bank" id="palette">
-              ${shuffled.map(c => makeColorPill(c, true)).join("")}
-            </div>
-            <p class="tiny">操作方式：點選右側色卡，再點左側空格；若要更換位置，可以再點另一張色卡覆蓋，也可以在已放入的色卡上點兩下，讓它回到色卡銀行。</p>
-          </aside>
-        </div>
-
-        <div class="actions">
-          <button class="primary" onclick="checkWheel()">檢查色相環</button>
-          <button class="secondary" onclick="renderWheel()">重新挑戰</button>
-          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[1] ? "" : "disabled"}>前往下一小節</button>
-          <span class="score-note">必須 12 格全部正確才能過關</span>
-        </div>
-        <div class="feedback"></div>
-      `;
-
-      createWheelSlots();
-      enableDragAndDrop();
-    }
-
-    function createWheelSlots() {
-      const wheel = document.getElementById("wheel");
-      const center = 50;
-      const radius = 39;
-
-      for (let i = 0; i < 12; i++) {
-        const angle = -90 + i * 30;
-        const rad = angle * Math.PI / 180;
-        const x = center + radius * Math.cos(rad);
-        const y = center + radius * Math.sin(rad);
-
-        const slot = document.createElement("div");
-        slot.className = "slot";
-        slot.onclick = function() { placeSelectedWheelCard(this); };
-        slot.dataset.index = i;
-        slot.dataset.slotType = wheelSlotTypes[i].type;
-        slot.style.left = x + "%";
-        slot.style.top = y + "%";
-        emptySlotLabel(slot);
-        wheel.appendChild(slot);
-      }
-    }
-
-    function emptySlotLabel(slot) {
-      const index = Number(slot.dataset.index);
-      const label = wheelSlotTypes[index]?.label || "空格";
-      slot.innerHTML = `<span class="slot-label">${label}</span><span class="slot-hint">空格</span>`;
-      delete slot.dataset.colorId;
-    }
-
-    function returnSlotColorToBank(slot) {
-      const id = slot.dataset.colorId;
-      if (!id) return;
-      const color = colors.find(c => c.id === id);
-      if (!color) return;
-      const bank = document.getElementById("palette");
-      bank.insertAdjacentHTML("beforeend", makeColorPill(color, true));
-      emptySlotLabel(slot);
-      enableDragAndDrop();
-    }
-
-
-    function clearWheelBankSelection() {
-      document.querySelectorAll("#palette .draggable").forEach(card => card.classList.remove("selected-card"));
-      document.querySelectorAll(".slot").forEach(slot => slot.classList.remove("click-ready"));
-      selectedWheelCardId = null;
-    }
-
-    window.selectWheelBankCard = function(card) {
-      if (currentStep !== 1) return;
-      selectedWheelCardId = card.dataset.id;
-      document.querySelectorAll("#palette .draggable").forEach(item => item.classList.remove("selected-card"));
-      card.classList.add("selected-card");
-      document.querySelectorAll(".slot").forEach(slot => slot.classList.add("click-ready"));
-    };
-
-    window.placeSelectedWheelCard = function(slot) {
-      if (currentStep !== 1 || !selectedWheelCardId) return;
-      const original = document.querySelector(`#palette .draggable[data-id="${selectedWheelCardId}"]`);
-      if (!original) return;
-
-      if (slot.dataset.colorId) {
-        const oldColor = colors.find(c => c.id === slot.dataset.colorId);
-        document.getElementById("palette").insertAdjacentHTML("beforeend", makeColorPill(oldColor, true));
-      }
-
-      slot.dataset.colorId = selectedWheelCardId;
-      slot.innerHTML = `<div class="color-chip" style="${colorStyle(selectedWheelCardId)}" title="點兩下可退回色卡銀行" onclick="event.stopPropagation()" ondblclick="returnSlotColorToBank(this.closest('.slot'))">${colorName(selectedWheelCardId)}</div>`;
-
-      original.remove();
-      clearWheelBankSelection();
-      enableDragAndDrop();
-    };
-
-    function enableDragAndDrop() {
-      document.querySelectorAll(".draggable").forEach(item => {
-        item.addEventListener("dragstart", e => {
-          e.dataTransfer.setData("text/plain", item.dataset.id);
-        });
-      });
-
-      document.querySelectorAll(".slot, .drop-zone, #palette").forEach(zone => {
-        zone.addEventListener("dragover", e => {
-          e.preventDefault();
-          zone.classList.add("over");
-        });
-
-        zone.addEventListener("dragleave", () => zone.classList.remove("over"));
-
-        zone.addEventListener("drop", e => {
-          e.preventDefault();
-          zone.classList.remove("over");
-
-          const id = e.dataTransfer.getData("text/plain");
-          const original = document.querySelector(`.draggable[data-id="${id}"]`);
-          if (!original) return;
-
-          if (zone.classList.contains("slot")) {
-            if (zone.dataset.colorId) {
-              const oldColor = colors.find(c => c.id === zone.dataset.colorId);
-              document.getElementById("palette").insertAdjacentHTML("beforeend", makeColorPill(oldColor, true));
-            }
-            zone.dataset.colorId = id;
-            zone.innerHTML = `<div class="color-chip" style="${colorStyle(id)}" title="點兩下可退回色卡銀行" onclick="event.stopPropagation()" ondblclick="returnSlotColorToBank(this.closest('.slot'))">${colorName(id)}</div>`;
-            original.remove();
-          } else if (zone.classList.contains("drop-zone")) {
-            zone.querySelector(".drop-items").appendChild(original);
-          } else if (zone.id === "palette") {
-            zone.appendChild(original);
-          }
-          enableDragAndDrop();
-        });
-      });
-    }
-
-    function isRotatedCorrect(arr, answer) {
-      if (arr.includes(undefined) || arr.length !== answer.length) return false;
-
-      // 第二關判斷邏輯：
-      // 學生可以改變三原色安放順序，只要三原色落在三原色格，
-      // 並且每兩個三原色之間的中間色順序符合 CMY 混色邏輯，就算正確。
-      const primaryIndexes = [0, 4, 8];
-      const primarySet = new Set(["Y", "M", "C"]);
-      const placedPrimaries = primaryIndexes.map(index => arr[index]);
-
-      if (!placedPrimaries.every(id => primarySet.has(id))) return false;
-      if (new Set(placedPrimaries).size !== 3) return false;
-
-      const canonicalClockwise = ["Y", "YO", "R", "RV", "M", "V", "B", "BG", "C", "CG", "G", "YG"];
-      const canonicalCounterClockwise = ["Y", "YG", "G", "CG", "C", "BG", "B", "V", "M", "RV", "R", "YO"];
-
-      function expectedSegment(sequence, startPrimary, endPrimary) {
-        const start = sequence.indexOf(startPrimary);
-        const shifted = sequence.slice(start).concat(sequence.slice(0, start));
-        const end = shifted.indexOf(endPrimary);
-        if (end !== 4) return null;
-        return shifted.slice(1, 4);
-      }
-
-      function matchesDirection(sequence) {
-        for (let group = 0; group < 3; group++) {
-          const startIndex = primaryIndexes[group];
-          const endIndex = primaryIndexes[(group + 1) % 3];
-
-          const startPrimary = arr[startIndex];
-          const endPrimary = arr[endIndex];
-          const expected = expectedSegment(sequence, startPrimary, endPrimary);
-          if (!expected) return false;
-
-          const actual = [
-            arr[(startIndex + 1) % 12],
-            arr[(startIndex + 2) % 12],
-            arr[(startIndex + 3) % 12]
-          ];
-
-          if (!expected.every((id, offset) => id === actual[offset])) return false;
-        }
-
-        return true;
-      }
-
-      return matchesDirection(canonicalClockwise) || matchesDirection(canonicalCounterClockwise);
-    }
-
-    function countTypeMistakes(placed) {
-      return placed.filter((id, index) => colorTypes[id] !== wheelSlotTypes[index].type).length;
-    }
-
-    function bestFlexibleMatches(placed) {
-      if (placed.includes(undefined) || placed.length !== 12) return 0;
-
-      const primaryIndexes = [0, 4, 8];
-      const primarySet = new Set(["Y", "M", "C"]);
-      const placedPrimaries = primaryIndexes.map(index => placed[index]);
-
-      if (!placedPrimaries.every(id => primarySet.has(id)) || new Set(placedPrimaries).size !== 3) {
-        return placed.filter((id, index) => colorTypes[id] === wheelSlotTypes[index].type).length;
-      }
-
-      const canonicalClockwise = ["Y", "YO", "R", "RV", "M", "V", "B", "BG", "C", "CG", "G", "YG"];
-      const canonicalCounterClockwise = ["Y", "YG", "G", "CG", "C", "BG", "B", "V", "M", "RV", "R", "YO"];
-      const candidates = [];
-
-      function buildCandidate(sequence) {
-        const candidate = Array(12).fill(null);
-        for (let group = 0; group < 3; group++) {
-          const startIndex = primaryIndexes[group];
-          const endIndex = primaryIndexes[(group + 1) % 3];
-          const startPrimary = placed[startIndex];
-          const endPrimary = placed[endIndex];
-
-          const start = sequence.indexOf(startPrimary);
-          const shifted = sequence.slice(start).concat(sequence.slice(0, start));
-          const end = shifted.indexOf(endPrimary);
-          if (end !== 4) return null;
-
-          candidate[startIndex] = startPrimary;
-          candidate[(startIndex + 1) % 12] = shifted[1];
-          candidate[(startIndex + 2) % 12] = shifted[2];
-          candidate[(startIndex + 3) % 12] = shifted[3];
-        }
-        return candidate;
-      }
-
-      [canonicalClockwise, canonicalCounterClockwise].forEach(sequence => {
-        const candidate = buildCandidate(sequence);
-        if (candidate) candidates.push(candidate);
-      });
-
-      if (candidates.length === 0) return 0;
-
-      return Math.max(...candidates.map(candidate => placed.filter((id, index) => id === candidate[index]).length));
-    }
-
-    window.checkWheel = function() {
-      const slots = [...document.querySelectorAll(".slot")].sort((a, b) => Number(a.dataset.index) - Number(b.dataset.index));
-      const placed = slots.map(s => s.dataset.colorId);
-      const feedback = document.querySelector(".feedback");
-
-      if (placed.some(x => !x)) {
-        const empty = placed.filter(x => !x).length;
-        feedback.className = "feedback bad";
-        feedback.textContent = `還有 ${empty} 格沒有放色卡喔！請先把 12 色放滿。`;
-        return;
-      }
-
-      if (isRotatedCorrect(placed, wheelAnswer)) {
-        passStep("色相環啟動成功！你已經完成 CMY 12 色排列。");
-      } else {
-        const bestMatches = bestFlexibleMatches(placed);
-        const typeMistakes = countTypeMistakes(placed);
-        feedback.className = "feedback bad";
-
-        if (typeMistakes > 0) {
-          feedback.textContent = `色相環還沒有完全接上，而且有 ${typeMistakes} 張色卡放到不符合的類型空格。請先確認三原色、二次色、三次色的位置，再觀察混色順序。`;
-        } else {
-          feedback.textContent = `色相環還沒有完全接上，目前至少有 ${12 - bestMatches} 個位置需要再觀察。類型位置對了，再留意三原色之間的混色順序。`;
-        }
-      }
-    };
-
-    function renderColorFamilies() {
-      const items = [
-        { id: "light-yellow", name: "淺黃色", family: "yellow", hex: "#FFF3B0" },
-        { id: "lemon-yellow", name: "檸檬黃", family: "yellow", hex: "#FDE047" },
-        { id: "chrome-yellow", name: "銘黃色", family: "yellow", hex: "#FACC15" },
-        { id: "earth-yellow", name: "土黃色", family: "yellow", hex: "#CA8A04" },
-
-        { id: "sky-blue", name: "天藍色", family: "blue", hex: "#7DD3FC" },
-        { id: "lake-blue", name: "湖水藍", family: "blue", hex: "#38BDF8" },
-        { id: "deep-blue", name: "深藍色", family: "blue", hex: "#2563EB" },
-        { id: "indigo", name: "靛藍色", family: "blue", hex: "#3730A3" },
-
-        { id: "pink", name: "粉紅色", family: "red", hex: "#FDA4AF" },
-        { id: "rose", name: "玫瑰紅", family: "red", hex: "#E11D48" },
-        { id: "peach-red", name: "桃紅色", family: "red", hex: "#EC4899" },
-        { id: "wine-red", name: "酒紅色", family: "red", hex: "#9F1239" }
-      ];
-
-      const shuffledItems = shuffleArray(items);
-
-      panel.innerHTML = `
-        <div class="section-title">
-          <div class="badge">3</div>
-          <h2>學會什麼是色系</h2>
-        </div>
+        height: 38…10383 tokens truncated…:        </div>
         <div class="hint">
           色系像是「色彩家族」。同一個色系不一定一模一樣，但看起來會接近同一個主要色相。<br>
           例如黃色系可以有淺黃色、銘黃色、土黃色。
@@ -1544,7 +803,7 @@
         <div class="actions">
           <button class="primary" onclick="checkFamilies()">檢查分類</button>
           <button class="secondary" onclick="renderColorFamilies()">重新挑戰</button>
-          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[2] ? "" : "disabled"}>前往下一小節</button>
+          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[3] ? "" : "disabled"}>前往下一小節</button>
         </div>
         <div class="feedback"></div>
       `;
@@ -1623,8 +882,8 @@
     function wheelNode(color, i, main, round, mode) {
       const angle = -90 + i * 30;
       const isMain = color.id === main;
-      // 題目色往圓圈外移動，避免覆蓋或干擾旁邊色彩判別
-      const radius = isMain ? 47 : 40;
+      // 所有色卡固定在同一圈，避免題目色外移後壓到相鄰色。
+      const radius = 40;
       const x = 50 + radius * Math.cos(angle * Math.PI / 180);
       const y = 50 + radius * Math.sin(angle * Math.PI / 180);
       const handler = mode === "analogous" ? "toggleAnalogousWheelSelection(this, 2)" : "selectContrastWheel(this)";
@@ -1650,7 +909,7 @@
 
       panel.innerHTML = `
         <div class="section-title">
-          <div class="badge">4</div>
+          <div class="badge">5</div>
           <h2>類似色：色相環＋同色系</h2>
         </div>
         <div class="hint">
@@ -1664,7 +923,7 @@
         <div class="actions">
           <button class="primary" onclick="checkAnalogous()">檢查類似色</button>
           <button class="secondary" onclick="renderAnalogous()">重新挑戰</button>
-          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[3] ? "" : "disabled"}>前往下一小節</button>
+          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[4] ? "" : "disabled"}>前往下一小節</button>
         </div>
         <div class="feedback"></div>
       `;
@@ -1748,7 +1007,7 @@
 
       panel.innerHTML = `
         <div class="section-title">
-          <div class="badge">5</div>
+          <div class="badge">6</div>
           <h2>對比色：正對比色＋延伸對比色</h2>
         </div>
         <div class="hint">
@@ -1762,7 +1021,7 @@
         <div class="actions">
           <button class="primary" onclick="checkContrast()">檢查對比色</button>
           <button class="secondary" onclick="renderContrast()">重新挑戰</button>
-          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[4] ? "" : "disabled"}>完成第一區塊</button>
+          <button id="nextBtn" class="ghost" onclick="goNext()" ${completed[5] ? "" : "disabled"}>完成第一區塊</button>
         </div>
         <div class="feedback"></div>
       `;
@@ -1841,7 +1100,7 @@
           <div class="unified-kicker">✦ MISSION CLEAR ✦</div>
           <h2 class="unified-title">第一道封印｜色相<br>解鎖成功</h2>
           <p class="unified-message">
-            你已完成「色相定義、CMY 12色相環、色系、類似色、對比色」五個任務，<br>
+            你已完成「色相定義、調色實驗室、CMY 12色相環、色系、類似色、對比色」六個任務，<br>
             第一把色彩鑰匙正式入手！
           </p>
           <div class="unified-stamp">第一道封印解除</div>
@@ -1879,7 +1138,10 @@
     window.resetAll = function() {
       currentStep = 0;
       unlockedStep = 0;
-      completed = [false, false, false, false, false];
+      completed = [false, false, false, false, false, false];
+      mixMissionIndex = 0;
+      mixDrops = { Y: 0, M: 0, C: 0 };
+      mixMissions = createMixMissions();
       render();
     };
 

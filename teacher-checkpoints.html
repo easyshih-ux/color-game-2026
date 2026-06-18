@@ -31,6 +31,25 @@
     button:hover { background: #edf4ff; }
     .primary { border-color: #ff9f1c; background: #ff9f1c; color: #17120a; }
     .primary:hover { background: #f2920d; }
+    .password-panel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .password-panel label { display: block; color: #243b63; font-weight: 900; }
+    .password-panel select, .password-panel input {
+      width: 100%; min-height: 52px; margin-top: 7px; border: 2px solid #9aacc7;
+      border-radius: 8px; padding: 10px 12px; background: #fff; color: #13213a;
+      font: inherit; font-size: 18px;
+    }
+    .password-wide { grid-column: 1 / -1; }
+    .password-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .password-actions button { text-align: center; }
+    .current-password {
+      margin: 0; border-radius: 10px; padding: 16px; background: #e8f0ff;
+      color: #123b7a; font-size: 19px; font-weight: 900; text-align: center;
+    }
+    .password-message { min-height: 28px; margin: 0; color: #9a3e00; font-weight: 800; text-align: center; }
+    @media (max-width: 620px) {
+      .password-panel, .password-actions { grid-template-columns: 1fr; }
+      .password-wide { grid-column: auto; }
+    }
   </style>
 </head>
 <body>
@@ -39,6 +58,32 @@
       <h1>教師測試截點</h1>
       <p class="note">點選任一截點會從該處重新計時，並強制載入最新版本。這個頁面不會出現在學生遊戲流程中。</p>
     </header>
+
+    <section>
+      <h2>今日接關密碼</h2>
+      <p class="note">學生完成色相後，可用所屬班級的 4 位密碼直接從明度接關。密碼可隨時更新，儲存後立即生效。</p>
+      <form id="passwordForm" class="password-panel">
+        <label>班級
+          <select id="passwordClass" required>
+            <option value="714">714</option>
+            <option value="715">715</option>
+            <option value="716">716</option>
+          </select>
+        </label>
+        <label>新的 4 位接關密碼
+          <input id="classPassword" type="text" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="例如：2568" required>
+        </label>
+        <label class="password-wide">教師管理密碼
+          <input id="teacherKey" type="password" autocomplete="current-password" placeholder="Apps Script 中設定的教師管理密碼" required>
+        </label>
+        <p id="currentPassword" class="current-password password-wide">714 目前密碼：尚未在此裝置更新</p>
+        <div class="password-actions password-wide">
+          <button id="randomPassword" type="button">隨機產生 4 位數字</button>
+          <button id="updatePassword" class="primary" type="submit">更新並立即生效</button>
+        </div>
+        <p id="passwordMessage" class="password-message password-wide" aria-live="polite"></p>
+      </form>
+    </section>
 
     <section>
       <h2>開場與學習關卡</h2>
@@ -76,6 +121,77 @@
     </section>
   </main>
   <script>
+    const continueApiUrl = "https://script.google.com/macros/s/AKfycbw1YB0ionpdfixRMHZMz3e24QCTwjw9xXF6ahuTruAvjooM3OCbBUZdkIaPuf854p_3fA/exec";
+    const passwordForm = document.querySelector("#passwordForm");
+    const passwordClass = document.querySelector("#passwordClass");
+    const classPassword = document.querySelector("#classPassword");
+    const teacherKey = document.querySelector("#teacherKey");
+    const randomPassword = document.querySelector("#randomPassword");
+    const updatePassword = document.querySelector("#updatePassword");
+    const currentPassword = document.querySelector("#currentPassword");
+    const passwordMessage = document.querySelector("#passwordMessage");
+
+    function showSavedPassword() {
+      const className = passwordClass.value;
+      const saved = window.localStorage.getItem(`continuePassword-${className}`);
+      currentPassword.textContent = saved
+        ? `${className} 目前密碼：${saved}`
+        : `${className} 目前密碼：尚未在此裝置更新`;
+    }
+
+    passwordClass.addEventListener("change", showSavedPassword);
+    classPassword.addEventListener("input", () => {
+      classPassword.value = classPassword.value.replace(/\D/g, "").slice(0, 4);
+    });
+    randomPassword.addEventListener("click", () => {
+      classPassword.value = String(Math.floor(1000 + Math.random() * 9000));
+      classPassword.focus();
+    });
+
+    passwordForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const className = passwordClass.value;
+      const password = classPassword.value;
+
+      if (!/^\d{4}$/.test(password)) {
+        passwordMessage.textContent = "接關密碼必須是 4 位數字。";
+        return;
+      }
+
+      updatePassword.disabled = true;
+      passwordMessage.textContent = "正在更新…";
+
+      try {
+        const response = await fetch(continueApiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            action: "update",
+            className,
+            password,
+            teacherKey: teacherKey.value
+          })
+        });
+        const result = await response.json();
+
+        if (!result.success) {
+          passwordMessage.textContent = result.message || "更新失敗，請檢查設定。";
+          return;
+        }
+
+        window.localStorage.setItem(`continuePassword-${className}`, password);
+        showSavedPassword();
+        classPassword.value = "";
+        passwordMessage.textContent = `${className} 接關密碼已更新並立即生效。`;
+      } catch (error) {
+        passwordMessage.textContent = "目前無法連線更新，請確認 Apps Script 部署設定。";
+      } finally {
+        updatePassword.disabled = false;
+      }
+    });
+
+    showSavedPassword();
+
     document.querySelectorAll("[data-href]").forEach((button) => {
       button.addEventListener("click", () => {
         window.localStorage.setItem("colorGameTimer", JSON.stringify({ startedAt: Date.now(), finishedAt: null }));

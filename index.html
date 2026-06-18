@@ -76,6 +76,110 @@
       outline-offset: 4px;
     }
 
+    .continue-button {
+      position: fixed;
+      left: clamp(18px, 4vw, 56px);
+      bottom: clamp(18px, 4vw, 48px);
+      min-height: 50px;
+      border: 2px solid rgba(255, 255, 255, 0.82);
+      border-radius: 999px;
+      padding: 11px 20px;
+      background: rgba(20, 33, 68, 0.88);
+      color: #fff;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .continue-dialog {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.72);
+    }
+
+    .continue-dialog.hidden {
+      display: none;
+    }
+
+    .continue-card {
+      width: min(440px, 100%);
+      border: 2px solid rgba(255, 255, 255, 0.28);
+      border-radius: 20px;
+      padding: 26px;
+      background: #101a38;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .continue-card h2 {
+      margin: 0 0 8px;
+      font-size: 27px;
+    }
+
+    .continue-card p {
+      margin: 0 0 18px;
+      color: #d7def2;
+      line-height: 1.6;
+    }
+
+    .continue-card label {
+      display: block;
+      margin-top: 14px;
+      font-weight: 800;
+    }
+
+    .continue-card select,
+    .continue-card input {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 7px;
+      border: 2px solid #8093c7;
+      border-radius: 10px;
+      padding: 10px 13px;
+      background: #fff;
+      color: #121a2f;
+      font: inherit;
+      font-size: 20px;
+    }
+
+    .continue-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .continue-actions button {
+      min-height: 52px;
+      border: 0;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+    }
+
+    .continue-cancel {
+      background: #d9dfed;
+      color: #17213b;
+    }
+
+    .continue-submit {
+      background: #ffd34f;
+      color: #17120a;
+    }
+
+    .continue-message {
+      min-height: 26px;
+      margin: 14px 0 0 !important;
+      color: #ffdc74 !important;
+      font-weight: 800;
+      text-align: center;
+    }
+
     .skip-button {
       position: fixed;
       left: 7px;
@@ -131,6 +235,14 @@
         padding: 12px 20px;
         font-size: 19px;
       }
+
+      .continue-button {
+        left: 16px;
+        bottom: 78px;
+        min-height: 46px;
+        padding: 10px 16px;
+        font-size: 15px;
+      }
     }
   </style>
 </head>
@@ -147,6 +259,28 @@
     <section id="startScreen" class="screen hidden" aria-label="遊戲進入頁面">
       <img class="start-image" src="色彩學開場影片/開場/Start0.png" alt="色彩學解封任務進入頁">
       <button id="startButton" class="start-button" type="button">解封開始</button>
+      <button id="continueButton" class="continue-button" type="button">色相已完成｜從明度接關</button>
+    </section>
+
+    <section id="continueDialog" class="continue-dialog hidden" aria-labelledby="continueTitle" aria-modal="true" role="dialog">
+      <form id="continueForm" class="continue-card">
+        <h2 id="continueTitle">從明度接關</h2>
+        <p>請選擇班級，輸入老師公布的 4 位數字。</p>
+        <label for="continueClass">班級</label>
+        <select id="continueClass" required>
+          <option value="">請選擇班級</option>
+          <option value="714">714</option>
+          <option value="715">715</option>
+          <option value="716">716</option>
+        </select>
+        <label for="continuePassword">接關密碼</label>
+        <input id="continuePassword" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="4" pattern="[0-9]{4}" placeholder="4 位數字" required>
+        <p id="continueMessage" class="continue-message" aria-live="polite"></p>
+        <div class="continue-actions">
+          <button id="continueCancel" class="continue-cancel" type="button">取消</button>
+          <button id="continueSubmit" class="continue-submit" type="submit">確認接關</button>
+        </div>
+      </form>
     </section>
   </main>
 
@@ -157,6 +291,15 @@
     const skipMovie = document.querySelector("#skipMovie");
     const enableSound = document.querySelector("#enableSound");
     const startButton = document.querySelector("#startButton");
+    const continueButton = document.querySelector("#continueButton");
+    const continueDialog = document.querySelector("#continueDialog");
+    const continueForm = document.querySelector("#continueForm");
+    const continueClass = document.querySelector("#continueClass");
+    const continuePassword = document.querySelector("#continuePassword");
+    const continueMessage = document.querySelector("#continueMessage");
+    const continueCancel = document.querySelector("#continueCancel");
+    const continueSubmit = document.querySelector("#continueSubmit");
+    const continueApiUrl = "https://script.google.com/macros/s/AKfycbw1YB0ionpdfixRMHZMz3e24QCTwjw9xXF6ahuTruAvjooM3OCbBUZdkIaPuf854p_3fA/exec";
 
     function showStartScreen() {
       openingMovie.pause();
@@ -175,6 +318,57 @@
     });
     startButton.addEventListener("click", () => {
       window.location.href = "hue-intro.html";
+    });
+
+    continueButton.addEventListener("click", () => {
+      continueMessage.textContent = "";
+      continueDialog.classList.remove("hidden");
+      continueClass.focus();
+    });
+
+    continueCancel.addEventListener("click", () => {
+      continueDialog.classList.add("hidden");
+      continueForm.reset();
+      continueButton.focus();
+    });
+
+    continuePassword.addEventListener("input", () => {
+      continuePassword.value = continuePassword.value.replace(/\D/g, "").slice(0, 4);
+    });
+
+    continueForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const className = continueClass.value;
+      const password = continuePassword.value;
+
+      if (!className || !/^\d{4}$/.test(password)) {
+        continueMessage.textContent = "請選擇班級並輸入 4 位數字。";
+        return;
+      }
+
+      continueSubmit.disabled = true;
+      continueMessage.textContent = "正在確認接關密碼…";
+
+      try {
+        const url = new URL(continueApiUrl);
+        url.searchParams.set("action", "verify");
+        url.searchParams.set("className", className);
+        url.searchParams.set("password", password);
+        const response = await fetch(url.toString(), { cache: "no-store" });
+        const result = await response.json();
+
+        if (result.success && result.valid) {
+          continueMessage.textContent = "接關成功，正在進入明度任務…";
+          window.location.href = "brightness-intro.html";
+          return;
+        }
+
+        continueMessage.textContent = result.message || "班級或密碼錯誤。";
+      } catch (error) {
+        continueMessage.textContent = "目前無法連線驗證，請稍後再試或告訴老師。";
+      } finally {
+        continueSubmit.disabled = false;
+      }
     });
 
     openingMovie.play().catch(() => {

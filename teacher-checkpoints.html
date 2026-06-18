@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>色彩學遊戲測試截點</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif;
+      color: #13213a;
+      background: #f4f7fb;
+    }
+    main { width: min(980px, calc(100% - 28px)); margin: 0 auto; padding: 30px 0 44px; }
+    header { border-bottom: 3px solid #204f9f; padding-bottom: 18px; }
+    h1 { margin: 0; color: #123b7a; font-size: clamp(30px, 5vw, 48px); }
+    .note { margin: 10px 0 0; color: #4b5d78; font-size: 17px; line-height: 1.7; }
+    section { padding: 24px 0; border-bottom: 1px solid #d7e0ec; }
+    h2 { margin: 0 0 14px; font-size: 23px; }
+    .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+    button {
+      width: 100%; min-height: 58px; border: 2px solid #2b61c7; border-radius: 8px;
+      padding: 12px 16px; background: #fff; color: #123b7a; cursor: pointer;
+      font: inherit; font-size: 17px; font-weight: 900; text-align: left;
+    }
+    button:hover { background: #edf4ff; }
+    .primary { border-color: #ff9f1c; background: #ff9f1c; color: #17120a; }
+    .primary:hover { background: #f2920d; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>教師測試截點</h1>
+      <p class="note">點選任一截點會從該處重新計時。這個頁面不會出現在學生遊戲流程中。</p>
+    </header>
+
+    <section>
+      <h2>開場與學習關卡</h2>
+      <div class="links">
+        <button class="primary" data-href="index.html">完整遊戲開場</button>
+        <button data-href="hue-intro.html">色相開場</button>
+        <button data-href="index01.html">Index 01 色相學習</button>
+        <button data-href="brightness-intro.html">明度開場</button>
+        <button data-href="index02.html">Index 02 明度學習</button>
+        <button data-href="chroma-intro.html">彩度開場</button>
+        <button data-href="index03.html">Index 03 彩度學習</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>驗收頁面</h2>
+      <div class="links">
+        <button data-href="hue-password.html?stage=1">色相 Part 1</button>
+        <button data-href="hue-password.html?stage=2">色相 Part 2</button>
+        <button data-href="brightness-password.html?stage=1">明度 Part 1</button>
+        <button data-href="brightness-password.html?stage=2">明度 Part 2</button>
+        <button data-href="chroma-password.html?stage=1">彩度 Part 1</button>
+        <button data-href="chroma-password.html?stage=2">彩度 Part 2</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>最後流程</h2>
+      <div class="links">
+        <button data-href="elements-intro.html">色彩三要素開場</button>
+        <button data-href="elements-password.html">色彩三要素驗收</button>
+        <button data-href="evaluation new.html">遊戲評價</button>
+        <button data-href="final-ending.html">完美破關</button>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll("[data-href]").forEach((button) => {
+      button.addEventListener("click", () => {
+        window.localStorage.setItem("colorGameTimer", JSON.stringify({ startedAt: Date.now(), finishedAt: null }));
+        window.location.href = button.dataset.href;
+      });
+    });
+  </script>
+</body>
+</html>

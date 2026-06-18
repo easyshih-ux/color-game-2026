@@ -263,7 +263,6 @@
     }
 
     .prize-note {
-      display: block;
       margin-top: 16px;
       border-radius: 14px;
       padding: 14px;
@@ -271,7 +270,6 @@
       color: #fff;
       font-size: 22px;
       font-weight: 900;
-      text-decoration: none;
     }
 
     @media (max-width: 820px) {
@@ -307,14 +305,6 @@
     <section class="sheet">
       <h1>遊戲評價</h1>
       <p class="intro">請用一點點時間回想剛才的破關歷程，幫老師知道這個遊戲是否真的幫助你學會色相、明度和彩度。</p>
-
-
-      <section class="upload-panel" aria-label="作品上傳提醒">
-        <h2>第一步：先上傳作品圖檔</h2>
-        <p>請先完成作品上傳，再回到這一頁填寫遊戲評價。上傳與回饋都請使用同一組「班級座號」，老師比較好統整紀錄。</p>
-        <a class="upload-button" href="https://forms.gle/Vwa1LS5wUF56WYxy8" target="_blank" rel="noopener">前往上傳作品</a>
-        <p class="tablet-note">平板操作提醒：點開表單後，上傳完成請回到這個分頁，繼續完成下面的評價。</p>
-      </section>
 
       <form id="evaluationForm">
         <fieldset>
@@ -379,7 +369,7 @@
           <div>班級座號：<span id="prizeStudent">--</span></div>
           <div>完成時間：<span id="prizeTime">--</span></div>
         </div>
-        <a class="prize-note" href="final-ending.html">解開封印的最後一頁</a>
+        <div class="prize-note">解開封印的最後一頁</div>
       </section>
     </section>
   </main>

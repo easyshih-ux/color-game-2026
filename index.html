@@ -99,6 +99,29 @@
       opacity: 0.28;
     }
 
+    .sound-button {
+      position: fixed;
+      left: 50%;
+      top: 16px;
+      transform: translateX(-50%);
+      z-index: 2;
+      min-height: 48px;
+      border: 2px solid rgba(255, 255, 255, 0.75);
+      border-radius: 999px;
+      padding: 10px 22px;
+      background: rgba(7, 11, 29, 0.78);
+      color: #fff;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .sound-button.is-enabled {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
     @media (max-width: 640px) {
       .start-button {
         right: 16px;
@@ -118,6 +141,7 @@
         <source src="色彩學開場影片/Startmovic3.mp4" type="video/mp4">
       </video>
       <button id="skipMovie" class="skip-button" type="button">略過動畫</button>
+      <button id="enableSound" class="sound-button" type="button">點我開啟聲音</button>
     </section>
 
     <section id="startScreen" class="screen hidden" aria-label="遊戲進入頁面">
@@ -131,6 +155,7 @@
     const startScreen = document.querySelector("#startScreen");
     const openingMovie = document.querySelector("#openingMovie");
     const skipMovie = document.querySelector("#skipMovie");
+    const enableSound = document.querySelector("#enableSound");
     const startButton = document.querySelector("#startButton");
 
     function showStartScreen() {
@@ -142,6 +167,12 @@
 
     openingMovie.addEventListener("ended", showStartScreen);
     skipMovie.addEventListener("click", showStartScreen);
+    enableSound.addEventListener("click", () => {
+      openingMovie.muted = false;
+      openingMovie.volume = 1;
+      openingMovie.play();
+      enableSound.classList.add("is-enabled");
+    });
     startButton.addEventListener("click", () => {
       window.location.href = "hue-intro.html";
     });

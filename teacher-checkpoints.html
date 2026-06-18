@@ -74,9 +74,9 @@
           <input id="classPassword" type="text" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="例如：2568" required>
         </label>
         <label class="password-wide">教師管理密碼
-          <input id="teacherKey" type="password" autocomplete="current-password" placeholder="Apps Script 中設定的教師管理密碼" required>
+          <input id="teacherKey" type="password" autocomplete="current-password" placeholder="必須與 Apps Script 的 TEACHER_KEY 完全相同" required>
         </label>
-        <p id="currentPassword" class="current-password password-wide">714 目前密碼：尚未在此裝置更新</p>
+        <p id="currentPassword" class="current-password password-wide">714 本裝置最後成功設定：尚無紀錄</p>
         <div class="password-actions password-wide">
           <button id="randomPassword" type="button">隨機產生 4 位數字</button>
           <button id="updatePassword" class="primary" type="submit">更新並立即生效</button>
@@ -135,8 +135,8 @@
       const className = passwordClass.value;
       const saved = window.localStorage.getItem(`continuePassword-${className}`);
       currentPassword.textContent = saved
-        ? `${className} 目前密碼：${saved}`
-        : `${className} 目前密碼：尚未在此裝置更新`;
+        ? `${className} 本裝置最後成功設定：${saved}`
+        : `${className} 本裝置最後成功設定：尚無紀錄`;
     }
 
     passwordClass.addEventListener("change", showSavedPassword);
@@ -175,7 +175,9 @@
         const result = await response.json();
 
         if (!result.success) {
-          passwordMessage.textContent = result.message || "更新失敗，請檢查設定。";
+          passwordMessage.textContent = result.message === "教師管理密碼錯誤"
+            ? "教師管理密碼錯誤。請確認 TEACHER_KEY；修改 Apps Script 後還要部署新版本。"
+            : result.message || "更新失敗，請檢查設定。";
           return;
         }
 

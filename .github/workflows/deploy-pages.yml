@@ -1,0 +1,47 @@
+name: Optimize images and deploy game
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get game files
+        uses: actions/checkout@v4
+
+      - name: Prepare image tools
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Create fast-loading WebP images
+        run: |
+          python -m pip install --disable-pip-version-check pillow
+          python optimize_game_images.py
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload optimized game
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Publish game
+        id: deployment
+        uses: actions/deploy-pages@v4

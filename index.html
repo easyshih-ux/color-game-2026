@@ -69,23 +69,25 @@
 
     .skip-button {
       position: fixed;
-      right: 14px;
-      top: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 999px;
-      padding: 5px 9px;
-      background: rgba(7, 11, 29, 0.2);
-      color: #fff;
+      right: 7px;
+      top: 7px;
+      width: 18px;
+      height: 18px;
+      min-width: 0;
+      min-height: 0;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 3px;
+      padding: 0;
+      background: rgba(7, 11, 29, 0.24);
+      color: transparent;
       cursor: pointer;
-      font-size: 12px;
-      font-weight: 700;
-      opacity: 0.34;
-      backdrop-filter: blur(8px);
+      font-size: 0;
+      opacity: 0.12;
     }
 
     .skip-button:hover,
     .skip-button:focus-visible {
-      opacity: 0.9;
+      opacity: 0.28;
     }
 
     @media (max-width: 640px) {

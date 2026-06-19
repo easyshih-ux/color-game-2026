@@ -614,6 +614,198 @@
       margin-top: 2px;
     }
 
+    .application-game {
+      margin: 24px 0;
+      padding: 20px;
+      border-radius: 24px;
+      border: 2px solid #c7d2fe;
+      background: linear-gradient(145deg, #f8faff, #fff);
+    }
+    .application-game h3 { margin: 0 0 8px; font-size: 23px; }
+    .application-game > p { margin: 0 0 16px; color: var(--muted); line-height: 1.7; font-weight: 800; }
+    .game-demo-layout {
+      display: grid;
+      grid-template-columns: minmax(260px, .9fr) minmax(300px, 1.1fr);
+      gap: 18px;
+      align-items: center;
+    }
+    .room-scene, .rescue-stage {
+      position: relative;
+      min-height: 210px;
+      overflow: hidden;
+      border-radius: 22px;
+      border: 5px solid #fff;
+      box-shadow: 0 10px 25px rgba(31,41,55,.14);
+    }
+    .room-scene {
+      background: linear-gradient(145deg, rgba(255,255,255,.28), transparent 52%), var(--wall, #f1f5f9);
+      transition: background .25s;
+      isolation: isolate;
+    }
+    .room-scene::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(circle at 75% 18%, rgba(255,255,255,.38), transparent 32%);
+      pointer-events: none;
+    }
+    .room-floor {
+      position: absolute;
+      inset: 63% 0 0;
+      z-index: 1;
+      background: repeating-linear-gradient(90deg, transparent 0 54px, rgba(116,72,45,.12) 55px 57px), linear-gradient(#ead8c2, #d7b894);
+      border-top: 5px solid rgba(255,255,255,.62);
+    }
+    .room-window {
+      position: absolute;
+      z-index: 2;
+      width: 88px;
+      height: 76px;
+      top: 25px;
+      left: 30px;
+      overflow: hidden;
+      background: linear-gradient(#8ed8f8 0 58%, #dff5ff 59%);
+      border: 8px solid #fffdf7;
+      border-radius: 5px;
+      box-shadow: 0 8px 15px rgba(51,65,85,.16), inset 0 0 0 2px #cbd5e1;
+    }
+    .room-window::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 46%, #fffdf7 47% 53%, transparent 54%), linear-gradient(transparent 45%, #fffdf7 46% 54%, transparent 55%);
+    }
+    .room-window::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      right: 8px;
+      top: 7px;
+      border-radius: 50%;
+      background: #fde047;
+      box-shadow: 0 0 0 6px rgba(253,224,71,.2);
+    }
+    .room-curtain {
+      position: absolute;
+      z-index: 3;
+      width: 23px;
+      height: 94px;
+      top: 18px;
+      border-radius: 9px 9px 18px 18px;
+      background: repeating-linear-gradient(90deg, #fff7ed 0 7px, #fed7aa 8px 11px);
+      box-shadow: 0 5px 9px rgba(51,65,85,.12);
+    }
+    .room-curtain.left { left: 18px; transform: rotate(3deg); }
+    .room-curtain.right { left: 108px; transform: rotate(-3deg); }
+    .room-sofa {
+      position: absolute;
+      z-index: 5;
+      width: 164px;
+      height: 60px;
+      right: 30px;
+      bottom: 35px;
+      border-radius: 20px 20px 12px 12px;
+      background: var(--sofa, #94a3b8);
+      border: 3px solid rgba(15,23,42,.12);
+      transition: background .25s;
+      box-shadow: 0 12px 18px rgba(51,65,85,.22);
+    }
+    .room-sofa::before {
+      content: "";
+      position: absolute;
+      inset: -38px 17px 35px;
+      z-index: -1;
+      border-radius: 24px 24px 8px 8px;
+      background: inherit;
+      border: 3px solid rgba(15,23,42,.1);
+    }
+    .room-sofa::after {
+      content: "";
+      position: absolute;
+      left: -9px;
+      right: -9px;
+      top: 6px;
+      height: 39px;
+      border-radius: 16px;
+      border: 3px solid rgba(15,23,42,.1);
+      pointer-events: none;
+    }
+    .sofa-cushion {
+      position: absolute;
+      z-index: 2;
+      width: 57px;
+      height: 34px;
+      top: -28px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.22);
+      border: 2px solid rgba(255,255,255,.32);
+    }
+    .sofa-cushion.one { left: 20px; transform: rotate(-3deg); }
+    .sofa-cushion.two { right: 20px; transform: rotate(3deg); }
+    .sofa-leg { position: absolute; bottom: -13px; width: 10px; height: 15px; border-radius: 2px; background: #76533b; }
+    .sofa-leg.left { left: 24px; }
+    .sofa-leg.right { right: 24px; }
+    .room-rug {
+      position: absolute;
+      z-index: 4;
+      width: 155px;
+      height: 52px;
+      left: 36px;
+      bottom: 12px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, transparent 0 31%, rgba(255,255,255,.28) 32% 38%, transparent 39%), var(--rug, #cbd5e1);
+      border: 3px solid rgba(255,255,255,.28);
+      transition: background .25s;
+      box-shadow: 0 7px 10px rgba(51,65,85,.13);
+    }
+    .room-lamp { position: absolute; z-index: 4; left: 155px; bottom: 53px; width: 7px; height: 83px; border-radius: 6px; background: #475569; }
+    .room-lamp::before { content: ""; position: absolute; width: 54px; height: 31px; left: -24px; top: -16px; border-radius: 50% 50% 12px 12px; background: #fff1a8; border: 3px solid #d6b85c; box-shadow: 0 0 20px rgba(253,224,71,.38); }
+    .room-lamp::after { content: ""; position: absolute; width: 48px; height: 9px; left: -21px; bottom: -5px; border-radius: 50%; background: #334155; }
+    .room-plant { position: absolute; z-index: 5; right: 10px; bottom: 37px; width: 32px; height: 32px; border-radius: 4px 4px 12px 12px; background: #c87543; border: 2px solid #9a4f2b; }
+    .room-plant::before { content: ""; position: absolute; width: 56px; height: 50px; left: -13px; top: -42px; background: radial-gradient(ellipse at 22% 65%, #55b86b 0 22%, transparent 24%), radial-gradient(ellipse at 50% 35%, #2f9654 0 24%, transparent 26%), radial-gradient(ellipse at 78% 66%, #55b86b 0 22%, transparent 24%); }
+    .palette-options { display: grid; gap: 10px; }
+    .palette-option { display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 14px; border: 2px solid #e5e7eb; background: #fff; color: #334155; }
+    .palette-option:hover:not(:disabled) { transform: none; border-color: #818cf8; }
+    .palette-option.game-picked { border-color: #4f46e5; box-shadow: 0 0 0 3px #e0e7ff; }
+    .palette-option.game-correct { border-color: var(--good); background: #f0fdf4; box-shadow: 0 0 0 3px #dcfce7; }
+    .palette-option.game-correct::after { content: "✓ 已找到"; margin-left: auto; color: var(--good); font-weight: 1000; }
+    .harmony-reason-panel { margin-top: 14px; padding: 14px; border-radius: 18px; background: #fff; border: 2px dashed #a5b4fc; }
+    .harmony-reason-panel strong { display: block; margin-bottom: 10px; color: #3730a3; }
+    .harmony-reason-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .harmony-reason-option { min-height: 54px; padding: 9px 10px; border: 2px solid #e0e7ff; border-radius: 15px; background: #f8faff; color: #3730a3; line-height: 1.35; }
+    .harmony-reason-option:hover:not(:disabled) { transform: none; border-color: #6366f1; }
+    .palette-swatch { width: 42px; height: 42px; border-radius: 50%; border: 2px solid rgba(0,0,0,.12); }
+    .rescue-stage { display: grid; place-items: center; background: radial-gradient(circle at 50% 42%, rgba(255,255,255,.55), transparent 34%), linear-gradient(145deg, rgba(255,255,255,.22), rgba(15,23,42,.08)), var(--stage-bg, #e5e7eb); transition: background .25s; isolation: isolate; }
+    .rescue-stage::before { content: ""; position: absolute; z-index: 0; left: 0; right: 0; bottom: 0; height: 34%; background: rgba(15,23,42,.2); clip-path: polygon(0 100%,0 48%,8% 48%,8% 20%,17% 20%,17% 62%,25% 62%,25% 35%,34% 35%,34% 8%,44% 8%,44% 58%,54% 58%,54% 28%,64% 28%,64% 48%,73% 48%,73% 15%,82% 15%,82% 65%,91% 65%,91% 38%,100% 38%,100% 100%); }
+    .rescue-stage::after { content: ""; position: absolute; z-index: 1; width: 190px; height: 190px; border-radius: 50%; border: 3px solid rgba(255,255,255,.38); box-shadow: 0 0 0 16px rgba(255,255,255,.08), 0 0 45px rgba(255,255,255,.22); }
+    .rescue-subject { position: relative; z-index: 2; width: 150px; height: 205px; filter: drop-shadow(0 9px 6px rgba(15,23,42,.28)); }
+    .hero-figure { width: 100%; height: 100%; overflow: visible; }
+    .rocket-body { fill: currentColor; stroke: rgba(15,23,42,.35); stroke-width: 5; stroke-linejoin: round; }
+    .rocket-shine { fill: rgba(255,255,255,.28); }
+    .rocket-window { fill: #e0f2fe; stroke: #fff; stroke-width: 7; }
+    .rocket-window-glow { fill: rgba(255,255,255,.72); }
+    .rocket-fin { fill: currentColor; stroke: rgba(15,23,42,.3); stroke-width: 5; stroke-linejoin: round; }
+    .rocket-flame-back { fill: #f97316; }
+    .rocket-flame-front { fill: #fde047; }
+    .background-options { display: grid; grid-template-columns: repeat(4, minmax(58px, 1fr)); gap: 10px; align-items: center; }
+    .background-option { width: 100%; max-width: 100px; min-height: 68px; justify-self: center; border: 5px solid #fff; border-radius: 24px; color: #111; text-shadow: 0 1px #fff; box-shadow: 0 8px 16px rgba(15,23,42,.14); }
+    .background-option:hover:not(:disabled) { transform: none; }
+    .background-option.game-picked { outline: 4px solid #111827; outline-offset: 2px; }
+    .rescue-check-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .rescue-selection-note { color: var(--muted); font-weight: 900; }
+    .contrast-explanation { display: grid; gap: 9px; margin-top: 8px; color: #334155; }
+    .contrast-explanation div { padding: 10px 12px; border-radius: 14px; background: #f8fafc; border: 1px solid #e2e8f0; }
+    .game-result { min-height: 30px; margin-top: 12px; font-weight: 1000; line-height: 1.6; }
+    .game-result.good { color: var(--good); }
+    .game-result.bad { color: var(--bad); }
+    .game-result.try-again { color: #a16207; }
+    @media (max-width: 720px) {
+      .game-demo-layout { grid-template-columns: 1fr; }
+      .background-options { grid-template-columns: repeat(4, minmax(58px, 1fr)); }
+    }
+
 
     .selected-card {
       outline: 4px solid var(--accent);
@@ -1885,8 +2077,225 @@
       `;
     }
 
+    function harmonyRoomGame(main) {
+      const baseColor = colors.find(c => c.id === main);
+      const familyShades = sameFamilyVariants(main);
+      const mainIndex = colors.findIndex(c => c.id === main);
+      const colorAtOffset = offset => colors[(mainIndex + offset + colors.length) % colors.length].id;
+      const trioStartOffset = shuffleArray([-2, -1, 0])[0];
+      const correctIds = [0, 1, 2].map(step => colorAtOffset(trioStartOffset + step));
+      const nearGapIds = [main, colorAtOffset(1), colorAtOffset(3)];
+      const farGapIds = [main, contrastMap[main], colorAtOffset(5)];
+      const toSwatches = ids => ids.map(id => {
+        const color = colors.find(c => c.id === id);
+        return { name: color.name, hex: color.hex };
+      });
+      const palettes = shuffleArray([
+        { swatches: toSwatches(correctIds), correct: true, kind: "neighbor" },
+        { swatches: [familyShades[0], baseColor, familyShades[1]], correct: true, kind: "family" },
+        { swatches: toSwatches(nearGapIds), correct: false, kind: "near-gap" },
+        { swatches: toSwatches(farGapIds), correct: false, kind: "far-gap" }
+      ]);
+
+      return `
+        <section class="application-game harmony-game">
+          <h3>小遊戲：和諧房間</h3>
+          <p>主色：<strong>${colorName(main)}</strong>。找出 2 組和諧配色：<strong>連續三色</strong>、<strong>同色系深淺</strong>。</p>
+          <div class="game-demo-layout">
+            <div class="room-scene" aria-label="房間配色預覽">
+              <div class="room-window"></div>
+              <div class="room-curtain left"></div><div class="room-curtain right"></div>
+              <div class="room-floor"></div>
+              <div class="room-lamp"></div><div class="room-plant"></div>
+              <div class="room-rug"></div>
+              <div class="room-sofa">
+                <span class="sofa-cushion one"></span><span class="sofa-cushion two"></span>
+                <span class="sofa-leg left"></span><span class="sofa-leg right"></span>
+              </div>
+            </div>
+            <div>
+              <div class="palette-options">
+                ${palettes.map((palette, index) => `
+                  <button class="palette-option" data-palette="${palette.swatches.map(swatch => swatch.hex).join(",")}" data-correct="${palette.correct}" data-kind="${palette.kind}" onclick="previewHarmonyPalette(this)">
+                    <strong>方案 ${index + 1}</strong>
+                    ${palette.swatches.map(swatch => `<span class="palette-swatch" style="background:${swatch.hex}" title="${swatch.name}"></span>`).join("")}
+                  </button>
+                `).join("")}
+              </div>
+              <div class="harmony-reason-panel">
+                <strong>這組配色夠和諧嗎？</strong>
+                <div class="harmony-reason-options">
+                  <button class="harmony-reason-option" onclick="judgeHarmonyReason(this, 'similar')">和諧</button>
+                  <button class="harmony-reason-option" onclick="judgeHarmonyReason(this, 'not-best')">不夠和諧</button>
+                </div>
+              </div>
+              <div class="game-result" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    window.previewHarmonyPalette = function(btn) {
+      const game = btn.closest(".harmony-game");
+      game.querySelectorAll(".palette-option").forEach(option => option.classList.remove("game-picked"));
+      btn.classList.add("game-picked");
+      const palette = btn.dataset.palette.split(",");
+      const scene = game.querySelector(".room-scene");
+      scene.style.setProperty("--wall", palette[0]);
+      scene.style.setProperty("--sofa", palette[1]);
+      scene.style.setProperty("--rug", palette[2]);
+      const result = game.querySelector(".game-result");
+      result.className = "game-result";
+      result.textContent = "看看房間效果，再選答案。";
+    };
+
+    window.judgeHarmonyReason = function(btn, reason) {
+      const game = btn.closest(".harmony-game");
+      const paletteButton = game.querySelector(".palette-option.game-picked");
+      const result = game.querySelector(".game-result");
+      if (!paletteButton) {
+        result.className = "game-result try-again";
+        result.textContent = "請先選一個配色方案。";
+        return;
+      }
+      const kind = paletteButton.dataset.kind;
+      const expectedReason = kind === "neighbor" || kind === "family" ? "similar" : "not-best";
+      if (reason !== expectedReason) {
+        result.className = "game-result try-again";
+        result.textContent = "再看看：三色有相連嗎？或只是深淺不同？";
+        return;
+      }
+      if (kind === "neighbor" || kind === "family") {
+        paletteButton.classList.add("game-correct");
+        const found = new Set((game.dataset.found || "").split(",").filter(Boolean));
+        found.add(kind);
+        game.dataset.found = [...found].join(",");
+        result.className = "game-result good";
+        if (found.size === 2) {
+          result.textContent = "完成！連續三色、同色系深淺，都能產生和諧感。";
+        } else {
+          result.textContent = kind === "family"
+            ? "答對！同色系深淺，和諧又有層次。再找 1 組。"
+            : "答對！三色相連，柔和有連續感。再找 1 組。";
+        }
+      } else {
+        result.className = "game-result try-again";
+        result.textContent = kind === "near-gap"
+          ? "差 1、2 格，仍像類似色，但不如三色相連和諧。"
+          : "色相距離較遠，對比明顯，不是柔和的類似色。";
+      }
+    };
+
+    function rescueSubjectGame(main) {
+      const directContrastId = contrastMap[main];
+      const extendedContrastIds = analogousMap[directContrastId];
+      const mainIndex = colors.findIndex(c => c.id === main);
+      const colorAtOffset = offset => colors[(mainIndex + offset + colors.length) % colors.length].id;
+      const similarIds = [main, colorAtOffset(-2), colorAtOffset(-1), colorAtOffset(1), colorAtOffset(2)];
+      const optionIds = [directContrastId, ...extendedContrastIds, ...similarIds];
+      const options = shuffleArray(optionIds.map(id => colors.find(c => c.id === id)));
+      const mainColor = colors.find(c => c.id === main);
+
+      return `
+        <section class="application-game rescue-game" data-direct="${directContrastId}" data-extended="${extendedContrastIds.join(",")}">
+          <h3>小遊戲：醒目發射</h3>
+          <p>火箭：<strong>${mainColor.name}</strong>。請選出 <strong>3 個醒目背景色</strong>。</p>
+          <div class="game-demo-layout">
+            <div class="rescue-stage" aria-label="火箭與背景配色預覽">
+              <div class="rescue-subject" style="color:${mainColor.hex}" aria-label="${mainColor.name}色火箭">
+                <svg class="hero-figure" viewBox="0 0 180 220" aria-hidden="true">
+                  <path class="rocket-flame-back" d="M70 169 Q90 221 110 169 Z"></path>
+                  <path class="rocket-flame-front" d="M80 169 Q90 203 100 169 Z"></path>
+                  <path class="rocket-fin" d="M64 124 Q35 137 31 177 L70 159 Z"></path>
+                  <path class="rocket-fin" d="M116 124 Q145 137 149 177 L110 159 Z"></path>
+                  <path class="rocket-body" d="M90 14 C59 39 52 78 62 151 Q90 174 118 151 C128 78 121 39 90 14 Z"></path>
+                  <path class="rocket-shine" d="M80 34 C66 56 63 90 69 132 Q76 139 82 142 C76 95 77 61 91 27 Z"></path>
+                  <circle class="rocket-window" cx="90" cy="78" r="25"></circle>
+                  <circle class="rocket-window-glow" cx="82" cy="70" r="7"></circle>
+                  <path d="M72 137 Q90 148 108 137" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="6" stroke-linecap="round"></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <div class="background-options">
+                ${options.map(c => `<button class="background-option" data-color="${c.id}" style="background:${c.hex}" onclick="toggleRescueBackground(this)">${c.name}</button>`).join("")}
+              </div>
+              <div class="rescue-check-row">
+                <button class="secondary" onclick="checkRescueBackground(this)">檢查醒目色</button>
+                <span class="rescue-selection-note">已選 0 / 3</span>
+              </div>
+              <div class="game-result" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    window.toggleRescueBackground = function(btn) {
+      const game = btn.closest(".rescue-game");
+      const result = game.querySelector(".game-result");
+      if (btn.classList.contains("game-picked")) {
+        btn.classList.remove("game-picked");
+        result.className = "game-result";
+        result.textContent = `已取消${colorName(btn.dataset.color)}。`;
+      } else {
+        const selected = game.querySelectorAll(".background-option.game-picked");
+        if (selected.length >= 3) {
+          result.className = "game-result try-again";
+          result.textContent = "最多選 3 色，請先取消一色。";
+          return;
+        }
+        btn.classList.add("game-picked");
+        const color = colors.find(c => c.id === btn.dataset.color);
+        game.querySelector(".rescue-stage").style.setProperty("--stage-bg", color.hex);
+        const directId = game.dataset.direct;
+        const extendedIds = game.dataset.extended.split(",");
+        if (btn.dataset.color === directId) {
+          result.className = "game-result good";
+          result.textContent = `答對！${color.name}是正對比色，對比最強。`;
+        } else if (extendedIds.includes(btn.dataset.color)) {
+          result.className = "game-result good";
+          result.textContent = `答對！${color.name}是延伸對比色，醒目但較柔和。`;
+        } else {
+          result.className = "game-result try-again";
+          result.textContent = `${color.name}與火箭色相太近，和諧但不夠醒目。`;
+        }
+      }
+      const selectedCount = game.querySelectorAll(".background-option.game-picked").length;
+      game.querySelector(".rescue-selection-note").textContent = `已選 ${selectedCount} / 3`;
+    };
+
+    window.checkRescueBackground = function(btn) {
+      const game = btn.closest(".rescue-game");
+      const selectedIds = [...game.querySelectorAll(".background-option.game-picked")].map(option => option.dataset.color).sort();
+      const directId = game.dataset.direct;
+      const extendedIds = game.dataset.extended.split(",");
+      const correctIds = [directId, ...extendedIds].sort();
+      const result = game.querySelector(".game-result");
+      if (selectedIds.length !== 3) {
+        result.className = "game-result try-again";
+        result.textContent = `請選滿 3 色（目前 ${selectedIds.length} 色）。`;
+        return;
+      }
+      if (selectedIds.join(",") !== correctIds.join(",")) {
+        result.className = "game-result try-again";
+        result.textContent = "還有顏色不對。找正對面，以及它左右兩色。";
+        return;
+      }
+      result.className = "game-result good";
+      result.innerHTML = `
+        <strong>完成！找到 3 個醒目色。</strong>
+        <div class="contrast-explanation">
+          <div><strong>正對比：${colorName(directId)}</strong>｜對比最強。</div>
+          <div><strong>延伸對比：${extendedIds.map(colorName).join("、")}</strong>｜醒目、較柔和。</div>
+        </div>
+      `;
+    };
+
     function renderAnalogous() {
       const rounds = pickRandomColorIds(3).map(id => ({ main: id }));
+      const harmonyMain = pickRandomColorIds(1)[0];
 
       panel.innerHTML = `
         <div class="section-title">
@@ -1894,12 +2303,13 @@
           <h2>類似色：色相環＋同色系</h2>
         </div>
         <div class="hint">
-          <strong>類似色定義：</strong>類似色是色相環上位置相近的顏色，通常看起來比較和諧、柔和、有連續感。<br>
-          在這一關中，類似色包含兩種：<strong>色相環上左右相鄰的顏色</strong>，以及<strong>同色系的深淺變化</strong>。<br>
-          題目會隨機出現。先在色相環上找出 <strong>2 個相鄰的類似色</strong>，再到下方 5 個同色系選項中，找出 <strong>2 個正確答案</strong>。
+          <strong>類似色定義：</strong>類似色是色相環上連續相鄰的顏色，通常看起來比較和諧、柔和、有連續感。<br>
+          在這一關中，類似色包含兩種：<strong>色相環上連在一起的三個顏色</strong>，以及<strong>同色系的深淺變化</strong>。<br>
+          題目會隨機出現。先再選 2 色，讓它們與題目色組成<strong>連續的三色</strong>，再到下方 5 個同色系選項中，找出 <strong>2 個正確答案</strong>。
         </div>
 
         ${rounds.map((r, i) => analogousRound(r.main, i)).join("")}
+        ${harmonyRoomGame(harmonyMain)}
 
         <div class="actions">
           <button class="primary" onclick="checkAnalogous()">檢查類似色</button>
@@ -1915,7 +2325,7 @@
       return `
         <div class="quiz-round" data-round="${index}" data-main="${main}">
           <div class="wheel-round-layout">
-            <div class="question">第 ${index + 1} 題：請找出 <strong>${colorName(main)}</strong> 的類似色。</div>
+            <div class="question">第 ${index + 1} 題：請再選 2 色，與 <strong>${colorName(main)}</strong> 組成色相環上連在一起的三色。</div>
             ${wheelQuestion(main, index, "analogous")}
 
             <div class="mini-card" style="margin-top:10px;">
@@ -1925,7 +2335,7 @@
               </div>
             </div>
 
-            <div class="round-tip">先找左右相鄰的兩色，再找出同色系深淺變化的兩色。</div>
+            <div class="round-tip">題目色可以在連續三色的左邊、中間或右邊；再找出同色系深淺變化的兩色。</div>
           </div>
         </div>
       `;
@@ -1953,6 +2363,16 @@
       }
     };
 
+    function formsConsecutiveAnalogousTrio(main, selectedIds) {
+      const trio = new Set([main, ...selectedIds]);
+      if (trio.size !== 3) return false;
+      for (let start = 0; start < colors.length; start++) {
+        const candidate = [0, 1, 2].map(offset => colors[(start + offset) % colors.length].id);
+        if (candidate.every(id => trio.has(id))) return true;
+      }
+      return false;
+    }
+
     window.checkAnalogous = function() {
       let wrongRounds = 0;
 
@@ -1965,13 +2385,12 @@
         if (!hasAnalogous) return;
 
         const main = round.dataset.main;
-        const correctWheel = analogousMap[main].slice().sort().join(",");
-        const selectedWheel = [...round.querySelectorAll('.wheel-node.selected[data-mode="analogous"]')].map(btn => btn.dataset.color).sort().join(",");
+        const selectedWheel = [...round.querySelectorAll('.wheel-node.selected[data-mode="analogous"]')].map(btn => btn.dataset.color);
 
         const correctExtra = sameFamilyVariants(main).map(v => v.id).sort().join(",");
         const selectedExtra = [...round.querySelectorAll('.analogous-extra.selected')].map(btn => btn.dataset.color).sort().join(",");
 
-        if (selectedWheel !== correctWheel || selectedExtra !== correctExtra) wrongRounds++;
+        if (!formsConsecutiveAnalogousTrio(main, selectedWheel) || selectedExtra !== correctExtra) wrongRounds++;
       });
 
       const feedback = document.querySelector(".feedback");
@@ -1979,12 +2398,13 @@
         passStep("類似色配對成功！你已經能同時判斷色相環上的類似色，以及同色系的深淺變化。");
       } else {
         feedback.className = "feedback bad";
-        feedback.textContent = `還有 ${wrongRounds} 題需要修正。請確認：色相環上相鄰 2 色，以及下方同色系正確 2 色。`;
+        feedback.textContent = `還有 ${wrongRounds} 題需要修正。請確認：題目色與已選 2 色在色相環上連在一起，以及下方同色系正確 2 色。`;
       }
     };
 
     function renderContrast() {
       const rounds = pickRandomColorIds(4).map(id => ({ main: id }));
+      const rescueMain = pickRandomColorIds(1)[0];
 
       panel.innerHTML = `
         <div class="section-title">
@@ -1992,12 +2412,13 @@
           <h2>對比色：正對比色＋延伸對比色</h2>
         </div>
         <div class="hint">
-          <strong>對比色定義：</strong>對比色是色相環上距離較遠、位置相對的顏色，放在一起會產生強烈、醒目、跳出來的效果。<br>
-          在這一關中，對比色包含兩種：<strong>色相環正對面的顏色</strong>，以及<strong>正對比色左右兩邊的延伸對比色</strong>。<br>
-          題目會隨機出現。先在色相環上找出 <strong>1 個正對比色</strong>，再到下方 5 個選項中，選出 <strong>2 個延伸對比色</strong>。
+          <strong>正對比色：</strong>色相環正對面，對比最強。<br>
+          <strong>延伸對比色：</strong>正對比左右兩色，醒目、較柔和。<br>
+          每題選 <strong>1 個正對比</strong>＋<strong>2 個延伸對比</strong>。
         </div>
 
         ${rounds.map((r, i) => contrastRound(r.main, i)).join("")}
+        ${rescueSubjectGame(rescueMain)}
 
         <div class="actions">
           <button class="primary" onclick="checkContrast()">檢查對比色</button>

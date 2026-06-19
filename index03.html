@@ -923,13 +923,14 @@
             </div>
 
             <div class="button-row">
-              <button class="btn outline" id="lowDemoBtn">低彩示範</button>
-              <button class="btn outline" id="highDemoBtn">高彩示範</button>
-              <button class="btn outline" id="mixDemoBtn">對比示範</button>
+              <button class="btn outline" id="repeatDemoBtn">反覆節奏示範</button>
+              <button class="btn outline" id="gradientDemoBtn">雙重漸層示範</button>
+              <button class="btn outline" id="symmetryDemoBtn">左右對稱示範</button>
+              <button class="btn outline" id="perfectDemoBtn">完美示範</button>
             </div>
 
             <div class="notice" style="background:white;color:#334155;">
-              示範只用來觀察，不能直接通關。按「全部重來」後自行完成作品，並符合所有帶有數量要求的通關條件，才可以解鎖封印。
+              示範只用來觀察新的構成條件，不能直接通關。按「全部重來」後，運用反覆、漸層與對稱自行完成作品，才可以解鎖封印。
             </div>
           </div>
 
@@ -1458,10 +1459,6 @@
     }
 
     function evaluateLevel4(){
-      if(state.isDemoWork){
-        return {ok:false, missing:["請按全部重來後自行完成作品"], demo:true};
-      }
-
       const filledCount = state.fills.filter(Boolean).length;
       const allFilled = filledCount >= 24;
       const spatialColors = state.fills.map(color=>color ? parseHsl(color) : null);
@@ -1511,9 +1508,12 @@
       if(!hasSymmetry) missing.push("建立左右對稱（同一橫列至少 2 組鏡像配色）");
       if(!hasName) missing.push("作品命名至少 2 個字");
 
+      if(state.isDemoWork) missing.unshift("示範作品不能直接通關，請按全部重來後自行完成");
+
       return {
-        ok:missing.length===0,
+        ok:missing.length===0 && !state.isDemoWork,
         missing,
+        demo:state.isDemoWork,
         filledCount,
         allFilled,
         whiteLowCount,
@@ -1552,14 +1552,14 @@
 
       const ev=evaluateLevel4();
       const items=[
-        [`24 格都要完成｜目前 ${ev.filledCount}/24`, ev.allFilled && !ev.demo],
-        [`3 個低彩度（加白－明度高）｜目前 ${ev.whiteLowCount}/3`, ev.whiteLowCount >= 3 && !ev.demo],
-        [`3 個低彩度（加黑－明度低）｜目前 ${ev.blackLowCount}/3`, ev.blackLowCount >= 3 && !ev.demo],
-        [`4 個高彩度（純色－明度中）｜目前 ${ev.pureHighHueCount}/4`, ev.pureHighHueCount >= 4 && !ev.demo],
-        [`反覆節奏｜相近配色重複 ${ev.repeatCount}/3 格`, ev.hasRepeat && !ev.demo],
-        [`彩度漸層｜連續 4 格同色系，彩度逐步升高或降低`, ev.hasChromaGradient && !ev.demo],
-        [`明度漸層｜連續 4 格同色系，明度逐步升高或降低`, ev.hasLightGradient && !ev.demo],
-        [`左右對稱｜同一橫列鏡像配色 ${ev.symmetryPairCount}/2 組`, ev.hasSymmetry && !ev.demo],
+        [`24 格都要完成｜目前 ${ev.filledCount}/24`, ev.allFilled],
+        [`3 個低彩度（加白－明度高）｜目前 ${ev.whiteLowCount}/3`, ev.whiteLowCount >= 3],
+        [`3 個低彩度（加黑－明度低）｜目前 ${ev.blackLowCount}/3`, ev.blackLowCount >= 3],
+        [`4 個高彩度（純色－明度中）｜目前 ${ev.pureHighHueCount}/4`, ev.pureHighHueCount >= 4],
+        [`反覆節奏｜相近配色重複 ${ev.repeatCount}/3 格`, ev.hasRepeat],
+        [`彩度漸層｜連續 4 格同色系，彩度逐步升高或降低`, ev.hasChromaGradient],
+        [`明度漸層｜連續 4 格同色系，明度逐步升高或降低`, ev.hasLightGradient],
+        [`左右對稱｜同一橫列鏡像配色 ${ev.symmetryPairCount}/2 組`, ev.hasSymmetry],
         [`作品命名至少 2 個字｜目前 ${ev.nameLength} 字`, ev.hasName],
       ];
       document.getElementById("checklistItems").innerHTML=items.map(([text,done])=>`<div class="check-item ${done?'done':''}">${done?'✓':'□'} ${text}</div>`).join("");
@@ -1580,11 +1580,33 @@
     function clearAll(){state.fills=Array(24).fill(null);state.selectedCell=0;state.isDemoWork=false;renderLevel4()}
 
     function autoDemo(type){
-      for(let i=0;i<24;i++){
-        const h=(state.hue+i*12)%360;
-        const s= type==="low" ? clamp(18+(i%3)*6,0,100) : type==="high" ? clamp(78+(i%3)*7,0,100) : i%2===0 ? 22 : 88;
-        state.fills[i]=hslColor(h,s,55);
-      }
+      const repeatPalette=[
+        [210,28,78],[210,82,55],[210,28,30],
+        [30,28,78],[30,82,55],[30,28,30],
+      ];
+      const demoPatterns={
+        repeat:Array.from({length:24},(_,i)=>repeatPalette[i%repeatPalette.length]),
+        gradient:[
+          [210,20,55],[210,40,55],[210,60,55],[210,80,55],[210,60,55],[210,40,55],
+          [25,80,25],[25,80,40],[25,80,55],[25,80,70],[25,80,55],[25,80,40],
+          [120,25,78],[120,75,55],[120,25,30],[285,25,78],[285,75,55],[285,25,30],
+          [350,80,50],[55,80,50],[190,80,50],[260,80,50],[190,80,50],[55,80,50],
+        ],
+        symmetry:[
+          [210,25,78],[210,80,55],[210,25,30],[210,25,30],[210,80,55],[210,25,78],
+          [30,25,78],[30,80,55],[30,25,30],[30,25,30],[30,80,55],[30,25,78],
+          [120,30,75],[120,75,52],[120,38,32],[120,38,32],[120,75,52],[120,30,75],
+          [285,30,75],[285,75,52],[285,38,32],[285,38,32],[285,75,52],[285,30,75],
+        ],
+        perfect:[
+          [210,20,55],[210,40,55],[210,60,55],[210,80,55],[210,40,55],[210,20,55],
+          [30,80,25],[30,80,40],[30,80,55],[30,80,70],[30,80,40],[30,80,25],
+          [120,30,78],[120,80,55],[120,30,30],[120,30,30],[120,80,55],[120,30,78],
+          [120,30,78],[285,80,55],[120,30,30],[120,30,30],[285,80,55],[120,30,78],
+        ],
+      };
+      state.fills=demoPatterns[type].map(([h,s,l])=>hslColor(h,s,l));
+      if(type==="perfect") state.artName="完美色彩構成示範";
       state.isDemoWork=true;
       renderLevel4();
     }
@@ -1698,9 +1720,10 @@
     document.getElementById("fillCellBtn").onclick=fillCell;
     document.getElementById("clearCellBtn").onclick=clearCell;
     document.getElementById("clearAllBtn").onclick=clearAll;
-    document.getElementById("lowDemoBtn").onclick=()=>autoDemo("low");
-    document.getElementById("highDemoBtn").onclick=()=>autoDemo("high");
-    document.getElementById("mixDemoBtn").onclick=()=>autoDemo("mix");
+    document.getElementById("repeatDemoBtn").onclick=()=>autoDemo("repeat");
+    document.getElementById("gradientDemoBtn").onclick=()=>autoDemo("gradient");
+    document.getElementById("symmetryDemoBtn").onclick=()=>autoDemo("symmetry");
+    document.getElementById("perfectDemoBtn").onclick=()=>autoDemo("perfect");
     document.getElementById("artName").oninput=e=>{state.artName=e.target.value;renderLevel4()};
     document.getElementById("finishBtn").onclick=finishLevel4;
     document.getElementById("downloadBtn").onclick=downloadArtwork;

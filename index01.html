@@ -1733,7 +1733,7 @@
     }
 
     window.selectWheelBankCard = function(card) {
-      if (currentStep !== 1) return;
+      if (currentStep !== 2) return;
       selectedWheelCardId = card.dataset.id;
       document.querySelectorAll("#palette .draggable").forEach(item => item.classList.remove("selected-card"));
       card.classList.add("selected-card");
@@ -1741,7 +1741,7 @@
     };
 
     window.placeSelectedWheelCard = function(slot) {
-      if (currentStep !== 1 || !selectedWheelCardId) return;
+      if (currentStep !== 2 || !selectedWheelCardId) return;
       const original = document.querySelector(`#palette .draggable[data-id="${selectedWheelCardId}"]`);
       if (!original) return;
 
@@ -1995,7 +1995,7 @@
 
 
     window.selectFamilyCard = function(card) {
-      if (currentStep !== 2) return;
+      if (currentStep !== 3) return;
       selectedFamilyCardEl = card;
       document.querySelectorAll(".mini-card .draggable, .drop-zone .draggable").forEach(item => item.classList.remove("selected-card"));
       card.classList.add("selected-card");
@@ -2003,7 +2003,7 @@
     };
 
     window.placeSelectedFamilyCard = function(zone) {
-      if (currentStep !== 2 || !selectedFamilyCardEl) return;
+      if (currentStep !== 3 || !selectedFamilyCardEl) return;
       zone.querySelector(".drop-items").appendChild(selectedFamilyCardEl);
       selectedFamilyCardEl.classList.remove("selected-card");
       selectedFamilyCardEl = null;

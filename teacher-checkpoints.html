@@ -23,6 +23,9 @@
     section { padding: 24px 0; border-bottom: 1px solid #d7e0ec; }
     h2 { margin: 0 0 14px; font-size: 23px; }
     .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+    .checkpoint-group { margin-top: 20px; }
+    .checkpoint-group:first-of-type { margin-top: 0; }
+    .checkpoint-group h3 { margin: 0 0 10px; color: #123b7a; font-size: 18px; }
     button {
       width: 100%; min-height: 58px; border: 2px solid #2b61c7; border-radius: 8px;
       padding: 12px 16px; background: #fff; color: #123b7a; cursor: pointer;
@@ -95,6 +98,41 @@
         <button data-href="index02.html">Index 02 明度學習</button>
         <button data-href="chroma-intro.html">彩度開場</button>
         <button data-href="index03.html">Index 03 彩度學習</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Index 01-03 關卡快速截點</h2>
+      <p class="note">只供教師測試。系統會自動完成截點前的關卡，讓你直接檢查正在修改的內容。</p>
+      <div class="checkpoint-group">
+        <h3>Index 01｜色相</h3>
+        <div class="links">
+          <button data-href="index01.html?teacherStep=1">01-1 色相定義</button>
+          <button data-href="index01.html?teacherStep=2">01-2 調色實驗室</button>
+          <button data-href="index01.html?teacherStep=3">01-3 CMY 12 色相環</button>
+          <button data-href="index01.html?teacherStep=4">01-4 認識色系</button>
+          <button data-href="index01.html?teacherStep=5">01-5 類似色</button>
+          <button data-href="index01.html?teacherStep=6">01-6 對比色</button>
+          <button data-href="index01.html?teacherStep=7">01 完成畫面</button>
+        </div>
+      </div>
+      <div class="checkpoint-group">
+        <h3>Index 02｜明度</h3>
+        <div class="links">
+          <button data-href="index02.html?teacherLevel=1">02-1 暗到亮排序</button>
+          <button data-href="index02.html?teacherLevel=2">02-2 明度排序</button>
+          <button data-href="index02.html?teacherLevel=3">02-3 明度辨識</button>
+          <button data-href="index02.html?teacherLevel=4">02-4 閃現十六格</button>
+        </div>
+      </div>
+      <div class="checkpoint-group">
+        <h3>Index 03｜彩度</h3>
+        <div class="links">
+          <button data-href="index03.html?teacherLevel=1">03-1 彩度偵測器</button>
+          <button data-href="index03.html?teacherLevel=2">03-2 彩度排序</button>
+          <button data-href="index03.html?teacherLevel=3">03-3 低高低彩度波</button>
+          <button data-href="index03.html?teacherLevel=4">03-4 彩度創作</button>
+        </div>
       </div>
     </section>
 

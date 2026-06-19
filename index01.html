@@ -2126,6 +2126,20 @@
       render();
     };
 
+    function applyTeacherCheckpoint() {
+      const params = new URLSearchParams(window.location.search);
+      if (!params.has("teacherStep")) return false;
+
+      const requestedStep = Number(params.get("teacherStep"));
+      if (!Number.isInteger(requestedStep) || requestedStep < 1 || requestedStep > 7) return false;
+
+      currentStep = requestedStep - 1;
+      unlockedStep = currentStep;
+      completed = completed.map((_, index) => index < currentStep);
+      return true;
+    }
+
+    applyTeacherCheckpoint();
     render();
   </script>
 <style>

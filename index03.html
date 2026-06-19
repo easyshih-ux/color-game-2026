@@ -1709,9 +1709,22 @@
     document.getElementById("backToArtBtn").onclick=()=>{renderLevel4();showScreen("level4")};
     document.getElementById("restartBtn").onclick=resetAll;
 
+    function applyTeacherCheckpoint() {
+      const params = new URLSearchParams(window.location.search);
+      if (!params.has("teacherLevel")) return "home";
+
+      const requestedLevel = Number(params.get("teacherLevel"));
+      if (!Number.isInteger(requestedLevel) || requestedLevel < 1 || requestedLevel > 4) return "home";
+
+      state.l1Passed = requestedLevel > 1;
+      state.l2Passed = requestedLevel > 2;
+      state.l3Passed = requestedLevel > 3;
+      return `level${requestedLevel}`;
+    }
+
     prepareLevel2Set(0);
     generateWaveCards();
-    renderLevel1(); renderLevel2(); renderLevel3(); renderLevel4(); showScreen("home");
+    renderLevel1(); renderLevel2(); renderLevel3(); renderLevel4(); showScreen(applyTeacherCheckpoint());
   </script>
 <script>
   (() => {

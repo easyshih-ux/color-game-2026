@@ -1315,7 +1315,20 @@
       }
     }
 
+    function applyTeacherCheckpoint() {
+      const params = new URLSearchParams(window.location.search);
+      if (!params.has("teacherLevel")) return;
+
+      const requestedLevel = Number(params.get("teacherLevel"));
+      if (!Number.isInteger(requestedLevel) || requestedLevel < 1 || requestedLevel > levels.length) return;
+
+      currentLevelIndex = requestedLevel - 1;
+      for (let index = 0; index <= currentLevelIndex; index++) unlockedLevels.add(index);
+      for (let index = 0; index < currentLevelIndex; index++) completedLevels.add(index);
+    }
+
     setupDropArea(cardPool);
+    applyTeacherCheckpoint();
     renderLevel();
   </script>
 </body>

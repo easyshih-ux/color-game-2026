@@ -917,6 +917,25 @@
       box-shadow: inset 0 -12px 18px rgba(0, 0, 0, 0.08);
     }
 
+    .mix-live-lesson {
+      margin: 0 0 16px;
+      padding: 14px 16px;
+      border: 3px solid #cbd5e1;
+      border-radius: 18px;
+      background: #f8fafc;
+      color: #334155;
+      line-height: 1.55;
+      text-align: left;
+      box-shadow: 0 6px 14px rgba(31, 41, 55, 0.06);
+    }
+    .mix-live-lesson.level-primary { border-color: #f59e0b; background: #fffbeb; }
+    .mix-live-lesson.level-secondary { border-color: #3b82f6; background: #eff6ff; }
+    .mix-live-lesson.level-tertiary { border-color: #8b5cf6; background: #f5f3ff; }
+    .mix-live-lesson.level-all-primary { border-color: #475569; background: #f1f5f9; }
+    .mix-level-badge { display: inline-block; margin-bottom: 6px; padding: 4px 10px; border-radius: 999px; background: #1e293b; color: #fff; font-size: 14px; font-weight: 1000; }
+    .mix-live-lesson strong { display: block; margin-bottom: 3px; font-size: 19px; color: #0f172a; }
+    .mix-live-lesson p { margin: 0; font-weight: 800; }
+
     .paint-buttons {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -932,6 +951,7 @@
       box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7);
     }
 
+    .paint-button::before { content: "??"; display: inline-block; margin: 0 6px 4px 0; padding: 2px 7px; border-radius: 999px; background: rgba(255, 255, 255, 0.78); font-size: 13px; font-weight: 1000; }
     .paint-button span { display: block; font-size: 24px; margin-top: 3px; }
     .paint-button:disabled { opacity: 0.5; cursor: not-allowed; }
 
@@ -1530,6 +1550,27 @@
       return "#111111";
     }
 
+    function currentMixLesson() {
+      const names = { Y: "?", M: "??", C: "?" };
+      const activeIds = ["Y", "M", "C"].filter(id => mixDrops[id] > 0);
+      const total = activeIds.reduce((sum, id) => sum + mixDrops[id], 0);
+      const key = `${mixDrops.Y}-${mixDrops.M}-${mixDrops.C}`;
+      if (total === 0) return { level: "????", className: "", title: "??????????", text: "?????????????????????????" };
+      if (activeIds.length === 1) {
+        const name = names[activeIds[0]];
+        return { level: "??", className: "level-primary", title: `${name}???`, text: `????${name}???????????????` };
+      }
+      if (activeIds.length === 3) return { level: "?????", className: "level-all-primary", title: "???????????", text: "?????????????????" };
+      const secondaryNames = { "1-1-0": "?", "1-0-1": "?", "0-1-1": "?" };
+      const tertiaryNames = { "2-1-0": "??", "1-2-0": "??", "0-2-1": "?", "0-1-2": "??", "1-0-2": "??", "2-0-1": "??" };
+      const baseKey = ["Y", "M", "C"].map(id => activeIds.includes(id) ? 1 : 0).join("-");
+      const baseName = secondaryNames[baseKey];
+      const formula = activeIds.map(id => `${names[id]}??`).join("?");
+      if (total === 2) return { level: "???", className: "level-secondary", title: `${formula} ? ${baseName}???`, text: "??????????????????" };
+      const extraId = activeIds.find(id => mixDrops[id] === 2);
+      return { level: "???", className: "level-tertiary", title: `${baseName}????${names[extraId]}?? ? ${tertiaryNames[key]}???`, text: "????????????????????" };
+    }
+
     function renderMixLab(message = "", messageType = "") {
       const mission = mixMissions[mixMissionIndex];
       const isFinished = mixMissionIndex >= mixMissions.length;
@@ -1538,6 +1579,7 @@
       const colorExplanation = isSecondary
         ? "由兩種原色相加而成。"
         : "由一種二次色，再加上一種相鄰的原色而成。";
+      const mixLesson = currentMixLesson();
       const progress = mixMissions.map((item, index) => {
         const className = index < mixMissionIndex ? "done" : index === mixMissionIndex && !isFinished ? "current" : "";
         return `<div class="mix-progress-dot ${className}">${index < mixMissionIndex ? "✓" : index + 1}</div>`;
@@ -1572,6 +1614,11 @@
             <div class="mix-workbench">
               <div class="mix-bowl" style="background:${currentMixColor()}; color:${mixDrops.Y + mixDrops.M + mixDrops.C ? "#fff" : "#64748b"}">
                 ${mixDrops.Y + mixDrops.M + mixDrops.C ? `目前共 ${mixDrops.Y + mixDrops.M + mixDrops.C} 滴` : "調色盤還是空的"}
+              </div>
+              <div class="mix-live-lesson ${mixLesson.className}" aria-live="polite">
+                <span class="mix-level-badge">???${mixLesson.level}</span>
+                <strong>${mixLesson.title}</strong>
+                <p>${mixLesson.text}</p>
               </div>
               <div class="paint-buttons">
                 <button class="paint-button" style="background:#FFD600" onclick="addMixDrop('Y')">黃<span>${mixDrops.Y} 滴</span></button>

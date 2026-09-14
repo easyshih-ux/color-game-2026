@@ -959,19 +959,19 @@
         <h2 class="unified-title">第三道封印｜彩度<br>任務完成</h2>
         <p class="unified-message">
           你已完成彩度偵測、彩度排序、低高低彩度波，以及彩度格子創作。<br>
-          請先下載作品並完成上繳，再領取最後一把色彩鑰匙。
+          作品已通過線上審核，最後一把色彩鑰匙已解鎖！
         </p>
-        <div class="unified-stamp">第三道封印待驗收</div>
+        <div class="unified-stamp">第三道封印已解除</div>
         <div id="resultArtName" class="notice" style="background:white;color:var(--ink);font-size:20px;"></div>
         <div class="unified-submit-steps">
-          <h3>作品上繳流程</h3>
-          <div class="unified-submit-step"><div class="num">1</div><div>先下載作品圖片，確認圖片中有你的作品。</div></div>
-          <div class="unified-submit-step"><div class="num">2</div><div>點選「上傳作品到 Google 表單（加分）」，把作品圖片上傳到表單。</div></div>
-          <div class="unified-submit-step"><div class="num">3</div><div>送出表單後，回到這個頁面，點選「我已完成上繳，領取密碼」。</div></div>
-          <div class="upload-warning">提醒：請完成表單上傳後再領取密碼。網頁不會自動讀取 Google 表單結果，請依照老師規定確實上繳。</div>
+          <h3>保存作品</h3>
+          <div class="unified-submit-step"><div class="num">1</div><div>點選「下載作品圖片」，將完成的作品保存到裝置。</div></div>
+          <div class="unified-submit-step"><div class="num">2</div><div>若老師有在 Classroom 指定作業，再到 Classroom 附加圖片並繳交；是否繳交不影響遊戲通關。</div></div>
+
+          <div class="upload-warning">Classroom 作業由老師另外檢查，不影響第三道封印的遊戲通關。</div>
         </div>
 
-        <div id="unlockBanner" class="unified-password-box hidden">
+        <div id="unlockBanner" class="unified-password-box">
           <div class="unified-password-label">恭喜獲得開鎖密碼</div>
           <div class="unified-password">Chroma</div>
           <div class="unified-note">「第三道封印｜彩度」解鎖成功，色彩三要素即將完整合流。</div>
@@ -979,8 +979,8 @@
 
         <div class="button-row result-actions unified-actions">
           <button class="btn outline" id="downloadBtn">下載作品圖片</button>
-          <button class="btn upload" id="uploadFormBtn">上傳作品到 Google 表單（加分）</button>
-          <button class="btn unlock" id="claimPasswordBtn" disabled>我已完成上繳，領取密碼</button>
+
+
           <button class="btn outline" id="backToArtBtn">回到作品修改</button>
           <button class="btn outline" id="restartBtn">重新開始</button>
         </div>
@@ -1632,18 +1632,7 @@
 
     function renderResult(){
       document.getElementById("resultArtName").textContent = state.artName.trim() ? `作品名稱：${state.artName.trim()}` : "作品名稱：我的彩度能量格";
-      const banner=document.getElementById("unlockBanner");
-      if(banner) banner.classList.add("hidden");
-      const claimBtn=document.getElementById("claimPasswordBtn");
-      if(claimBtn) claimBtn.disabled=true;
       updateProgress();
-    }
-
-    function showUnlockBanner(){
-      const banner=document.getElementById("unlockBanner");
-      if(!banner) return;
-      banner.classList.remove("hidden");
-      banner.scrollIntoView({behavior:"smooth", block:"center"});
     }
 
     function downloadArtwork(){
@@ -1679,16 +1668,6 @@
       link.click();
     }
 
-    function openUploadForm(){
-      const btn=document.getElementById("claimPasswordBtn");
-      if(btn) btn.disabled=false;
-      window.open("https://forms.gle/Vwa1LS5wUF56WYxy8", "_blank");
-    }
-
-    function claimPassword(){
-      showUnlockBanner();
-    }
-
     function resetAll(){
       state.screen="home";
       state.l1Index=0; state.l1Answered=false; state.l1Passed=false;
@@ -1701,10 +1680,6 @@
       document.getElementById("checkLevel2Btn").textContent="檢查通關";
       document.getElementById("checkLevel3Btn").onclick=checkLevel3;
       document.getElementById("checkLevel3Btn").textContent="檢查通關";
-      const banner=document.getElementById("unlockBanner");
-      if(banner) banner.classList.add("hidden");
-      const claimBtn=document.getElementById("claimPasswordBtn");
-      if(claimBtn) claimBtn.disabled=true;
       renderLevel1(); renderLevel2(); renderLevel3(); renderLevel4(); showScreen("home");
     }
 
@@ -1727,8 +1702,8 @@
     document.getElementById("artName").oninput=e=>{state.artName=e.target.value;renderLevel4()};
     document.getElementById("finishBtn").onclick=finishLevel4;
     document.getElementById("downloadBtn").onclick=downloadArtwork;
-    document.getElementById("uploadFormBtn").onclick=openUploadForm;
-    document.getElementById("claimPasswordBtn").onclick=claimPassword;
+
+
     document.getElementById("backToArtBtn").onclick=()=>{renderLevel4();showScreen("level4")};
     document.getElementById("restartBtn").onclick=resetAll;
 

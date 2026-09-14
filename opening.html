@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>色彩學解封任務</title>
+  <meta name="description" content="進入無色世界，完成色相、明度與彩度任務，幫小明找回消失的色彩。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:title" content="無色世界的封印｜色彩學解封任務">
+  <meta property="og:description" content="完成色相、明度與彩度挑戰，幫小明找回消失的色彩。">
+  <meta property="og:url" content="https://easyshih-ux.github.io/color-game-2026/index.html">
+  <meta property="og:image" content="https://easyshih-ux.github.io/color-game-2026/social-preview.png">
+  <meta property="og:image:secure_url" content="https://easyshih-ux.github.io/color-game-2026/social-preview.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1664">
+  <meta property="og:image:height" content="935">
+  <meta property="og:image:alt" content="無色世界的封印：幫小明找回消失的色彩">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="無色世界的封印｜色彩學解封任務">
+  <meta name="twitter:description" content="完成色相、明度與彩度挑戰，幫小明找回消失的色彩。">
+  <meta name="twitter:image" content="https://easyshih-ux.github.io/color-game-2026/social-preview.png">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      font-family: "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif;
+      background: #070b1d;
+      color: #fff;
+    }
+
+    .screen {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: #070b1d;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    video,
+    .start-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    video {
+      background: #000;
+      object-fit: contain;
+    }
+
+    .start-image {
+      background: #000;
+      object-fit: contain;
+    }
+
+    #startScreen {
+      background: #000;
+    }
+
+    .start-button {
+      position: fixed;
+      right: clamp(18px, 4vw, 56px);
+      bottom: clamp(18px, 4vw, 48px);
+      min-width: 168px;
+      min-height: 56px;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 26px;
+      background: linear-gradient(135deg, #ffd34f, #ff7a3d);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.34);
+      color: #17120a;
+      cursor: pointer;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .start-button:focus-visible {
+      outline: 4px solid rgba(255, 255, 255, 0.85);
+      outline-offset: 4px;
+    }
+
+    .continue-button {
+      position: fixed;
+      left: clamp(18px, 4vw, 56px);
+      bottom: clamp(18px, 4vw, 48px);
+      min-height: 50px;
+      border: 2px solid rgba(255, 255, 255, 0.82);
+      border-radius: 999px;
+      padding: 11px 20px;
+      background: rgba(20, 33, 68, 0.88);
+      color: #fff;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .continue-dialog {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.72);
+    }
+
+    .continue-dialog.hidden {
+      display: none;
+    }
+
+    .continue-card {
+      width: min(440px, 100%);
+      border: 2px solid rgba(255, 255, 255, 0.28);
+      border-radius: 20px;
+      padding: 26px;
+      background: #101a38;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .continue-card h2 {
+      margin: 0 0 8px;
+      font-size: 27px;
+    }
+
+    .continue-card p {
+      margin: 0 0 18px;
+      color: #d7def2;
+      line-height: 1.6;
+    }
+
+    .continue-card label {
+      display: block;
+      margin-top: 14px;
+      font-weight: 800;
+    }
+
+    .continue-card select,
+    .continue-card input {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 7px;
+      border: 2px solid #8093c7;
+      border-radius: 10px;
+      padding: 10px 13px;
+      background: #fff;
+      color: #121a2f;
+      font: inherit;
+      font-size: 20px;
+    }
+
+    .continue-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .continue-actions button {
+      min-height: 52px;
+      border: 0;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+    }
+
+    .continue-cancel {
+      background: #d9dfed;
+      color: #17213b;
+    }
+
+    .continue-submit {
+      background: #ffd34f;
+      color: #17120a;
+    }
+
+    .continue-message {
+      min-height: 26px;
+      margin: 14px 0 0 !important;
+      color: #ffdc74 !important;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .skip-button {
+      position: fixed;
+      left: 7px;
+      top: 7px;
+      width: 18px;
+      height: 18px;
+      min-width: 0;
+      min-height: 0;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 3px;
+      padding: 0;
+      background: rgba(7, 11, 29, 0.24);
+      color: transparent;
+      cursor: pointer;
+      font-size: 0;
+      opacity: 0.12;
+    }
+
+    .skip-button:hover,
+    .skip-button:focus-visible {
+      opacity: 0.28;
+    }
+
+    .sound-button {
+      position: fixed;
+      left: 50%;
+      top: 16px;
+      transform: translateX(-50%);
+      z-index: 2;
+      min-height: 48px;
+      border: 2px solid rgba(255, 255, 255, 0.75);
+      border-radius: 999px;
+      padding: 10px 22px;
+      background: rgba(7, 11, 29, 0.78);
+      color: #fff;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .sound-button.is-enabled {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    @media (max-width: 640px) {
+      .start-button {
+        right: 16px;
+        bottom: 16px;
+        min-width: 144px;
+        min-height: 50px;
+        padding: 12px 20px;
+        font-size: 19px;
+      }
+
+      .continue-button {
+        left: 16px;
+        bottom: 78px;
+        min-height: 46px;
+        padding: 10px 16px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section id="movieScreen" class="screen" aria-label="開場動畫">
+      <video id="openingMovie" autoplay playsinline muted controls>
+        <source src="色彩學開場影片/Startmovic3.mp4" type="video/mp4">
+      </video>
+      <button id="skipMovie" class="skip-button" type="button">略過動畫</button>
+      <button id="enableSound" class="sound-button" type="button">點我開啟聲音</button>
+    </section>
+
+    <section id="startScreen" class="screen hidden" aria-label="遊戲進入頁面">
+      <img class="start-image" src="色彩學開場影片/開場/Start0.png" alt="色彩學解封任務進入頁">
+      <button id="startButton" class="start-button" type="button">解封開始</button>
+      <button id="continueButton" class="continue-button" type="button" hidden>色相已完成｜從明度接關</button>
+    </section>
+
+    <section id="continueDialog" class="continue-dialog hidden" aria-labelledby="continueTitle" aria-modal="true" role="dialog">
+      <form id="continueForm" class="continue-card">
+        <h2 id="continueTitle">從明度接關</h2>
+        <p>請選擇班級，輸入老師公布的 4 位數字。</p>
+        <label for="continueClass">班級</label>
+        <select id="continueClass" required>
+          <option value="">請選擇班級</option>
+          <option value="714">714</option>
+          <option value="715">715</option>
+          <option value="716">716</option>
+        </select>
+        <label for="continuePassword">接關密碼</label>
+        <input id="continuePassword" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="4" pattern="[0-9]{4}" placeholder="4 位數字" required>
+        <p id="continueMessage" class="continue-message" aria-live="polite"></p>
+        <div class="continue-actions">
+          <button id="continueCancel" class="continue-cancel" type="button">取消</button>
+          <button id="continueSubmit" class="continue-submit" type="submit">確認接關</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const movieScreen = document.querySelector("#movieScreen");
+    const startScreen = document.querySelector("#startScreen");
+    const openingMovie = document.querySelector("#openingMovie");
+    const skipMovie = document.querySelector("#skipMovie");
+    const enableSound = document.querySelector("#enableSound");
+    const startButton = document.querySelector("#startButton");
+    const continueButton = document.querySelector("#continueButton");
+    const continueDialog = document.querySelector("#continueDialog");
+    const continueForm = document.querySelector("#continueForm");
+    const continueClass = document.querySelector("#continueClass");
+    const continuePassword = document.querySelector("#continuePassword");
+    const continueMessage = document.querySelector("#continueMessage");
+    const continueCancel = document.querySelector("#continueCancel");
+    const continueSubmit = document.querySelector("#continueSubmit");
+    const continueApiUrl = "https://script.google.com/macros/s/AKfycbx8jiW2JVvejI3wGGKwLl5PsqE00H1-osnz1-qAf80L7B8_rtKSfwX7EUW-szenJj9kBQ/exec";
+
+    function showStartScreen() {
+      openingMovie.pause();
+      movieScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+      startButton.focus();
+    }
+
+    openingMovie.addEventListener("ended", showStartScreen);
+    skipMovie.addEventListener("click", showStartScreen);
+    enableSound.addEventListener("click", () => {
+      openingMovie.muted = false;
+      openingMovie.volume = 1;
+      openingMovie.play();
+      enableSound.classList.add("is-enabled");
+    });
+    startButton.addEventListener("click", () => {
+      window.location.href = "hue-intro.html";
+    });
+
+    continueButton.addEventListener("click", () => {
+      continueMessage.textContent = "";
+      continueDialog.classList.remove("hidden");
+      continueClass.focus();
+    });
+
+    continueCancel.addEventListener("click", () => {
+      continueDialog.classList.add("hidden");
+      continueForm.reset();
+      continueButton.focus();
+    });
+
+    continuePassword.addEventListener("input", () => {
+      continuePassword.value = continuePassword.value.replace(/\D/g, "").slice(0, 4);
+    });
+
+    continueForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const className = continueClass.value;
+      const password = continuePassword.value;
+
+      if (!className || !/^\d{4}$/.test(password)) {
+        continueMessage.textContent = "請選擇班級並輸入 4 位數字。";
+        return;
+      }
+
+      continueSubmit.disabled = true;
+      continueMessage.textContent = "正在確認接關密碼…";
+
+      try {
+        const url = new URL(continueApiUrl);
+        url.searchParams.set("action", "verify");
+        url.searchParams.set("className", className);
+        url.searchParams.set("password", password);
+        const response = await fetch(url.toString(), { cache: "no-store" });
+        const result = await response.json();
+
+        if (result.success && result.valid) {
+          continueMessage.textContent = "接關成功，正在進入明度任務…";
+          window.location.href = "brightness-intro.html";
+          return;
+        }
+
+        continueMessage.textContent = result.message || "班級或密碼錯誤。";
+      } catch (error) {
+        continueMessage.textContent = "目前無法連線驗證，請稍後再試或告訴老師。";
+      } finally {
+        continueSubmit.disabled = false;
+      }
+    });
+
+    openingMovie.play().catch(() => {
+      skipMovie.textContent = "開始進入";
+    });
+  </script>
+  <script src="game-timer.js"></script>
+</body>
+</html>

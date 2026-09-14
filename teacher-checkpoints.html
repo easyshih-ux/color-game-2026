@@ -64,13 +64,19 @@
 
     <section>
       <h2>今日接關密碼</h2>
-      <p class="note">學生完成色相後，可用所屬班級的 4 位密碼直接從明度接關。密碼可隨時更新，儲存後立即生效。</p>
+      <p class="note">第二節明度與第三節彩度使用不同密碼。請先選擇節次與班級，再設定該節的 4 位接關密碼。</p>
       <form id="passwordForm" class="password-panel">
         <label>班級
           <select id="passwordClass" required>
             <option value="714">714</option>
             <option value="715">715</option>
             <option value="716">716</option>
+          </select>
+        </label>
+        <label>節次
+          <select id="passwordStage" required>
+            <option value="brightness">第二節｜明度封印</option>
+            <option value="chroma">第三節｜彩度封印</option>
           </select>
         </label>
         <label>新的 4 位接關密碼
@@ -162,6 +168,7 @@
     const continueApiUrl = "https://script.google.com/macros/s/AKfycbx8jiW2JVvejI3wGGKwLl5PsqE00H1-osnz1-qAf80L7B8_rtKSfwX7EUW-szenJj9kBQ/exec";
     const passwordForm = document.querySelector("#passwordForm");
     const passwordClass = document.querySelector("#passwordClass");
+    const passwordStage = document.querySelector("#passwordStage");
     const classPassword = document.querySelector("#classPassword");
     const teacherKey = document.querySelector("#teacherKey");
     const randomPassword = document.querySelector("#randomPassword");
@@ -171,13 +178,15 @@
 
     function showSavedPassword() {
       const className = passwordClass.value;
-      const saved = window.localStorage.getItem(`continuePassword-${className}`);
+      const stageName = passwordStage.value === "chroma" ? "第三節彩度" : "第二節明度";
+      const saved = window.localStorage.getItem(`continuePassword-${passwordStage.value}-${className}`);
       currentPassword.textContent = saved
-        ? `${className} 本裝置最後成功設定：${saved}`
+        ? `${className} ${stageName}｜本裝置最後成功設定：${saved}`
         : `${className} 本裝置最後成功設定：尚無紀錄`;
     }
 
     passwordClass.addEventListener("change", showSavedPassword);
+    passwordStage.addEventListener("change", showSavedPassword);
     classPassword.addEventListener("input", () => {
       classPassword.value = classPassword.value.replace(/\D/g, "").slice(0, 4);
     });
@@ -189,6 +198,7 @@
     passwordForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       const className = passwordClass.value;
+      const stage = passwordStage.value;
       const password = classPassword.value;
 
       if (!/^\d{4}$/.test(password)) {
@@ -205,6 +215,7 @@
           headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify({
             action: "update",
+            stage,
             className,
             password,
             teacherKey: teacherKey.value
@@ -219,10 +230,11 @@
           return;
         }
 
-        window.localStorage.setItem(`continuePassword-${className}`, password);
+        window.localStorage.setItem(`continuePassword-${stage}-${className}`, password);
         showSavedPassword();
         classPassword.value = "";
-        passwordMessage.textContent = `${className} 接關密碼已更新並立即生效。`;
+        const stageName = stage === "chroma" ? "第三節彩度" : "第二節明度";
+        passwordMessage.textContent = `${className} ${stageName}接關密碼已更新並立即生效。`;
       } catch (error) {
         passwordMessage.textContent = "目前無法連線更新，請確認 Apps Script 部署設定。";
       } finally {

@@ -64,7 +64,7 @@
 
     <section>
       <h2>今日接關密碼</h2>
-      <p class="note">第二節明度與第三節彩度使用不同密碼。請先選擇節次與班級，再設定該節的 4 位接關密碼。</p>
+      <p class="note">第二道明度與第三道彩度使用不同密碼。請先選擇節次與班級，再設定該節的 4 位接關密碼。</p>
       <form id="passwordForm" class="password-panel">
         <label>班級
           <select id="passwordClass" required>
@@ -75,8 +75,8 @@
         </label>
         <label>節次
           <select id="passwordStage" required>
-            <option value="brightness">第二節｜明度封印</option>
-            <option value="chroma">第三節｜彩度封印</option>
+            <option value="brightness">第二道｜明度封印</option>
+            <option value="chroma">第三道｜彩度封印</option>
           </select>
         </label>
         <label>新的 4 位接關密碼
@@ -195,7 +195,7 @@
 
     function showSavedPassword() {
       const className = passwordClass.value;
-      const stageName = passwordStage.value === "chroma" ? "第三節彩度" : "第二節明度";
+      const stageName = passwordStage.value === "chroma" ? "第三道彩度" : "第二道明度";
       const saved = window.localStorage.getItem(`continuePassword-${passwordStage.value}-${className}`);
       currentPassword.textContent = saved
         ? `${className} ${stageName}｜本裝置最後成功設定：${saved}`
@@ -250,7 +250,7 @@
         window.localStorage.setItem(`continuePassword-${stage}-${className}`, password);
         showSavedPassword();
         classPassword.value = "";
-        const stageName = stage === "chroma" ? "第三節彩度" : "第二節明度";
+        const stageName = stage === "chroma" ? "第三道彩度" : "第二道明度";
         passwordMessage.textContent = `${className} ${stageName}接關密碼已更新並立即生效。`;
       } catch (error) {
         passwordMessage.textContent = "目前無法連線更新，請確認 Apps Script 部署設定。";
